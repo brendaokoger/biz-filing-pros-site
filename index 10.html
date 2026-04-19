@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>File. Build. Grow. | Biz Filing Pros</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#06101C;--navy-mid:#0A1726;--navy-light:#0F1F38;--navy-card:#0C1B30;--gold:#C8A44C;--gold-light:#DEB96E;--gold-pale:#F2E4C0;--gold-dim:rgba(200,164,76,0.16);--ivory:#F9F7F2;--ivory-dark:#F1EDE4;--white:#FFFFFF;--text-body:#3A3A4A;--text-muted:#78788A;--border-gold:rgba(200,164,76,0.2);--shadow-gold:0 8px 40px rgba(200,164,76,0.13);--shadow-card:0 12px 48px rgba(6,16,28,0.13);--font-display:'Cinzel',Georgia,serif;--font-serif:'Cormorant Garamond',Georgia,serif;--font-sans:'DM Sans',system-ui,sans-serif;--radius:6px;--radius-lg:14px;--max-w:1160px;--ease:cubic-bezier(0.4,0,0.2,1);--transition:all 0.35s var(--ease)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-sans);background:var(--ivory);color:var(--text-body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 36px}
+.gold-rule{display:block;width:48px;height:1.5px;background:linear-gradient(90deg,var(--gold),var(--gold-light));margin:0 auto 20px}
+.gold-rule-left{display:block;width:48px;height:1.5px;background:linear-gradient(90deg,var(--gold),var(--gold-light));margin:0 0 20px}
+.eyebrow{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:10px}
+.section-header{text-align:center;margin-bottom:64px}
+.section-headline{font-family:var(--font-serif);font-size:clamp(30px,3.8vw,50px);font-weight:500;color:var(--navy);line-height:1.15;margin-bottom:16px}
+.section-headline em{font-style:italic;color:var(--gold)}
+.section-sub{font-family:var(--font-sans);font-size:14.5px;font-weight:300;color:var(--text-muted);max-width:500px;margin:0 auto;line-height:1.8}
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.7s var(--ease),transform 0.7s var(--ease)}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.fade-up.d1{transition-delay:.1s}.fade-up.d2{transition-delay:.2s}.fade-up.d3{transition-delay:.3s}.fade-up.d4{transition-delay:.4s}
+.btn-primary{display:inline-block;background:linear-gradient(120deg,var(--gold) 0%,var(--gold-light) 50%,var(--gold) 100%);background-size:200% 100%;color:var(--navy);font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;padding:16px 42px;border-radius:var(--radius);border:none;cursor:pointer;transition:background-position 0.5s var(--ease),box-shadow 0.3s,transform 0.3s;box-shadow:0 4px 22px rgba(200,164,76,0.3);position:relative;overflow:hidden}
+.btn-primary::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,0.22) 50%,transparent 70%);transform:translateX(-100%);transition:transform 0.55s var(--ease)}
+.btn-primary:hover{background-position:100% 0;box-shadow:0 6px 32px rgba(200,164,76,0.45);transform:translateY(-2px)}
+.btn-primary:hover::after{transform:translateX(100%)}
+.btn-outline{display:inline-block;background:transparent;color:var(--white);font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;padding:15px 40px;border-radius:var(--radius);border:1px solid rgba(200,164,76,0.5);cursor:pointer;transition:var(--transition)}
+.btn-outline:hover{background:rgba(200,164,76,0.1);border-color:var(--gold);transform:translateY(-2px)}
+
+/* LOGO */
+.logo-wordmark{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo-shield{width:38px;height:38px;flex-shrink:0;transition:filter 0.3s,transform 0.3s}
+.logo-wordmark:hover .logo-shield{filter:drop-shadow(0 0 8px rgba(200,164,76,0.5));transform:scale(1.04)}
+.logo-text-block{display:flex;flex-direction:column;line-height:1}
+.logo-name{font-family:var(--font-display);font-size:15px;font-weight:600;letter-spacing:0.14em;color:var(--gold-light);line-height:1.15}
+.logo-sub{font-family:var(--font-sans);font-size:8px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:rgba(200,164,76,0.45);margin-top:3px}
+
+/* NAVBAR */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:1000;height:78px;display:flex;align-items:center;background:rgba(6,16,28,0.96);border-bottom:1px solid rgba(200,164,76,0.12);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);transition:height 0.35s var(--ease),box-shadow 0.35s,background 0.35s;padding:0 36px}
+#navbar.scrolled{height:64px;box-shadow:0 4px 40px rgba(0,0,0,0.45);border-bottom-color:rgba(200,164,76,0.2);background:rgba(6,16,28,0.99)}
+.nav-inner{max-width:var(--max-w);margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+#navbar.scrolled .logo-shield{width:34px;height:34px}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-family:var(--font-sans);font-size:10.5px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.6);transition:color 0.25s;position:relative;padding-bottom:2px;white-space:nowrap}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.3s var(--ease)}
+.nav-links a:hover{color:rgba(255,255,255,0.95)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{margin-left:20px;flex-shrink:0;display:inline-block;background:linear-gradient(120deg,var(--gold) 0%,var(--gold-light) 50%,var(--gold) 100%);background-size:200% 100%;color:var(--navy);font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;padding:14px 28px;border-radius:var(--radius);border:none;cursor:pointer;transition:background-position 0.5s,box-shadow 0.3s,transform 0.3s;box-shadow:0 4px 22px rgba(200,164,76,0.3);position:relative;overflow:hidden}
+.nav-cta::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,0.22) 50%,transparent 70%);transform:translateX(-100%);transition:transform 0.55s var(--ease)}
+.nav-cta:hover{background-position:100% 0;box-shadow:0 6px 32px rgba(200,164,76,0.45);transform:translateY(-2px)}
+.nav-cta:hover::after{transform:translateX(100%)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;min-width:44px;min-height:44px;align-items:center;justify-content:center}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:var(--transition)}
+.mobile-menu{display:none;position:fixed;top:78px;left:0;right:0;background:var(--navy-mid);border-top:1px solid rgba(200,164,76,0.15);padding:24px 24px 36px;z-index:999;flex-direction:column;gap:4px;max-height:calc(100vh - 78px);overflow-y:auto}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--font-sans);font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.7);padding:15px 0;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s;min-height:52px;display:flex;align-items:center}
+.mobile-menu a:hover{color:var(--gold-light)}
+.mobile-menu .nav-cta{margin:20px 0 0;text-align:center;display:flex;justify-content:center;min-height:52px}
+@media(max-width:900px){.nav-links{display:none}.nav-cta.desktop-cta{display:none}.hamburger{display:flex}#navbar{padding:0 20px}}
+
+/* HERO */
+@keyframes hero-reveal{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes globe-appear{from{opacity:0;transform:scale(0.94)}to{opacity:1;transform:scale(1)}}
+@keyframes globe-drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes glow-pulse{0%,100%{opacity:0.6;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+@keyframes ring-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes particle-float{0%{opacity:0;transform:translateY(0) scale(0)}30%{opacity:1}100%{opacity:0;transform:translateY(-60px) scale(1.5)}}
+
+#hero{min-height:100vh;background:var(--navy);position:relative;display:flex;align-items:center;overflow:hidden;padding:140px 0 100px}
+.hero-cinematic-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 15% 60%,rgba(200,164,76,0.06) 0%,transparent 55%),radial-gradient(ellipse 60% 80% at 85% 20%,rgba(15,31,56,0.95) 0%,transparent 50%),radial-gradient(ellipse 50% 50% at 50% 100%,rgba(200,164,76,0.04) 0%,transparent 60%),linear-gradient(165deg,#06101C 0%,#08131F 40%,#050E18 75%,#030A12 100%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,164,76,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(200,164,76,0.022) 1px,transparent 1px);background-size:80px 80px;pointer-events:none}
+.hero-top-line{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,var(--gold) 25%,var(--gold-light) 50%,var(--gold) 75%,transparent 100%)}
+.hero-vignette{position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,16,28,0.7) 0%,transparent 25%,transparent 75%,rgba(6,16,28,0.5) 100%),linear-gradient(180deg,rgba(6,16,28,0.5) 0%,transparent 20%,transparent 80%,rgba(6,16,28,0.6) 100%);pointer-events:none}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 500px;gap:64px;align-items:center;width:100%;max-width:var(--max-w);margin:0 auto;padding:0 36px}
+.hero-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:28px;opacity:0;animation:hero-reveal 0.8s var(--ease) 0.2s forwards}
+.hero-eyebrow-line{width:32px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);flex-shrink:0}
+.hero-eyebrow-text{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold)}
+.hero-headline{font-family:var(--font-serif);font-size:clamp(42px,5vw,72px);font-weight:400;line-height:1.04;color:var(--white);margin-bottom:6px;opacity:0;animation:hero-reveal 0.9s var(--ease) 0.35s forwards;letter-spacing:-0.01em}
+.hero-headline-italic{font-family:var(--font-serif);font-size:clamp(42px,5vw,72px);font-weight:300;font-style:italic;line-height:1.04;color:var(--gold-light);margin-bottom:36px;opacity:0;animation:hero-reveal 0.9s var(--ease) 0.48s forwards;letter-spacing:-0.01em}
+.hero-sub{font-family:var(--font-sans);font-size:15px;font-weight:300;line-height:1.85;color:rgba(255,255,255,0.48);max-width:440px;margin-bottom:52px;opacity:0;animation:hero-reveal 0.85s var(--ease) 0.6s forwards}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;opacity:0;animation:hero-reveal 0.85s var(--ease) 0.75s forwards}
+.hero-stats{display:flex;gap:32px;margin-top:44px;padding-top:32px;border-top:1px solid rgba(200,164,76,0.12);opacity:0;animation:hero-reveal 0.85s var(--ease) 0.9s forwards}
+.hero-stat-num{font-family:var(--font-serif);font-size:28px;font-weight:400;color:var(--gold-light);line-height:1;display:block}
+.hero-stat-label{font-family:var(--font-sans);font-size:10px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:5px;display:block}
+
+/* Globe */
+.hero-globe-scene{position:relative;display:flex;align-items:center;justify-content:center;opacity:0;animation:globe-appear 1.4s var(--ease) 0.5s forwards}
+.globe-ambient{position:absolute;inset:-60px;background:radial-gradient(ellipse 55% 55% at 50% 50%,rgba(200,164,76,0.12) 0%,rgba(200,164,76,0.04) 35%,transparent 70%);animation:glow-pulse 5s ease-in-out infinite;pointer-events:none}
+.globe-body{position:relative;width:460px;height:460px;animation:globe-drift 8s ease-in-out infinite}
+.globe-outer-ring{position:absolute;inset:-24px;border-radius:50%;border:1px solid rgba(200,164,76,0.1);animation:ring-spin 60s linear infinite}
+.globe-outer-ring::before{content:'';position:absolute;top:0;left:50%;width:6px;height:6px;border-radius:50%;background:var(--gold);transform:translate(-50%,-50%);box-shadow:0 0 12px var(--gold)}
+.globe-outer-ring::after{content:'';position:absolute;bottom:0;left:50%;width:4px;height:4px;border-radius:50%;background:rgba(200,164,76,0.5);transform:translate(-50%,50%)}
+.globe-inner-ring{position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(200,164,76,0.15);animation:ring-spin 40s linear infinite reverse}
+.globe-svg{width:100%;height:100%;display:block;filter:drop-shadow(0 0 40px rgba(200,164,76,0.15)) drop-shadow(0 20px 60px rgba(0,0,0,0.6))}
+.globe-particle{position:absolute;border-radius:50%;background:var(--gold);animation:particle-float linear infinite;pointer-events:none}
+.globe-badge{position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);background:rgba(6,16,28,0.9);border:1px solid rgba(200,164,76,0.3);border-radius:40px;padding:10px 24px;display:flex;align-items:center;gap:10px;backdrop-filter:blur(12px);white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+.globe-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);flex-shrink:0;animation:glow-pulse 2.5s ease-in-out infinite}
+.globe-badge span{font-family:var(--font-sans);font-size:9.5px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(200,164,76,0.8)}
+
+@media(max-width:960px){.hero-inner{grid-template-columns:1fr;gap:52px;text-align:center;padding:0 24px}.hero-eyebrow{justify-content:center}.hero-sub{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.hero-stats{justify-content:center}.hero-globe-scene{max-width:340px;margin:0 auto}.globe-body{width:340px;height:340px}#hero{padding:110px 0 80px}}
+@media(max-width:560px){.hero-globe-scene{max-width:280px}.globe-body{width:280px;height:280px}.hero-stats{gap:20px;flex-wrap:wrap}#hero{padding:100px 0 72px}.hero-headline,.hero-headline-italic{font-size:clamp(36px,9vw,52px)}}
+
+/* SERVICES */
+#services{padding:110px 0;background:var(--ivory)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.services-row2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:calc(66.66% + 8px);margin:24px auto 0}
+.service-card{background:var(--white);border:1px solid rgba(200,164,76,0.14);border-radius:var(--radius-lg);padding:40px 32px 36px;position:relative;overflow:hidden;transition:transform 0.38s var(--ease),box-shadow 0.38s,border-color 0.38s;display:flex;flex-direction:column}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transform-origin:left;transition:transform 0.4s var(--ease)}
+.service-card:hover{transform:translateY(-7px);box-shadow:0 24px 56px rgba(6,16,28,0.1),var(--shadow-gold);border-color:rgba(200,164,76,0.28)}
+.service-card:hover::before{transform:scaleX(1)}
+.service-icon{width:46px;height:46px;background:linear-gradient(135deg,rgba(200,164,76,0.1),rgba(200,164,76,0.05));border:1px solid rgba(200,164,76,0.22);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:transform 0.3s,box-shadow 0.3s;flex-shrink:0}
+.service-card:hover .service-icon{transform:scale(1.08);box-shadow:0 4px 16px rgba(200,164,76,0.18)}
+.service-icon svg{width:20px;height:20px;fill:var(--gold)}
+.service-name{font-family:var(--font-serif);font-size:21px;font-weight:600;color:var(--navy);margin-bottom:12px;line-height:1.2}
+.service-desc{font-family:var(--font-sans);font-size:13.5px;font-weight:300;color:var(--text-body);line-height:1.78;margin-bottom:28px;flex:1}
+.service-cta{font-family:var(--font-sans);font-size:10.5px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:8px;transition:gap 0.25s var(--ease),color 0.25s;min-height:44px}
+.service-cta::after{content:'→';font-size:13px;transition:transform 0.25s var(--ease)}
+.service-cta:hover{color:var(--navy)}
+.service-cta:hover::after{transform:translateX(4px)}
+
+/* WHY US */
+#why{padding:110px 0;background:var(--white)}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.why-card{background:var(--white);border:1px solid rgba(200,164,76,0.14);border-radius:var(--radius-lg);padding:44px 32px;position:relative;overflow:hidden;transition:var(--transition)}
+.why-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transform-origin:left;transition:transform 0.4s var(--ease)}
+.why-card:hover{box-shadow:var(--shadow-gold);border-color:rgba(200,164,76,0.28);transform:translateY(-5px)}
+.why-card:hover::before{transform:scaleX(1)}
+.why-icon{width:48px;height:48px;background:linear-gradient(135deg,rgba(200,164,76,0.1),rgba(200,164,76,0.04));border:1px solid rgba(200,164,76,0.22);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;margin-bottom:28px;transition:transform 0.3s,box-shadow 0.3s}
+.why-card:hover .why-icon{transform:scale(1.08);box-shadow:0 4px 16px rgba(200,164,76,0.18)}
+.why-icon svg{width:20px;height:20px;fill:var(--gold)}
+.why-num{font-family:var(--font-serif);font-size:48px;font-weight:300;color:rgba(200,164,76,0.14);line-height:1;margin-bottom:16px;user-select:none}
+.why-title{font-family:var(--font-serif);font-size:21px;font-weight:600;color:var(--navy);margin-bottom:12px;line-height:1.2}
+.why-body{font-family:var(--font-sans);font-size:13.5px;font-weight:300;color:var(--text-muted);line-height:1.78}
+
+/* REVIEWS */
+#reviews{padding:110px 0;background:var(--ivory)}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.review-card{background:var(--white);border:1px solid rgba(200,164,76,0.15);border-radius:var(--radius-lg);padding:48px 40px 44px;position:relative;overflow:hidden;transition:var(--transition);display:flex;flex-direction:column}
+.review-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light));opacity:0;transition:opacity 0.35s}
+.review-card:hover{box-shadow:var(--shadow-card),var(--shadow-gold);border-color:rgba(200,164,76,0.3);transform:translateY(-5px)}
+.review-card:hover::before{opacity:1}
+.review-quote-mark{font-family:var(--font-serif);font-size:80px;line-height:0.6;color:rgba(200,164,76,0.18);margin-bottom:28px;display:block;user-select:none}
+.review-stars{display:flex;gap:4px;margin-bottom:22px}
+.review-star{width:14px;height:14px;fill:var(--gold)}
+.review-text{font-family:var(--font-serif);font-size:17px;font-weight:400;font-style:italic;color:var(--navy);line-height:1.75;margin-bottom:32px;flex:1}
+.review-divider{width:36px;height:1px;background:var(--gold);margin-bottom:18px}
+.review-author{font-family:var(--font-sans);font-size:12px;font-weight:600;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase}
+.review-role{font-family:var(--font-sans);font-size:12px;font-weight:300;color:var(--text-muted);margin-top:5px}
+
+/* FAQ */
+#faq{padding:110px 0;background:var(--navy);position:relative;overflow:hidden}
+.faq-top-line{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.faq-bottom-line{position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.faq-bg-glow{position:absolute;top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(ellipse,rgba(200,164,76,0.05) 0%,transparent 70%);pointer-events:none}
+.faq-layout{display:grid;grid-template-columns:300px 1fr;gap:80px;align-items:start;position:relative;z-index:2}
+.faq-label-headline{font-family:var(--font-serif);font-size:clamp(26px,3vw,38px);font-weight:500;color:var(--white);line-height:1.2;margin-bottom:16px}
+.faq-label-headline em{font-style:italic;color:var(--gold-light)}
+.faq-label-sub{font-family:var(--font-sans);font-size:13.5px;font-weight:300;color:rgba(255,255,255,0.4);line-height:1.75;margin-bottom:32px}
+.faq-contact-nudge{font-family:var(--font-sans);font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:8px;transition:gap 0.25s var(--ease)}
+.faq-contact-nudge::after{content:'→';font-size:13px}
+.faq-contact-nudge:hover{gap:12px}
+.faq-list{display:flex;flex-direction:column;gap:2px}
+.faq-item{border:1px solid rgba(200,164,76,0.12);border-radius:var(--radius);overflow:hidden;transition:border-color 0.3s;background:rgba(255,255,255,0.02)}
+.faq-item.open{border-color:rgba(200,164,76,0.3);background:rgba(255,255,255,0.04)}
+.faq-question{display:flex;justify-content:space-between;align-items:center;padding:22px 28px;cursor:pointer;gap:20px;transition:background 0.25s;min-height:68px}
+.faq-question:hover{background:rgba(255,255,255,0.03)}
+.faq-q-text{font-family:var(--font-sans);font-size:14px;font-weight:500;color:rgba(255,255,255,0.88);line-height:1.4}
+.faq-item.open .faq-q-text{color:var(--white)}
+.faq-toggle{width:24px;height:24px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border:1px solid rgba(200,164,76,0.25);border-radius:50%;transition:var(--transition)}
+.faq-toggle svg{width:11px;height:11px;fill:var(--gold);transition:transform 0.35s var(--ease)}
+.faq-item.open .faq-toggle{background:rgba(200,164,76,0.12);border-color:var(--gold)}
+.faq-item.open .faq-toggle svg{transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.45s var(--ease)}
+.faq-item.open .faq-answer{max-height:220px}
+.faq-a-text{padding:0 28px 22px;font-family:var(--font-sans);font-size:13.5px;font-weight:300;color:rgba(255,255,255,0.48);line-height:1.8}
+
+/* CONTACT */
+#contact{padding:110px 0;background:var(--white);position:relative;overflow:hidden}
+.contact-bg-glow{position:absolute;bottom:-100px;left:-100px;width:500px;height:500px;background:radial-gradient(ellipse,rgba(200,164,76,0.05) 0%,transparent 70%);pointer-events:none}
+.contact-layout{display:grid;grid-template-columns:340px 1fr;gap:80px;align-items:start;position:relative;z-index:2}
+.contact-info-headline{font-family:var(--font-serif);font-size:clamp(28px,3vw,40px);font-weight:500;color:var(--navy);line-height:1.18;margin-bottom:16px}
+.contact-info-headline em{font-style:italic;color:var(--gold)}
+.contact-info-sub{font-family:var(--font-sans);font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.8;margin-bottom:40px}
+.contact-detail-list{display:flex;flex-direction:column;gap:20px}
+.contact-detail{display:flex;align-items:center;gap:14px}
+.contact-detail-icon{width:40px;height:40px;background:linear-gradient(135deg,rgba(200,164,76,0.1),rgba(200,164,76,0.04));border:1px solid rgba(200,164,76,0.22);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-detail-icon svg{width:17px;height:17px;fill:var(--gold)}
+.contact-detail-label{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:2px}
+.contact-detail-text{font-family:var(--font-sans);font-size:13.5px;font-weight:400;color:var(--text-body);transition:color 0.2s}
+a.contact-detail-text:hover{color:var(--gold)}
+.contact-form-card{background:var(--white);border:1px solid rgba(200,164,76,0.16);border-radius:var(--radius-lg);padding:52px 48px;box-shadow:var(--shadow-card);position:relative;overflow:hidden}
+.contact-form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--gold))}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.form-group{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+.form-group.full{grid-column:1/-1}
+.form-label{font-family:var(--font-sans);font-size:10.5px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--navy)}
+.form-input,.form-select,.form-textarea{font-family:var(--font-sans);font-size:14px;font-weight:300;color:var(--text-body);background:var(--ivory);border:1px solid rgba(200,164,76,0.2);border-radius:var(--radius);padding:14px 16px;width:100%;outline:none;transition:border-color 0.25s,box-shadow 0.25s;appearance:none;-webkit-appearance:none}
+.form-input::placeholder,.form-textarea::placeholder{color:var(--text-muted);font-weight:300}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,164,76,0.1);background:var(--white)}
+.form-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23C8A44C' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px;cursor:pointer;background-color:var(--ivory)}
+.form-select option{color:var(--text-body);background:var(--white)}
+.form-textarea{resize:vertical;min-height:130px;line-height:1.7}
+.form-submit{width:100%;background:linear-gradient(120deg,var(--gold) 0%,var(--gold-light) 50%,var(--gold) 100%);background-size:200% 100%;color:var(--navy);font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;padding:18px 32px;border-radius:var(--radius);border:none;cursor:pointer;margin-top:8px;transition:background-position 0.5s var(--ease),box-shadow 0.3s,transform 0.3s;box-shadow:0 4px 22px rgba(200,164,76,0.28);position:relative;overflow:hidden;min-height:56px}
+.form-submit::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,0.22) 50%,transparent 70%);transform:translateX(-100%);transition:transform 0.55s var(--ease)}
+.form-submit:hover{background-position:100% 0;box-shadow:0 6px 32px rgba(200,164,76,0.42);transform:translateY(-2px)}
+.form-submit:hover::after{transform:translateX(100%)}
+.form-note{font-family:var(--font-sans);font-size:11px;font-weight:300;color:var(--text-muted);text-align:center;margin-top:14px;line-height:1.6}
+
+/* FOOTER */
+#footer{background:var(--navy);position:relative;overflow:hidden}
+.footer-top-line{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.footer-bg-glow{position:absolute;bottom:-80px;right:-80px;width:400px;height:400px;background:radial-gradient(ellipse,rgba(200,164,76,0.04) 0%,transparent 70%);pointer-events:none}
+.footer-body{padding:72px 0 48px;position:relative;z-index:2}
+.footer-inner{display:grid;grid-template-columns:1fr auto;gap:80px;align-items:start}
+.footer-logo-wordmark{margin-bottom:20px}
+.footer-logo-wordmark .logo-shield{width:44px;height:44px}
+.footer-logo-wordmark .logo-name{font-size:17px}
+.footer-tagline{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:rgba(200,164,76,0.4);margin-bottom:28px}
+.footer-desc{font-family:var(--font-sans);font-size:13.5px;font-weight:300;color:rgba(255,255,255,0.32);line-height:1.8;max-width:340px}
+.footer-details{display:flex;flex-direction:column;gap:28px;padding-top:6px}
+.footer-detail-group{display:flex;align-items:flex-start;gap:14px}
+.footer-detail-icon{width:36px;height:36px;background:rgba(200,164,76,0.07);border:1px solid rgba(200,164,76,0.18);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.footer-detail-icon svg{width:15px;height:15px;fill:var(--gold)}
+.footer-detail-label{font-family:var(--font-sans);font-size:9.5px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:rgba(200,164,76,0.5);display:block;margin-bottom:4px}
+.footer-detail-value{font-family:var(--font-sans);font-size:13.5px;font-weight:400;color:rgba(255,255,255,0.62);text-decoration:none;transition:color 0.2s;line-height:1.55;display:block}
+a.footer-detail-value:hover{color:var(--gold-light)}
+.footer-divider{border:none;border-top:1px solid rgba(200,164,76,0.1);margin:0;position:relative;z-index:2}
+.footer-bottom{padding:24px 0;position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footer-copy{font-family:var(--font-sans);font-size:11.5px;font-weight:300;color:rgba(255,255,255,0.28);letter-spacing:0.04em}
+.footer-bottom-tag{font-family:var(--font-sans);font-size:9.5px;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:rgba(200,164,76,0.3)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){.why-grid{grid-template-columns:repeat(2,1fr)}.reviews-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.services-grid{grid-template-columns:repeat(2,1fr)}.services-row2{max-width:100%;grid-template-columns:repeat(2,1fr)}.why-grid{grid-template-columns:repeat(2,1fr)}.faq-layout{grid-template-columns:1fr;gap:48px}.contact-layout{grid-template-columns:1fr;gap:52px}.footer-inner{grid-template-columns:1fr;gap:48px}}
+@media(max-width:768px){.container{padding:0 24px}.reviews-grid{grid-template-columns:1fr;max-width:560px;margin:0 auto}.contact-form-card{padding:40px 32px}.footer-bottom{flex-direction:column;align-items:flex-start;gap:10px}.footer-body{padding:52px 0 36px}}
+@media(max-width:560px){.services-grid{grid-template-columns:1fr}.services-row2{grid-template-columns:1fr}.why-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.contact-form-card{padding:32px 20px}.btn-primary,.btn-outline{padding:18px 28px;font-size:12px}}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand logo-wordmark">
+      <svg class="logo-shield" viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40 4 L74 16 L74 46 C74 64 58 78 40 86 C22 78 6 64 6 46 L6 16 Z" fill="rgba(200,164,76,0.08)" stroke="url(#sg1)" stroke-width="1.5"/>
+        <path d="M40 12 L68 22 L68 46 C68 61 55 73 40 80 C25 73 12 61 12 46 L12 22 Z" fill="rgba(200,164,76,0.05)"/>
+        <text x="40" y="56" font-family="Cinzel,Georgia,serif" font-size="28" font-weight="700" fill="url(#gt1)" text-anchor="middle">B</text>
+        <defs>
+          <linearGradient id="sg1" x1="6" y1="4" x2="74" y2="86" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#DEB96E"/><stop offset="50%" stop-color="#C8A44C"/><stop offset="100%" stop-color="#A8843C"/></linearGradient>
+          <linearGradient id="gt1" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox"><stop offset="0%" stop-color="#F2E4C0"/><stop offset="100%" stop-color="#C8A44C"/></linearGradient>
+        </defs>
+      </svg>
+      <div class="logo-text-block">
+        <span class="logo-name">Biz Filing Pros</span>
+        <span class="logo-sub">File · Build · Grow</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#hero">Home</a>
+      <a href="#services">Services</a>
+      <a href="#why">Why Us</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta desktop-cta">Start Your Filing</a>
+    <button class="hamburger" id="hamburger" aria-label="Open Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<nav class="mobile-menu" id="mobile-menu">
+  <a href="#hero" onclick="closeMobile()">Home</a>
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#why" onclick="closeMobile()">Why Us</a>
+  <a href="#reviews" onclick="closeMobile()">Reviews</a>
+  <a href="#faq" onclick="closeMobile()">FAQ</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="#contact" class="nav-cta" onclick="closeMobile()">Start Your Filing</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-cinematic-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-top-line"></div>
+  <div class="hero-vignette"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span class="hero-eyebrow-text">Nationwide Business Filing Services</span>
+      </div>
+      <h1 class="hero-headline">Launch Your Business</h1>
+      <p class="hero-headline-italic">with Confidence</p>
+      <p class="hero-sub">Professional filing support for LLCs, corporations, trademarks, registered agent service, and business setup in all 50 states.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Start Your Filing</a>
+        <a href="#services" class="btn-outline">Explore Services</a>
+      </div>
+      <div class="hero-stats">
+        <div><span class="hero-stat-num">50</span><span class="hero-stat-label">States Served</span></div>
+        <div><span class="hero-stat-num">5+</span><span class="hero-stat-label">Core Services</span></div>
+        <div><span class="hero-stat-num">100%</span><span class="hero-stat-label">Professional</span></div>
+      </div>
+    </div>
+    <div class="hero-globe-scene">
+      <div class="globe-ambient"></div>
+      <div class="globe-body">
+        <div class="globe-outer-ring"></div>
+        <div class="globe-inner-ring"></div>
+        <div class="globe-particle" style="width:3px;height:3px;top:15%;left:20%;animation-duration:4s;animation-delay:0s;opacity:0.7"></div>
+        <div class="globe-particle" style="width:2px;height:2px;top:30%;left:75%;animation-duration:6s;animation-delay:1.5s;opacity:0.5"></div>
+        <div class="globe-particle" style="width:4px;height:4px;top:70%;left:15%;animation-duration:5s;animation-delay:0.8s;opacity:0.6"></div>
+        <div class="globe-particle" style="width:2px;height:2px;top:80%;left:80%;animation-duration:7s;animation-delay:2s;opacity:0.4"></div>
+        <svg class="globe-svg" viewBox="0 0 460 460" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <radialGradient id="oceanGrad" cx="38%" cy="35%" r="65%"><stop offset="0%" stop-color="#0D2140"/><stop offset="40%" stop-color="#071628"/><stop offset="80%" stop-color="#040F1C"/><stop offset="100%" stop-color="#020A12"/></radialGradient>
+            <radialGradient id="landGrad" cx="40%" cy="35%" r="60%"><stop offset="0%" stop-color="#1A2D1A"/><stop offset="60%" stop-color="#111E10"/><stop offset="100%" stop-color="#0A160A"/></radialGradient>
+            <radialGradient id="atmosphereGrad" cx="50%" cy="50%" r="50%"><stop offset="80%" stop-color="transparent"/><stop offset="92%" stop-color="rgba(200,164,76,0.06)"/><stop offset="100%" stop-color="rgba(200,164,76,0.18)"/></radialGradient>
+            <radialGradient id="specularGrad" cx="32%" cy="28%" r="38%"><stop offset="0%" stop-color="rgba(255,255,255,0.09)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></radialGradient>
+            <clipPath id="globeClip"><circle cx="230" cy="230" r="218"/></clipPath>
+            <filter id="goldGlow"><feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="blur"/><feColorMatrix type="matrix" values="1 0.8 0 0 0 0.8 0.65 0 0 0 0 0 0 0 0 0 0 0 0.7 0" in="blur" result="glow"/><feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <circle cx="230" cy="230" r="218" fill="url(#oceanGrad)"/>
+          <g clip-path="url(#globeClip)" filter="url(#goldGlow)">
+            <!-- Grid lines -->
+            <g stroke="rgba(200,164,76,0.06)" stroke-width="0.6" fill="none">
+              <ellipse cx="230" cy="230" rx="218" ry="55"/>
+              <ellipse cx="230" cy="168" rx="195" ry="48"/>
+              <ellipse cx="230" cy="292" rx="195" ry="48"/>
+              <ellipse cx="230" cy="110" rx="148" ry="36"/>
+              <ellipse cx="230" cy="350" rx="148" ry="36"/>
+              <ellipse cx="230" cy="218" rx="218" ry="218"/>
+              <ellipse cx="230" cy="218" rx="175" ry="218"/>
+              <ellipse cx="230" cy="218" rx="100" ry="218"/>
+              <ellipse cx="230" cy="218" rx="36" ry="218"/>
+            </g>
+            <!-- Equator gold accent -->
+            <ellipse cx="230" cy="230" rx="218" ry="9" stroke="rgba(200,164,76,0.22)" stroke-width="1" fill="none"/>
+            <!-- North America -->
+            <path d="M95 115 C90 108,96 100,104 95 C114 88,128 84,140 82 C152 80,162 82,170 88 C178 94,182 102,186 110 C192 122,196 136,194 148 C192 160,185 170,178 178 C170 188,162 195,156 205 C150 215,148 226,144 236 C140 246,136 255,130 260 C124 265,116 264,110 258 C104 252,100 242,98 232 C96 222,96 212,98 202 C100 192,104 183,104 172 C104 161,100 150,96 140 C92 130,90 122,95 115Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.3)" stroke-width="0.8"/>
+            <!-- Greenland -->
+            <path d="M175 72 C168 64,172 55,182 52 C194 48,208 52,214 60 C220 68,216 78,206 82 C196 86,182 80,175 72Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.2)" stroke-width="0.6"/>
+            <!-- Central America -->
+            <path d="M144 260 C140 270,138 278,135 285 C132 292,130 298,128 304 C126 310,125 315,126 320 C127 325,130 328,133 326 C136 324,138 318,140 312 C142 306,143 300,145 294 C147 288,149 282,148 275 C147 268,146 263,144 260Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.22)" stroke-width="0.6"/>
+            <!-- South America -->
+            <path d="M148 295 C152 288,158 284,165 283 C174 282,182 286,188 292 C196 300,200 312,202 324 C204 336,203 348,200 360 C197 372,192 382,185 390 C178 398,170 402,162 400 C154 398,147 390,142 381 C137 372,135 361,135 350 C135 339,137 328,140 318 C143 308,145 300,148 295Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.3)" stroke-width="0.8"/>
+            <!-- Europe -->
+            <path d="M240 110 C244 104,250 100,256 98 C264 96,272 98,278 104 C285 111,287 120,285 129 C283 138,276 145,268 149 C260 153,251 154,244 150 C237 146,233 138,232 130 C231 122,234 115,240 110Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.28)" stroke-width="0.8"/>
+            <!-- Scandinavia -->
+            <path d="M255 85 C252 78,256 70,263 68 C271 66,279 70,281 78 C283 86,279 94,271 97 C263 100,257 92,255 85Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.18)" stroke-width="0.5"/>
+            <!-- Africa -->
+            <path d="M248 175 C254 168,262 164,271 163 C281 162,292 166,300 173 C310 181,315 193,317 205 C319 218,317 231,313 243 C309 256,302 267,294 276 C286 286,276 293,266 297 C256 301,245 300,237 294 C229 288,224 278,221 267 C218 256,218 244,220 232 C222 220,227 209,234 199 C240 189,242 182,248 175Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.32)" stroke-width="0.9"/>
+            <!-- Madagascar -->
+            <path d="M318 248 C316 242,318 236,323 234 C329 232,335 236,336 242 C337 249,333 256,327 257 C321 258,319 254,318 248Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.18)" stroke-width="0.5"/>
+            <!-- Middle East -->
+            <path d="M298 160 C302 154,308 150,315 150 C322 150,329 154,333 161 C337 168,336 177,331 183 C326 189,318 191,311 188 C304 185,299 178,298 170 C297 165,297 163,298 160Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.2)" stroke-width="0.6"/>
+            <!-- Asia main -->
+            <path d="M285 95 C292 88,302 84,315 82 C330 80,348 82,362 88 C378 95,390 105,398 118 C406 131,408 146,406 160 C404 175,397 188,388 198 C379 208,367 214,355 218 C343 222,331 222,320 219 C309 216,299 209,292 200 C285 191,281 180,280 168 C279 156,281 143,284 131 C287 119,286 103,285 95Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.32)" stroke-width="0.9"/>
+            <!-- India -->
+            <path d="M332 198 C336 192,342 190,348 192 C355 195,359 202,360 210 C361 218,358 227,352 232 C346 237,338 237,333 232 C328 227,326 219,327 211 C328 204,330 201,332 198Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.2)" stroke-width="0.6"/>
+            <!-- SE Asia -->
+            <path d="M375 185 C380 179,387 177,393 180 C399 183,402 190,401 197 C400 204,395 209,389 209 C383 209,378 204,376 198 C374 192,374 188,375 185Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.18)" stroke-width="0.5"/>
+            <!-- Australia -->
+            <path d="M365 295 C372 288,381 284,391 283 C402 282,413 286,420 294 C427 302,428 313,425 323 C422 333,415 341,406 345 C397 349,387 348,379 343 C371 338,366 329,364 319 C362 309,363 300,365 295Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.28)" stroke-width="0.8"/>
+            <!-- Japan -->
+            <path d="M400 138 C398 133,400 128,405 127 C411 126,416 130,416 135 C416 141,412 145,407 145 C403 145,400 142,400 138Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.18)" stroke-width="0.5"/>
+          </g>
+          <!-- Atmosphere -->
+          <circle cx="230" cy="230" r="218" fill="url(#atmosphereGrad)"/>
+          <circle cx="230" cy="230" r="218" fill="url(#specularGrad)"/>
+          <!-- Outer rings -->
+          <circle cx="230" cy="230" r="222" fill="none" stroke="rgba(200,164,76,0.14)" stroke-width="1.5"/>
+          <circle cx="230" cy="230" r="228" fill="none" stroke="rgba(200,164,76,0.06)" stroke-width="1"/>
+          <!-- Pulsing location dots -->
+          <circle cx="140" cy="188" r="4" fill="#C8A44C" opacity="0.9"><animate attributeName="opacity" values="0.9;0.4;0.9" dur="3s" repeatCount="indefinite"/></circle>
+          <circle cx="140" cy="188" r="8" fill="none" stroke="#C8A44C" stroke-width="0.8" opacity="0.4"><animate attributeName="r" values="6;12;6" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.5;0;0.5" dur="3s" repeatCount="indefinite"/></circle>
+          <circle cx="264" cy="128" r="3.5" fill="#DEB96E" opacity="0.8"><animate attributeName="opacity" values="0.8;0.3;0.8" dur="4s" repeatCount="indefinite"/></circle>
+          <circle cx="264" cy="128" r="7" fill="none" stroke="#DEB96E" stroke-width="0.7" opacity="0.35"><animate attributeName="r" values="5;10;5" dur="4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="4s" repeatCount="indefinite"/></circle>
+          <circle cx="390" cy="314" r="3" fill="#C8A44C" opacity="0.7"><animate attributeName="opacity" values="0.7;0.25;0.7" dur="5s" repeatCount="indefinite"/></circle>
+        </svg>
+        <div class="globe-badge">
+          <div class="globe-badge-dot"></div>
+          <span>Filing Nationwide &mdash; All 50 States</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow fade-up">What We Do</span>
+      <span class="gold-rule"></span>
+      <h2 class="section-headline fade-up d1">Everything You Need<br><em>to Launch with Confidence.</em></h2>
+      <p class="section-sub fade-up d2">Professional filing services for serious entrepreneurs. Pick your service and let&rsquo;s get you structured properly.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up d1"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><h3 class="service-name">LLC, S-Corp &amp; C-Corp Filing</h3><p class="service-desc">We prepare and file your formation documents with your state — accurately and completely. Everything your bank, partners, and investors will require, done right the first time.</p><a href="#contact" class="service-cta">Get Started</a></div>
+      <div class="service-card fade-up d2"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></div><h3 class="service-name">Registered Agent Service</h3><p class="service-desc">Every LLC and corporation needs a registered agent to receive legal and state notices. We serve as your official registered agent so you never miss a critical document.</p><a href="#contact" class="service-cta">Get Started</a></div>
+      <div class="service-card fade-up d3"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-1 8h-3v3h-2v-3h-3v-2h3V7h2v3h3v2z"/></svg></div><h3 class="service-name">State &amp; Federal Trademark Filing</h3><p class="service-desc">Protect your brand before someone else does. We file your trademark application with precision — safeguarding your name, logo, and identity at the state or federal level.</p><a href="#contact" class="service-cta">Get Started</a></div>
+      <div class="service-card fade-up d1"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div><h3 class="service-name">Business Email Setup</h3><p class="service-desc">A branded email address builds instant credibility. We configure your professional domain email so every message you send carries the authority your business deserves.</p><a href="#contact" class="service-cta">Get Started</a></div>
+      <div class="service-card fade-up d2"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zm-2 9H7v-2h4v2zm4-4H7v-2h8v2zm0-4H7V8h8v2z"/></svg></div><h3 class="service-name">Operating Agreements &amp; Bylaws</h3><p class="service-desc">Custom drafted for your entity type and ownership structure. Required by most banks — not a generic template, but a proper document built specifically for your business.</p><a href="#contact" class="service-cta">Get Started</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow fade-up">Why Choose Us</span>
+      <span class="gold-rule"></span>
+      <h2 class="section-headline fade-up d1">Built for Entrepreneurs<br><em>Who Mean Business.</em></h2>
+      <p class="section-sub fade-up d2">We don&rsquo;t do generic. Every filing is handled with care, precision, and the professionalism your business deserves.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card fade-up d1"><div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div><div class="why-num">01</div><h3 class="why-title">Nationwide Service</h3><p class="why-body">We file in all 50 states. Wherever your business is registered or expanding, we handle the paperwork so you stay focused on building.</p></div>
+      <div class="why-card fade-up d2"><div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></div><div class="why-num">02</div><h3 class="why-title">Secure Process</h3><p class="why-body">Your information stays private and protected from start to finish. We handle every document with strict confidentiality and professional care.</p></div>
+      <div class="why-card fade-up d3"><div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm.5 5v6l4.5 2.7-.75 1.23L11 14V7h1.5z"/></svg></div><div class="why-num">03</div><h3 class="why-title">Fast Turnaround</h3><p class="why-body">Time matters when you&rsquo;re launching. We move quickly without cutting corners — so your filing is submitted accurately and without unnecessary delays.</p></div>
+      <div class="why-card fade-up d4"><div class="why-icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div><div class="why-num">04</div><h3 class="why-title">Professional Support</h3><p class="why-body">You get real answers from real people. We&rsquo;re here throughout the process — not just at checkout — to make sure everything goes smoothly.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow fade-up">Client Reviews</span>
+      <span class="gold-rule"></span>
+      <h2 class="section-headline fade-up d1">Trusted by Entrepreneurs<br><em>Across the Country.</em></h2>
+      <p class="section-sub fade-up d2">Real results from real business owners who chose to build their foundation the right way.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card fade-up d1"><span class="review-quote-mark">&ldquo;</span><div class="review-stars"><svg class="review-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="review-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="review-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="review-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="review-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><p class="review-text">I had no idea where to start with forming my LLC. Biz Filing Pros walked me through everything and had my paperwork filed faster than I expected. Professional from start to finish.</p><div class="review-divider"></div><div class="review-author">Marcus T.</div><div class="review-role">Founder, E-Commerce Brand &mdash; Georgia</div></div>
+      <div class="review-card fade-up d2"><span class="review-quote-mark">&ldquo;</span><div class="review-stars"><svg class="review-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="review-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="review-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="review-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="review-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><p class="review-text">The trademark filing process felt overwhelming until I found this team. They handled everything cleanly and kept me updated the whole way. My brand is protected and I have peace of mind.</p><div class="review-divider"></div><div class="review-author">Danielle R.</div><div class="review-role">Creative Director &mdash; Texas</div></div>
+      <div class="review-card fade-up d3"><span class="review-quote-mark">&ldquo;</span><div class="review-stars"><svg class="review-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="review-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="review-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="review-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="review-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><p class="review-text">I needed an operating agreement fast before my bank meeting. They delivered a clean, custom document — not a template — exactly on time. I&rsquo;ll be using them for every filing going forward.</p><div class="review-divider"></div><div class="review-author">James A.</div><div class="review-role">Owner, Consulting Firm &mdash; Indiana</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-top-line"></div><div class="faq-bottom-line"></div><div class="faq-bg-glow"></div>
+  <div class="container">
+    <div class="faq-layout">
+      <div class="fade-up">
+        <span class="eyebrow">FAQ</span><span class="gold-rule-left"></span>
+        <h2 class="faq-label-headline">Quick Answers<br>to <em>Common Questions.</em></h2>
+        <p class="faq-label-sub">Still have something on your mind? Reach out directly — we&rsquo;re happy to help.</p>
+        <a href="#contact" class="faq-contact-nudge">Contact Us</a>
+      </div>
+      <div class="faq-list fade-up d2">
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">What services do you offer?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">We offer LLC, S-Corp, and C-Corp formation, registered agent service, state and federal trademark filing, operating agreements, bylaws, and professional business email setup — everything a new or growing business needs to launch with the right structure.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Do you serve all 50 states?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">Yes. We file in all 50 states. Whether you&rsquo;re forming your business in Indiana or registering as a foreign entity in California, we handle the paperwork accurately and on time.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">How do I get started?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">Simply reach out through our contact section or call us directly. We&rsquo;ll confirm the details of your filing, collect what we need, and take it from there. The process is straightforward and we walk you through every step.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Do filing fees come separately?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">Yes. State filing fees are paid directly to the state and are separate from our service fee. Every state has different fees and processing times. We&rsquo;ll give you a clear breakdown before anything is submitted so there are no surprises.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Do you offer registered agent service?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">Yes. We serve as your registered agent to receive legal notices, state correspondence, and official documents on your behalf. It&rsquo;s a required role for every LLC and corporation — and we handle it professionally.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-bg-glow"></div>
+  <div class="container">
+    <div class="contact-layout">
+      <div class="fade-up">
+        <span class="eyebrow">Get In Touch</span><span class="gold-rule-left"></span>
+        <h2 class="contact-info-headline">Let&rsquo;s Get Your<br>Business <em>Filed Right.</em></h2>
+        <p class="contact-info-sub">Fill out the form and we&rsquo;ll follow up promptly to confirm details and get the process started. No pressure, no guesswork — just clear next steps.</p>
+        <div class="contact-detail-list">
+          <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div><div><span class="contact-detail-label">Phone</span><a href="tel:3177850113" class="contact-detail-text">(317) 785-0113</a></div></div>
+          <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div><div><span class="contact-detail-label">Email</span><a href="mailto:info@bizfilingpros.com" class="contact-detail-text">info@bizfilingpros.com</a></div></div>
+          <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg></div><div><span class="contact-detail-label">Coverage</span><span class="contact-detail-text">Serving All 50 States</span></div></div>
+          <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm.5 5v6l4.5 2.7-.75 1.23L11 14V7h1.5z"/></svg></div><div><span class="contact-detail-label">Hours</span><span class="contact-detail-text">Mon–Fri 9am–5pm EST</span></div></div>
+        </div>
+      </div>
+      <div class="contact-form-card fade-up d2">
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+          <div class="form-row"><div class="form-group"><label class="form-label" for="full-name">Full Name</label><input class="form-input" type="text" id="full-name" name="full_name" placeholder="Jane Smith" required></div><div class="form-group"><label class="form-label" for="email">Email Address</label><input class="form-input" type="email" id="email" name="email" placeholder="jane@yourbusiness.com" required></div></div>
+          <div class="form-row"><div class="form-group"><label class="form-label" for="phone">Phone Number</label><input class="form-input" type="tel" id="phone" name="phone" placeholder="(317) 000-0000"></div><div class="form-group"><label class="form-label" for="state">State</label><select class="form-select" id="state" name="state" required><option value="" disabled selected>Select your state</option><option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option></select></div></div>
+          <div class="form-row"><div class="form-group full"><label class="form-label" for="service">Service Needed</label><select class="form-select" id="service" name="service" required><option value="" disabled selected>Select a service</option><option>LLC, S-Corp &amp; C-Corp Filing</option><option>Registered Agent Service</option><option>State &amp; Federal Trademark Filing</option><option>Business Email Setup</option><option>Operating Agreement &amp; Bylaws</option><option>Not Sure — I Need Guidance</option></select></div></div>
+          <div class="form-row"><div class="form-group full"><label class="form-label" for="message">Message</label><textarea class="form-textarea" id="message" name="message" placeholder="Tell us a little about your business and what you need..." required></textarea></div></div>
+          <button type="submit" class="form-submit">Submit Inquiry</button>
+          <p class="form-note">We typically respond within one business day. Your information is never shared or sold.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-top-line"></div><div class="footer-bg-glow"></div>
+  <div class="footer-body">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <a href="#hero" class="logo-wordmark footer-logo-wordmark">
+            <svg class="logo-shield" viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M40 4 L74 16 L74 46 C74 64 58 78 40 86 C22 78 6 64 6 46 L6 16 Z" fill="rgba(200,164,76,0.08)" stroke="url(#sgF)" stroke-width="1.5"/>
+              <path d="M40 12 L68 22 L68 46 C68 61 55 73 40 80 C25 73 12 61 12 46 L12 22 Z" fill="rgba(200,164,76,0.05)"/>
+              <text x="40" y="56" font-family="Cinzel,Georgia,serif" font-size="28" font-weight="700" fill="url(#gtF)" text-anchor="middle">B</text>
+              <defs>
+                <linearGradient id="sgF" x1="6" y1="4" x2="74" y2="86" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#DEB96E"/><stop offset="50%" stop-color="#C8A44C"/><stop offset="100%" stop-color="#A8843C"/></linearGradient>
+                <linearGradient id="gtF" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox"><stop offset="0%" stop-color="#F2E4C0"/><stop offset="100%" stop-color="#C8A44C"/></linearGradient>
+              </defs>
+            </svg>
+            <div class="logo-text-block">
+              <span class="logo-name">Biz Filing Pros</span>
+              <span class="logo-sub">File · Build · Grow</span>
+            </div>
+          </a>
+          <div class="footer-tagline">File &middot; Build &middot; Grow</div>
+          <p class="footer-desc">Professional business filing services for entrepreneurs across all 50 states. Built for clarity, trust, and results.</p>
+        </div>
+        <div class="footer-details">
+          <div class="footer-detail-group"><div class="footer-detail-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div><div><span class="footer-detail-label">Phone</span><a href="tel:3177850113" class="footer-detail-value">(317) 785-0113</a></div></div>
+          <div class="footer-detail-group"><div class="footer-detail-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div><div><span class="footer-detail-label">Email</span><a href="mailto:info@bizfilingpros.com" class="footer-detail-value">info@bizfilingpros.com</a></div></div>
+          <div class="footer-detail-group"><div class="footer-detail-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm.5 5v6l4.5 2.7-.75 1.23L11 14V7h1.5z"/></svg></div><div><span class="footer-detail-label">Hours</span><span class="footer-detail-value">Mon–Fri: 9am–5pm EST<br>Sat–Sun: By Appointment</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="footer-divider">
+  <div class="container"><div class="footer-bottom"><span class="footer-copy">&copy; 2026 Biz Filing Pros, LLC. All rights reserved.</span><span class="footer-bottom-tag">File &middot; Build &middot; Grow</span></div></div>
+</footer>
+
+<script>
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+const hamburger=document.getElementById('hamburger');
+const mobileMenu=document.getElementById('mobile-menu');
+hamburger.addEventListener('click',()=>mobileMenu.classList.toggle('open'));
+function closeMobile(){mobileMenu.classList.remove('open')}
+document.addEventListener('click',(e)=>{if(!navbar.contains(e.target)&&!mobileMenu.contains(e.target))closeMobile()});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();window.scrollTo({top:t.getBoundingClientRect().top+window.pageYOffset-72,behavior:'smooth'});closeMobile()}})});
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.08,rootMargin:'0px 0px -48px 0px'});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+function toggleFaq(btn){const item=btn.closest('.faq-item');const isOpen=item.classList.contains('open');document.querySelectorAll('#faq .faq-item').forEach(i=>i.classList.remove('open'));if(!isOpen)item.classList.add('open')}
+const form=document.querySelector('#contact form');
+if(form){form.addEventListener('submit',async(e)=>{e.preventDefault();const btn=form.querySelector('.form-submit');const note=form.querySelector('.form-note');btn.textContent='Sending…';btn.disabled=true;try{const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});if(res.ok){btn.textContent='Message Sent ✓';note.textContent="Thank you — we'll be in touch within one business day.";note.style.color='var(--gold)';form.reset()}else{throw new Error()}}catch{btn.textContent='Submit Inquiry';btn.disabled=false;note.textContent='Something went wrong. Please email us at info@bizfilingpros.com';note.style.color='#e55'}})}
+</script>
+</body>
+</html>
