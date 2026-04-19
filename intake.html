@@ -525,7 +525,7 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
 <div class="step" data-step="6">
   <div class="card">
     <h2 class="card-t">Review Your Application</h2>
-    <p class="card-s">Please verify your information. You'll be directed to secure checkout after submitting.</p>
+    <p class="card-s">Please verify your information carefully before submitting your application.</p>
     <div id="summaryBox"></div>
   </div>
 
@@ -1286,10 +1286,14 @@ function clearSig(){
 }
 
 /* ═══ SUBMIT ═══ */
-document.getElementById('mainForm').addEventListener('submit', async function(e) {
+document.getElementById('mainForm').addEventListener('submit', function(e) {
   e.preventDefault();
 
-  // Exact total — same logic as calcTotal()
+  const submitBtn = document.querySelector('.btn-submit');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Submitting…';
+
+  // Calculate final total for lead record
   let finalTotal = pkgPrice;
   for(const v of Object.values(addonsMap)) finalTotal += v;
   if(addrSelections.ra && pkgName !== 'complete') finalTotal += 149;
@@ -1304,70 +1308,20 @@ document.getElementById('mainForm').addEventListener('submit', async function(e)
   }
   if(couponApplied && couponDiscount > 0) finalTotal = Math.max(0, finalTotal - couponDiscount);
 
-  const submitBtn = document.querySelector('.btn-submit');
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Preparing Secure Checkout…';
-
-  // Fire lead data to Formspree (non-blocking — captures order regardless of payment outcome)
   const formData = new FormData(document.getElementById('mainForm'));
   formData.append('calculatedTotal', '$' + finalTotal.toLocaleString());
   formData.append('selectedPackage', pkgName || 'none');
   formData.append('couponCode', couponApplied || 'none');
+
   fetch('https://formspree.io/f/xzdyegje', {
     method: 'POST',
     headers: { 'Accept': 'application/json' },
     body: formData
-  }).catch(() => {});
-
-  // Build add-on summary for Stripe metadata
-  const addonLabels = {
-    ao_ein: 'EIN / Tax ID', ao_bba: 'DBA / Trade Name', ao_fedtm: 'Federal Trademark',
-    ao_statetm: 'State Trademark', ao_oa: 'Operating Agreement',
-    ao_oa_sm: 'Operating Agreement (Single Member)', ao_web: 'Launch Site',
-    ao_email: 'Business Email Setup'
-  };
-  const addonParts = Object.keys(addonsMap).map(k => addonLabels[k] || k);
-  if(addrSelections.ra && pkgName !== 'complete') addonParts.push('Registered Agent');
-  if(addrSelections.virtual) addonParts.push('Virtual Address (' + (virtualBillingChoice || 'annual') + ')');
-  const selectedAddons = addonParts.join(', ') || 'None';
-
-  const packageLabel = pkgName === 'complete' ? 'Business Pro Package' : 'Business Starter Package';
-  const customerEmail = (document.querySelector('[name="email"]') || {}).value || '';
-  const customerName = [
-    (document.querySelector('[name="firstName"]') || {}).value || '',
-    (document.querySelector('[name="lastName"]') || {}).value || ''
-  ].join(' ').trim();
-
-  try {
-    const res = await fetch('/.netlify/functions/create-checkout', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        amountCents: finalTotal * 100,
-        packageLabel,
-        customerEmail,
-        customerName,
-        metadata: {
-          package: pkgName || 'none',
-          state: document.getElementById('stateSelect').value || '',
-          addons: selectedAddons,
-          coupon: couponApplied || 'none',
-          total: '$' + finalTotal.toLocaleString()
-        }
-      })
-    });
-    const data = await res.json();
-    if(data.url) {
-      window.location.href = data.url;
-    } else {
-      throw new Error(data.error || 'Checkout session creation failed');
-    }
-  } catch(err) {
-    console.error('Checkout error:', err);
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Submit Application →';
-    alert('There was an issue preparing your checkout. Please try again or contact support@bizfilingpros.com.');
-  }
+  })
+  .catch(() => {})
+  .finally(() => {
+    window.location.href = 'thank-you.html';
+  });
 });
 </script>
 </body>
