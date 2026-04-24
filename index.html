@@ -66,11 +66,8 @@ ul{list-style:none}
 
 /* HERO */
 @keyframes hero-reveal{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
-@keyframes globe-appear{from{opacity:0;transform:scale(0.94)}to{opacity:1;transform:scale(1)}}
-@keyframes globe-drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes map-appear{from{opacity:0;transform:scale(0.94)}to{opacity:1;transform:scale(1)}}
 @keyframes glow-pulse{0%,100%{opacity:0.6;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
-@keyframes ring-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-@keyframes particle-float{0%{opacity:0;transform:translateY(0) scale(0)}30%{opacity:1}100%{opacity:0;transform:translateY(-60px) scale(1.5)}}
 
 #hero{min-height:100vh;background:var(--navy);position:relative;display:flex;align-items:center;overflow:hidden;padding:140px 0 100px}
 .hero-cinematic-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 15% 60%,rgba(200,164,76,0.06) 0%,transparent 55%),radial-gradient(ellipse 60% 80% at 85% 20%,rgba(15,31,56,0.95) 0%,transparent 50%),radial-gradient(ellipse 50% 50% at 50% 100%,rgba(200,164,76,0.04) 0%,transparent 60%),linear-gradient(165deg,#06101C 0%,#08131F 40%,#050E18 75%,#030A12 100%)}
@@ -90,7 +87,7 @@ ul{list-style:none}
 .hero-stat-label{font-family:var(--font-sans);font-size:10px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:5px;display:block}
 
 /* US Map */
-.hero-map-scene{position:relative;display:flex;align-items:center;justify-content:center;opacity:0;animation:globe-appear 1.4s var(--ease) 0.5s forwards}
+.hero-map-scene{position:relative;display:flex;align-items:center;justify-content:center;opacity:0;animation:map-appear 1.4s var(--ease) 0.5s forwards}
 .map-glow{position:absolute;inset:-50px;background:radial-gradient(ellipse 65% 60% at 50% 50%,rgba(200,164,76,0.10) 0%,rgba(200,164,76,0.03) 45%,transparent 70%);pointer-events:none;animation:glow-pulse 6s ease-in-out infinite}
 .map-svg{width:100%;max-width:520px;filter:drop-shadow(0 0 28px rgba(200,164,76,0.14)) drop-shadow(0 16px 48px rgba(0,0,0,0.5))}
 .map-badge{position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);background:rgba(6,16,28,0.9);border:1px solid rgba(200,164,76,0.3);border-radius:40px;padding:9px 22px;display:flex;align-items:center;gap:9px;backdrop-filter:blur(12px);white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
