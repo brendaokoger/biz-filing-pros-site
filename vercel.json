@@ -1,17 +1,18 @@
 {
-  "functions": {
-    "api/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
-  "routes": [
+  "cleanUrls": false,
+  "trailingSlash": false,
+  "rewrites": [
     {
-      "src": "/api/create-checkout-session",
-      "dest": "/api/create-checkout-session.js"
+      "source": "/",
+      "destination": "/index.html"
     },
     {
-      "src": "/(.*)",
-      "dest": "/$1"
+      "source": "/intake",
+      "destination": "/intake.html"
+    },
+    {
+      "source": "/thank-you",
+      "destination": "/thank-you.html"
     }
   ]
 }
