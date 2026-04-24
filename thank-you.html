@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application Received — Biz Filing Pros</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0B1D3A;
+      --gold: #C9A84C;
+      --white: #ffffff;
+      --gray-400: #9ca3af;
+      --radius: 10px;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html, body {
+      min-height: 100vh;
+      background: var(--navy);
+      color: var(--white);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .site-header {
+      background: rgba(11,29,58,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px;
+    }
+    .logo-text {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+    .logo-text span { color: var(--gold); }
+
+    .page-wrap {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    .confirm-icon {
+      width: 72px;
+      height: 72px;
+      background: linear-gradient(135deg, #1a5276 0%, #2980b9 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      box-shadow: 0 0 0 12px rgba(41,128,185,0.1);
+      font-size: 2rem;
+      animation: pop-in 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    @keyframes pop-in {
+      from { transform: scale(0.4); opacity: 0; }
+      to   { transform: scale(1);   opacity: 1; }
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.75rem, 5vw, 2.4rem);
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    h1 em { font-style: italic; color: var(--gold); font-weight: 400; }
+
+    .subtitle {
+      text-align: center;
+      color: rgba(255,255,255,0.72);
+      font-size: 1rem;
+      line-height: 1.65;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,168,76,0.18);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+    .card h2 {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card h2::before {
+      content: '';
+      display: inline-block;
+      width: 3px;
+      height: 1.05rem;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+
+    .steps { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .steps li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.6;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.72rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .contact-block {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.8;
+      margin-top: 14px;
+    }
+    .contact-block a { color: var(--gold); text-decoration: none; }
+    .contact-block strong { color: var(--white); }
+
+    .site-footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .site-footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+
+    @media (max-width: 480px) {
+      .page-wrap { padding: 40px 16px 64px; }
+      .card { padding: 20px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="logo-text">Biz Filing <span>Pros</span></a>
+</header>
+
+<main class="page-wrap">
+
+  <div class="confirm-icon">✓</div>
+
+  <h1>Application <em>Received</em></h1>
+  <p class="subtitle">
+    Thank you for choosing Biz Filing Pros, LLC. Your application has been submitted successfully.
+    Our team will review it and reach out to you shortly.
+  </p>
+
+  <div class="card">
+    <h2>What Happens Next</h2>
+    <ul class="steps">
+      <li>
+        <span class="step-num">1</span>
+        <span>You'll receive a confirmation email with your application details and order summary.</span>
+      </li>
+      <li>
+        <span class="step-num">2</span>
+        <span>A member of our team will contact you regarding payment and next steps, typically within one business day.</span>
+      </li>
+      <li>
+        <span class="step-num">3</span>
+        <span>If you selected Federal Trademark, State Trademark, Business Email Setup, Operating Agreement, or Launch Site, we'll email any additional intake forms needed for those services.</span>
+      </li>
+      <li>
+        <span class="step-num">4</span>
+        <span>Once your filing is processed and approved by the state, your completed documents will be delivered to your email.</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Questions?</h2>
+    <p style="font-size:.9rem;color:rgba(255,255,255,.8);line-height:1.6;">
+      If you need to make a change or have questions about your application, contact us right away.
+    </p>
+    <div class="contact-block">
+      <strong><a href="mailto:support@bizfilingpros.com">support@bizfilingpros.com</a></strong><br>
+      (317) 785-0113<br>
+      Monday – Friday &nbsp;·&nbsp; 9:00 AM – 5:00 PM CST
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  © 2026 Biz Filing Pros, LLC. All Rights Reserved.&nbsp;&nbsp;·&nbsp;&nbsp;
+  <a href="mailto:support@bizfilingpros.com">support@bizfilingpros.com</a>
+</footer>
+
+</body>
+</html>
