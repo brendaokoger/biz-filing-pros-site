@@ -66,11 +66,8 @@ ul{list-style:none}
 
 /* HERO */
 @keyframes hero-reveal{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
-@keyframes globe-appear{from{opacity:0;transform:scale(0.94)}to{opacity:1;transform:scale(1)}}
-@keyframes globe-drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes map-appear{from{opacity:0;transform:scale(0.94)}to{opacity:1;transform:scale(1)}}
 @keyframes glow-pulse{0%,100%{opacity:0.6;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
-@keyframes ring-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-@keyframes particle-float{0%{opacity:0;transform:translateY(0) scale(0)}30%{opacity:1}100%{opacity:0;transform:translateY(-60px) scale(1.5)}}
 
 #hero{min-height:100vh;background:var(--navy);position:relative;display:flex;align-items:center;overflow:hidden;padding:140px 0 100px}
 .hero-cinematic-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 15% 60%,rgba(200,164,76,0.06) 0%,transparent 55%),radial-gradient(ellipse 60% 80% at 85% 20%,rgba(15,31,56,0.95) 0%,transparent 50%),radial-gradient(ellipse 50% 50% at 50% 100%,rgba(200,164,76,0.04) 0%,transparent 60%),linear-gradient(165deg,#06101C 0%,#08131F 40%,#050E18 75%,#030A12 100%)}
@@ -81,7 +78,7 @@ ul{list-style:none}
 .hero-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:28px;opacity:0;animation:hero-reveal 0.8s var(--ease) 0.2s forwards}
 .hero-eyebrow-line{width:32px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);flex-shrink:0}
 .hero-eyebrow-text{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold)}
-.hero-headline{font-family:var(--font-serif);font-size:clamp(42px,5vw,72px);font-weight:400;line-height:1.04;color:var(--white);margin-bottom:6px;opacity:0;animation:hero-reveal 0.9s var(--ease) 0.35s forwards;letter-spacing:-0.01em}
+.hero-headline{font-family:var(--font-serif);font-size:clamp(42px,5vw,72px);font-weight:400;line-height:1.04;color:var(--white);margin-bottom:4px;opacity:0;animation:hero-reveal 0.9s var(--ease) 0.35s forwards;letter-spacing:-0.01em}
 .hero-headline-italic{font-family:var(--font-serif);font-size:clamp(42px,5vw,72px);font-weight:300;font-style:italic;line-height:1.04;color:var(--gold-light);margin-bottom:36px;opacity:0;animation:hero-reveal 0.9s var(--ease) 0.48s forwards;letter-spacing:-0.01em}
 .hero-sub{font-family:var(--font-sans);font-size:15px;font-weight:300;line-height:1.85;color:rgba(255,255,255,0.48);max-width:440px;margin-bottom:52px;opacity:0;animation:hero-reveal 0.85s var(--ease) 0.6s forwards}
 .hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;opacity:0;animation:hero-reveal 0.85s var(--ease) 0.75s forwards}
@@ -89,39 +86,44 @@ ul{list-style:none}
 .hero-stat-num{font-family:var(--font-serif);font-size:28px;font-weight:400;color:var(--gold-light);line-height:1;display:block}
 .hero-stat-label{font-family:var(--font-sans);font-size:10px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:5px;display:block}
 
-/* Globe */
-.hero-globe-scene{position:relative;display:flex;align-items:center;justify-content:center;opacity:0;animation:globe-appear 1.4s var(--ease) 0.5s forwards}
-.globe-ambient{position:absolute;inset:-60px;background:radial-gradient(ellipse 55% 55% at 50% 50%,rgba(200,164,76,0.12) 0%,rgba(200,164,76,0.04) 35%,transparent 70%);animation:glow-pulse 5s ease-in-out infinite;pointer-events:none}
-.globe-body{position:relative;width:460px;height:460px;animation:globe-drift 8s ease-in-out infinite}
-.globe-outer-ring{position:absolute;inset:-24px;border-radius:50%;border:1px solid rgba(200,164,76,0.1);animation:ring-spin 60s linear infinite}
-.globe-outer-ring::before{content:'';position:absolute;top:0;left:50%;width:6px;height:6px;border-radius:50%;background:var(--gold);transform:translate(-50%,-50%);box-shadow:0 0 12px var(--gold)}
-.globe-outer-ring::after{content:'';position:absolute;bottom:0;left:50%;width:4px;height:4px;border-radius:50%;background:rgba(200,164,76,0.5);transform:translate(-50%,50%)}
-.globe-inner-ring{position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(200,164,76,0.15);animation:ring-spin 40s linear infinite reverse}
-.globe-svg{width:100%;height:100%;display:block;filter:drop-shadow(0 0 40px rgba(200,164,76,0.15)) drop-shadow(0 20px 60px rgba(0,0,0,0.6))}
-.globe-particle{position:absolute;border-radius:50%;background:var(--gold);animation:particle-float linear infinite;pointer-events:none}
-.globe-badge{position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);background:rgba(6,16,28,0.9);border:1px solid rgba(200,164,76,0.3);border-radius:40px;padding:10px 24px;display:flex;align-items:center;gap:10px;backdrop-filter:blur(12px);white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
-.globe-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);flex-shrink:0;animation:glow-pulse 2.5s ease-in-out infinite}
-.globe-badge span{font-family:var(--font-sans);font-size:9.5px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(200,164,76,0.8)}
+/* US Map */
+.hero-map-scene{position:relative;display:flex;align-items:center;justify-content:center;opacity:0;animation:map-appear 1.4s var(--ease) 0.5s forwards}
+.map-glow{position:absolute;inset:-50px;background:radial-gradient(ellipse 65% 60% at 50% 50%,rgba(200,164,76,0.10) 0%,rgba(200,164,76,0.03) 45%,transparent 70%);pointer-events:none;animation:glow-pulse 6s ease-in-out infinite}
+.map-svg{width:100%;max-width:520px;filter:drop-shadow(0 0 28px rgba(200,164,76,0.14)) drop-shadow(0 16px 48px rgba(0,0,0,0.5))}
+.map-badge{position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);background:rgba(6,16,28,0.9);border:1px solid rgba(200,164,76,0.3);border-radius:40px;padding:9px 22px;display:flex;align-items:center;gap:9px;backdrop-filter:blur(12px);white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+.map-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);flex-shrink:0;animation:glow-pulse 2.5s ease-in-out infinite}
+.map-badge span{font-family:var(--font-sans);font-size:9.5px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(200,164,76,0.8)}
+.map-mobile-badge{display:none}
 
-@media(max-width:960px){.hero-inner{grid-template-columns:1fr;gap:52px;text-align:center;padding:0 24px}.hero-eyebrow{justify-content:center}.hero-sub{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.hero-stats{justify-content:center}.hero-globe-scene{max-width:340px;margin:0 auto}.globe-body{width:340px;height:340px}#hero{padding:110px 0 80px}}
-@media(max-width:560px){.hero-globe-scene{max-width:280px}.globe-body{width:280px;height:280px}.hero-stats{gap:20px;flex-wrap:wrap}#hero{padding:100px 0 72px}.hero-headline,.hero-headline-italic{font-size:clamp(36px,9vw,52px)}}
+@media(max-width:960px){.hero-inner{grid-template-columns:1fr;gap:52px;text-align:center;padding:0 24px}.hero-eyebrow{justify-content:center}.hero-sub{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.hero-stats{justify-content:center}.hero-map-scene{display:none}.map-mobile-badge{display:flex;justify-content:center;align-items:center;gap:9px;margin-top:14px;opacity:0;animation:hero-reveal 0.85s var(--ease) 1s forwards}.map-mobile-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 7px var(--gold);animation:glow-pulse 2.5s ease-in-out infinite}.map-mobile-text{font-family:var(--font-sans);font-size:9px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:rgba(200,164,76,0.7)}#hero{padding:110px 0 80px}}
+@media(max-width:560px){.hero-stats{gap:20px;flex-wrap:wrap}#hero{padding:100px 0 72px}.hero-headline,.hero-headline-italic{font-size:clamp(36px,9vw,52px)}}
 
 /* SERVICES */
-#services{padding:110px 0;background:var(--ivory)}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.services-row2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:calc(66.66% + 8px);margin:24px auto 0}
-.service-card{background:var(--white);border:1px solid rgba(200,164,76,0.14);border-radius:var(--radius-lg);padding:40px 32px 36px;position:relative;overflow:hidden;transition:transform 0.38s var(--ease),box-shadow 0.38s,border-color 0.38s;display:flex;flex-direction:column}
-.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transform-origin:left;transition:transform 0.4s var(--ease)}
-.service-card:hover{transform:translateY(-7px);box-shadow:0 24px 56px rgba(6,16,28,0.1),var(--shadow-gold);border-color:rgba(200,164,76,0.28)}
-.service-card:hover::before{transform:scaleX(1)}
-.service-icon{width:46px;height:46px;background:linear-gradient(135deg,rgba(200,164,76,0.1),rgba(200,164,76,0.05));border:1px solid rgba(200,164,76,0.22);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:transform 0.3s,box-shadow 0.3s;flex-shrink:0}
-.service-card:hover .service-icon{transform:scale(1.08);box-shadow:0 4px 16px rgba(200,164,76,0.18)}
-.service-icon svg{width:20px;height:20px;fill:var(--gold)}
-.service-name{font-family:var(--font-serif);font-size:21px;font-weight:600;color:var(--navy);margin-bottom:12px;line-height:1.2}
-.service-desc{font-family:var(--font-sans);font-size:13.5px;font-weight:300;color:var(--text-body);line-height:1.78;margin-bottom:28px;flex:1}
-.service-cta{font-family:var(--font-sans);font-size:10.5px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:8px;transition:gap 0.25s var(--ease),color 0.25s;min-height:44px}
-.service-cta::after{content:'→';font-size:13px;transition:transform 0.25s var(--ease)}
-.service-cta:hover{color:var(--navy)}
+#services{padding:110px 0;background:var(--navy);position:relative;overflow:hidden}
+.services-top-line{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.services-bg-glow{position:absolute;top:-80px;right:-80px;width:560px;height:560px;background:radial-gradient(ellipse,rgba(200,164,76,0.04) 0%,transparent 70%);pointer-events:none}
+#services .section-headline{color:var(--white)}
+#services .section-sub{color:rgba(255,255,255,0.48)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;position:relative;z-index:1}
+.svc-card{background:rgba(255,255,255,0.03);border:1px solid rgba(200,164,76,0.18);border-radius:var(--radius-lg);padding:40px 32px 36px;position:relative;overflow:hidden;transition:transform 0.35s var(--ease),box-shadow 0.35s,border-color 0.35s,background 0.35s;display:flex;flex-direction:column}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transform-origin:left;transition:transform 0.4s var(--ease)}
+.svc-card:hover{transform:translateY(-6px);box-shadow:0 24px 56px rgba(0,0,0,0.35),var(--shadow-gold);border-color:rgba(200,164,76,0.35);background:rgba(255,255,255,0.05)}
+.svc-card:hover::before{transform:scaleX(1)}
+.svc-card:last-child{grid-column:2}
+.svc-icon{width:44px;height:44px;background:rgba(200,164,76,0.08);border:1px solid rgba(200,164,76,0.22);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;margin-bottom:22px;flex-shrink:0;transition:background 0.3s,box-shadow 0.3s}
+.svc-card:hover .svc-icon{background:rgba(200,164,76,0.13);box-shadow:0 4px 16px rgba(200,164,76,0.15)}
+.svc-icon svg{width:19px;height:19px;fill:var(--gold-light)}
+.svc-name{font-family:var(--font-serif);font-size:19px;font-weight:500;color:var(--white);line-height:1.2;margin-bottom:12px}
+.svc-desc{font-family:var(--font-sans);font-size:13px;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.75;margin-bottom:22px;flex:1}
+.svc-price{padding:14px 0;border-top:1px solid rgba(200,164,76,0.12);margin-bottom:20px}
+.svc-price-from{font-family:var(--font-sans);font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(200,164,76,0.55);display:block;margin-bottom:4px}
+.svc-price-amount{font-family:var(--font-serif);font-size:26px;font-weight:300;color:var(--gold-light);line-height:1;display:block}
+.svc-price-period{font-family:var(--font-sans);font-size:13px;font-weight:300;color:rgba(200,164,76,0.65)}
+.svc-price-note{font-family:var(--font-sans);font-size:11px;font-weight:300;color:rgba(255,255,255,0.32);line-height:1.55;margin-top:5px;display:block}
+.svc-cta{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:7px;transition:gap 0.25s var(--ease),color 0.25s;min-height:40px}
+.svc-cta::after{content:'→';font-size:12px;transition:transform 0.25s var(--ease)}
+.svc-cta:hover{color:var(--gold-light);gap:11px}
+.services-disclaimer{max-width:700px;margin:52px auto 0;text-align:center;font-family:var(--font-sans);font-size:12px;font-weight:300;color:rgba(255,255,255,0.35);line-height:1.8;border-top:1px solid rgba(200,164,76,0.12);padding-top:36px;position:relative;z-index:1}
 .service-cta:hover::after{transform:translateX(4px)}
 
 /* WHY US */
@@ -235,11 +237,30 @@ a.footer-detail-value:hover{color:var(--gold-light)}
 .footer-copy{font-family:var(--font-sans);font-size:11.5px;font-weight:300;color:rgba(255,255,255,0.28);letter-spacing:0.04em}
 .footer-bottom-tag{font-family:var(--font-sans);font-size:9.5px;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:rgba(200,164,76,0.3)}
 
+/* TRUST STRIP */
+.trust-strip{background:rgba(4,10,18,0.98);border-top:1px solid rgba(200,164,76,0.12);border-bottom:1px solid rgba(200,164,76,0.12)}
+.trust-inner{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;max-width:var(--max-w);margin:0 auto;padding:0 36px}
+.trust-item{display:flex;align-items:center;gap:9px;padding:13px 16px;white-space:nowrap}
+.trust-check{width:14px;height:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.trust-check svg{width:12px;height:12px;fill:var(--gold)}
+.trust-sep{width:1px;height:14px;background:rgba(200,164,76,0.18);flex-shrink:0}
+.trust-text{font-family:var(--font-sans);font-size:9.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.55)}
+@media(max-width:768px){.trust-inner{padding:0 16px}.trust-item{padding:9px 10px}.trust-sep{display:none}.trust-text{font-size:8.5px;letter-spacing:0.15em}}
+
+/* HOW IT WORKS */
+#how-it-works{padding:110px 0;background:var(--ivory)}
+.steps-track{max-width:720px;margin:0 auto}
+.step-item{display:grid;grid-template-columns:68px 1fr;gap:24px;align-items:start;padding:32px 0;border-bottom:1px solid rgba(200,164,76,0.1)}
+.step-item:last-child{border-bottom:none}
+.step-num{font-family:var(--font-serif);font-size:42px;font-weight:300;color:rgba(200,164,76,0.2);line-height:1;padding-top:2px}
+.step-title{font-family:var(--font-serif);font-size:20px;font-weight:600;color:var(--navy);line-height:1.2;margin-bottom:10px;padding-top:6px}
+.step-body{font-family:var(--font-sans);font-size:13.5px;font-weight:300;color:var(--text-muted);line-height:1.78}
+
 /* RESPONSIVE */
 @media(max-width:1024px){.why-grid{grid-template-columns:repeat(2,1fr)}.reviews-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:900px){.services-grid{grid-template-columns:repeat(2,1fr)}.services-row2{max-width:100%;grid-template-columns:repeat(2,1fr)}.why-grid{grid-template-columns:repeat(2,1fr)}.faq-layout{grid-template-columns:1fr;gap:48px}.contact-layout{grid-template-columns:1fr;gap:52px}.footer-inner{grid-template-columns:1fr;gap:48px}}
+@media(max-width:900px){.services-grid{grid-template-columns:repeat(2,1fr)}.svc-card:last-child{grid-column:1/-1;max-width:calc(50% - 12px);margin-left:auto;margin-right:auto}.why-grid{grid-template-columns:repeat(2,1fr)}.faq-layout{grid-template-columns:1fr;gap:48px}.contact-layout{grid-template-columns:1fr;gap:52px}.footer-inner{grid-template-columns:1fr;gap:48px}}
 @media(max-width:768px){.container{padding:0 24px}.reviews-grid{grid-template-columns:1fr;max-width:560px;margin:0 auto}.contact-form-card{padding:40px 32px}.footer-bottom{flex-direction:column;align-items:flex-start;gap:10px}.footer-body{padding:52px 0 36px}}
-@media(max-width:560px){.services-grid{grid-template-columns:1fr}.services-row2{grid-template-columns:1fr}.why-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.contact-form-card{padding:32px 20px}.btn-primary,.btn-outline{padding:18px 28px;font-size:12px}}
+@media(max-width:560px){.services-grid{grid-template-columns:1fr}.svc-card:last-child{grid-column:auto;max-width:none;margin-left:0;margin-right:0}.why-grid{grid-template-columns:1fr}.step-item{grid-template-columns:52px 1fr;gap:16px}.step-num{font-size:32px}.form-row{grid-template-columns:1fr}.contact-form-card{padding:32px 20px}.btn-primary,.btn-outline{padding:18px 28px;font-size:12px}}
 </style>
 </head>
 <body>
@@ -296,7 +317,8 @@ a.footer-detail-value:hover{color:var(--gold-light)}
         <div class="hero-eyebrow-line"></div>
         <span class="hero-eyebrow-text">Nationwide Business Filing Services</span>
       </div>
-      <h1 class="hero-headline">Start Your Business <em style="font-style:italic;color:var(--gold-light);font-weight:300;">the Right Way</em></h1>
+      <h1 class="hero-headline">Start Your Business</h1>
+      <p class="hero-headline-italic">the Right Way</p>
       <p class="hero-sub">LLC formation, trademarks, registered agent service, and business setup support in all 50 states. No guesswork. No missed steps. Just professional filing done right.</p>
       <div class="hero-actions">
         <a href="intake.html" class="btn-primary">Start Your Filing</a>
@@ -304,97 +326,112 @@ a.footer-detail-value:hover{color:var(--gold-light)}
       </div>
       <div class="hero-stats">
         <div><span class="hero-stat-num">50</span><span class="hero-stat-label">States Served</span></div>
-        <div><span class="hero-stat-num">6+</span><span class="hero-stat-label">Core Services</span></div>
-        <div><span class="hero-stat-num">100%</span><span class="hero-stat-label">Professional</span></div>
+        <div><span class="hero-stat-num">7</span><span class="hero-stat-label">Core Services</span></div>
+        <div><span class="hero-stat-num">100%</span><span class="hero-stat-label">Secure Online Process</span></div>
+      </div>
+      <div class="map-mobile-badge">
+        <div class="map-mobile-dot"></div>
+        <span class="map-mobile-text">Serving Clients in All 50 States</span>
       </div>
     </div>
-    <div class="hero-globe-scene">
-      <div class="globe-ambient"></div>
-      <div class="globe-body">
-        <div class="globe-outer-ring"></div>
-        <div class="globe-inner-ring"></div>
-        <div class="globe-particle" style="width:3px;height:3px;top:15%;left:20%;animation-duration:4s;animation-delay:0s;opacity:0.7"></div>
-        <div class="globe-particle" style="width:2px;height:2px;top:30%;left:75%;animation-duration:6s;animation-delay:1.5s;opacity:0.5"></div>
-        <div class="globe-particle" style="width:4px;height:4px;top:70%;left:15%;animation-duration:5s;animation-delay:0.8s;opacity:0.6"></div>
-        <div class="globe-particle" style="width:2px;height:2px;top:80%;left:80%;animation-duration:7s;animation-delay:2s;opacity:0.4"></div>
-        <svg class="globe-svg" viewBox="0 0 460 460" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <defs>
-            <radialGradient id="oceanGrad" cx="38%" cy="35%" r="65%"><stop offset="0%" stop-color="#0D2140"/><stop offset="40%" stop-color="#071628"/><stop offset="80%" stop-color="#040F1C"/><stop offset="100%" stop-color="#020A12"/></radialGradient>
-            <radialGradient id="landGrad" cx="40%" cy="35%" r="60%"><stop offset="0%" stop-color="#1A2D1A"/><stop offset="60%" stop-color="#111E10"/><stop offset="100%" stop-color="#0A160A"/></radialGradient>
-            <radialGradient id="atmosphereGrad" cx="50%" cy="50%" r="50%"><stop offset="80%" stop-color="transparent"/><stop offset="92%" stop-color="rgba(200,164,76,0.06)"/><stop offset="100%" stop-color="rgba(200,164,76,0.18)"/></radialGradient>
-            <radialGradient id="specularGrad" cx="32%" cy="28%" r="38%"><stop offset="0%" stop-color="rgba(255,255,255,0.09)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></radialGradient>
-            <clipPath id="globeClip"><circle cx="230" cy="230" r="218"/></clipPath>
-            <filter id="goldGlow"><feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="blur"/><feColorMatrix type="matrix" values="1 0.8 0 0 0 0.8 0.65 0 0 0 0 0 0 0 0 0 0 0 0.7 0" in="blur" result="glow"/><feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-          </defs>
-          <circle cx="230" cy="230" r="218" fill="url(#oceanGrad)"/>
-          <g clip-path="url(#globeClip)" filter="url(#goldGlow)">
-            <!-- Grid lines -->
-            <g stroke="rgba(200,164,76,0.06)" stroke-width="0.6" fill="none">
-              <ellipse cx="230" cy="230" rx="218" ry="55"/>
-              <ellipse cx="230" cy="168" rx="195" ry="48"/>
-              <ellipse cx="230" cy="292" rx="195" ry="48"/>
-              <ellipse cx="230" cy="110" rx="148" ry="36"/>
-              <ellipse cx="230" cy="350" rx="148" ry="36"/>
-              <ellipse cx="230" cy="218" rx="218" ry="218"/>
-              <ellipse cx="230" cy="218" rx="175" ry="218"/>
-              <ellipse cx="230" cy="218" rx="100" ry="218"/>
-              <ellipse cx="230" cy="218" rx="36" ry="218"/>
-            </g>
-            <!-- Equator gold accent -->
-            <ellipse cx="230" cy="230" rx="218" ry="9" stroke="rgba(200,164,76,0.22)" stroke-width="1" fill="none"/>
-            <!-- North America -->
-            <path d="M95 115 C90 108,96 100,104 95 C114 88,128 84,140 82 C152 80,162 82,170 88 C178 94,182 102,186 110 C192 122,196 136,194 148 C192 160,185 170,178 178 C170 188,162 195,156 205 C150 215,148 226,144 236 C140 246,136 255,130 260 C124 265,116 264,110 258 C104 252,100 242,98 232 C96 222,96 212,98 202 C100 192,104 183,104 172 C104 161,100 150,96 140 C92 130,90 122,95 115Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.3)" stroke-width="0.8"/>
-            <!-- Greenland -->
-            <path d="M175 72 C168 64,172 55,182 52 C194 48,208 52,214 60 C220 68,216 78,206 82 C196 86,182 80,175 72Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.2)" stroke-width="0.6"/>
-            <!-- Central America -->
-            <path d="M144 260 C140 270,138 278,135 285 C132 292,130 298,128 304 C126 310,125 315,126 320 C127 325,130 328,133 326 C136 324,138 318,140 312 C142 306,143 300,145 294 C147 288,149 282,148 275 C147 268,146 263,144 260Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.22)" stroke-width="0.6"/>
-            <!-- South America -->
-            <path d="M148 295 C152 288,158 284,165 283 C174 282,182 286,188 292 C196 300,200 312,202 324 C204 336,203 348,200 360 C197 372,192 382,185 390 C178 398,170 402,162 400 C154 398,147 390,142 381 C137 372,135 361,135 350 C135 339,137 328,140 318 C143 308,145 300,148 295Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.3)" stroke-width="0.8"/>
-            <!-- Europe -->
-            <path d="M240 110 C244 104,250 100,256 98 C264 96,272 98,278 104 C285 111,287 120,285 129 C283 138,276 145,268 149 C260 153,251 154,244 150 C237 146,233 138,232 130 C231 122,234 115,240 110Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.28)" stroke-width="0.8"/>
-            <!-- Scandinavia -->
-            <path d="M255 85 C252 78,256 70,263 68 C271 66,279 70,281 78 C283 86,279 94,271 97 C263 100,257 92,255 85Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.18)" stroke-width="0.5"/>
-            <!-- Africa -->
-            <path d="M248 175 C254 168,262 164,271 163 C281 162,292 166,300 173 C310 181,315 193,317 205 C319 218,317 231,313 243 C309 256,302 267,294 276 C286 286,276 293,266 297 C256 301,245 300,237 294 C229 288,224 278,221 267 C218 256,218 244,220 232 C222 220,227 209,234 199 C240 189,242 182,248 175Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.32)" stroke-width="0.9"/>
-            <!-- Madagascar -->
-            <path d="M318 248 C316 242,318 236,323 234 C329 232,335 236,336 242 C337 249,333 256,327 257 C321 258,319 254,318 248Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.18)" stroke-width="0.5"/>
-            <!-- Middle East -->
-            <path d="M298 160 C302 154,308 150,315 150 C322 150,329 154,333 161 C337 168,336 177,331 183 C326 189,318 191,311 188 C304 185,299 178,298 170 C297 165,297 163,298 160Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.2)" stroke-width="0.6"/>
-            <!-- Asia main -->
-            <path d="M285 95 C292 88,302 84,315 82 C330 80,348 82,362 88 C378 95,390 105,398 118 C406 131,408 146,406 160 C404 175,397 188,388 198 C379 208,367 214,355 218 C343 222,331 222,320 219 C309 216,299 209,292 200 C285 191,281 180,280 168 C279 156,281 143,284 131 C287 119,286 103,285 95Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.32)" stroke-width="0.9"/>
-            <!-- India -->
-            <path d="M332 198 C336 192,342 190,348 192 C355 195,359 202,360 210 C361 218,358 227,352 232 C346 237,338 237,333 232 C328 227,326 219,327 211 C328 204,330 201,332 198Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.2)" stroke-width="0.6"/>
-            <!-- SE Asia -->
-            <path d="M375 185 C380 179,387 177,393 180 C399 183,402 190,401 197 C400 204,395 209,389 209 C383 209,378 204,376 198 C374 192,374 188,375 185Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.18)" stroke-width="0.5"/>
-            <!-- Australia -->
-            <path d="M365 295 C372 288,381 284,391 283 C402 282,413 286,420 294 C427 302,428 313,425 323 C422 333,415 341,406 345 C397 349,387 348,379 343 C371 338,366 329,364 319 C362 309,363 300,365 295Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.28)" stroke-width="0.8"/>
-            <!-- Japan -->
-            <path d="M400 138 C398 133,400 128,405 127 C411 126,416 130,416 135 C416 141,412 145,407 145 C403 145,400 142,400 138Z" fill="url(#landGrad)" stroke="rgba(200,164,76,0.18)" stroke-width="0.5"/>
-          </g>
-          <!-- Atmosphere -->
-          <circle cx="230" cy="230" r="218" fill="url(#atmosphereGrad)"/>
-          <circle cx="230" cy="230" r="218" fill="url(#specularGrad)"/>
-          <!-- Outer rings -->
-          <circle cx="230" cy="230" r="222" fill="none" stroke="rgba(200,164,76,0.14)" stroke-width="1.5"/>
-          <circle cx="230" cy="230" r="228" fill="none" stroke="rgba(200,164,76,0.06)" stroke-width="1"/>
-          <!-- Pulsing location dots -->
-          <circle cx="140" cy="188" r="4" fill="#C8A44C" opacity="0.9"><animate attributeName="opacity" values="0.9;0.4;0.9" dur="3s" repeatCount="indefinite"/></circle>
-          <circle cx="140" cy="188" r="8" fill="none" stroke="#C8A44C" stroke-width="0.8" opacity="0.4"><animate attributeName="r" values="6;12;6" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.5;0;0.5" dur="3s" repeatCount="indefinite"/></circle>
-          <circle cx="264" cy="128" r="3.5" fill="#DEB96E" opacity="0.8"><animate attributeName="opacity" values="0.8;0.3;0.8" dur="4s" repeatCount="indefinite"/></circle>
-          <circle cx="264" cy="128" r="7" fill="none" stroke="#DEB96E" stroke-width="0.7" opacity="0.35"><animate attributeName="r" values="5;10;5" dur="4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="4s" repeatCount="indefinite"/></circle>
-          <circle cx="390" cy="314" r="3" fill="#C8A44C" opacity="0.7"><animate attributeName="opacity" values="0.7;0.25;0.7" dur="5s" repeatCount="indefinite"/></circle>
-        </svg>
-        <div class="globe-badge">
-          <div class="globe-badge-dot"></div>
-          <span>Filing Nationwide &mdash; All 50 States</span>
-        </div>
+    <div class="hero-map-scene">
+      <div class="map-glow"></div>
+      <svg class="map-svg" viewBox="0 0 540 300" xmlns="http://www.w3.org/2000/svg" aria-label="Map of the United States — serving clients in all 50 states">
+        <defs>
+          <filter id="cityGlow"><feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="mapOutlineGlow"><feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <!-- Continental US -->
+        <path d="M 38,22 L 115,20 L 212,20 L 285,20 L 316,27 L 330,18 L 354,26 L 388,20 L 432,20 L 456,18 L 490,20 L 512,16 L 524,32 L 527,50 L 524,70 C 524,66 527,80 523,86 L 516,94 L 510,106 L 506,116 L 502,126 L 500,136 C 508,143 510,150 503,158 L 493,166 L 486,176 L 478,190 L 476,206 L 473,223 L 470,240 L 468,253 C 460,270 450,276 443,266 L 436,248 L 430,230 L 424,213 L 410,203 L 398,203 L 386,208 L 373,213 L 360,213 C 346,218 333,223 318,220 L 303,226 L 288,238 L 273,250 L 258,263 L 246,268 C 236,273 220,276 206,276 L 186,276 L 146,273 L 103,266 L 86,270 L 70,260 C 56,240 46,215 36,193 L 30,170 L 26,146 L 20,116 L 18,86 L 26,63 L 34,46 L 38,22 Z" fill="rgba(8,22,42,0.65)" stroke="rgba(200,164,76,0.55)" stroke-width="1.2" filter="url(#mapOutlineGlow)"/>
+        <!-- Alaska -->
+        <path d="M 22,286 L 17,278 L 21,271 L 30,267 L 40,271 L 44,280 L 38,289 L 28,291 Z" fill="rgba(8,22,42,0.65)" stroke="rgba(200,164,76,0.38)" stroke-width="0.8"/>
+        <!-- Hawaii -->
+        <ellipse cx="60" cy="283" rx="5.5" ry="3" fill="rgba(8,22,42,0.65)" stroke="rgba(200,164,76,0.38)" stroke-width="0.8"/>
+        <ellipse cx="72" cy="286" rx="3.5" ry="2.5" fill="rgba(8,22,42,0.65)" stroke="rgba(200,164,76,0.38)" stroke-width="0.8"/>
+        <ellipse cx="81" cy="284" rx="2.5" ry="2" fill="rgba(8,22,42,0.65)" stroke="rgba(200,164,76,0.38)" stroke-width="0.8"/>
+        <!-- State boundary hints -->
+        <g stroke="rgba(200,164,76,0.13)" stroke-width="0.5" fill="none">
+          <line x1="103" y1="20" x2="103" y2="268"/>
+          <line x1="146" y1="20" x2="146" y2="273"/>
+          <line x1="186" y1="20" x2="186" y2="276"/>
+          <line x1="226" y1="20" x2="227" y2="272"/>
+          <line x1="265" y1="20" x2="264" y2="265"/>
+          <line x1="308" y1="20" x2="306" y2="222"/>
+          <line x1="348" y1="20" x2="346" y2="213"/>
+          <line x1="390" y1="20" x2="388" y2="208"/>
+          <line x1="388" y1="130" x2="524" y2="108"/>
+          <line x1="393" y1="162" x2="505" y2="148"/>
+          <line x1="398" y1="190" x2="490" y2="178"/>
+        </g>
+        <!-- Seattle -->
+        <circle cx="28" cy="44" r="3.2" fill="#C8A44C" opacity="0.95" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.95;0.45;0.95" dur="3.5s" repeatCount="indefinite"/></circle>
+        <circle cx="28" cy="44" r="4" fill="none" stroke="#C8A44C" stroke-width="0.6"><animate attributeName="r" values="4;11;4" dur="3.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.45;0;0.45" dur="3.5s" repeatCount="indefinite"/></circle>
+        <!-- Los Angeles -->
+        <circle cx="46" cy="218" r="3.5" fill="#DEB96E" opacity="0.9" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.9;0.4;0.9" dur="4s" repeatCount="indefinite"/></circle>
+        <circle cx="46" cy="218" r="4" fill="none" stroke="#DEB96E" stroke-width="0.6"><animate attributeName="r" values="4;11;4" dur="4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="4s" repeatCount="indefinite"/></circle>
+        <!-- Phoenix -->
+        <circle cx="112" cy="222" r="2.8" fill="#C8A44C" opacity="0.82" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.82;0.35;0.82" dur="3.8s" repeatCount="indefinite"/></circle>
+        <!-- Denver -->
+        <circle cx="218" cy="148" r="2.8" fill="#DEB96E" opacity="0.82" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.82;0.35;0.82" dur="4.8s" repeatCount="indefinite"/></circle>
+        <!-- Dallas -->
+        <circle cx="282" cy="222" r="2.8" fill="#C8A44C" opacity="0.82" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.82;0.35;0.82" dur="4.2s" repeatCount="indefinite"/></circle>
+        <!-- Houston -->
+        <circle cx="293" cy="240" r="3.2" fill="#C8A44C" opacity="0.9" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.9;0.4;0.9" dur="4.5s" repeatCount="indefinite"/></circle>
+        <circle cx="293" cy="240" r="4" fill="none" stroke="#C8A44C" stroke-width="0.6"><animate attributeName="r" values="4;10;4" dur="4.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="4.5s" repeatCount="indefinite"/></circle>
+        <!-- Chicago -->
+        <circle cx="390" cy="112" r="3.8" fill="#C8A44C" opacity="0.95" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.95;0.45;0.95" dur="3s" repeatCount="indefinite"/></circle>
+        <circle cx="390" cy="112" r="4" fill="none" stroke="#C8A44C" stroke-width="0.6"><animate attributeName="r" values="4;12;4" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.45;0;0.45" dur="3s" repeatCount="indefinite"/></circle>
+        <!-- Atlanta -->
+        <circle cx="440" cy="186" r="2.8" fill="#DEB96E" opacity="0.82" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.82;0.35;0.82" dur="3.8s" repeatCount="indefinite"/></circle>
+        <!-- Miami -->
+        <circle cx="470" cy="250" r="3" fill="#DEB96E" opacity="0.88" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.88;0.38;0.88" dur="5s" repeatCount="indefinite"/></circle>
+        <circle cx="470" cy="250" r="4" fill="none" stroke="#DEB96E" stroke-width="0.5"><animate attributeName="r" values="3.5;10;3.5" dur="5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="5s" repeatCount="indefinite"/></circle>
+        <!-- New York -->
+        <circle cx="511" cy="102" r="4" fill="#DEB96E" opacity="1" filter="url(#cityGlow)"><animate attributeName="opacity" values="1;0.48;1" dur="2.8s" repeatCount="indefinite"/></circle>
+        <circle cx="511" cy="102" r="5" fill="none" stroke="#DEB96E" stroke-width="0.7"><animate attributeName="r" values="5;13;5" dur="2.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.5;0;0.5" dur="2.8s" repeatCount="indefinite"/></circle>
+      </svg>
+      <div class="map-badge">
+        <div class="map-badge-dot"></div>
+        <span>Serving Clients in All 50 States</span>
       </div>
     </div>
   </div>
 </section>
 
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+      <span class="trust-text">Nationwide Business Filing Support</span>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="trust-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+      <span class="trust-text">Serving All 50 States</span>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="trust-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+      <span class="trust-text">Secure Online Process</span>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="trust-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+      <span class="trust-text">Transparent Starting Prices</span>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="trust-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+      <span class="trust-text">Professional Document Preparation</span>
+    </div>
+  </div>
+</div>
+
 <!-- SERVICES -->
 <section id="services">
+  <div class="services-top-line"></div>
+  <div class="services-bg-glow"></div>
   <div class="container">
     <div class="section-header">
       <span class="eyebrow fade-up">What We Do</span>
@@ -403,13 +440,57 @@ a.footer-detail-value:hover{color:var(--gold-light)}
       <p class="section-sub fade-up d2">Professional filing services for serious entrepreneurs. Pick your service and let&rsquo;s get you structured properly.</p>
     </div>
     <div class="services-grid">
-      <div class="service-card fade-up d1"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><h3 class="service-name">LLC, S-Corp &amp; C-Corp Filing</h3><p class="service-desc">We prepare and file your formation documents with your state — accurately and completely. Everything your bank, partners, and investors will require, done right the first time.</p><a href="intake.html" class="service-cta">Start Your Filing</a></div>
-      <div class="service-card fade-up d2"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></div><h3 class="service-name">Registered Agent Service</h3><p class="service-desc">Every LLC and corporation needs a registered agent to receive legal and state notices. We serve as your official registered agent so you never miss a critical document.</p><a href="intake.html" class="service-cta">Get Started</a></div>
-      <div class="service-card fade-up d3"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-1 8h-3v3h-2v-3h-3v-2h3V7h2v3h3v2z"/></svg></div><h3 class="service-name">State &amp; Federal Trademark Filing</h3><p class="service-desc">Protect your brand before someone else does. We file your trademark application with precision — safeguarding your name, logo, and identity at the state or federal level.</p><a href="intake.html" class="service-cta">Get Started</a></div>
-      <div class="service-card fade-up d1"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div><h3 class="service-name">Business Email Setup</h3><p class="service-desc">A branded email address builds instant credibility. We configure your professional domain email so every message you send carries the authority your business deserves.</p><a href="intake.html" class="service-cta">Get Started</a></div>
-      <div class="service-card fade-up d2"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zm-2 9H7v-2h4v2zm4-4H7v-2h8v2zm0-4H7V8h8v2z"/></svg></div><h3 class="service-name">Operating Agreements &amp; Bylaws</h3><p class="service-desc">Custom drafted for your entity type and ownership structure. Required by most banks — not a generic template, but a proper document built specifically for your business.</p><a href="intake.html" class="service-cta">Get Started</a></div>
-      <div class="service-card fade-up d3"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div><h3 class="service-name">501(c)(3) Nonprofit Formation</h3><p class="service-desc">Support for organizations seeking tax-exempt status, including formation documents, foundational bylaws, and Form 1023 preparation guidance.</p><a href="intake.html" class="service-cta">Get Started</a></div>
+      <div class="svc-card fade-up d1">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
+        <h3 class="svc-name">LLC, S-Corp &amp; C-Corp Filing</h3>
+        <p class="svc-desc">Formation filing support for LLCs, S-Corps, and C-Corps with clear next steps from start to finish.</p>
+        <div class="svc-price"><span class="svc-price-from">Starting at</span><span class="svc-price-amount">$249</span><span class="svc-price-note">+ state filing fees</span></div>
+        <a href="intake.html?service=llc" class="svc-cta">Start Your Filing</a>
+      </div>
+      <div class="svc-card fade-up d2">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></div>
+        <h3 class="svc-name">Registered Agent Service</h3>
+        <p class="svc-desc">Professional registered agent service to help keep your business organized and compliant.</p>
+        <div class="svc-price"><span class="svc-price-amount">$149<span class="svc-price-period">/year</span></span></div>
+        <a href="#contact" class="svc-cta">Get Started</a>
+      </div>
+      <div class="svc-card fade-up d3">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+        <h3 class="svc-name">State Trademark Filing</h3>
+        <p class="svc-desc">State-level trademark filing support for businesses protecting a name, phrase, slogan, or logo within one state.</p>
+        <div class="svc-price"><span class="svc-price-from">Starting at</span><span class="svc-price-amount">$249</span><span class="svc-price-note">+ state filing fees</span></div>
+        <a href="#contact" class="svc-cta">Start State Trademark</a>
+      </div>
+      <div class="svc-card fade-up d1">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <h3 class="svc-name">Federal Trademark Filing</h3>
+        <p class="svc-desc">Federal trademark filing support for businesses seeking nationwide brand protection through the USPTO.</p>
+        <div class="svc-price"><span class="svc-price-from">Starting at</span><span class="svc-price-amount">$1,050</span><span class="svc-price-note">+ USPTO filing fees</span></div>
+        <a href="#contact" class="svc-cta">Start Federal Trademark</a>
+      </div>
+      <div class="svc-card fade-up d2">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zm-2 9H7v-2h4v2zm4-4H7v-2h8v2zm0-4H7V8h8v2z"/></svg></div>
+        <h3 class="svc-name">Operating Agreements &amp; Bylaws</h3>
+        <p class="svc-desc">Often requested by banks, lenders, partners, and internal records. We prepare a professional agreement or bylaws document based on your entity type and ownership structure.</p>
+        <div class="svc-price"><span class="svc-price-from">Starting at</span><span class="svc-price-amount">$199</span></div>
+        <a href="#contact" class="svc-cta">Get Started</a>
+      </div>
+      <div class="svc-card fade-up d3">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+        <h3 class="svc-name">Business Email Setup</h3>
+        <p class="svc-desc">Professional business email setup using your domain so your brand looks official and organized.</p>
+        <div class="svc-price"><span class="svc-price-from">Starting at</span><span class="svc-price-amount">$149</span></div>
+        <a href="#contact" class="svc-cta">Start Email Setup</a>
+      </div>
+      <div class="svc-card fade-up d1">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+        <h3 class="svc-name">501(c)(3) Nonprofit Formation</h3>
+        <p class="svc-desc">Nonprofit formation support for organizations preparing to structure, file, and move toward tax-exempt status.</p>
+        <div class="svc-price"><span class="svc-price-from">Starting at</span><span class="svc-price-amount">$2,500</span><span class="svc-price-note">+ government filing fees</span></div>
+        <a href="#contact" class="svc-cta">Start Nonprofit Filing</a>
+      </div>
     </div>
+    <p class="services-disclaimer fade-up">Final pricing may vary based on state filing fees, government fees, entity type, processing speed, domain access, and optional add-ons. You will review your total before payment.</p>
   </div>
 </section>
 
@@ -465,6 +546,59 @@ a.footer-detail-value:hover{color:var(--gold-light)}
         <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">How do I get started?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">To get started, click Start Your Filing and complete the intake form. If you still have questions before submitting, you can also use the contact section and we&rsquo;ll point you in the right direction.</p></div></div>
         <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Do filing fees come separately?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">Yes. State filing fees are paid directly to the state and are separate from our service fee. Every state has different fees and processing times. We&rsquo;ll give you a clear breakdown before anything is submitted so there are no surprises.</p></div></div>
         <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Do you offer registered agent service?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">Yes. We serve as your registered agent to receive legal notices, state correspondence, and official documents on your behalf. It&rsquo;s a required role for every LLC and corporation — and we handle it professionally.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">How long does the process take?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">Turnaround times vary by service and state processing speed. Entity filings depend on the state, processing option, and government review times.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Are state filing fees included?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">State filing fees, government fees, USPTO fees, IRS fees, and third-party fees are not included unless clearly stated. Final pricing is confirmed before payment or submission.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Do you provide legal advice?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">No. Biz Filing Pros is not a law firm and does not provide legal, tax, or financial advice. We provide business filing, document preparation, and administrative support services.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Can you help clients in any state?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">Yes. Biz Filing Pros provides nationwide business filing support for clients across all 50 states. Processing times, filing rules, and state fees vary by state.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow fade-up">Simple Process</span>
+      <span class="gold-rule"></span>
+      <h2 class="section-headline fade-up d1">How It Works</h2>
+      <p class="section-sub fade-up d2">Five straightforward steps from selecting your service to receiving your completed documents.</p>
+    </div>
+    <div class="steps-track">
+      <div class="step-item fade-up d1">
+        <div class="step-num">01</div>
+        <div>
+          <h3 class="step-title">Choose Your Service</h3>
+          <p class="step-body">Select the filing or setup service you need.</p>
+        </div>
+      </div>
+      <div class="step-item fade-up d2">
+        <div class="step-num">02</div>
+        <div>
+          <h3 class="step-title">Complete the Secure Online Process</h3>
+          <p class="step-body">Submit your business details through our online form.</p>
+        </div>
+      </div>
+      <div class="step-item fade-up d3">
+        <div class="step-num">03</div>
+        <div>
+          <h3 class="step-title">Review &amp; Confirm</h3>
+          <p class="step-body">We check your information and confirm next steps, fees, and timing.</p>
+        </div>
+      </div>
+      <div class="step-item fade-up d4">
+        <div class="step-num">04</div>
+        <div>
+          <h3 class="step-title">We Prepare or Submit</h3>
+          <p class="step-body">Your documents are prepared or submitted based on the selected service.</p>
+        </div>
+      </div>
+      <div class="step-item fade-up d1">
+        <div class="step-num">05</div>
+        <div>
+          <h3 class="step-title">Receive Your Confirmation</h3>
+          <p class="step-body">You receive updates and completed documents when available.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -487,10 +621,10 @@ a.footer-detail-value:hover{color:var(--gold-light)}
         </div>
       </div>
       <div class="contact-form-card fade-up d2">
-        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+        <form action="https://formspree.io/f/xkokbjpp" method="POST" novalidate>
           <div class="form-row"><div class="form-group"><label class="form-label" for="full-name">Full Name</label><input class="form-input" type="text" id="full-name" name="full_name" placeholder="Jane Smith" required></div><div class="form-group"><label class="form-label" for="email">Email Address</label><input class="form-input" type="email" id="email" name="email" placeholder="jane@yourbusiness.com" required></div></div>
           <div class="form-row"><div class="form-group"><label class="form-label" for="phone">Phone Number</label><input class="form-input" type="tel" id="phone" name="phone" placeholder="(317) 000-0000"></div><div class="form-group"><label class="form-label" for="state">State</label><select class="form-select" id="state" name="state" required><option value="" disabled selected>Select your state</option><option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option></select></div></div>
-          <div class="form-row"><div class="form-group full"><label class="form-label" for="service">Service Needed</label><select class="form-select" id="service" name="service" required><option value="" disabled selected>Select a service</option><option>LLC, S-Corp &amp; C-Corp Filing</option><option>Registered Agent Service</option><option>State &amp; Federal Trademark Filing</option><option>Business Email Setup</option><option>Operating Agreement &amp; Bylaws</option><option>501(c)(3) Nonprofit Formation</option><option>Not Sure — I Need Guidance</option></select></div></div>
+          <div class="form-row"><div class="form-group full"><label class="form-label" for="service">Service Needed</label><select class="form-select" id="service" name="service" required><option value="" disabled selected>Select a service</option><option>LLC, S-Corp &amp; C-Corp Filing</option><option>Registered Agent Service</option><option>State Trademark Filing</option><option>Federal Trademark Filing</option><option>Operating Agreements &amp; Bylaws</option><option>Business Email Setup</option><option>501(c)(3) Nonprofit Formation</option><option>Not Sure — I Need Guidance</option></select></div></div>
           <div class="form-row"><div class="form-group full"><label class="form-label" for="message">Message</label><textarea class="form-textarea" id="message" name="message" placeholder="Tell us a little about your business and what you need..." required></textarea></div></div>
           <button type="submit" class="form-submit">Submit Inquiry</button>
           <p class="form-note">We typically respond within one business day. Your information is never shared or sold.</p>
