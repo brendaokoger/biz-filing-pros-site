@@ -237,26 +237,13 @@ a.footer-detail-value:hover{color:var(--gold-light)}
 .trust-text{font-family:var(--font-sans);font-size:9.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.55)}
 @media(max-width:768px){.trust-inner{padding:0 16px}.trust-item{padding:9px 10px}.trust-sep{display:none}.trust-text{font-size:8.5px;letter-spacing:0.15em}}
 
-/* PRICING */
-#pricing{padding:110px 0;background:var(--navy);position:relative;overflow:hidden}
-.pricing-top-line{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.pricing-bg-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(200,164,76,0.05) 0%,transparent 70%);pointer-events:none}
-#pricing .section-headline{color:var(--white)}
-#pricing .section-sub{color:rgba(255,255,255,0.48)}
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.pricing-card{background:rgba(255,255,255,0.03);border:1px solid rgba(200,164,76,0.18);border-radius:var(--radius-lg);padding:40px 32px;position:relative;overflow:hidden;transition:var(--transition);display:flex;flex-direction:column}
-.pricing-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transform-origin:left;transition:transform 0.4s var(--ease)}
-.pricing-card:hover{border-color:rgba(200,164,76,0.35);background:rgba(255,255,255,0.05);transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,0.3),var(--shadow-gold)}
-.pricing-card:hover::before{transform:scaleX(1)}
-.pricing-name{font-family:var(--font-serif);font-size:19px;font-weight:500;color:var(--white);line-height:1.25;margin-bottom:20px}
-.pricing-from{font-family:var(--font-sans);font-size:9.5px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:rgba(200,164,76,0.5);display:block;margin-bottom:5px}
-.pricing-amount{font-family:var(--font-serif);font-size:38px;font-weight:300;color:var(--gold-light);line-height:1;display:block}
-.pricing-period{font-family:var(--font-sans);font-size:14px;font-weight:300;color:rgba(200,164,76,0.6)}
-.pricing-note{font-family:var(--font-sans);font-size:11.5px;font-weight:300;color:rgba(255,255,255,0.32);line-height:1.65;margin-top:10px;flex:1}
-.pricing-cta{display:inline-flex;align-items:center;gap:7px;font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-top:28px;transition:gap 0.25s var(--ease)}
-.pricing-cta::after{content:'→';font-size:12px}
-.pricing-cta:hover{gap:11px}
-.pricing-disclaimer{max-width:680px;margin:52px auto 0;text-align:center;font-family:var(--font-sans);font-size:12.5px;font-weight:300;color:rgba(255,255,255,0.35);line-height:1.8;border-top:1px solid rgba(200,164,76,0.12);padding-top:36px}
+/* SERVICE PRICES */
+.service-price{padding:14px 0;border-top:1px solid rgba(200,164,76,0.1);margin:0 0 20px;display:flex;flex-direction:column;gap:2px}
+.service-price-from{font-family:var(--font-sans);font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted)}
+.service-price-amount{font-family:var(--font-serif);font-size:26px;font-weight:400;color:var(--gold);line-height:1.1}
+.service-price-period{font-family:var(--font-sans);font-size:14px;font-weight:300;color:var(--gold)}
+.service-price-note{font-family:var(--font-sans);font-size:11px;font-weight:300;color:var(--text-muted);line-height:1.55}
+.services-disclaimer{max-width:700px;margin:48px auto 0;text-align:center;font-family:var(--font-sans);font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.8;border-top:1px solid rgba(200,164,76,0.1);padding-top:32px}
 
 /* HOW IT WORKS */
 #how-it-works{padding:110px 0;background:var(--ivory)}
@@ -269,9 +256,9 @@ a.footer-detail-value:hover{color:var(--gold-light)}
 
 /* RESPONSIVE */
 @media(max-width:1024px){.why-grid{grid-template-columns:repeat(2,1fr)}.reviews-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:900px){.services-grid{grid-template-columns:repeat(2,1fr)}.services-row2{max-width:100%;grid-template-columns:repeat(2,1fr)}.why-grid{grid-template-columns:repeat(2,1fr)}.pricing-grid{grid-template-columns:repeat(2,1fr)}.faq-layout{grid-template-columns:1fr;gap:48px}.contact-layout{grid-template-columns:1fr;gap:52px}.footer-inner{grid-template-columns:1fr;gap:48px}}
+@media(max-width:900px){.services-grid{grid-template-columns:repeat(2,1fr)}.services-row2{max-width:100%;grid-template-columns:repeat(2,1fr)}.why-grid{grid-template-columns:repeat(2,1fr)}.faq-layout{grid-template-columns:1fr;gap:48px}.contact-layout{grid-template-columns:1fr;gap:52px}.footer-inner{grid-template-columns:1fr;gap:48px}}
 @media(max-width:768px){.container{padding:0 24px}.reviews-grid{grid-template-columns:1fr;max-width:560px;margin:0 auto}.contact-form-card{padding:40px 32px}.footer-bottom{flex-direction:column;align-items:flex-start;gap:10px}.footer-body{padding:52px 0 36px}}
-@media(max-width:560px){.services-grid{grid-template-columns:1fr}.services-row2{grid-template-columns:1fr}.why-grid{grid-template-columns:1fr}.pricing-grid{grid-template-columns:1fr}.step-item{grid-template-columns:52px 1fr;gap:16px}.step-num{font-size:32px}.form-row{grid-template-columns:1fr}.contact-form-card{padding:32px 20px}.btn-primary,.btn-outline{padding:18px 28px;font-size:12px}}
+@media(max-width:560px){.services-grid{grid-template-columns:1fr}.services-row2{grid-template-columns:1fr}.why-grid{grid-template-columns:1fr}.step-item{grid-template-columns:52px 1fr;gap:16px}.step-num{font-size:32px}.form-row{grid-template-columns:1fr}.contact-form-card{padding:32px 20px}.btn-primary,.btn-outline{padding:18px 28px;font-size:12px}}
 </style>
 </head>
 <body>
@@ -449,71 +436,14 @@ a.footer-detail-value:hover{color:var(--gold-light)}
       <p class="section-sub fade-up d2">Professional filing services for serious entrepreneurs. Pick your service and let&rsquo;s get you structured properly.</p>
     </div>
     <div class="services-grid">
-      <div class="service-card fade-up d1"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><h3 class="service-name">LLC, S-Corp &amp; C-Corp Filing</h3><p class="service-desc">We prepare and file your formation documents with your state — accurately and completely. Everything your bank, partners, and investors will require, done right the first time.</p><a href="intake.html?service=llc" class="service-cta">Start Your Filing</a></div>
-      <div class="service-card fade-up d2"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></div><h3 class="service-name">Registered Agent Service</h3><p class="service-desc">Every LLC and corporation needs a registered agent to receive legal and state notices. We serve as your official registered agent so you never miss a critical document.</p><a href="#contact" class="service-cta">Get Started</a></div>
-      <div class="service-card fade-up d3"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-1 8h-3v3h-2v-3h-3v-2h3V7h2v3h3v2z"/></svg></div><h3 class="service-name">State &amp; Federal Trademark Filing</h3><p class="service-desc">Protect your brand before someone else does. We file your trademark application with precision — safeguarding your name, logo, and identity at the state or federal level.</p><a href="#contact" class="service-cta">Get Started</a></div>
-      <div class="service-card fade-up d1"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div><h3 class="service-name">Business Email Setup</h3><p class="service-desc">A branded email address builds instant credibility. We configure your professional domain email so every message you send carries the authority your business deserves.</p><a href="#contact" class="service-cta">Get Started</a></div>
+      <div class="service-card fade-up d1"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><h3 class="service-name">LLC, S-Corp &amp; C-Corp Filing</h3><p class="service-desc">We prepare and file your formation documents with your state — accurately and completely. Everything your bank, partners, and investors will require, done right the first time.</p><div class="service-price"><span class="service-price-from">Starting at</span><span class="service-price-amount">$249</span><span class="service-price-note">+ state filing fees</span></div><a href="intake.html?service=llc" class="service-cta">Start Your Filing</a></div>
+      <div class="service-card fade-up d2"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></div><h3 class="service-name">Registered Agent Service</h3><p class="service-desc">Every LLC and corporation needs a registered agent to receive legal and state notices. We serve as your official registered agent so you never miss a critical document.</p><div class="service-price"><span class="service-price-amount">$149<span class="service-price-period">/year</span></span></div><a href="#contact" class="service-cta">Get Started</a></div>
+      <div class="service-card fade-up d3"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-1 8h-3v3h-2v-3h-3v-2h3V7h2v3h3v2z"/></svg></div><h3 class="service-name">State &amp; Federal Trademark Filing</h3><p class="service-desc">Protect your brand before someone else does. We file your trademark application with precision — safeguarding your name, logo, and identity at the state or federal level.</p><div class="service-price"><span class="service-price-from">Starting at</span><span class="service-price-amount">$249</span><span class="service-price-note">state + fees &nbsp;·&nbsp; Federal from $1,050 + USPTO fees</span></div><a href="#contact" class="service-cta">Get Started</a></div>
+      <div class="service-card fade-up d1"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div><h3 class="service-name">Business Email Setup</h3><p class="service-desc">A branded email address builds instant credibility. We configure your professional domain email so every message you send carries the authority your business deserves.</p><div class="service-price"><span class="service-price-from">Starting at</span><span class="service-price-amount">$149</span></div><a href="#contact" class="service-cta">Get Started</a></div>
       <div class="service-card fade-up d2"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zm-2 9H7v-2h4v2zm4-4H7v-2h8v2zm0-4H7V8h8v2z"/></svg></div><h3 class="service-name">Operating Agreements &amp; Bylaws</h3><p class="service-desc">Often requested by banks, lenders, partners, and internal records. We prepare a professional agreement or bylaws document based on your entity type and ownership structure.</p><a href="#contact" class="service-cta">Get Started</a></div>
-      <div class="service-card fade-up d3"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div><h3 class="service-name">501(c)(3) Nonprofit Formation</h3><p class="service-desc">Support for organizations seeking tax-exempt status, including formation documents, foundational bylaws, and Form 1023 preparation guidance.</p><a href="#contact" class="service-cta">Get Started</a></div>
+      <div class="service-card fade-up d3"><div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div><h3 class="service-name">501(c)(3) Nonprofit Formation</h3><p class="service-desc">Support for organizations seeking tax-exempt status, including formation documents, foundational bylaws, and Form 1023 preparation guidance.</p><div class="service-price"><span class="service-price-from">Starting at</span><span class="service-price-amount">$2,500</span><span class="service-price-note">+ government filing fees</span></div><a href="#contact" class="service-cta">Get Started</a></div>
     </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section id="pricing">
-  <div class="pricing-top-line"></div>
-  <div class="pricing-bg-glow"></div>
-  <div class="container">
-    <div class="section-header">
-      <span class="eyebrow fade-up">Transparent Pricing</span>
-      <span class="gold-rule"></span>
-      <h2 class="section-headline fade-up d1">Popular Services<br><em>&amp; Starting Prices</em></h2>
-      <p class="section-sub fade-up d2">Professional filing services with clear starting points. Your total is confirmed before any payment is collected.</p>
-    </div>
-    <div class="pricing-grid">
-      <div class="pricing-card fade-up d1">
-        <h3 class="pricing-name">LLC Formation</h3>
-        <span class="pricing-from">Starting at</span>
-        <span class="pricing-amount">$249</span>
-        <p class="pricing-note">+ state filing fees</p>
-        <a href="intake.html?service=llc" class="pricing-cta">Get Started</a>
-      </div>
-      <div class="pricing-card fade-up d2">
-        <h3 class="pricing-name">Registered Agent Service</h3>
-        <span class="pricing-amount">$149<span class="pricing-period">/year</span></span>
-        <p class="pricing-note">Required for every LLC and corporation</p>
-        <a href="#contact" class="pricing-cta">Get Started</a>
-      </div>
-      <div class="pricing-card fade-up d3">
-        <h3 class="pricing-name">State Trademark Filing</h3>
-        <span class="pricing-from">Starting at</span>
-        <span class="pricing-amount">$249</span>
-        <p class="pricing-note">+ state filing fees</p>
-        <a href="#contact" class="pricing-cta">Get Started</a>
-      </div>
-      <div class="pricing-card fade-up d1">
-        <h3 class="pricing-name">Federal Trademark Filing</h3>
-        <span class="pricing-from">Starting at</span>
-        <span class="pricing-amount">$1,050</span>
-        <p class="pricing-note">+ USPTO filing fees</p>
-        <a href="#contact" class="pricing-cta">Get Started</a>
-      </div>
-      <div class="pricing-card fade-up d2">
-        <h3 class="pricing-name">Business Email Setup</h3>
-        <span class="pricing-from">Starting at</span>
-        <span class="pricing-amount">$149</span>
-        <p class="pricing-note">Professional branded email configuration</p>
-        <a href="#contact" class="pricing-cta">Get Started</a>
-      </div>
-      <div class="pricing-card fade-up d3">
-        <h3 class="pricing-name">501(c)(3) Nonprofit Formation</h3>
-        <span class="pricing-from">Starting at</span>
-        <span class="pricing-amount">$2,500</span>
-        <p class="pricing-note">+ government filing fees</p>
-        <a href="#contact" class="pricing-cta">Get Started</a>
-      </div>
-    </div>
-    <p class="pricing-disclaimer fade-up">Final pricing may vary based on state filing fees, government fees, entity type, processing speed, domain access, and optional add-ons. You will review your total before payment.</p>
+    <p class="services-disclaimer fade-up">Final pricing may vary based on state filing fees, government fees, entity type, processing speed, domain access, and optional add-ons. You will review your total before payment.</p>
   </div>
 </section>
 
