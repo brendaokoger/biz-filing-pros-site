@@ -227,6 +227,16 @@ a.footer-detail-value:hover{color:var(--gold-light)}
 .footer-copy{font-family:var(--font-sans);font-size:11.5px;font-weight:300;color:rgba(255,255,255,0.28);letter-spacing:0.04em}
 .footer-bottom-tag{font-family:var(--font-sans);font-size:9.5px;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:rgba(200,164,76,0.3)}
 
+/* TRUST STRIP */
+.trust-strip{background:rgba(4,10,18,0.98);border-top:1px solid rgba(200,164,76,0.12);border-bottom:1px solid rgba(200,164,76,0.12)}
+.trust-inner{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;max-width:var(--max-w);margin:0 auto;padding:0 36px}
+.trust-item{display:flex;align-items:center;gap:9px;padding:13px 16px;white-space:nowrap}
+.trust-check{width:14px;height:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.trust-check svg{width:12px;height:12px;fill:var(--gold)}
+.trust-sep{width:1px;height:14px;background:rgba(200,164,76,0.18);flex-shrink:0}
+.trust-text{font-family:var(--font-sans);font-size:9.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.55)}
+@media(max-width:768px){.trust-inner{padding:0 16px}.trust-item{padding:9px 10px}.trust-sep{display:none}.trust-text{font-size:8.5px;letter-spacing:0.15em}}
+
 /* PRICING */
 #pricing{padding:110px 0;background:var(--navy);position:relative;overflow:hidden}
 .pricing-top-line{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
@@ -399,6 +409,36 @@ a.footer-detail-value:hover{color:var(--gold-light)}
   </div>
 </section>
 
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+      <span class="trust-text">Nationwide Business Filing Support</span>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="trust-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+      <span class="trust-text">Serving All 50 States</span>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="trust-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+      <span class="trust-text">Secure Online Process</span>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="trust-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+      <span class="trust-text">Transparent Starting Prices</span>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="trust-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+      <span class="trust-text">Professional Document Preparation</span>
+    </div>
+  </div>
+</div>
+
 <!-- SERVICES -->
 <section id="services">
   <div class="container">
@@ -529,6 +569,10 @@ a.footer-detail-value:hover{color:var(--gold-light)}
         <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">How do I get started?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">To get started, click Start Your Filing and complete the intake form. If you still have questions before submitting, you can also use the contact section and we&rsquo;ll point you in the right direction.</p></div></div>
         <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Do filing fees come separately?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">Yes. State filing fees are paid directly to the state and are separate from our service fee. Every state has different fees and processing times. We&rsquo;ll give you a clear breakdown before anything is submitted so there are no surprises.</p></div></div>
         <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Do you offer registered agent service?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">Yes. We serve as your registered agent to receive legal notices, state correspondence, and official documents on your behalf. It&rsquo;s a required role for every LLC and corporation — and we handle it professionally.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">How long does the process take?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">Turnaround times vary by service and state processing speed. Entity filings depend on the state, processing option, and government review times.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Are state filing fees included?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">State filing fees, government fees, USPTO fees, IRS fees, and third-party fees are not included unless clearly stated. Final pricing is confirmed before payment or submission.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Do you provide legal advice?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">No. Biz Filing Pros is not a law firm and does not provide legal, tax, or financial advice. We provide business filing, document preparation, and administrative support services.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Can you help clients in any state?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">Yes. Biz Filing Pros provides nationwide business filing support for clients across all 50 states. Processing times, filing rules, and state fees vary by state.</p></div></div>
       </div>
     </div>
   </div>
