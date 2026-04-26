@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Policies | Biz Filing Pros</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#06101C;--navy-mid:#0A1726;--navy-light:#0F1F38;--navy-card:#0C1B30;--gold:#C8A44C;--gold-light:#DEB96E;--gold-pale:#F2E4C0;--ivory:#F9F7F2;--ivory-dark:#F1EDE4;--white:#FFFFFF;--text-body:#3A3A4A;--text-muted:#78788A;--border-gold:rgba(200,164,76,0.2);--shadow-gold:0 8px 40px rgba(200,164,76,0.13);--shadow-card:0 12px 48px rgba(6,16,28,0.13);--font-display:'Cinzel',Georgia,serif;--font-serif:'Cormorant Garamond',Georgia,serif;--font-sans:'DM Sans',system-ui,sans-serif;--radius:6px;--radius-lg:14px;--max-w:1160px;--ease:cubic-bezier(0.4,0,0.2,1);--transition:all 0.35s var(--ease)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-sans);background:var(--ivory);color:var(--text-body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 36px}
+
+/* ── NAVBAR ── */
+.logo-wordmark{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo-shield{width:38px;height:38px;flex-shrink:0;transition:filter 0.3s,transform 0.3s}
+.logo-wordmark:hover .logo-shield{filter:drop-shadow(0 0 8px rgba(200,164,76,0.5));transform:scale(1.04)}
+.logo-text-block{display:flex;flex-direction:column}
+.logo-name{font-family:var(--font-display);font-size:15px;font-weight:600;letter-spacing:0.14em;color:var(--gold-light);line-height:1.15}
+.logo-sub{font-family:var(--font-sans);font-size:8px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:rgba(200,164,76,0.45);margin-top:3px}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:var(--max-w);margin:0 auto;padding:0}
+#navbar{position:fixed;top:0;left:0;right:0;z-index:1000;height:78px;display:flex;align-items:center;background:rgba(6,16,28,0.96);border-bottom:1px solid rgba(200,164,76,0.12);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);transition:height 0.35s var(--ease),box-shadow 0.35s;padding:0 36px}
+#navbar.scrolled{height:64px;box-shadow:0 4px 40px rgba(0,0,0,0.45);border-bottom-color:rgba(200,164,76,0.2);background:rgba(6,16,28,0.99)}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-family:var(--font-sans);font-size:10.5px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.6);transition:color 0.25s;position:relative;padding-bottom:2px;white-space:nowrap}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.3s var(--ease)}
+.nav-links a:hover{color:rgba(255,255,255,0.95)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;background:linear-gradient(120deg,var(--gold),var(--gold-light));color:var(--navy);padding:10px 24px;border-radius:var(--radius);transition:box-shadow 0.3s,transform 0.3s}
+.nav-cta:hover{box-shadow:0 4px 22px rgba(200,164,76,0.38);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;min-width:44px;min-height:44px;align-items:center;justify-content:center}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:var(--transition)}
+.mobile-menu{display:none;flex-direction:column;position:fixed;top:78px;left:0;right:0;background:rgba(6,16,28,0.98);border-bottom:1px solid rgba(200,164,76,0.15);z-index:999;padding:20px 36px 28px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--font-sans);font-size:11px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.7);padding:13px 0;border-bottom:1px solid rgba(200,164,76,0.07)}
+.mobile-menu a:last-child{border-bottom:none;margin-top:12px;background:linear-gradient(120deg,var(--gold),var(--gold-light));color:var(--navy);text-align:center;border-radius:var(--radius);padding:14px}
+@media(max-width:900px){.nav-links{display:none}.nav-cta.desktop-cta{display:none}.hamburger{display:flex}#navbar{padding:0 20px}}
+
+/* ── PAGE HERO ── */
+.page-hero{background:var(--navy);padding:140px 0 72px;position:relative;overflow:hidden;text-align:center}
+.page-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.page-hero-glow{position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(200,164,76,0.05) 0%,transparent 70%);pointer-events:none}
+.page-eyebrow{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:14px}
+.page-title{font-family:var(--font-serif);font-size:clamp(36px,5vw,60px);font-weight:500;color:var(--white);line-height:1.1;margin-bottom:18px}
+.page-title em{font-style:italic;color:var(--gold-light)}
+.page-sub{font-family:var(--font-sans);font-size:14.5px;font-weight:300;color:rgba(255,255,255,0.45);max-width:480px;margin:0 auto;line-height:1.8}
+.gold-rule-center{display:block;width:48px;height:1.5px;background:linear-gradient(90deg,var(--gold),var(--gold-light));margin:0 auto 18px}
+
+/* ── POLICIES CONTENT ── */
+#policies-content{padding:96px 0 80px;background:var(--ivory)}
+.policies-stack{display:flex;flex-direction:column;gap:28px;max-width:860px;margin:0 auto}
+.policy-card{background:var(--navy-card);border:1px solid rgba(200,164,76,0.22);border-radius:var(--radius-lg);padding:48px 52px;position:relative;overflow:hidden}
+.policy-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light))}
+.policy-num{font-family:var(--font-sans);font-size:9px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:rgba(200,164,76,0.45);display:block;margin-bottom:10px}
+.policy-title{font-family:var(--font-serif);font-size:26px;font-weight:500;color:var(--white);line-height:1.2;margin-bottom:20px}
+.policy-placeholder{font-family:var(--font-sans);font-size:13.5px;font-weight:300;color:rgba(255,255,255,0.42);line-height:1.85}
+.policy-divider{width:40px;height:1px;background:rgba(200,164,76,0.25);margin:24px 0}
+
+.return-wrap{text-align:center;margin-top:56px}
+.btn-return{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;background:linear-gradient(120deg,var(--gold) 0%,var(--gold-light) 50%,var(--gold) 100%);background-size:200% 100%;color:var(--navy);padding:16px 40px;border-radius:var(--radius);transition:background-position 0.5s var(--ease),box-shadow 0.3s,transform 0.3s;box-shadow:0 4px 22px rgba(200,164,76,0.28)}
+.btn-return:hover{background-position:100% 0;box-shadow:0 6px 32px rgba(200,164,76,0.42);transform:translateY(-2px)}
+
+/* ── FOOTER ── */
+#footer{background:var(--navy);position:relative;overflow:hidden}
+.footer-top-line{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.footer-bg-glow{position:absolute;bottom:-80px;right:-80px;width:400px;height:400px;background:radial-gradient(ellipse,rgba(200,164,76,0.04) 0%,transparent 70%);pointer-events:none}
+.footer-body{padding:72px 0 48px;position:relative;z-index:2}
+.footer-inner{display:grid;grid-template-columns:1fr auto;gap:80px;align-items:start}
+.footer-logo-wordmark{margin-bottom:20px}
+.footer-logo-wordmark .logo-shield{width:44px;height:44px}
+.footer-logo-wordmark .logo-name{font-size:17px}
+.footer-tagline{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:rgba(200,164,76,0.4);margin-bottom:28px}
+.footer-desc{font-family:var(--font-sans);font-size:13.5px;font-weight:300;color:rgba(255,255,255,0.32);line-height:1.8;max-width:340px}
+.footer-details{display:flex;flex-direction:column;gap:28px;padding-top:6px}
+.footer-detail-group{display:flex;align-items:flex-start;gap:14px}
+.footer-detail-icon{width:36px;height:36px;background:rgba(200,164,76,0.07);border:1px solid rgba(200,164,76,0.18);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.footer-detail-icon svg{width:15px;height:15px;fill:var(--gold)}
+.footer-detail-label{font-family:var(--font-sans);font-size:9.5px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:rgba(200,164,76,0.5);display:block;margin-bottom:4px}
+.footer-detail-value{font-family:var(--font-sans);font-size:13.5px;font-weight:400;color:rgba(255,255,255,0.62);text-decoration:none;transition:color 0.2s;line-height:1.55;display:block}
+.footer-detail-value:hover{color:var(--gold-light)}
+.footer-divider{border:none;border-top:1px solid rgba(200,164,76,0.1);margin:0;position:relative;z-index:2}
+.footer-bottom{padding:20px 0;position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.footer-copy{font-family:var(--font-sans);font-size:11.5px;font-weight:300;color:rgba(255,255,255,0.28);letter-spacing:0.04em}
+.footer-policy-links{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.footer-policy-links a{font-family:var(--font-sans);font-size:11px;font-weight:300;color:rgba(255,255,255,0.35);letter-spacing:0.04em;transition:color 0.2s}
+.footer-policy-links a:hover{color:var(--gold-light)}
+@media(max-width:900px){.footer-inner{grid-template-columns:1fr;gap:48px}}
+@media(max-width:768px){.container{padding:0 24px}.footer-body{padding:52px 0 36px}.footer-bottom{flex-direction:column;align-items:flex-start;gap:12px}.footer-policy-links{gap:14px}}
+@media(max-width:560px){.policy-card{padding:36px 28px}}
+</style>
+<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="8993b2fd-b65a-4e40-aad8-469dc1be0639";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand logo-wordmark">
+      <svg class="logo-shield" viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40 4 L74 16 L74 46 C74 64 58 78 40 86 C22 78 6 64 6 46 L6 16 Z" fill="rgba(200,164,76,0.08)" stroke="url(#sgP)" stroke-width="1.5"/>
+        <path d="M40 12 L68 22 L68 46 C68 61 55 73 40 80 C25 73 12 61 12 46 L12 22 Z" fill="rgba(200,164,76,0.05)"/>
+        <text x="40" y="56" font-family="Cinzel,Georgia,serif" font-size="28" font-weight="700" fill="url(#gtP)" text-anchor="middle">B</text>
+        <defs>
+          <linearGradient id="sgP" x1="6" y1="4" x2="74" y2="86" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#DEB96E"/><stop offset="50%" stop-color="#C8A44C"/><stop offset="100%" stop-color="#A8843C"/></linearGradient>
+          <linearGradient id="gtP" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox"><stop offset="0%" stop-color="#F2E4C0"/><stop offset="100%" stop-color="#C8A44C"/></linearGradient>
+        </defs>
+      </svg>
+      <div class="logo-text-block">
+        <span class="logo-name">Biz Filing Pros</span>
+        <span class="logo-sub">File · Build · Grow</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/#services">Services</a>
+      <a href="/#why">Why Us</a>
+      <a href="/#reviews">Reviews</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <a href="intake.html" class="nav-cta desktop-cta">Start Your Filing</a>
+    <button class="hamburger" id="hamburger" aria-label="Open Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<nav class="mobile-menu" id="mobile-menu">
+  <a href="/" onclick="closeMobile()">Home</a>
+  <a href="/#services" onclick="closeMobile()">Services</a>
+  <a href="/#why" onclick="closeMobile()">Why Us</a>
+  <a href="/#reviews" onclick="closeMobile()">Reviews</a>
+  <a href="/#faq" onclick="closeMobile()">FAQ</a>
+  <a href="/#contact" onclick="closeMobile()">Contact</a>
+  <a href="intake.html" onclick="closeMobile()">Start Your Filing</a>
+</nav>
+
+<!-- ── PAGE HERO ── -->
+<section class="page-hero">
+  <div class="page-hero-glow"></div>
+  <div class="container">
+    <span class="page-eyebrow">Legal &amp; Company</span>
+    <span class="gold-rule-center"></span>
+    <h1 class="page-title">Policies &amp; <em>Disclosures</em></h1>
+    <p class="page-sub">Important information about your rights, our services, and how we operate.</p>
+  </div>
+</section>
+
+<!-- ── POLICIES CONTENT ── -->
+<section id="policies-content">
+  <div class="container">
+    <div class="policies-stack">
+
+      <!-- 1. Terms of Service -->
+      <div class="policy-card">
+        <span class="policy-num">01 — Terms of Service</span>
+        <h2 class="policy-title">Terms of Service</h2>
+        <div class="policy-divider"></div>
+        <p class="policy-placeholder">Full Terms of Service content will be published here. This section will outline the terms and conditions governing your use of Biz Filing Pros services, including service scope, client responsibilities, payment terms, limitations of liability, and dispute resolution procedures.</p>
+      </div>
+
+      <!-- 2. Privacy Policy -->
+      <div class="policy-card">
+        <span class="policy-num">02 — Privacy Policy</span>
+        <h2 class="policy-title">Privacy Policy</h2>
+        <div class="policy-divider"></div>
+        <p class="policy-placeholder">Full Privacy Policy content will be published here. This section will describe how Biz Filing Pros collects, uses, stores, and protects your personal information, including data sharing practices, your rights, and how to contact us with privacy-related inquiries.</p>
+      </div>
+
+      <!-- 3. Refund & Cancellation Policy -->
+      <div class="policy-card">
+        <span class="policy-num">03 — Refund &amp; Cancellation Policy</span>
+        <h2 class="policy-title">Refund &amp; Cancellation Policy</h2>
+        <div class="policy-divider"></div>
+        <p class="policy-placeholder">Full Refund &amp; Cancellation Policy content will be published here. This section will detail cancellation windows, refund eligibility, non-refundable government and state filing fees, and the process for requesting a refund or cancelling a service order.</p>
+      </div>
+
+      <!-- 4. Not a Law Firm Disclaimer -->
+      <div class="policy-card">
+        <span class="policy-num">04 — Not a Law Firm Disclaimer</span>
+        <h2 class="policy-title">Not a Law Firm Disclaimer</h2>
+        <div class="policy-divider"></div>
+        <p class="policy-placeholder">Full disclaimer content will be published here. Biz Filing Pros is a business filing service and is not a law firm. We do not provide legal, tax, or accounting advice. The information and services we provide are for general informational and administrative purposes only. Clients should consult a licensed attorney or accountant for advice specific to their situation.</p>
+      </div>
+
+    </div>
+
+    <!-- Return Home -->
+    <div class="return-wrap">
+      <a href="/" class="btn-return">← Return Home</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer id="footer">
+  <div class="footer-top-line"></div><div class="footer-bg-glow"></div>
+  <div class="footer-body">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <a href="/" class="logo-wordmark footer-logo-wordmark">
+            <svg class="logo-shield" viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M40 4 L74 16 L74 46 C74 64 58 78 40 86 C22 78 6 64 6 46 L6 16 Z" fill="rgba(200,164,76,0.08)" stroke="url(#sgFP)" stroke-width="1.5"/>
+              <path d="M40 12 L68 22 L68 46 C68 61 55 73 40 80 C25 73 12 61 12 46 L12 22 Z" fill="rgba(200,164,76,0.05)"/>
+              <text x="40" y="56" font-family="Cinzel,Georgia,serif" font-size="28" font-weight="700" fill="url(#gtFP)" text-anchor="middle">B</text>
+              <defs>
+                <linearGradient id="sgFP" x1="6" y1="4" x2="74" y2="86" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#DEB96E"/><stop offset="50%" stop-color="#C8A44C"/><stop offset="100%" stop-color="#A8843C"/></linearGradient>
+                <linearGradient id="gtFP" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox"><stop offset="0%" stop-color="#F2E4C0"/><stop offset="100%" stop-color="#C8A44C"/></linearGradient>
+              </defs>
+            </svg>
+            <div class="logo-text-block">
+              <span class="logo-name">Biz Filing Pros</span>
+              <span class="logo-sub">File · Build · Grow</span>
+            </div>
+          </a>
+          <div class="footer-tagline">File &middot; Build &middot; Grow</div>
+          <p class="footer-desc">Professional business filing services for entrepreneurs across all 50 states. Built for clarity, trust, and results.</p>
+        </div>
+        <div class="footer-details">
+          <div class="footer-detail-group"><div class="footer-detail-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div><div><span class="footer-detail-label">Phone</span><a href="tel:3177850113" class="footer-detail-value">(317) 785-0113</a></div></div>
+          <div class="footer-detail-group"><div class="footer-detail-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div><div><span class="footer-detail-label">Email</span><a href="mailto:info@bizfilingpros.com" class="footer-detail-value">info@bizfilingpros.com</a></div></div>
+          <div class="footer-detail-group"><div class="footer-detail-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm.5 5v6l4.5 2.7-.75 1.23L11 14V7h1.5z"/></svg></div><div><span class="footer-detail-label">Hours</span><span class="footer-detail-value">Mon–Fri: 9am–5pm EST<br>Sat–Sun: By Appointment</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="footer-divider">
+  <div class="container">
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 Biz Filing Pros, LLC. All rights reserved.</span>
+      <div class="footer-policy-links">
+        <a href="/policies">Terms of Service</a>
+        <a href="/policies">Privacy Policy</a>
+        <a href="/policies">Refund &amp; Cancellation Policy</a>
+        <a href="/policies">Not a Law Firm Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60), {passive: true});
+
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+
+function closeMobile() { mobileMenu.classList.remove('open'); }
+</script>
+</body>
+</html>

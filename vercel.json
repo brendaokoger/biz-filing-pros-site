@@ -13,6 +13,10 @@
     {
       "source": "/thank-you",
       "destination": "/thank-you.html"
+    },
+    {
+      "source": "/policies",
+      "destination": "/policies.html"
     }
   ]
 }
