@@ -1,25 +1,25 @@
 'use strict';
 
 // ---------------------------------------------------------------------------
-// Pricing tables — must stay in sync with intake.html frontend values
+// All prices sourced directly from intake.html — do not edit independently
 // ---------------------------------------------------------------------------
 
 const PACKAGES = {
   essentials: {
     label:       'Business Starter Package',
     stripeLabel: 'Biz Filing Pros Business Starter Package',
-    basePrice:   249,   // user spec; frontend currently shows 275 — see NOTE below
+    basePrice:   275,   // pickPkg(this,'essentials',275)
     includesStateFee: false,
   },
   complete: {
     label:       'Business Pro Package',
     stripeLabel: 'Biz Filing Pros Business Pro Package',
-    basePrice:   1549,
-    includesStateFee: true, // except for PRO_EXCLUDED_STATES
+    basePrice:   1549,  // pickPkg(this,'complete',1549)
+    // State fees included except PRO_EXCLUDED_STATES
   },
 };
 
-// State filing fees (full state names, dollars)
+// Source: LLC_STATE_FEES in intake.html
 // California $890 = Articles $70 + Statement of Info $20 + Franchise Tax $800
 const STATE_FEES = {
   'Alabama': 200, 'Alaska': 250, 'Arizona': 50, 'Arkansas': 45, 'California': 890,
@@ -35,26 +35,38 @@ const STATE_FEES = {
   'Wisconsin': 130, 'Wyoming': 100,
 };
 
-// Business Pro states where the filing fee is NOT included in $1,549
-const PRO_EXCLUDED_STATES = new Set([
-  'California', 'Nevada', 'Texas', 'Tennessee', 'Massachusetts',
-  'Alaska', 'Maryland', 'Maine', 'Washington', 'Washington D.C.',
+// Source: PRO_EXCLUDED_FEES in intake.html
+// Business Pro does NOT include the filing fee for these states
+const PRO_EXCLUDED_FEES = {
+  'California': 890, 'Nevada': 75, 'Texas': 300, 'Tennessee': 300,
+  'Massachusetts': 500, 'Alaska': 250, 'Maryland': 100, 'Maine': 175,
+  'Washington': 200, 'Washington D.C.': 99,
+};
+
+// Source: toggleAddon() calls in intake.html
+// Note: ao_statetm toggleAddon uses 250 even though the display label reads "$249"
+const ADDONS = {
+  ao_expedited: { name: 'Expedited Filing',                                      price: 149  },
+  ao_ra:        { name: 'Registered Agent (1 Year)',                             price: 149  },
+  ao_oa_sm:     { name: 'Operating Agreement — Single Member',                   price: 99   },
+  ao_oa:        { name: 'Operating Agreement / Bylaws — Multi-Member or Corp',   price: 149  },
+  ao_statetm:   { name: 'State Trademark (1 Class)',                             price: 250  },
+  ao_fedtm:     { name: 'Federal Trademark (1 Class)',                           price: 1099 },
+  ao_email:     { name: 'Business Email Setup',                                  price: 149  },
+  ao_web:       { name: 'Launch Site (One-Page Website)',                        price: 749  },
+  ao_duns:      { name: 'DUNS Number Registration',                              price: 49   },
+};
+
+// Add-ons bundled into Business Pro — cannot be charged as extras
+const COMPLETE_INCLUDED_ADDONS = new Set([
+  'ao_ra', 'ao_oa_sm', 'ao_oa', 'ao_expedited', 'ao_email', 'ao_duns',
 ]);
 
-// Valid add-ons — prices per user spec
-// ao_statetm: spec says $249; frontend currently uses $250 — see NOTE below
-// ao_web: spec says $749; frontend label exists but no active toggle yet — see NOTE below
-const ADDONS = {
-  ao_expedited: { name: 'Expedited Filing',                              price: 149  },
-  ao_ra:        { name: 'Registered Agent (1 Year)',                     price: 149  },
-  ao_oa_sm:     { name: 'Operating Agreement — Single Member',      price: 99   },
-  ao_oa:        { name: 'Operating Agreement / Bylaws — Multi-Member or Corp', price: 149 },
-  ao_statetm:   { name: 'State Trademark (1 Class)',                     price: 249  },
-  ao_fedtm:     { name: 'Federal Trademark (1 Class)',                   price: 1099 },
-  ao_email:     { name: 'Business Email Setup',                          price: 149  },
-  ao_web:       { name: 'Launch Site (One-Page Website)',                price: 749  },
-  ao_duns:      { name: 'DUNS Number Registration',                      price: 49   },
-};
+// Address selection charges (separate from ao_ra add-on)
+// Source: addrSelections logic in intake.html submit handler
+const ADDR_RA_PRICE      = 149;   // addrRA when not complete package
+const ADDR_VIRTUAL_MONTHLY = 39;  // virtualBillingChoice === 'monthly'
+const ADDR_VIRTUAL_ANNUAL  = 399; // virtualBillingChoice === 'annual'
 
 const VALID_ENTITY_TYPES = new Set(['LLC', 'S-Corp', 'C-Corp']);
 
@@ -78,7 +90,6 @@ module.exports = async function handler(req, res) {
     return res.status(503).json({ error: 'Payment processing is not configured.' });
   }
 
-  // ---- Parse body -------------------------------------------------------
   const {
     package: packageKey,
     stateFormation,
@@ -86,13 +97,16 @@ module.exports = async function handler(req, res) {
     customerName,
     customerEmail,
     businessName,
-    addons,        // array of keys OR object {ao_ra: true, ...}
-    frontendTotal, // optional dollar amount (number or numeric string) from frontend
+    addons,              // array of keys OR object { ao_ra: true, ... }
+    addrRA,              // boolean — RA address selected
+    addrVirtual,         // boolean — Virtual address selected
+    virtualBillingChoice,// 'monthly' | 'annual'
+    frontendTotal,       // optional, dollars (number or numeric string)
   } = req.body || {};
 
   // ---- Validate package -------------------------------------------------
   if (!packageKey || !PACKAGES[packageKey]) {
-    return res.status(400).json({ error: 'Invalid package selected. Must be "essentials" or "complete".' });
+    return res.status(400).json({ error: 'Invalid package. Must be "essentials" or "complete".' });
   }
   const pkg = PACKAGES[packageKey];
 
@@ -100,14 +114,13 @@ module.exports = async function handler(req, res) {
   if (!stateFormation || !(stateFormation in STATE_FEES)) {
     return res.status(400).json({ error: `Invalid or missing formation state: "${stateFormation}".` });
   }
-  const stateFee = STATE_FEES[stateFormation];
 
   // ---- Validate entity type ---------------------------------------------
   if (!entityType || !VALID_ENTITY_TYPES.has(entityType)) {
     return res.status(400).json({ error: `Invalid entity type: "${entityType}". Must be LLC, S-Corp, or C-Corp.` });
   }
 
-  // ---- Validate add-ons -------------------------------------------------
+  // ---- Parse and validate add-ons ---------------------------------------
   let selectedAddonKeys = [];
   if (Array.isArray(addons)) {
     selectedAddonKeys = addons.filter(Boolean);
@@ -120,17 +133,39 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: `Unknown add-on(s): ${invalidAddons.join(', ')}.` });
   }
 
-  // ---- Calculate backend total ------------------------------------------
-  let backendTotal = pkg.basePrice;
-
-  if (packageKey === 'essentials') {
-    backendTotal += stateFee;
-  } else if (packageKey === 'complete' && PRO_EXCLUDED_STATES.has(stateFormation)) {
-    backendTotal += stateFee;
+  // Business Pro add-ons are included — reject if sent as extras
+  if (packageKey === 'complete') {
+    const bundled = selectedAddonKeys.filter(k => COMPLETE_INCLUDED_ADDONS.has(k));
+    if (bundled.length > 0) {
+      return res.status(400).json({
+        error: `These add-ons are included in Business Pro and cannot be charged separately: ${bundled.join(', ')}.`,
+      });
+    }
   }
 
+  // ---- Recalculate total (mirrors intake.html submit handler) -----------
+  let backendTotal = pkg.basePrice;
+
+  // Add-on prices
   for (const key of selectedAddonKeys) {
     backendTotal += ADDONS[key].price;
+  }
+
+  // RA address selection (non-complete only)
+  if (addrRA && packageKey !== 'complete') {
+    backendTotal += ADDR_RA_PRICE;
+  }
+
+  // Virtual address selection
+  if (addrVirtual) {
+    backendTotal += virtualBillingChoice === 'monthly' ? ADDR_VIRTUAL_MONTHLY : ADDR_VIRTUAL_ANNUAL;
+  }
+
+  // State filing fees
+  if (packageKey === 'essentials') {
+    backendTotal += STATE_FEES[stateFormation];
+  } else if (packageKey === 'complete' && stateFormation in PRO_EXCLUDED_FEES) {
+    backendTotal += PRO_EXCLUDED_FEES[stateFormation];
   }
 
   // ---- Compare with frontend total (if provided) ------------------------
@@ -148,17 +183,17 @@ module.exports = async function handler(req, res) {
     }
   }
 
-  // ---- Build metadata ---------------------------------------------------
+  // ---- Build Stripe session metadata ------------------------------------
   const addonNames = selectedAddonKeys.map(k => ADDONS[k].name).join(', ') || 'None';
 
   const metadata = {
-    customer_name:    (customerName  || '').slice(0, 500),
-    customer_email:   (customerEmail || '').slice(0, 500),
-    business_name:    (businessName  || '').slice(0, 500),
-    entity_type:      entityType,
-    selected_package: pkg.label,
-    formation_state:  stateFormation,
-    selected_addons:  addonNames.slice(0, 500),
+    customer_name:     (customerName  || '').slice(0, 500),
+    customer_email:    (customerEmail || '').slice(0, 500),
+    business_name:     (businessName  || '').slice(0, 500),
+    entity_type:       entityType,
+    selected_package:  pkg.label,
+    formation_state:   stateFormation,
+    selected_addons:   addonNames.slice(0, 500),
     backend_total_usd: String(backendTotal),
   };
 
@@ -177,7 +212,7 @@ module.exports = async function handler(req, res) {
             name:        pkg.stripeLabel,
             description: CHECKOUT_DESCRIPTION,
           },
-          unit_amount: backendTotal * 100, // Stripe expects cents
+          unit_amount: backendTotal * 100,
         },
         quantity: 1,
       }],
