@@ -9,13 +9,12 @@ const PACKAGES = {
     label:       'Business Starter Package',
     stripeLabel: 'Biz Filing Pros Business Starter Package',
     basePrice:   275,   // pickPkg(this,'essentials',275)
-    includesStateFee: false,
   },
   complete: {
     label:       'Business Pro Package',
     stripeLabel: 'Biz Filing Pros Business Pro Package',
     basePrice:   1549,  // pickPkg(this,'complete',1549)
-    // State fees included except PRO_EXCLUDED_STATES
+    // State fees included except PRO_EXCLUDED_FEES states
   },
 };
 
@@ -44,17 +43,17 @@ const PRO_EXCLUDED_FEES = {
 };
 
 // Source: toggleAddon() calls in intake.html
-// Note: ao_statetm toggleAddon uses 250 even though the display label reads "$249"
+// ao_statetm: toggleAddon uses 250 even though the display label reads "$249"
 const ADDONS = {
-  ao_expedited: { name: 'Expedited Filing',                                      price: 149  },
-  ao_ra:        { name: 'Registered Agent (1 Year)',                             price: 149  },
-  ao_oa_sm:     { name: 'Operating Agreement — Single Member',                   price: 99   },
-  ao_oa:        { name: 'Operating Agreement / Bylaws — Multi-Member or Corp',   price: 149  },
-  ao_statetm:   { name: 'State Trademark (1 Class)',                             price: 250  },
-  ao_fedtm:     { name: 'Federal Trademark (1 Class)',                           price: 1099 },
-  ao_email:     { name: 'Business Email Setup',                                  price: 149  },
-  ao_web:       { name: 'Launch Site (One-Page Website)',                        price: 749  },
-  ao_duns:      { name: 'DUNS Number Registration',                              price: 49   },
+  ao_expedited: { name: 'Expedited Filing',                                    price: 149  },
+  ao_ra:        { name: 'Registered Agent (1 Year)',                           price: 149  },
+  ao_oa_sm:     { name: 'Operating Agreement — Single Member',                 price: 99   },
+  ao_oa:        { name: 'Operating Agreement / Bylaws — Multi-Member or Corp', price: 149  },
+  ao_statetm:   { name: 'State Trademark (1 Class)',                           price: 250  },
+  ao_fedtm:     { name: 'Federal Trademark (1 Class)',                         price: 1099 },
+  ao_email:     { name: 'Business Email Setup',                                price: 149  },
+  ao_web:       { name: 'Launch Site (One-Page Website)',                      price: 749  },
+  ao_duns:      { name: 'DUNS Number Registration',                            price: 49   },
 };
 
 // Add-ons bundled into Business Pro — cannot be charged as extras
@@ -64,9 +63,9 @@ const COMPLETE_INCLUDED_ADDONS = new Set([
 
 // Address selection charges (separate from ao_ra add-on)
 // Source: addrSelections logic in intake.html submit handler
-const ADDR_RA_PRICE      = 149;   // addrRA when not complete package
-const ADDR_VIRTUAL_MONTHLY = 39;  // virtualBillingChoice === 'monthly'
-const ADDR_VIRTUAL_ANNUAL  = 399; // virtualBillingChoice === 'annual'
+const ADDR_RA_PRICE        = 149;
+const ADDR_VIRTUAL_MONTHLY = 39;
+const ADDR_VIRTUAL_ANNUAL  = 399;
 
 const VALID_ENTITY_TYPES = new Set(['LLC', 'S-Corp', 'C-Corp']);
 
@@ -90,6 +89,13 @@ module.exports = async function handler(req, res) {
     return res.status(503).json({ error: 'Payment processing is not configured.' });
   }
 
+  // ---- Parse body (handle both pre-parsed object and raw JSON string) -----
+  let body = req.body;
+  if (typeof body === 'string') {
+    try { body = JSON.parse(body); } catch (_) { body = {}; }
+  }
+  if (!body || typeof body !== 'object') body = {};
+
   const {
     package: packageKey,
     stateFormation,
@@ -97,93 +103,98 @@ module.exports = async function handler(req, res) {
     customerName,
     customerEmail,
     businessName,
-    addons,              // array of keys OR object { ao_ra: true, ... }
-    addrRA,              // boolean — RA address selected
-    addrVirtual,         // boolean — Virtual address selected
-    virtualBillingChoice,// 'monthly' | 'annual'
-    frontendTotal,       // optional, dollars (number or numeric string)
-  } = req.body || {};
+    addons,
+    addrRA,
+    addrVirtual,
+    virtualBillingChoice,
+    frontendTotal,
+  } = body;
 
-  // ---- Validate package -------------------------------------------------
+  // ---- Safe diagnostic logging (no secrets) -------------------------------
+  console.log('[checkout] received payload:', JSON.stringify({
+    package:      packageKey,
+    state:        stateFormation,
+    entityType,
+    addons,
+    addrRA,
+    addrVirtual,
+    virtualBillingChoice,
+    frontendTotal,
+  }));
+
+  // ---- Validate package ---------------------------------------------------
   if (!packageKey || !PACKAGES[packageKey]) {
+    console.log('[checkout] FAIL package:', packageKey);
     return res.status(400).json({ error: 'Invalid package. Must be "essentials" or "complete".' });
   }
   const pkg = PACKAGES[packageKey];
+  console.log('[checkout] package OK:', packageKey, '($' + pkg.basePrice + ')');
 
-  // ---- Validate state ---------------------------------------------------
+  // ---- Validate state -----------------------------------------------------
   if (!stateFormation || !(stateFormation in STATE_FEES)) {
+    console.log('[checkout] FAIL state:', stateFormation);
     return res.status(400).json({ error: `Invalid or missing formation state: "${stateFormation}".` });
   }
+  console.log('[checkout] state OK:', stateFormation, '(fee $' + STATE_FEES[stateFormation] + ')');
 
-  // ---- Validate entity type ---------------------------------------------
+  // ---- Validate entity type -----------------------------------------------
   if (!entityType || !VALID_ENTITY_TYPES.has(entityType)) {
+    console.log('[checkout] FAIL entityType:', entityType);
     return res.status(400).json({ error: `Invalid entity type: "${entityType}". Must be LLC, S-Corp, or C-Corp.` });
   }
+  console.log('[checkout] entityType OK:', entityType);
 
-  // ---- Parse and validate add-ons ---------------------------------------
+  // ---- Parse and validate add-ons -----------------------------------------
   let selectedAddonKeys = [];
   if (Array.isArray(addons)) {
     selectedAddonKeys = addons.filter(Boolean);
   } else if (addons && typeof addons === 'object') {
     selectedAddonKeys = Object.keys(addons).filter(k => addons[k]);
   }
+  console.log('[checkout] addons:', selectedAddonKeys);
 
   const invalidAddons = selectedAddonKeys.filter(k => !ADDONS[k]);
   if (invalidAddons.length > 0) {
+    console.log('[checkout] FAIL unknown addons:', invalidAddons);
     return res.status(400).json({ error: `Unknown add-on(s): ${invalidAddons.join(', ')}.` });
   }
 
-  // Business Pro add-ons are included — reject if sent as extras
   if (packageKey === 'complete') {
     const bundled = selectedAddonKeys.filter(k => COMPLETE_INCLUDED_ADDONS.has(k));
     if (bundled.length > 0) {
+      console.log('[checkout] FAIL bundled addons sent as extras:', bundled);
       return res.status(400).json({
         error: `These add-ons are included in Business Pro and cannot be charged separately: ${bundled.join(', ')}.`,
       });
     }
   }
 
-  // ---- Recalculate total (mirrors intake.html submit handler) -----------
+  // ---- Recalculate total (mirrors intake.html submit handler exactly) ------
   let backendTotal = pkg.basePrice;
 
-  // Add-on prices
   for (const key of selectedAddonKeys) {
     backendTotal += ADDONS[key].price;
   }
-
-  // RA address selection (non-complete only)
   if (addrRA && packageKey !== 'complete') {
     backendTotal += ADDR_RA_PRICE;
   }
-
-  // Virtual address selection
   if (addrVirtual) {
     backendTotal += virtualBillingChoice === 'monthly' ? ADDR_VIRTUAL_MONTHLY : ADDR_VIRTUAL_ANNUAL;
   }
-
-  // State filing fees
   if (packageKey === 'essentials') {
     backendTotal += STATE_FEES[stateFormation];
   } else if (packageKey === 'complete' && stateFormation in PRO_EXCLUDED_FEES) {
     backendTotal += PRO_EXCLUDED_FEES[stateFormation];
   }
 
-  // ---- Compare with frontend total (if provided) ------------------------
-  if (frontendTotal !== undefined && frontendTotal !== null && frontendTotal !== '') {
-    const parsed = typeof frontendTotal === 'number'
-      ? Math.round(frontendTotal)
-      : parseInt(String(frontendTotal).replace(/[^0-9]/g, ''), 10);
+  // NOTE: Frontend total comparison is intentionally omitted.
+  // The frontend applies coupon discounts the backend does not yet know about,
+  // causing false mismatches. The backend always charges its own recalculated
+  // total, so this comparison does not affect the amount charged.
+  // Re-enable after backend coupon logic is added.
+  console.log('[checkout] backendTotal: $' + backendTotal + ' | frontendTotal received: ' + frontendTotal);
 
-    if (!isNaN(parsed) && parsed !== backendTotal) {
-      return res.status(400).json({
-        error: 'Order total mismatch. Please refresh the page and try again.',
-        backendTotal,
-        frontendTotal: parsed,
-      });
-    }
-  }
-
-  // ---- Build Stripe session metadata ------------------------------------
+  // ---- Build Stripe metadata ----------------------------------------------
   const addonNames = selectedAddonKeys.map(k => ADDONS[k].name).join(', ') || 'None';
 
   const metadata = {
@@ -197,9 +208,10 @@ module.exports = async function handler(req, res) {
     backend_total_usd: String(backendTotal),
   };
 
-  // ---- Create Stripe Checkout session -----------------------------------
+  // ---- Create Stripe Checkout session -------------------------------------
   try {
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+    console.log('[checkout] calling Stripe, unit_amount:', backendTotal * 100);
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -221,10 +233,11 @@ module.exports = async function handler(req, res) {
       metadata,
     });
 
+    console.log('[checkout] session created OK:', session.id);
     return res.status(200).json({ url: session.url });
 
   } catch (err) {
-    console.error('[create-checkout-session] Stripe error:', err.message);
+    console.error('[checkout] Stripe error:', err.message);
     return res.status(500).json({ error: 'Payment session could not be created. Please try again.' });
   }
 };
