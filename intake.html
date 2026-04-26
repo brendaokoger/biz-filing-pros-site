@@ -937,8 +937,8 @@ function applyRADisable() {
 
 /* ═══ COUPONS ═══ */
 const VALID_COUPONS = {
-  'NEWBIZ26': {discount: 50, label: '$50 off', appliesTo: 'all'},
-  'LAUNCH100': {discount: 100, label: '$100 off Business Pro Package', appliesTo: ['complete']}
+  'NEWBIZ26':  {discount: 50,  label: '$50 off your Business Starter Package',  appliesTo: ['essentials'], wrongPkgMsg: 'NEWBIZ26 only applies to the Business Starter Package.'},
+  'LAUNCH100': {discount: 100, label: '$100 off your Business Pro Package', appliesTo: ['complete'],   wrongPkgMsg: 'LAUNCH100 only applies to the Business Pro Package.'}
 };
 
 function applyCoupon() {
@@ -967,7 +967,7 @@ function applyCoupon() {
       return;
     }
     if(!coupon.appliesTo.includes(pkgName)) {
-      msg.innerHTML = '<span style="color:var(--red);">This coupon is only valid for the Business Pro Package.</span>';
+      msg.innerHTML = '<span style="color:var(--red);">' + coupon.wrongPkgMsg + '</span>';
       return;
     }
   }
@@ -1346,6 +1346,7 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
       addrRA:               !!addrSelections.ra,
       addrVirtual:          !!addrSelections.virtual,
       virtualBillingChoice: virtualBillingChoice || 'annual',
+      couponCode:           couponApplied || null,
       frontendTotal:        finalTotal
     };
 

@@ -56,6 +56,13 @@ const ADDONS = {
   ao_duns:      { name: 'DUNS Number Registration',                            price: 49   },
 };
 
+// Coupon codes — backend is the source of truth
+// Discounts apply ONLY to the package service fee, not state fees, add-ons, or gov fees
+const COUPONS = {
+  'NEWBIZ26':  { discount: 50,  appliesTo: 'essentials', label: '$50 off Business Starter Package'  },
+  'LAUNCH100': { discount: 100, appliesTo: 'complete',   label: '$100 off Business Pro Package' },
+};
+
 // Add-ons bundled into Business Pro — cannot be charged as extras
 const COMPLETE_INCLUDED_ADDONS = new Set([
   'ao_ra', 'ao_oa_sm', 'ao_oa', 'ao_expedited', 'ao_email', 'ao_duns',
@@ -107,6 +114,7 @@ module.exports = async function handler(req, res) {
     addrRA,
     addrVirtual,
     virtualBillingChoice,
+    couponCode,
     frontendTotal,
   } = body;
 
@@ -119,6 +127,7 @@ module.exports = async function handler(req, res) {
     addrRA,
     addrVirtual,
     virtualBillingChoice,
+    couponCode,
     frontendTotal,
   }));
 
@@ -169,6 +178,24 @@ module.exports = async function handler(req, res) {
     }
   }
 
+  // ---- Validate coupon (if provided) -------------------------------------
+  let couponDiscount = 0;
+  if (couponCode && couponCode !== 'none') {
+    const normalised = String(couponCode).trim().toUpperCase();
+    const coupon = COUPONS[normalised];
+    if (!coupon) {
+      console.log('[checkout] FAIL invalid coupon:', normalised);
+      return res.status(400).json({ error: 'Invalid coupon code.' });
+    }
+    if (coupon.appliesTo !== packageKey) {
+      const expected = coupon.appliesTo === 'essentials' ? 'Business Starter Package' : 'Business Pro Package';
+      console.log('[checkout] FAIL coupon wrong package:', normalised, 'requires', coupon.appliesTo, 'got', packageKey);
+      return res.status(400).json({ error: `${normalised} only applies to the ${expected}.` });
+    }
+    couponDiscount = coupon.discount;
+    console.log('[checkout] coupon OK:', normalised, 'discount $' + couponDiscount);
+  }
+
   // ---- Recalculate total (mirrors intake.html submit handler exactly) ------
   let backendTotal = pkg.basePrice;
 
@@ -185,6 +212,11 @@ module.exports = async function handler(req, res) {
     backendTotal += STATE_FEES[stateFormation];
   } else if (packageKey === 'complete' && stateFormation in PRO_EXCLUDED_FEES) {
     backendTotal += PRO_EXCLUDED_FEES[stateFormation];
+  }
+
+  // Apply coupon discount to package service fee only — not state fees, add-ons, or gov fees
+  if (couponDiscount > 0) {
+    backendTotal = Math.max(0, backendTotal - couponDiscount);
   }
 
   // NOTE: Frontend total comparison is intentionally omitted.
@@ -205,6 +237,8 @@ module.exports = async function handler(req, res) {
     selected_package:  pkg.label,
     formation_state:   stateFormation,
     selected_addons:   addonNames.slice(0, 500),
+    coupon_code:       couponDiscount > 0 ? String(couponCode).trim().toUpperCase() : 'none',
+    coupon_discount:   couponDiscount > 0 ? '$' + couponDiscount : 'none',
     backend_total_usd: String(backendTotal),
   };
 
