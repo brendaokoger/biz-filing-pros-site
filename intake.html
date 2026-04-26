@@ -571,10 +571,12 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
     </div>
   </div>
 
+  <p id="paymentNotice" style="font-size:.78rem;color:var(--gray-400);text-align:center;margin-bottom:.25rem;">After submitting your application, you will be redirected to Stripe to complete payment.</p>
   <div class="btn-row" style="flex-direction:column;gap:.5rem;">
-    <button type="submit" class="btn btn-submit">Submit Application →</button>
+    <button type="submit" class="btn btn-submit">Continue to Payment</button>
     <button type="button" class="btn btn-back" onclick="go(-1)" style="width:100%;">← Back to Edit</button>
   </div>
+  <p id="submitError" style="display:none;font-size:.8rem;color:#c0392b;text-align:center;margin-top:.5rem;line-height:1.5;"></p>
 </div>
 
 </form>
@@ -1291,10 +1293,12 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
   e.preventDefault();
 
   const submitBtn = document.querySelector('.btn-submit');
+  const errorEl   = document.getElementById('submitError');
+  errorEl.style.display = 'none';
   submitBtn.disabled = true;
   submitBtn.textContent = 'Submitting…';
 
-  // Calculate final total for lead record
+  // Mirror the form's own total calculation exactly
   let finalTotal = pkgPrice;
   for(const v of Object.values(addonsMap)) finalTotal += v;
   if(addrSelections.ra && pkgName !== 'complete') finalTotal += 149;
@@ -1314,14 +1318,61 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
   formData.append('selectedPackage', pkgName || 'none');
   formData.append('couponCode', couponApplied || 'none');
 
+  // Step 1 — Submit lead to Formspree
   fetch('https://formspree.io/f/xzdyegje', {
     method: 'POST',
     headers: { 'Accept': 'application/json' },
     body: formData
   })
-  .catch(() => {})
-  .finally(() => {
-    window.location.href = 'thank-you.html';
+  .then(function(fpRes) {
+    if(!fpRes.ok) throw new Error('formspree');
+    return fpRes.json();
+  })
+  .then(function(fpJson) {
+    if(fpJson.error) throw new Error('formspree');
+
+    // Step 2 — Create Stripe Checkout session
+    submitBtn.textContent = 'Preparing Payment…';
+
+    const fd = new FormData(document.getElementById('mainForm'));
+    const stripePayload = {
+      package:              pkgName,
+      stateFormation:       fd.get('stateFormation') || document.getElementById('stateSelect').value,
+      entityType:           fd.get('entityType') || document.getElementById('entityType').value,
+      customerName:         ((fd.get('firstName') || '') + ' ' + (fd.get('lastName') || '')).trim(),
+      customerEmail:        fd.get('email') || '',
+      businessName:         fd.get('bizName1') || '',
+      addons:               Object.keys(addonsMap),
+      addrRA:               !!addrSelections.ra,
+      addrVirtual:          !!addrSelections.virtual,
+      virtualBillingChoice: virtualBillingChoice || 'annual',
+      frontendTotal:        finalTotal
+    };
+
+    return fetch('/api/create-checkout-session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(stripePayload)
+    });
+  })
+  .then(function(stripeRes) {
+    return stripeRes.json().then(function(data) {
+      if(!stripeRes.ok || !data.url) throw new Error('stripe');
+      return data.url;
+    });
+  })
+  .then(function(checkoutUrl) {
+    window.location.href = checkoutUrl;
+  })
+  .catch(function(err) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Continue to Payment';
+    errorEl.style.display = 'block';
+    if(err.message === 'formspree') {
+      errorEl.textContent = 'Something went wrong. Please try again or contact info@bizfilingpros.com.';
+    } else {
+      errorEl.textContent = 'Payment could not be started. Please contact info@bizfilingpros.com.';
+    }
   });
 });
 </script>
