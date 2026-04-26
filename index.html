@@ -127,18 +127,18 @@ ul{list-style:none}
 .service-cta:hover::after{transform:translateX(4px)}
 
 /* WHY US */
-#why{padding:110px 0;background:var(--white)}
+#why{padding:110px 0;background:var(--ivory)}
 .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.why-card{background:var(--white);border:1px solid rgba(200,164,76,0.14);border-radius:var(--radius-lg);padding:44px 32px;position:relative;overflow:hidden;transition:var(--transition)}
+.why-card{background:var(--navy-card);border:1px solid rgba(200,164,76,0.22);border-radius:var(--radius-lg);padding:44px 32px;position:relative;overflow:hidden;transition:var(--transition)}
 .why-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transform-origin:left;transition:transform 0.4s var(--ease)}
-.why-card:hover{box-shadow:var(--shadow-gold);border-color:rgba(200,164,76,0.28);transform:translateY(-5px)}
+.why-card:hover{box-shadow:0 24px 56px rgba(6,16,28,0.18),var(--shadow-gold);border-color:rgba(200,164,76,0.42);transform:translateY(-5px);background:var(--navy-light)}
 .why-card:hover::before{transform:scaleX(1)}
-.why-icon{width:48px;height:48px;background:linear-gradient(135deg,rgba(200,164,76,0.1),rgba(200,164,76,0.04));border:1px solid rgba(200,164,76,0.22);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;margin-bottom:28px;transition:transform 0.3s,box-shadow 0.3s}
+.why-icon{width:48px;height:48px;background:rgba(200,164,76,0.08);border:1px solid rgba(200,164,76,0.22);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;margin-bottom:28px;transition:transform 0.3s,box-shadow 0.3s}
 .why-card:hover .why-icon{transform:scale(1.08);box-shadow:0 4px 16px rgba(200,164,76,0.18)}
 .why-icon svg{width:20px;height:20px;fill:var(--gold)}
-.why-num{font-family:var(--font-serif);font-size:48px;font-weight:300;color:rgba(200,164,76,0.14);line-height:1;margin-bottom:16px;user-select:none}
-.why-title{font-family:var(--font-serif);font-size:21px;font-weight:600;color:var(--navy);margin-bottom:12px;line-height:1.2}
-.why-body{font-family:var(--font-sans);font-size:13.5px;font-weight:300;color:var(--text-muted);line-height:1.78}
+.why-num{font-family:var(--font-serif);font-size:48px;font-weight:300;color:rgba(200,164,76,0.2);line-height:1;margin-bottom:16px;user-select:none}
+.why-title{font-family:var(--font-serif);font-size:21px;font-weight:600;color:var(--white);margin-bottom:12px;line-height:1.2}
+.why-body{font-family:var(--font-sans);font-size:13.5px;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.78}
 
 /* REVIEWS */
 #reviews{padding:110px 0;background:var(--ivory)}
@@ -183,7 +183,7 @@ ul{list-style:none}
 .faq-a-text{padding:0 28px 22px;font-family:var(--font-sans);font-size:13.5px;font-weight:300;color:rgba(255,255,255,0.48);line-height:1.8}
 
 /* CONTACT */
-#contact{padding:110px 0;background:var(--white);position:relative;overflow:hidden}
+#contact{padding:110px 0;background:var(--ivory);position:relative;overflow:hidden}
 .contact-bg-glow{position:absolute;bottom:-100px;left:-100px;width:500px;height:500px;background:radial-gradient(ellipse,rgba(200,164,76,0.05) 0%,transparent 70%);pointer-events:none}
 .contact-layout{display:grid;grid-template-columns:340px 1fr;gap:80px;align-items:start;position:relative;z-index:2}
 .contact-info-headline{font-family:var(--font-serif);font-size:clamp(28px,3vw,40px);font-weight:500;color:var(--navy);line-height:1.18;margin-bottom:16px}
