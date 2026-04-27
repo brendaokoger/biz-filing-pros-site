@@ -89,11 +89,12 @@ ul{list-style:none}
 /* US Map */
 .hero-map-scene{position:relative;display:flex;align-items:center;justify-content:center;opacity:0;animation:map-appear 1.4s var(--ease) 0.5s forwards}
 .map-glow{position:absolute;inset:-50px;background:radial-gradient(ellipse 65% 60% at 50% 50%,rgba(200,164,76,0.10) 0%,rgba(200,164,76,0.03) 45%,transparent 70%);pointer-events:none;animation:glow-pulse 6s ease-in-out infinite}
-.map-svg{width:100%;max-width:520px;filter:drop-shadow(0 0 28px rgba(200,164,76,0.14)) drop-shadow(0 16px 48px rgba(0,0,0,0.5))}
+.map-svg{width:100%;max-width:560px;filter:drop-shadow(0 0 36px rgba(200,164,76,0.18)) drop-shadow(0 16px 56px rgba(0,0,0,0.55))}
 .map-badge{position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);background:rgba(6,16,28,0.9);border:1px solid rgba(200,164,76,0.3);border-radius:40px;padding:9px 22px;display:flex;align-items:center;gap:9px;backdrop-filter:blur(12px);white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
 .map-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);flex-shrink:0;animation:glow-pulse 2.5s ease-in-out infinite}
 .map-badge span{font-family:var(--font-sans);font-size:9.5px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(200,164,76,0.8)}
 .map-mobile-badge{display:none}
+@media(prefers-reduced-motion:reduce){.map-pulses{display:none}.city-ripple{display:none}.map-glow{animation:none}.map-badge-dot{animation:none}}
 
 @media(max-width:960px){.hero-inner{grid-template-columns:1fr;gap:52px;text-align:center;padding:0 24px}.hero-eyebrow{justify-content:center}.hero-sub{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.hero-stats{justify-content:center}.hero-map-scene{display:none}.map-mobile-badge{display:flex;justify-content:center;align-items:center;gap:9px;margin-top:14px;opacity:0;animation:hero-reveal 0.85s var(--ease) 1s forwards}.map-mobile-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 7px var(--gold);animation:glow-pulse 2.5s ease-in-out infinite}.map-mobile-text{font-family:var(--font-sans);font-size:9px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:rgba(200,164,76,0.7)}#hero{padding:110px 0 80px}}
 @media(max-width:560px){.hero-stats{gap:20px;flex-wrap:wrap}#hero{padding:100px 0 72px}.hero-headline,.hero-headline-italic{font-size:clamp(36px,9vw,52px)}}
@@ -340,8 +341,31 @@ a.footer-detail-value:hover{color:var(--gold-light)}
       <div class="map-glow"></div>
       <svg class="map-svg" viewBox="0 0 540 300" xmlns="http://www.w3.org/2000/svg" aria-label="Map of the United States — serving clients in all 50 states">
         <defs>
-          <filter id="cityGlow"><feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="cityGlow" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur1"/>
+            <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur2"/>
+            <feMerge><feMergeNode in="blur2"/><feMergeNode in="blur1"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
           <filter id="mapOutlineGlow"><feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="lineGlow" x="-5%" y="-500%" width="110%" height="1100%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="dotGlow" x="-200%" y="-200%" width="500%" height="500%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <!-- Route paths for travelling pulses -->
+          <path id="rt1" d="M28,44 C100,70 160,118 218,148"/>
+          <path id="rt2" d="M28,44 C150,58 280,86 390,112"/>
+          <path id="rt3" d="M218,148 C288,132 348,118 390,112"/>
+          <path id="rt4" d="M218,148 C240,174 262,198 282,222"/>
+          <path id="rt5" d="M390,112 C430,108 470,105 511,102"/>
+          <path id="rt6" d="M390,112 C408,138 424,162 440,186"/>
+          <path id="rt7" d="M440,186 C450,206 460,226 470,250"/>
+          <path id="rt8" d="M511,102 C500,150 486,198 470,250"/>
+          <path id="rt9" d="M46,218 C130,218 206,220 282,222"/>
+          <path id="rt10" d="M293,240 C358,244 414,247 470,250"/>
         </defs>
         <!-- Continental US -->
         <path d="M 38,22 L 115,20 L 212,20 L 285,20 L 316,27 L 330,18 L 354,26 L 388,20 L 432,20 L 456,18 L 490,20 L 512,16 L 524,32 L 527,50 L 524,70 C 524,66 527,80 523,86 L 516,94 L 510,106 L 506,116 L 502,126 L 500,136 C 508,143 510,150 503,158 L 493,166 L 486,176 L 478,190 L 476,206 L 473,223 L 470,240 L 468,253 C 460,270 450,276 443,266 L 436,248 L 430,230 L 424,213 L 410,203 L 398,203 L 386,208 L 373,213 L 360,213 C 346,218 333,223 318,220 L 303,226 L 288,238 L 273,250 L 258,263 L 246,268 C 236,273 220,276 206,276 L 186,276 L 146,273 L 103,266 L 86,270 L 70,260 C 56,240 46,215 36,193 L 30,170 L 26,146 L 20,116 L 18,86 L 26,63 L 34,46 L 38,22 Z" fill="rgba(8,22,42,0.65)" stroke="rgba(200,164,76,0.55)" stroke-width="1.2" filter="url(#mapOutlineGlow)"/>
@@ -365,32 +389,59 @@ a.footer-detail-value:hover{color:var(--gold-light)}
           <line x1="393" y1="162" x2="505" y2="148"/>
           <line x1="398" y1="190" x2="490" y2="178"/>
         </g>
+        <!-- Gold connection lines -->
+        <g class="map-connections" fill="none">
+          <path d="M28,44 C100,70 160,118 218,148" stroke="rgba(200,164,76,0.28)" stroke-width="0.9" filter="url(#lineGlow)"/>
+          <path d="M28,44 C150,58 280,86 390,112" stroke="rgba(200,164,76,0.24)" stroke-width="0.9" filter="url(#lineGlow)"/>
+          <path d="M218,148 C288,132 348,118 390,112" stroke="rgba(200,164,76,0.24)" stroke-width="0.9" filter="url(#lineGlow)"/>
+          <path d="M218,148 C240,174 262,198 282,222" stroke="rgba(200,164,76,0.20)" stroke-width="0.9" filter="url(#lineGlow)"/>
+          <path d="M390,112 C430,108 470,105 511,102" stroke="rgba(200,164,76,0.30)" stroke-width="0.9" filter="url(#lineGlow)"/>
+          <path d="M390,112 C408,138 424,162 440,186" stroke="rgba(200,164,76,0.24)" stroke-width="0.9" filter="url(#lineGlow)"/>
+          <path d="M440,186 C450,206 460,226 470,250" stroke="rgba(200,164,76,0.22)" stroke-width="0.9" filter="url(#lineGlow)"/>
+          <path d="M511,102 C500,150 486,198 470,250" stroke="rgba(200,164,76,0.20)" stroke-width="0.9" filter="url(#lineGlow)"/>
+          <path d="M46,218 C130,218 206,220 282,222" stroke="rgba(200,164,76,0.20)" stroke-width="0.9" filter="url(#lineGlow)"/>
+          <path d="M293,240 C358,244 414,247 470,250" stroke="rgba(200,164,76,0.18)" stroke-width="0.9" filter="url(#lineGlow)"/>
+        </g>
+        <!-- Travelling light pulses -->
+        <g class="map-pulses">
+          <circle r="2.4" fill="#DEB96E" filter="url(#dotGlow)"><animateMotion dur="7s" repeatCount="indefinite" begin="0s"><mpath href="#rt1"/></animateMotion><animate attributeName="opacity" values="0;0;0.95;0.95;0" keyTimes="0;0.05;0.15;0.85;1" dur="7s" repeatCount="indefinite" begin="0s"/></circle>
+          <circle r="2.4" fill="#C8A44C" filter="url(#dotGlow)"><animateMotion dur="9s" repeatCount="indefinite" begin="1.4s"><mpath href="#rt2"/></animateMotion><animate attributeName="opacity" values="0;0;0.9;0.9;0" keyTimes="0;0.05;0.15;0.85;1" dur="9s" repeatCount="indefinite" begin="1.4s"/></circle>
+          <circle r="2.4" fill="#DEB96E" filter="url(#dotGlow)"><animateMotion dur="6s" repeatCount="indefinite" begin="2.8s"><mpath href="#rt3"/></animateMotion><animate attributeName="opacity" values="0;0;0.9;0.9;0" keyTimes="0;0.05;0.15;0.85;1" dur="6s" repeatCount="indefinite" begin="2.8s"/></circle>
+          <circle r="2.4" fill="#C8A44C" filter="url(#dotGlow)"><animateMotion dur="6s" repeatCount="indefinite" begin="0.7s"><mpath href="#rt4"/></animateMotion><animate attributeName="opacity" values="0;0;0.9;0.9;0" keyTimes="0;0.05;0.15;0.85;1" dur="6s" repeatCount="indefinite" begin="0.7s"/></circle>
+          <circle r="2.4" fill="#DEB96E" filter="url(#dotGlow)"><animateMotion dur="5s" repeatCount="indefinite" begin="3.5s"><mpath href="#rt5"/></animateMotion><animate attributeName="opacity" values="0;0;0.95;0.95;0" keyTimes="0;0.05;0.15;0.85;1" dur="5s" repeatCount="indefinite" begin="3.5s"/></circle>
+          <circle r="2.4" fill="#C8A44C" filter="url(#dotGlow)"><animateMotion dur="6s" repeatCount="indefinite" begin="5s"><mpath href="#rt6"/></animateMotion><animate attributeName="opacity" values="0;0;0.9;0.9;0" keyTimes="0;0.05;0.15;0.85;1" dur="6s" repeatCount="indefinite" begin="5s"/></circle>
+          <circle r="2.4" fill="#DEB96E" filter="url(#dotGlow)"><animateMotion dur="5s" repeatCount="indefinite" begin="4.2s"><mpath href="#rt7"/></animateMotion><animate attributeName="opacity" values="0;0;0.9;0.9;0" keyTimes="0;0.05;0.15;0.85;1" dur="5s" repeatCount="indefinite" begin="4.2s"/></circle>
+          <circle r="2.4" fill="#C8A44C" filter="url(#dotGlow)"><animateMotion dur="8s" repeatCount="indefinite" begin="2s"><mpath href="#rt8"/></animateMotion><animate attributeName="opacity" values="0;0;0.9;0.9;0" keyTimes="0;0.05;0.15;0.85;1" dur="8s" repeatCount="indefinite" begin="2s"/></circle>
+          <circle r="2.4" fill="#DEB96E" filter="url(#dotGlow)"><animateMotion dur="7s" repeatCount="indefinite" begin="6s"><mpath href="#rt9"/></animateMotion><animate attributeName="opacity" values="0;0;0.9;0.9;0" keyTimes="0;0.05;0.15;0.85;1" dur="7s" repeatCount="indefinite" begin="6s"/></circle>
+          <circle r="2.4" fill="#C8A44C" filter="url(#dotGlow)"><animateMotion dur="7s" repeatCount="indefinite" begin="3s"><mpath href="#rt10"/></animateMotion><animate attributeName="opacity" values="0;0;0.9;0.9;0" keyTimes="0;0.05;0.15;0.85;1" dur="7s" repeatCount="indefinite" begin="3s"/></circle>
+        </g>
         <!-- Seattle -->
-        <circle cx="28" cy="44" r="3.2" fill="#C8A44C" opacity="0.95" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.95;0.45;0.95" dur="3.5s" repeatCount="indefinite"/></circle>
-        <circle cx="28" cy="44" r="4" fill="none" stroke="#C8A44C" stroke-width="0.6"><animate attributeName="r" values="4;11;4" dur="3.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.45;0;0.45" dur="3.5s" repeatCount="indefinite"/></circle>
+        <circle cx="28" cy="44" r="3.5" fill="#C8A44C" opacity="0.95" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.95;0.48;0.95" dur="3.5s" repeatCount="indefinite"/></circle>
+        <circle cx="28" cy="44" r="4" fill="none" stroke="#C8A44C" stroke-width="0.7" class="city-ripple"><animate attributeName="r" values="4;13;4" dur="3.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.45;0;0.45" dur="3.5s" repeatCount="indefinite"/></circle>
         <!-- Los Angeles -->
-        <circle cx="46" cy="218" r="3.5" fill="#DEB96E" opacity="0.9" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.9;0.4;0.9" dur="4s" repeatCount="indefinite"/></circle>
-        <circle cx="46" cy="218" r="4" fill="none" stroke="#DEB96E" stroke-width="0.6"><animate attributeName="r" values="4;11;4" dur="4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="4s" repeatCount="indefinite"/></circle>
+        <circle cx="46" cy="218" r="3.5" fill="#DEB96E" opacity="0.9" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.9;0.42;0.9" dur="4s" repeatCount="indefinite"/></circle>
+        <circle cx="46" cy="218" r="4" fill="none" stroke="#DEB96E" stroke-width="0.7" class="city-ripple"><animate attributeName="r" values="4;13;4" dur="4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="4s" repeatCount="indefinite"/></circle>
         <!-- Phoenix -->
-        <circle cx="112" cy="222" r="2.8" fill="#C8A44C" opacity="0.82" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.82;0.35;0.82" dur="3.8s" repeatCount="indefinite"/></circle>
+        <circle cx="112" cy="222" r="3" fill="#C8A44C" opacity="0.85" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.85;0.38;0.85" dur="3.8s" repeatCount="indefinite"/></circle>
         <!-- Denver -->
-        <circle cx="218" cy="148" r="2.8" fill="#DEB96E" opacity="0.82" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.82;0.35;0.82" dur="4.8s" repeatCount="indefinite"/></circle>
+        <circle cx="218" cy="148" r="3.2" fill="#DEB96E" opacity="0.88" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.88;0.42;0.88" dur="4.8s" repeatCount="indefinite"/></circle>
+        <circle cx="218" cy="148" r="4" fill="none" stroke="#DEB96E" stroke-width="0.6" class="city-ripple"><animate attributeName="r" values="4;12;4" dur="4.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.35;0;0.35" dur="4.8s" repeatCount="indefinite"/></circle>
         <!-- Dallas -->
-        <circle cx="282" cy="222" r="2.8" fill="#C8A44C" opacity="0.82" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.82;0.35;0.82" dur="4.2s" repeatCount="indefinite"/></circle>
+        <circle cx="282" cy="222" r="3" fill="#C8A44C" opacity="0.85" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.85;0.38;0.85" dur="4.2s" repeatCount="indefinite"/></circle>
         <!-- Houston -->
-        <circle cx="293" cy="240" r="3.2" fill="#C8A44C" opacity="0.9" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.9;0.4;0.9" dur="4.5s" repeatCount="indefinite"/></circle>
-        <circle cx="293" cy="240" r="4" fill="none" stroke="#C8A44C" stroke-width="0.6"><animate attributeName="r" values="4;10;4" dur="4.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="4.5s" repeatCount="indefinite"/></circle>
+        <circle cx="293" cy="240" r="3.5" fill="#C8A44C" opacity="0.9" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.9;0.42;0.9" dur="4.5s" repeatCount="indefinite"/></circle>
+        <circle cx="293" cy="240" r="4" fill="none" stroke="#C8A44C" stroke-width="0.6" class="city-ripple"><animate attributeName="r" values="4;12;4" dur="4.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.38;0;0.38" dur="4.5s" repeatCount="indefinite"/></circle>
         <!-- Chicago -->
-        <circle cx="390" cy="112" r="3.8" fill="#C8A44C" opacity="0.95" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.95;0.45;0.95" dur="3s" repeatCount="indefinite"/></circle>
-        <circle cx="390" cy="112" r="4" fill="none" stroke="#C8A44C" stroke-width="0.6"><animate attributeName="r" values="4;12;4" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.45;0;0.45" dur="3s" repeatCount="indefinite"/></circle>
+        <circle cx="390" cy="112" r="4" fill="#C8A44C" opacity="0.95" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.95;0.5;0.95" dur="3s" repeatCount="indefinite"/></circle>
+        <circle cx="390" cy="112" r="5" fill="none" stroke="#C8A44C" stroke-width="0.7" class="city-ripple"><animate attributeName="r" values="5;15;5" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.45;0;0.45" dur="3s" repeatCount="indefinite"/></circle>
         <!-- Atlanta -->
-        <circle cx="440" cy="186" r="2.8" fill="#DEB96E" opacity="0.82" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.82;0.35;0.82" dur="3.8s" repeatCount="indefinite"/></circle>
+        <circle cx="440" cy="186" r="3" fill="#DEB96E" opacity="0.85" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.85;0.38;0.85" dur="3.8s" repeatCount="indefinite"/></circle>
         <!-- Miami -->
-        <circle cx="470" cy="250" r="3" fill="#DEB96E" opacity="0.88" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.88;0.38;0.88" dur="5s" repeatCount="indefinite"/></circle>
-        <circle cx="470" cy="250" r="4" fill="none" stroke="#DEB96E" stroke-width="0.5"><animate attributeName="r" values="3.5;10;3.5" dur="5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="5s" repeatCount="indefinite"/></circle>
+        <circle cx="470" cy="250" r="3.2" fill="#DEB96E" opacity="0.88" filter="url(#cityGlow)"><animate attributeName="opacity" values="0.88;0.4;0.88" dur="5s" repeatCount="indefinite"/></circle>
+        <circle cx="470" cy="250" r="4" fill="none" stroke="#DEB96E" stroke-width="0.6" class="city-ripple"><animate attributeName="r" values="4;12;4" dur="5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.38;0;0.38" dur="5s" repeatCount="indefinite"/></circle>
         <!-- New York -->
-        <circle cx="511" cy="102" r="4" fill="#DEB96E" opacity="1" filter="url(#cityGlow)"><animate attributeName="opacity" values="1;0.48;1" dur="2.8s" repeatCount="indefinite"/></circle>
-        <circle cx="511" cy="102" r="5" fill="none" stroke="#DEB96E" stroke-width="0.7"><animate attributeName="r" values="5;13;5" dur="2.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.5;0;0.5" dur="2.8s" repeatCount="indefinite"/></circle>
+        <circle cx="511" cy="102" r="4.2" fill="#DEB96E" opacity="1" filter="url(#cityGlow)"><animate attributeName="opacity" values="1;0.5;1" dur="2.8s" repeatCount="indefinite"/></circle>
+        <circle cx="511" cy="102" r="5" fill="none" stroke="#DEB96E" stroke-width="0.8" class="city-ripple"><animate attributeName="r" values="5;15;5" dur="2.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.5;0;0.5" dur="2.8s" repeatCount="indefinite"/></circle>
       </svg>
       <div class="map-badge">
         <div class="map-badge-dot"></div>
