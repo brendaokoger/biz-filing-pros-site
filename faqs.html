@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Policies | Biz Filing Pros</title>
+<title>FAQs | Biz Filing Pros</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#06101C;--navy-mid:#0A1726;--navy-light:#0F1F38;--navy-card:#0C1B30;--gold:#C8A44C;--gold-light:#DEB96E;--gold-pale:#F2E4C0;--ivory:#F9F7F2;--ivory-dark:#F1EDE4;--white:#FFFFFF;--text-body:#3A3A4A;--text-muted:#78788A;--border-gold:rgba(200,164,76,0.2);--shadow-gold:0 8px 40px rgba(200,164,76,0.13);--shadow-card:0 12px 48px rgba(6,16,28,0.13);--font-display:'Cinzel',Georgia,serif;--font-serif:'Cormorant Garamond',Georgia,serif;--font-sans:'DM Sans',system-ui,sans-serif;--radius:6px;--radius-lg:14px;--max-w:1160px;--ease:cubic-bezier(0.4,0,0.2,1);--transition:all 0.35s var(--ease)}
+:root{--navy:#06101C;--navy-mid:#0A1726;--navy-light:#0F1F38;--navy-card:#0C1B30;--gold:#C8A44C;--gold-light:#DEB96E;--gold-pale:#F2E4C0;--ivory:#F9F7F2;--ivory-dark:#F1EDE4;--white:#FFFFFF;--text-body:#3A3A4A;--text-muted:#78788A;--border-gold:rgba(200,164,76,0.2);--font-display:'Cinzel',Georgia,serif;--font-serif:'Cormorant Garamond',Georgia,serif;--font-sans:'DM Sans',system-ui,sans-serif;--radius:6px;--radius-lg:14px;--max-w:1160px;--ease:cubic-bezier(0.4,0,0.2,1);--transition:all 0.35s var(--ease)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;font-size:16px}
-body{font-family:var(--font-sans);background:var(--ivory);color:var(--text-body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-sans);background:var(--navy);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{text-decoration:none;color:inherit}
 ul{list-style:none}
 .container{max-width:var(--max-w);margin:0 auto;padding:0 36px}
@@ -50,15 +50,23 @@ ul{list-style:none}
 .page-sub{font-family:var(--font-sans);font-size:14.5px;font-weight:300;color:rgba(255,255,255,0.45);max-width:480px;margin:0 auto;line-height:1.8}
 .gold-rule-center{display:block;width:48px;height:1.5px;background:linear-gradient(90deg,var(--gold),var(--gold-light));margin:0 auto 18px}
 
-/* ── POLICIES CONTENT ── */
-#policies-content{padding:96px 0 80px;background:var(--ivory)}
-.policies-stack{display:flex;flex-direction:column;gap:28px;max-width:860px;margin:0 auto}
-.policy-card{background:var(--navy-card);border:1px solid rgba(200,164,76,0.22);border-radius:var(--radius-lg);padding:48px 52px;position:relative;overflow:hidden}
-.policy-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light))}
-.policy-num{font-family:var(--font-sans);font-size:9px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:rgba(200,164,76,0.45);display:block;margin-bottom:10px}
-.policy-title{font-family:var(--font-serif);font-size:26px;font-weight:500;color:var(--white);line-height:1.2;margin-bottom:20px}
-.policy-placeholder{font-family:var(--font-sans);font-size:13.5px;font-weight:300;color:rgba(255,255,255,0.42);line-height:1.85}
-.policy-divider{width:40px;height:1px;background:rgba(200,164,76,0.25);margin:24px 0}
+/* ── FAQ CONTENT ── */
+#faq-content{padding:96px 0 80px;background:var(--navy);position:relative}
+#faq-content::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(200,164,76,0.2),transparent)}
+.faq-stack{max-width:860px;margin:0 auto}
+.faq-item{border:1px solid rgba(200,164,76,0.12);border-radius:var(--radius);overflow:hidden;transition:border-color 0.3s;background:rgba(255,255,255,0.02);margin-bottom:4px}
+.faq-item.open{border-color:rgba(200,164,76,0.3);background:rgba(255,255,255,0.04)}
+.faq-question{display:flex;justify-content:space-between;align-items:center;padding:22px 28px;cursor:pointer;gap:20px;transition:background 0.25s;min-height:68px}
+.faq-question:hover{background:rgba(255,255,255,0.03)}
+.faq-q-text{font-family:var(--font-sans);font-size:14px;font-weight:500;color:rgba(255,255,255,0.88);line-height:1.4}
+.faq-item.open .faq-q-text{color:var(--white)}
+.faq-toggle{width:24px;height:24px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border:1px solid rgba(200,164,76,0.25);border-radius:50%;transition:var(--transition)}
+.faq-toggle svg{width:11px;height:11px;fill:var(--gold);transition:transform 0.35s var(--ease)}
+.faq-item.open .faq-toggle{background:rgba(200,164,76,0.12);border-color:var(--gold)}
+.faq-item.open .faq-toggle svg{transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.45s var(--ease)}
+.faq-item.open .faq-answer{max-height:220px}
+.faq-a-text{padding:0 28px 22px;font-family:var(--font-sans);font-size:13.5px;font-weight:300;color:rgba(255,255,255,0.48);line-height:1.8}
 
 .return-wrap{text-align:center;margin-top:56px}
 .btn-return{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;background:linear-gradient(120deg,var(--gold) 0%,var(--gold-light) 50%,var(--gold) 100%);background-size:200% 100%;color:var(--navy);padding:16px 40px;border-radius:var(--radius);transition:background-position 0.5s var(--ease),box-shadow 0.3s,transform 0.3s;box-shadow:0 4px 22px rgba(200,164,76,0.28)}
@@ -91,23 +99,23 @@ ul{list-style:none}
 .footer-disclaimer{font-family:var(--font-sans);font-size:11px;font-weight:300;color:rgba(255,255,255,0.22);text-align:center;padding:0 0 20px;line-height:1.6;letter-spacing:0.01em}
 @media(max-width:900px){.footer-inner{grid-template-columns:1fr;gap:48px}}
 @media(max-width:768px){.container{padding:0 24px}.footer-body{padding:52px 0 36px}.footer-bottom{flex-direction:column;align-items:flex-start;gap:12px}.footer-policy-links{gap:14px}}
-@media(max-width:560px){.policy-card{padding:36px 28px}}
+@media(max-width:560px){.faq-question{padding:18px 20px}.faq-a-text{padding:0 20px 18px}}
 </style>
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="8993b2fd-b65a-4e40-aad8-469dc1be0639";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 </head>
 <body>
 
-<!-- ── NAVBAR ── -->
+<!-- NAVBAR -->
 <nav id="navbar">
   <div class="nav-inner">
     <a href="/" class="nav-brand logo-wordmark">
       <svg class="logo-shield" viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M40 4 L74 16 L74 46 C74 64 58 78 40 86 C22 78 6 64 6 46 L6 16 Z" fill="rgba(200,164,76,0.08)" stroke="url(#sgP)" stroke-width="1.5"/>
+        <path d="M40 4 L74 16 L74 46 C74 64 58 78 40 86 C22 78 6 64 6 46 L6 16 Z" fill="rgba(200,164,76,0.08)" stroke="url(#sgFQ)" stroke-width="1.5"/>
         <path d="M40 12 L68 22 L68 46 C68 61 55 73 40 80 C25 73 12 61 12 46 L12 22 Z" fill="rgba(200,164,76,0.05)"/>
-        <text x="40" y="56" font-family="Cinzel,Georgia,serif" font-size="28" font-weight="700" fill="url(#gtP)" text-anchor="middle">B</text>
+        <text x="40" y="56" font-family="Cinzel,Georgia,serif" font-size="28" font-weight="700" fill="url(#gtFQ)" text-anchor="middle">B</text>
         <defs>
-          <linearGradient id="sgP" x1="6" y1="4" x2="74" y2="86" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#DEB96E"/><stop offset="50%" stop-color="#C8A44C"/><stop offset="100%" stop-color="#A8843C"/></linearGradient>
-          <linearGradient id="gtP" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox"><stop offset="0%" stop-color="#F2E4C0"/><stop offset="100%" stop-color="#C8A44C"/></linearGradient>
+          <linearGradient id="sgFQ" x1="6" y1="4" x2="74" y2="86" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#DEB96E"/><stop offset="50%" stop-color="#C8A44C"/><stop offset="100%" stop-color="#A8843C"/></linearGradient>
+          <linearGradient id="gtFQ" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox"><stop offset="0%" stop-color="#F2E4C0"/><stop offset="100%" stop-color="#C8A44C"/></linearGradient>
         </defs>
       </svg>
       <div class="logo-text-block">
@@ -123,7 +131,7 @@ ul{list-style:none}
       <a href="/faqs.html">FAQs</a>
       <a href="/#contact">Contact</a>
     </div>
-    <a href="intake.html" class="nav-cta desktop-cta">Start Your Filing</a>
+    <a href="/intake.html" class="nav-cta desktop-cta">Start Your Filing</a>
     <button class="hamburger" id="hamburger" aria-label="Open Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -134,60 +142,45 @@ ul{list-style:none}
   <a href="/#reviews" onclick="closeMobile()">Reviews</a>
   <a href="/faqs.html" onclick="closeMobile()">FAQs</a>
   <a href="/#contact" onclick="closeMobile()">Contact</a>
-  <a href="intake.html" onclick="closeMobile()">Start Your Filing</a>
+  <a href="/intake.html" onclick="closeMobile()">Start Your Filing</a>
 </nav>
 
-<!-- ── PAGE HERO ── -->
+<!-- PAGE HERO -->
 <section class="page-hero">
   <div class="page-hero-glow"></div>
   <div class="container">
-    <span class="page-eyebrow">Legal &amp; Company</span>
+    <span class="page-eyebrow">Help Center</span>
     <span class="gold-rule-center"></span>
-    <h1 class="page-title">Policies &amp; <em>Disclosures</em></h1>
-    <p class="page-sub">Important information about your rights, our services, and how we operate.</p>
+    <h1 class="page-title">Frequently Asked <em>Questions</em></h1>
+    <p class="page-sub">Quick answers about our services, fees, and filing process.</p>
   </div>
 </section>
 
-<!-- ── POLICIES CONTENT ── -->
-<section id="policies-content">
+<!-- FAQ CONTENT -->
+<section id="faq-content">
   <div class="container">
-    <div class="policies-stack">
+    <div class="faq-stack">
 
-      <!-- 1. Terms of Service -->
-      <div class="policy-card">
-        <span class="policy-num">01 — Terms of Service</span>
-        <h2 class="policy-title">Terms of Service</h2>
-        <div class="policy-divider"></div>
-        <p class="policy-placeholder">Full Terms of Service content will be published here. This section will outline the terms and conditions governing your use of Biz Filing Pros services, including service scope, client responsibilities, payment terms, limitations of liability, and dispute resolution procedures.</p>
-      </div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">What services do you offer?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">We offer LLC, S-Corp, and C-Corp formation, registered agent service, state and federal trademark filing, operating agreements, bylaws, and professional business email setup — everything a new or growing business needs to launch with the right structure.</p></div></div>
 
-      <!-- 2. Privacy Policy -->
-      <div class="policy-card">
-        <span class="policy-num">02 — Privacy Policy</span>
-        <h2 class="policy-title">Privacy Policy</h2>
-        <div class="policy-divider"></div>
-        <p class="policy-placeholder">Full Privacy Policy content will be published here. This section will describe how Biz Filing Pros collects, uses, stores, and protects your personal information, including data sharing practices, your rights, and how to contact us with privacy-related inquiries.</p>
-      </div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Do you serve all 50 states?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">Yes. We file in all 50 states. Whether you&rsquo;re forming your business in Indiana or registering as a foreign entity in California, we handle the paperwork accurately and on time.</p></div></div>
 
-      <!-- 3. Refund & Cancellation Policy -->
-      <div class="policy-card">
-        <span class="policy-num">03 — Refund &amp; Cancellation Policy</span>
-        <h2 class="policy-title">Refund &amp; Cancellation Policy</h2>
-        <div class="policy-divider"></div>
-        <p class="policy-placeholder">Full Refund &amp; Cancellation Policy content will be published here. This section will detail cancellation windows, refund eligibility, non-refundable government and state filing fees, and the process for requesting a refund or cancelling a service order.</p>
-      </div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">How do I get started?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">To get started, click Start Your Filing and complete the intake form. If you still have questions before submitting, you can also use the contact section and we&rsquo;ll point you in the right direction.</p></div></div>
 
-      <!-- 4. Not a Law Firm Disclaimer -->
-      <div class="policy-card">
-        <span class="policy-num">04 — Not a Law Firm Disclaimer</span>
-        <h2 class="policy-title">Not a Law Firm Disclaimer</h2>
-        <div class="policy-divider"></div>
-        <p class="policy-placeholder">Full disclaimer content will be published here. Biz Filing Pros is a business filing service and is not a law firm. We do not provide legal, tax, or accounting advice. The information and services we provide are for general informational and administrative purposes only. Clients should consult a licensed attorney or accountant for advice specific to their situation.</p>
-      </div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Do filing fees come separately?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">Yes. State filing fees are paid directly to the state and are separate from our service fee. Every state has different fees and processing times. We&rsquo;ll give you a clear breakdown before anything is submitted so there are no surprises.</p></div></div>
+
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Do you offer registered agent service?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">Yes. We serve as your registered agent to receive legal notices, state correspondence, and official documents on your behalf. It&rsquo;s a required role for every LLC and corporation — and we handle it professionally.</p></div></div>
+
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">How long does the process take?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">Turnaround times vary by service and state processing speed. Entity filings depend on the state, processing option, and government review times.</p></div></div>
+
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Are state filing fees included?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">State filing fees, government fees, USPTO fees, IRS fees, and third-party fees are not included unless clearly stated. Final pricing is confirmed before payment or submission.</p></div></div>
+
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Do you provide legal advice?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">No. Biz Filing Pros is not a law firm and does not provide legal, tax, or financial advice. We provide business filing, document preparation, and administrative support services.</p></div></div>
+
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span class="faq-q-text">Can you help clients in any state?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div></div><div class="faq-answer"><p class="faq-a-text">Yes. Biz Filing Pros provides nationwide business filing support for clients across all 50 states. Processing times, filing rules, and state fees vary by state.</p></div></div>
 
     </div>
 
-    <!-- Return Home -->
     <div class="return-wrap">
       <a href="/" class="btn-return">← Return Home</a>
     </div>
@@ -195,7 +188,7 @@ ul{list-style:none}
   </div>
 </section>
 
-<!-- ── FOOTER ── -->
+<!-- FOOTER -->
 <footer id="footer">
   <div class="footer-top-line"></div><div class="footer-bg-glow"></div>
   <div class="footer-body">
@@ -204,12 +197,12 @@ ul{list-style:none}
         <div>
           <a href="/" class="logo-wordmark footer-logo-wordmark">
             <svg class="logo-shield" viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M40 4 L74 16 L74 46 C74 64 58 78 40 86 C22 78 6 64 6 46 L6 16 Z" fill="rgba(200,164,76,0.08)" stroke="url(#sgFP)" stroke-width="1.5"/>
+              <path d="M40 4 L74 16 L74 46 C74 64 58 78 40 86 C22 78 6 64 6 46 L6 16 Z" fill="rgba(200,164,76,0.08)" stroke="url(#sgFFQ)" stroke-width="1.5"/>
               <path d="M40 12 L68 22 L68 46 C68 61 55 73 40 80 C25 73 12 61 12 46 L12 22 Z" fill="rgba(200,164,76,0.05)"/>
-              <text x="40" y="56" font-family="Cinzel,Georgia,serif" font-size="28" font-weight="700" fill="url(#gtFP)" text-anchor="middle">B</text>
+              <text x="40" y="56" font-family="Cinzel,Georgia,serif" font-size="28" font-weight="700" fill="url(#gtFFQ)" text-anchor="middle">B</text>
               <defs>
-                <linearGradient id="sgFP" x1="6" y1="4" x2="74" y2="86" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#DEB96E"/><stop offset="50%" stop-color="#C8A44C"/><stop offset="100%" stop-color="#A8843C"/></linearGradient>
-                <linearGradient id="gtFP" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox"><stop offset="0%" stop-color="#F2E4C0"/><stop offset="100%" stop-color="#C8A44C"/></linearGradient>
+                <linearGradient id="sgFFQ" x1="6" y1="4" x2="74" y2="86" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#DEB96E"/><stop offset="50%" stop-color="#C8A44C"/><stop offset="100%" stop-color="#A8843C"/></linearGradient>
+                <linearGradient id="gtFFQ" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox"><stop offset="0%" stop-color="#F2E4C0"/><stop offset="100%" stop-color="#C8A44C"/></linearGradient>
               </defs>
             </svg>
             <div class="logo-text-block">
@@ -245,12 +238,16 @@ ul{list-style:none}
 <script>
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60), {passive: true});
-
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobile-menu');
 hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
-
 function closeMobile() { mobileMenu.classList.remove('open'); }
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-stack .faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
 </script>
 </body>
 </html>

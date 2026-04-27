@@ -17,6 +17,10 @@
     {
       "source": "/policies",
       "destination": "/policies.html"
+    },
+    {
+      "source": "/faqs",
+      "destination": "/faqs.html"
     }
   ]
 }
