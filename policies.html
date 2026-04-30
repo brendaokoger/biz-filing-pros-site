@@ -59,6 +59,14 @@ ul{list-style:none}
 .policy-title{font-family:var(--font-serif);font-size:26px;font-weight:500;color:var(--white);line-height:1.2;margin-bottom:20px}
 .policy-placeholder{font-family:var(--font-sans);font-size:13.5px;font-weight:300;color:rgba(255,255,255,0.42);line-height:1.85}
 .policy-divider{width:40px;height:1px;background:rgba(200,164,76,0.25);margin:24px 0}
+.policy-summary{font-family:var(--font-sans);font-size:14px;font-weight:300;color:rgba(255,255,255,0.52);line-height:1.82;margin-bottom:26px}
+.policy-toggle{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);background:none;border:none;cursor:pointer;padding:0;transition:gap 0.25s var(--ease),color 0.25s}
+.policy-toggle svg{width:18px;height:18px;fill:var(--gold);transition:transform 0.35s var(--ease);flex-shrink:0}
+.policy-toggle:hover{color:var(--gold-light)}.policy-toggle:hover svg{fill:var(--gold-light)}
+.policy-toggle[aria-expanded="true"] svg{transform:rotate(180deg)}
+.policy-full{max-height:0;overflow:hidden;transition:max-height 0.45s var(--ease)}
+.policy-full.open{max-height:600px}
+.policy-full-inner{padding-top:22px}
 
 .return-wrap{text-align:center;margin-top:56px}
 .btn-return{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;background:linear-gradient(120deg,var(--gold) 0%,var(--gold-light) 50%,var(--gold) 100%);background-size:200% 100%;color:var(--navy);padding:16px 40px;border-radius:var(--radius);transition:background-position 0.5s var(--ease),box-shadow 0.3s,transform 0.3s;box-shadow:0 4px 22px rgba(200,164,76,0.28)}
@@ -154,27 +162,54 @@ ul{list-style:none}
     <div class="policies-stack">
 
       <!-- 1. Terms of Service -->
-      <div class="policy-card">
+      <div class="policy-card" id="terms">
         <span class="policy-num">01 — Terms of Service</span>
         <h2 class="policy-title">Terms of Service</h2>
         <div class="policy-divider"></div>
-        <p class="policy-placeholder">Full Terms of Service content will be published here. This section will outline the terms and conditions governing your use of Biz Filing Pros services, including service scope, client responsibilities, payment terms, limitations of liability, and dispute resolution procedures.</p>
+        <p class="policy-summary">These Terms of Service govern your use of our website and services. By using our website, submitting a form, or purchasing a service, you agree to these terms.</p>
+        <button class="policy-toggle" onclick="togglePolicy(this)" aria-expanded="false">
+          Read full Terms of Service below
+          <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </button>
+        <div class="policy-full">
+          <div class="policy-full-inner">
+            <p class="policy-placeholder">Full Terms of Service content will be published here. This section will outline the terms and conditions governing your use of Biz Filing Pros services, including service scope, client responsibilities, payment terms, limitations of liability, and dispute resolution procedures.</p>
+          </div>
+        </div>
       </div>
 
       <!-- 2. Privacy Policy -->
-      <div class="policy-card">
+      <div class="policy-card" id="privacy">
         <span class="policy-num">02 — Privacy Policy</span>
         <h2 class="policy-title">Privacy Policy</h2>
         <div class="policy-divider"></div>
-        <p class="policy-placeholder">Full Privacy Policy content will be published here. This section will describe how Biz Filing Pros collects, uses, stores, and protects your personal information, including data sharing practices, your rights, and how to contact us with privacy-related inquiries.</p>
+        <p class="policy-summary">We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and protect your information.</p>
+        <button class="policy-toggle" onclick="togglePolicy(this)" aria-expanded="false">
+          Read full Privacy Policy below
+          <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </button>
+        <div class="policy-full">
+          <div class="policy-full-inner">
+            <p class="policy-placeholder">Full Privacy Policy content will be published here. This section will describe how Biz Filing Pros collects, uses, stores, and protects your personal information, including data sharing practices, your rights, and how to contact us with privacy-related inquiries.</p>
+          </div>
+        </div>
       </div>
 
       <!-- 3. Refund & Cancellation Policy -->
-      <div class="policy-card">
+      <div class="policy-card" id="refund">
         <span class="policy-num">03 — Refund &amp; Cancellation Policy</span>
         <h2 class="policy-title">Refund &amp; Cancellation Policy</h2>
         <div class="policy-divider"></div>
-        <p class="policy-placeholder">Full Refund &amp; Cancellation Policy content will be published here. This section will detail cancellation windows, refund eligibility, non-refundable government and state filing fees, and the process for requesting a refund or cancelling a service order.</p>
+        <p class="policy-summary">Our refund and cancellation policies vary depending on the type of service purchased. Please review the full policy for important details.</p>
+        <button class="policy-toggle" onclick="togglePolicy(this)" aria-expanded="false">
+          Read full Refund &amp; Cancellation Policy below
+          <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </button>
+        <div class="policy-full">
+          <div class="policy-full-inner">
+            <p class="policy-placeholder">Full Refund &amp; Cancellation Policy content will be published here. This section will detail cancellation windows, refund eligibility, non-refundable government and state filing fees, and the process for requesting a refund or cancelling a service order.</p>
+          </div>
+        </div>
       </div>
 
 
@@ -244,6 +279,13 @@ const mobileMenu = document.getElementById('mobile-menu');
 hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
 
 function closeMobile() { mobileMenu.classList.remove('open'); }
+
+function togglePolicy(btn) {
+  const full = btn.nextElementSibling;
+  const isOpen = full.classList.contains('open');
+  btn.setAttribute('aria-expanded', !isOpen);
+  full.classList.toggle('open', !isOpen);
+}
 </script>
 </body>
 </html>
