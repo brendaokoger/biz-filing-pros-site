@@ -136,17 +136,6 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red)!important;
 .sum-line .val{color:var(--gray-800);font-weight:500;text-align:right;word-break:break-word;}
 .sum-line.head{font-weight:600;color:var(--navy);border-bottom-color:var(--gray-200);padding:.6rem 0;margin-top:.5rem;}
 
-/* ═══ SUCCESS ═══ */
-.success{display:none;text-align:center;padding:3rem 1.5rem;max-width:520px;margin:0 auto;}
-.success.active{display:block;}
-.succ-icon{width:72px;height:72px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:1.8rem;color:white;box-shadow:0 4px 16px rgba(30,132,73,.3);}
-.success h2{font-family:'Playfair Display',serif;color:var(--navy);font-size:1.4rem;margin-bottom:.6rem;}
-.success p{color:var(--gray-600);font-size:.88rem;line-height:1.6;}
-.succ-box{background:var(--white);border-radius:var(--radius-lg);padding:1.25rem;margin:1.25rem 0;box-shadow:var(--shadow);border:1px solid var(--gray-100);text-align:left;}
-.succ-box h3{font-family:'Playfair Display',serif;font-size:1rem;color:var(--navy);margin-bottom:.5rem;}
-.succ-steps{list-style:none;padding:0;counter-reset:ss;}
-.succ-steps li{padding:.4rem 0 .4rem 2rem;position:relative;font-size:.82rem;color:var(--gray-600);counter-increment:ss;}
-.succ-steps li::before{content:counter(ss);position:absolute;left:0;width:22px;height:22px;background:var(--gold-pale);border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:var(--navy);}
 
 .footer{text-align:center;padding:1.25rem;font-size:.75rem;color:var(--gray-400);}
 .footer a{color:var(--gold);text-decoration:none;font-weight:600;}
@@ -178,8 +167,7 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red)!important;
 
 <!-- ═══ FORM ═══ -->
 <div class="body">
-<form id="mainForm" name="biz-email-setup" netlify data-netlify="true" novalidate>
-<input type="hidden" name="form-name" value="biz-email-setup">
+<form id="mainForm" novalidate>
 
 <!-- ════════ STEP 1: CONTACT INFO ════════ -->
 <div class="step active" data-step="1">
@@ -351,7 +339,7 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red)!important;
       <h4>Service Agreement</h4>
       <p>By submitting this form, you authorize Biz Filing Pros LLC to proceed with Business Email Setup services based on the information provided. You confirm that you own or have authority over the domain name listed, or that you are requesting assistance obtaining one.</p>
       <h4>Pricing &amp; Payment</h4>
-      <p>Business Email Setup starts at $149. A team member will contact you to confirm the scope of work and collect payment before setup begins. Third-party platform subscription fees (such as Google Workspace or Microsoft 365) are separate and are the client's responsibility.</p>
+      <p>Business Email Setup is $149, payable immediately at checkout after this form is submitted. Third-party platform subscription fees (such as Google Workspace or Microsoft 365) are separate and are the client's responsibility.</p>
       <h4>Cancellation</h4>
       <p>You may cancel before setup work has begun. Once domain configuration, email provisioning, or platform setup has started, cancellations may not be accepted. All cancellation requests must be submitted by email to support@bizfilingpros.com.</p>
       <h4>No Legal Advice</h4>
@@ -363,8 +351,11 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red)!important;
       <label for="agreeTerms">I have read and agree to the Service Agreement above. I authorize Biz Filing Pros LLC to contact me regarding my Business Email Setup order. <span class="req">*</span></label>
     </div>
     <span class="err" id="err-agree">You must agree to the terms to submit.</span>
+    <div class="info warn" id="submit-error" style="display:none;margin-top:.85rem;">
+      Something went wrong submitting your request. Please try again or contact us at <a href="mailto:support@bizfilingpros.com" style="color:inherit;font-weight:600;">support@bizfilingpros.com</a>.
+    </div>
 
-    <button type="submit" class="btn btn-submit" id="submitBtn" style="margin-top:1rem;">Submit My Email Setup Request</button>
+    <button type="submit" class="btn btn-submit" id="submitBtn" style="margin-top:1rem;">Continue to Payment &rarr;</button>
   </div>
 
   <div class="btn-row" style="margin-top:0;">
@@ -375,24 +366,6 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red)!important;
 
 </form>
 
-<!-- ═══ SUCCESS ═══ -->
-<div class="success" id="successMsg">
-  <div class="succ-icon">✓</div>
-  <h2>Request Received!</h2>
-  <p>Thank you for choosing Biz Filing Pros. Your Business Email Setup request has been submitted successfully.</p>
-  <div class="succ-box">
-    <h3>What Happens Next</h3>
-    <ol class="succ-steps">
-      <li>You'll receive a confirmation email with your request details.</li>
-      <li>A team member will reach out within one business day to confirm scope and collect payment.</li>
-      <li>Once payment is confirmed, we'll begin your email setup and notify you when it's complete.</li>
-    </ol>
-  </div>
-  <p style="font-size:.78rem;color:var(--gray-400);margin-top:.75rem;">
-    Questions? <a href="mailto:support@bizfilingpros.com" style="color:var(--gold);">support@bizfilingpros.com</a>
-    &nbsp;·&nbsp; <a href="tel:+13177850113" style="color:var(--gold);">(317) 785-0113</a>
-  </p>
-</div>
 
 </div><!-- /.body -->
 
@@ -404,6 +377,9 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red)!important;
 </footer>
 
 <script>
+// ─── Replace with your Stripe Payment Link once created ───
+const STRIPE_PAYMENT_LINK = 'PASTE_BUSINESS_EMAIL_STRIPE_LINK_HERE';
+
 let step = 1;
 const STEPS = 3;
 
@@ -450,8 +426,7 @@ function clearInvalid(id) {
     el.addEventListener('input', function() {
       if (this.value.trim()) {
         this.classList.remove('invalid');
-        const errId = 'err-' + id;
-        const err = document.getElementById(errId);
+        const err = document.getElementById('err-' + id);
         if (err) err.style.display = 'none';
       }
     }, { once: true });
@@ -513,11 +488,11 @@ function v(id) {
 }
 
 function populateSummary() {
-  document.getElementById('sum-name').textContent    = v('firstName') + ' ' + v('lastName');
-  document.getElementById('sum-email').textContent   = v('email');
-  document.getElementById('sum-phone').textContent   = v('phone');
+  document.getElementById('sum-name').textContent     = v('firstName') + ' ' + v('lastName');
+  document.getElementById('sum-email').textContent    = v('email');
+  document.getElementById('sum-phone').textContent    = v('phone');
   const cm = document.getElementById('contactMethod');
-  document.getElementById('sum-contact').textContent = cm?.options[cm.selectedIndex]?.text || '—';
+  document.getElementById('sum-contact').textContent  = cm?.options[cm.selectedIndex]?.text || '—';
   document.getElementById('sum-business').textContent = v('businessName');
   document.getElementById('sum-domain').textContent   = v('domainName');
   document.getElementById('sum-emails').textContent   = v('emailAddresses');
@@ -525,12 +500,11 @@ function populateSummary() {
   document.getElementById('sum-platform').textContent = plat ? plat.value : '—';
   const notes = v('notes');
   const notesRow = document.getElementById('sum-notes-row');
-  const notesVal = document.getElementById('sum-notes');
-  notesVal.textContent = notes;
+  document.getElementById('sum-notes').textContent = notes;
   notesRow.style.display = (notes && notes !== '—') ? 'flex' : 'none';
 }
 
-// ─── Form submit ───
+// ─── Submit: Formspree → Stripe ───
 document.getElementById('mainForm').addEventListener('submit', function(e) {
   e.preventDefault();
 
@@ -541,19 +515,35 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
 
   const btn = document.getElementById('submitBtn');
   btn.disabled = true;
-  btn.textContent = 'Submitting…';
+  btn.textContent = 'Processing…';
 
-  fetch('/', { method: 'POST', body: new FormData(this) })
-    .then(() => {
-      document.querySelectorAll('.step').forEach(s => s.style.display = 'none');
-      document.getElementById('progW').style.display = 'none';
-      document.getElementById('successMsg').classList.add('active');
-      scrollTop();
+  const payload = {
+    firstName:      document.getElementById('firstName').value.trim(),
+    lastName:       document.getElementById('lastName').value.trim(),
+    email:          document.getElementById('email').value.trim(),
+    phone:          document.getElementById('phone').value.trim(),
+    contactMethod:  document.getElementById('contactMethod').value,
+    businessName:   document.getElementById('businessName').value.trim(),
+    domainName:     document.getElementById('domainName').value.trim(),
+    emailAddresses: document.getElementById('emailAddresses').value.trim(),
+    emailPlatform:  (document.querySelector('input[name="emailPlatform"]:checked') || {}).value || '',
+    notes:          document.getElementById('notes').value.trim(),
+  };
+
+  fetch('https://formspree.io/f/xojyryyw', {
+    method:  'POST',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    body:    JSON.stringify(payload),
+  })
+    .then(function(res) {
+      if (!res.ok) throw new Error('formspree');
+      window.location.href = STRIPE_PAYMENT_LINK;
     })
-    .catch(() => {
+    .catch(function() {
       btn.disabled = false;
-      btn.textContent = 'Submit My Email Setup Request';
-      alert('Something went wrong. Please try again or contact us directly.');
+      btn.textContent = 'Continue to Payment →';
+      const errEl = document.getElementById('submit-error');
+      if (errEl) errEl.style.display = 'block';
     });
 });
 
