@@ -146,7 +146,9 @@ ul{list-style:none}
 .svc-consult-eyebrow{font-family:var(--font-sans);font-size:9px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px}
 .svc-consult-headline{font-family:var(--font-serif);font-size:22px;font-weight:500;color:var(--navy);line-height:1.2;margin-bottom:8px}
 .svc-consult-body{font-family:var(--font-sans);font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.65}
-@media(max-width:680px){.svc-consult-card{flex-direction:column;align-items:flex-start;padding:28px 24px;gap:20px}}
+@media(max-width:680px){.svc-consult-card{flex-direction:column;align-items:flex-start;padding:28px 24px;gap:20px}.svc-consult-card .btn-consult{width:100%;justify-content:center}}
+.pre-contact-cta{padding:40px 0 0}
+.svc-consult-card--pre-contact{margin-top:0;border-bottom-left-radius:0;border-bottom-right-radius:0;border-bottom:none}
 .service-cta:hover::after{transform:translateX(4px)}
 
 /* WHY US */
@@ -691,8 +693,12 @@ a.footer-detail-value:hover{color:var(--gold-light)}
 <!-- PRE-CONTACT CTA -->
 <div class="pre-contact-cta">
   <div class="container">
-    <div class="services-cta-block">
-      <p>Need help before submitting a request? Book a consultation first.</p>
+    <div class="svc-consult-card svc-consult-card--pre-contact fade-up">
+      <div class="svc-consult-card-text">
+        <span class="svc-consult-eyebrow">Before You Submit</span>
+        <h3 class="svc-consult-headline">Need help before submitting your request?</h3>
+        <p class="svc-consult-body">Book a consultation first.</p>
+      </div>
       <a href="https://book.stripe.com/dRm6oI5yke0EbQkdN7a3u00" class="btn-consult">Book a Consultation &rarr;</a>
     </div>
   </div>
