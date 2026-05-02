@@ -8,7 +8,7 @@ const PACKAGES = {
   essentials: {
     label:       'Business Starter Package',
     stripeLabel: 'Biz Filing Pros Business Starter Package',
-    basePrice:   275,   // pickPkg(this,'essentials',275)
+    basePrice:   249,   // pickPkg(this,'essentials',249)
   },
   complete: {
     label:       'Business Pro Package',
