@@ -21,6 +21,10 @@
     {
       "source": "/faqs",
       "destination": "/faqs.html"
+    },
+    {
+      "source": "/business-email",
+      "destination": "/business-email.html"
     }
   ]
 }
