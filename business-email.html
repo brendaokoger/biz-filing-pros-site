@@ -52,9 +52,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--gr
 .hdr{background:#0a1528;padding:2.5rem 1.5rem 1.75rem;text-align:center;position:relative;}
 .hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent);}
 .hdr-logo{max-width:280px;width:65%;margin:0 auto 1rem;display:block;filter:drop-shadow(0 2px 12px rgba(201,168,76,.3));}
-.hdr-name{margin-bottom:.5rem;line-height:1.2;}
-.hdr-biz{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:800;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;}
-.hdr-pros{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--gold-light);letter-spacing:.35em;text-transform:uppercase;}
 .hdr-tagline{font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;color:var(--gold);letter-spacing:.25em;text-transform:uppercase;margin-bottom:.75rem;}
 .hdr-sub{color:rgba(255,255,255,.55);font-size:.78rem;line-height:1.6;}
 .hdr-sub a{color:var(--gold-light);text-decoration:none;}
@@ -153,16 +150,15 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red);}
 
 <!-- ═══ HEADER ═══ -->
 <header class="hdr">
-  <a href="/">
-    <img src="/images/biz-filing-pros-logo.png" class="hdr-logo" alt="Biz Filing Pros logo">
+  <a href="/" style="display:block;text-decoration:none;">
+    <img src="/images/biz-filing-pros-logo.png" class="hdr-logo" alt="Biz Filing Pros">
   </a>
-  <div class="hdr-name">
-    <div class="hdr-biz">Biz Filing</div>
-    <div class="hdr-pros">Pros</div>
-  </div>
-  <div class="hdr-tagline">Business Email Setup</div>
+  <div class="hdr-tagline">File. Build. Grow.</div>
   <div class="hdr-divider"></div>
-  <p class="hdr-sub">Get a professional email address using your domain — branded, clean, and ready to use.<br>Questions? <a href="tel:3177850113">(317) 785-0113</a> &nbsp;·&nbsp; <a href="mailto:support@bizfilingpros.com">support@bizfilingpros.com</a></p>
+  <p class="hdr-sub">
+    <a href="mailto:support@bizfilingpros.com">support@bizfilingpros.com</a> &nbsp;·&nbsp; <a href="tel:+13177850113">(317) 785-0113</a><br>
+    Monday–Friday · 9:00 AM – 5:00 PM CST
+  </p>
 </header>
 
 <!-- ═══ PROGRESS BAR ═══ -->
