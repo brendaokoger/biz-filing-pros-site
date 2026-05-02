@@ -7,7 +7,7 @@
 <meta name="description" content="Set up a professional business email with your domain. Fast, clean, and branded for your business.">
 <link rel="icon" type="image/png" href="/images/biz-filing-pros-logo.png">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://bizfilingpros.com">
+<meta property="og:url" content="https://bizfilingpros.com/business-email">
 <meta property="og:title" content="File. Build. Grow.">
 <meta property="og:description" content="Start, protect, and grow your business with Biz Filing Pros.">
 <meta property="og:image" content="https://bizfilingpros.com/images/biz-filing-pros-logo.png">
@@ -37,6 +37,8 @@
   --gray-800: #3D3A33;
   --red: #C0392B;
   --green: #1E8449;
+  --amber: #D4920B;
+  --amber-pale: #FEF7E6;
   --radius: 10px;
   --radius-lg: 14px;
   --shadow-sm: 0 1px 4px rgba(11,29,58,0.05);
@@ -76,24 +78,27 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--gr
 
 /* ═══ FIELDS ═══ */
 .row{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:.85rem;}
-.row.s1{grid-template-columns:1fr;}
-@media(max-width:580px){.row{grid-template-columns:1fr;}}
+.row.s1{grid-template-columns:1fr;}.row.s3{grid-template-columns:1fr 1fr 1fr;}
+@media(max-width:580px){.row,.row.s3{grid-template-columns:1fr;}}
 .fg{display:flex;flex-direction:column;}
 .fg label{font-size:.7rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;}
 .fg label .req{color:var(--gold);}
 input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.92rem;padding:.65rem .85rem;border:1.5px solid var(--gray-200);border-radius:var(--radius);background:var(--white);color:var(--gray-800);transition:border-color var(--tr),box-shadow var(--tr);outline:none;width:100%;}
 input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-glow);}
-textarea{resize:vertical;min-height:80px;}
+textarea{resize:vertical;min-height:72px;}
 select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%239B9688'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:2rem;}
-.field-hint{font-size:.72rem;color:var(--gray-400);margin-top:4px;}
+.field-hint{font-size:.72rem;color:var(--gray-400);margin-top:4px;line-height:1.5;}
 .err{font-size:.72rem;color:var(--red);margin-top:4px;display:none;}
-input.invalid,select.invalid,textarea.invalid{border-color:var(--red);}
+input.invalid,select.invalid,textarea.invalid{border-color:var(--red)!important;box-shadow:none;}
 
 /* ═══ OPTION CARDS ═══ */
 .opts{display:grid;gap:.6rem;margin-bottom:.85rem;}
+.opts.cols2{grid-template-columns:1fr 1fr;}
+@media(max-width:460px){.opts.cols2{grid-template-columns:1fr;}}
 .opt{display:flex;align-items:flex-start;gap:.75rem;padding:.9rem 1rem;border:1.5px solid var(--gray-200);border-radius:var(--radius);cursor:pointer;transition:all var(--tr);background:var(--white);}
 .opt:hover{border-color:var(--gold-light);background:var(--gold-pale);}
 .opt.sel{border-color:var(--gold);background:var(--gold-pale);box-shadow:0 0 0 3px var(--gold-glow);}
+.opt.disabled{opacity:.45;pointer-events:none;background:var(--gray-50);}
 .opt input[type="radio"],.opt input[type="checkbox"]{width:17px;height:17px;margin-top:2px;flex-shrink:0;accent-color:var(--gold);}
 .opt-body{flex:1;}
 .opt-title{font-weight:600;font-size:.88rem;color:var(--navy);}
@@ -102,6 +107,7 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red);}
 /* ═══ INFO ═══ */
 .info{background:var(--gold-pale);border-left:3px solid var(--gold);padding:.75rem .9rem;border-radius:0 var(--radius) var(--radius) 0;font-size:.78rem;color:var(--gray-800);margin:.85rem 0;line-height:1.55;}
 .info.muted{background:var(--gray-50);border-left-color:var(--gray-300);color:var(--gray-600);}
+.info.warn{background:var(--amber-pale);border-left-color:var(--amber);color:#7A5500;}
 
 /* ═══ BUTTONS ═══ */
 .btn-row{display:flex;justify-content:space-between;align-items:center;margin-top:1.25rem;gap:.75rem;}
@@ -113,21 +119,22 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red);}
 .btn-submit{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);color:var(--gold);width:100%;padding:.9rem;font-size:.95rem;letter-spacing:.02em;box-shadow:0 4px 20px rgba(11,29,58,.3);}
 .btn-submit:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(11,29,58,.4);}
 
-/* ═══ SUMMARY ═══ */
-.sum-line{display:flex;justify-content:space-between;padding:.45rem 0;font-size:.82rem;border-bottom:1px solid var(--gray-50);gap:1rem;}
-.sum-line .lbl{color:var(--gray-600);flex-shrink:0;}
-.sum-line .val{color:var(--gray-800);font-weight:500;text-align:right;}
-.sum-line.head{font-weight:700;color:var(--navy);border-bottom-color:var(--gray-200);padding:.6rem 0;margin-top:.5rem;font-size:.85rem;}
-
 /* ═══ DISCLOSURES ═══ */
-.disc-box{background:var(--gray-50);border-radius:var(--radius);padding:.9rem 1.1rem;max-height:200px;overflow-y:auto;font-size:.75rem;color:var(--gray-600);line-height:1.7;margin-bottom:.85rem;border:1px solid var(--gray-200);}
-.disc-box h4{color:var(--navy);font-size:.78rem;margin-bottom:.4rem;}
+.disc-box{background:var(--gray-50);border-radius:var(--radius);padding:.9rem 1.1rem;max-height:220px;overflow-y:auto;font-size:.75rem;color:var(--gray-600);line-height:1.7;margin-bottom:.85rem;border:1px solid var(--gray-200);}
+.disc-box h4{color:var(--navy);font-size:.78rem;margin-bottom:.4rem;margin-top:.9rem;}
+.disc-box h4:first-child{margin-top:0;}
 
 /* ═══ AGREE ═══ */
 .agree-row{display:flex;align-items:flex-start;gap:.65rem;padding:.85rem 0;}
 .agree-row input[type="checkbox"]{width:17px;height:17px;margin-top:2px;flex-shrink:0;accent-color:var(--gold);}
 .agree-row label{font-size:.8rem;color:var(--gray-600);line-height:1.5;cursor:pointer;}
 .agree-row label a{color:var(--gold);text-decoration:none;font-weight:600;}
+
+/* ═══ SUMMARY ═══ */
+.sum-line{display:flex;justify-content:space-between;padding:.45rem 0;font-size:.82rem;border-bottom:1px solid var(--gray-50);gap:1rem;}
+.sum-line .lbl{color:var(--gray-600);flex-shrink:0;}
+.sum-line .val{color:var(--gray-800);font-weight:500;text-align:right;word-break:break-word;}
+.sum-line.head{font-weight:600;color:var(--navy);border-bottom-color:var(--gray-200);padding:.6rem 0;margin-top:.5rem;}
 
 /* ═══ SUCCESS ═══ */
 .success{display:none;text-align:center;padding:3rem 1.5rem;max-width:520px;margin:0 auto;}
@@ -157,12 +164,12 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red);}
   <div class="hdr-divider"></div>
   <p class="hdr-sub">
     <a href="mailto:support@bizfilingpros.com">support@bizfilingpros.com</a> &nbsp;·&nbsp; <a href="tel:+13177850113">(317) 785-0113</a><br>
-    Monday–Friday · 9:00 AM – 5:00 PM CST
+    Monday–Friday &nbsp;·&nbsp; 9:00 AM – 5:00 PM CST
   </p>
 </header>
 
 <!-- ═══ PROGRESS BAR ═══ -->
-<div class="prog-w">
+<div class="prog-w" id="progW">
   <div class="prog-i">
     <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
     <div class="prog-txt" id="progTxt">Step 1 of 3</div>
@@ -177,8 +184,8 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red);}
 <!-- ════════ STEP 1: CONTACT INFO ════════ -->
 <div class="step active" data-step="1">
   <div class="card">
-    <div class="card-t">Your Contact Information</div>
-    <div class="card-s">Tell us how to reach you regarding your email setup order.</div>
+    <h2 class="card-t">Your Contact Information</h2>
+    <p class="card-s">We use this to follow up on your email setup order. Never shared with third parties.</p>
 
     <div class="row">
       <div class="fg">
@@ -196,14 +203,26 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red);}
     <div class="row">
       <div class="fg">
         <label>Email Address <span class="req">*</span></label>
-        <input type="email" id="email" name="email" placeholder="jane@example.com" autocomplete="email">
+        <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email">
         <span class="err" id="err-email">A valid email address is required.</span>
       </div>
       <div class="fg">
         <label>Phone Number <span class="req">*</span></label>
-        <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" autocomplete="tel">
+        <input type="tel" id="phone" name="phone" placeholder="(317) 555-0123" autocomplete="tel">
         <span class="err" id="err-phone">Phone number is required.</span>
       </div>
+    </div>
+
+    <div class="row">
+      <div class="fg">
+        <label>Preferred Contact Method</label>
+        <select id="contactMethod" name="contactMethod">
+          <option value="email">Email</option>
+          <option value="phone">Phone Call</option>
+          <option value="text">Text Message</option>
+        </select>
+      </div>
+      <div></div>
     </div>
 
     <div class="info muted">
@@ -212,16 +231,16 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red);}
   </div>
 
   <div class="btn-row">
-    <span></span>
-    <button type="button" class="btn btn-next" onclick="nextStep()">Continue &rarr;</button>
+    <div></div>
+    <button type="button" class="btn btn-next" onclick="go(1)">Continue &rarr;</button>
   </div>
 </div>
 
 <!-- ════════ STEP 2: EMAIL SETUP DETAILS ════════ -->
 <div class="step" data-step="2">
   <div class="card">
-    <div class="card-t">Business &amp; Domain Details</div>
-    <div class="card-s">Tell us about your business and the email setup you need.</div>
+    <h2 class="card-t">Business &amp; Domain Details</h2>
+    <p class="card-s">Tell us about your business and the email setup you need.</p>
 
     <div class="row s1">
       <div class="fg">
@@ -234,8 +253,8 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red);}
     <div class="row s1">
       <div class="fg">
         <label>Domain Name <span class="req">*</span></label>
-        <input type="text" id="domainName" name="domainName" placeholder="example.com or I need help choosing">
-        <div class="field-hint">Enter your existing domain, or type "I need help choosing" if you don't have one yet.</div>
+        <input type="text" id="domainName" name="domainName" placeholder="smithconsulting.com">
+        <div class="field-hint">Enter your existing domain. If you don't have one yet, type "I need help choosing."</div>
         <span class="err" id="err-domainName">Please enter a domain or indicate you need help.</span>
       </div>
     </div>
@@ -243,34 +262,53 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red);}
     <div class="row s1">
       <div class="fg">
         <label>Email Address(es) Needed <span class="req">*</span></label>
-        <input type="text" id="emailAddresses" name="emailAddresses" placeholder="e.g. info@, jane@, support@ — or describe what you need">
-        <div class="field-hint">List the email addresses you want set up, or describe the structure you're looking for.</div>
+        <input type="text" id="emailAddresses" name="emailAddresses" placeholder="info@, jane@, support@ — or describe what you need">
+        <div class="field-hint">List the addresses you want set up, or describe the structure you have in mind.</div>
         <span class="err" id="err-emailAddresses">Please describe the email addresses you need.</span>
-      </div>
-    </div>
-
-    <div class="row s1">
-      <div class="fg">
-        <label>Preferred Email Platform</label>
-        <select id="emailPlatform" name="emailPlatform">
-          <option value="">— Select a platform (optional) —</option>
-          <option>Google Workspace (Gmail)</option>
-          <option>Microsoft 365 (Outlook)</option>
-          <option>No Preference — Recommend one for me</option>
-          <option>Other — I'll explain in notes</option>
-        </select>
       </div>
     </div>
   </div>
 
   <div class="card">
-    <div class="card-t">Additional Information</div>
-    <div class="card-s">Anything else we should know to complete your setup.</div>
+    <h2 class="card-t">Email Platform</h2>
+    <p class="card-s">Select your preferred email platform. Not sure? We'll recommend one that fits your needs.</p>
 
-    <div class="row s1">
+    <div class="opts cols2" id="platformOpts">
+      <label class="opt" onclick="pickPlatform(this,'Google Workspace (Gmail)')">
+        <input type="radio" name="emailPlatform" value="Google Workspace (Gmail)">
+        <div class="opt-body">
+          <div class="opt-title">Google Workspace</div>
+          <div class="opt-desc">Gmail-powered business email. Familiar interface, strong collaboration tools.</div>
+        </div>
+      </label>
+      <label class="opt" onclick="pickPlatform(this,'Microsoft 365 (Outlook)')">
+        <input type="radio" name="emailPlatform" value="Microsoft 365 (Outlook)">
+        <div class="opt-body">
+          <div class="opt-title">Microsoft 365</div>
+          <div class="opt-desc">Outlook-powered email. Ideal if your team uses Word, Excel, or Teams.</div>
+        </div>
+      </label>
+      <label class="opt" onclick="pickPlatform(this,'No Preference — Recommend one for me')">
+        <input type="radio" name="emailPlatform" value="No Preference — Recommend one for me">
+        <div class="opt-body">
+          <div class="opt-title">No Preference</div>
+          <div class="opt-desc">We'll recommend the best fit based on your business needs.</div>
+        </div>
+      </label>
+      <label class="opt" onclick="pickPlatform(this,'Other — I\'ll explain in notes')">
+        <input type="radio" name="emailPlatform" value="Other — I'll explain in notes">
+        <div class="opt-body">
+          <div class="opt-title">Other</div>
+          <div class="opt-desc">Using a different provider? Describe it in the notes below.</div>
+        </div>
+      </label>
+    </div>
+    <span class="err" id="err-platform">Please select an email platform.</span>
+
+    <div class="row s1" style="margin-top:.85rem;">
       <div class="fg">
         <label>Notes or Special Requests</label>
-        <textarea id="notes" name="notes" placeholder="Any specific instructions, questions, or details about your setup..."></textarea>
+        <textarea id="notes" name="notes" placeholder="Any specific instructions, questions, or details about your setup…"></textarea>
       </div>
     </div>
 
@@ -280,44 +318,42 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red);}
   </div>
 
   <div class="btn-row">
-    <button type="button" class="btn btn-back" onclick="prevStep()">&larr; Back</button>
-    <button type="button" class="btn btn-next" onclick="nextStep()">Review Order &rarr;</button>
+    <button type="button" class="btn btn-back" onclick="go(-1)">&larr; Back</button>
+    <button type="button" class="btn btn-next" onclick="go(1)">Review Order &rarr;</button>
   </div>
 </div>
 
 <!-- ════════ STEP 3: REVIEW & SUBMIT ════════ -->
 <div class="step" data-step="3">
   <div class="card">
-    <div class="card-t">Review Your Request</div>
-    <div class="card-s">Please confirm your information before submitting.</div>
+    <h2 class="card-t">Review Your Request</h2>
+    <p class="card-s">Confirm your information before submitting. Use the Back button to make changes.</p>
 
     <div class="sum-line head"><span>Contact Information</span></div>
     <div class="sum-line"><span class="lbl">Name</span><span class="val" id="sum-name">—</span></div>
     <div class="sum-line"><span class="lbl">Email</span><span class="val" id="sum-email">—</span></div>
     <div class="sum-line"><span class="lbl">Phone</span><span class="val" id="sum-phone">—</span></div>
+    <div class="sum-line"><span class="lbl">Preferred Contact</span><span class="val" id="sum-contact">—</span></div>
 
-    <div class="sum-line head" style="margin-top:1rem"><span>Email Setup Details</span></div>
+    <div class="sum-line head" style="margin-top:.85rem;"><span>Email Setup Details</span></div>
     <div class="sum-line"><span class="lbl">Business Name</span><span class="val" id="sum-business">—</span></div>
     <div class="sum-line"><span class="lbl">Domain</span><span class="val" id="sum-domain">—</span></div>
     <div class="sum-line"><span class="lbl">Email Addresses</span><span class="val" id="sum-emails">—</span></div>
     <div class="sum-line"><span class="lbl">Platform</span><span class="val" id="sum-platform">—</span></div>
-    <div class="sum-line" id="sum-notes-row" style="display:none"><span class="lbl">Notes</span><span class="val" id="sum-notes">—</span></div>
+    <div class="sum-line" id="sum-notes-row"><span class="lbl">Notes</span><span class="val" id="sum-notes">—</span></div>
   </div>
 
   <div class="card">
-    <div class="card-t">Agreement &amp; Authorization</div>
-    <div class="card-s">Please read and agree to the following before submitting.</div>
+    <h2 class="card-t">Agreement &amp; Authorization</h2>
+    <p class="card-s">Please read and agree to the following before submitting.</p>
 
     <div class="disc-box">
       <h4>Service Agreement</h4>
       <p>By submitting this form, you authorize Biz Filing Pros LLC to proceed with Business Email Setup services based on the information provided. You confirm that you own or have authority over the domain name listed, or that you are requesting assistance obtaining one.</p>
-      <br>
       <h4>Pricing &amp; Payment</h4>
-      <p>Business Email Setup starts at $149. A team member will contact you to confirm the scope of work, confirm the total cost, and collect payment before setup begins. Government or third-party platform fees (such as Google Workspace or Microsoft 365 subscription fees) are separate and are the client's responsibility.</p>
-      <br>
+      <p>Business Email Setup starts at $149. A team member will contact you to confirm the scope of work and collect payment before setup begins. Third-party platform subscription fees (such as Google Workspace or Microsoft 365) are separate and are the client's responsibility.</p>
       <h4>Cancellation</h4>
-      <p>You may cancel your order before setup work has begun. Once domain configuration, email provisioning, or platform setup has started, cancellations may not be accepted. All cancellation requests must be submitted by email to support@bizfilingpros.com.</p>
-      <br>
+      <p>You may cancel before setup work has begun. Once domain configuration, email provisioning, or platform setup has started, cancellations may not be accepted. All cancellation requests must be submitted by email to support@bizfilingpros.com.</p>
       <h4>No Legal Advice</h4>
       <p>Biz Filing Pros LLC is not a law firm and does not provide legal, tax, financial, or accounting advice. Services are limited to email setup, document preparation, and administrative support.</p>
     </div>
@@ -326,13 +362,13 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red);}
       <input type="checkbox" id="agreeTerms" name="agreeTerms">
       <label for="agreeTerms">I have read and agree to the Service Agreement above. I authorize Biz Filing Pros LLC to contact me regarding my Business Email Setup order. <span class="req">*</span></label>
     </div>
-    <span class="err" id="err-agreeTerms" style="display:none;margin-bottom:.5rem;">You must agree to the terms to submit.</span>
+    <span class="err" id="err-agree">You must agree to the terms to submit.</span>
 
-    <button type="submit" class="btn btn-submit" id="submitBtn">Submit My Email Setup Request</button>
+    <button type="submit" class="btn btn-submit" id="submitBtn" style="margin-top:1rem;">Submit My Email Setup Request</button>
   </div>
 
   <div class="btn-row" style="margin-top:0;">
-    <button type="button" class="btn btn-back" onclick="prevStep()">&larr; Back</button>
+    <button type="button" class="btn btn-back" onclick="go(-1)">&larr; Back</button>
     <span></span>
   </div>
 </div>
@@ -352,7 +388,10 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red);}
       <li>Once payment is confirmed, we'll begin your email setup and notify you when it's complete.</li>
     </ol>
   </div>
-  <p style="font-size:.78rem;color:var(--gray-400);margin-top:.75rem;">Questions? <a href="mailto:support@bizfilingpros.com" style="color:var(--gold);">support@bizfilingpros.com</a> &nbsp;·&nbsp; <a href="tel:3177850113" style="color:var(--gold);">(317) 785-0113</a></p>
+  <p style="font-size:.78rem;color:var(--gray-400);margin-top:.75rem;">
+    Questions? <a href="mailto:support@bizfilingpros.com" style="color:var(--gold);">support@bizfilingpros.com</a>
+    &nbsp;·&nbsp; <a href="tel:+13177850113" style="color:var(--gold);">(317) 785-0113</a>
+  </p>
 </div>
 
 </div><!-- /.body -->
@@ -389,113 +428,126 @@ function showStep(n) {
 // ─── Validation helpers ───
 function req(id, errId) {
   const el = document.getElementById(id);
-  const err = document.getElementById(errId);
   const ok = el.value.trim() !== '';
   el.classList.toggle('invalid', !ok);
+  const err = document.getElementById(errId);
   if (err) err.style.display = ok ? 'none' : 'block';
   return ok;
 }
 
 function reqEmail(id, errId) {
   const el = document.getElementById(id);
-  const err = document.getElementById(errId);
   const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
   el.classList.toggle('invalid', !ok);
+  const err = document.getElementById(errId);
   if (err) err.style.display = ok ? 'none' : 'block';
   return ok;
 }
 
+function clearInvalid(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.addEventListener('input', function() {
+      if (this.value.trim()) {
+        this.classList.remove('invalid');
+        const errId = 'err-' + id;
+        const err = document.getElementById(errId);
+        if (err) err.style.display = 'none';
+      }
+    }, { once: true });
+  }
+}
+
 function validateStep(n) {
   if (n === 1) {
-    const a = req('firstName', 'err-firstName');
-    const b = req('lastName', 'err-lastName');
-    const c = reqEmail('email', 'err-email');
-    const d = req('phone', 'err-phone');
+    const a = req('firstName','err-firstName');
+    const b = req('lastName','err-lastName');
+    const c = reqEmail('email','err-email');
+    const d = req('phone','err-phone');
+    if (!a) clearInvalid('firstName');
+    if (!b) clearInvalid('lastName');
+    if (!c) clearInvalid('email');
+    if (!d) clearInvalid('phone');
     return a && b && c && d;
   }
   if (n === 2) {
-    const a = req('businessName', 'err-businessName');
-    const b = req('domainName', 'err-domainName');
-    const c = req('emailAddresses', 'err-emailAddresses');
-    return a && b && c;
+    const a = req('businessName','err-businessName');
+    const b = req('domainName','err-domainName');
+    const c = req('emailAddresses','err-emailAddresses');
+    const selPlatform = document.querySelector('input[name="emailPlatform"]:checked');
+    const errPlatform = document.getElementById('err-platform');
+    const d = !!selPlatform;
+    if (errPlatform) errPlatform.style.display = d ? 'none' : 'block';
+    if (!a) clearInvalid('businessName');
+    if (!b) clearInvalid('domainName');
+    if (!c) clearInvalid('emailAddresses');
+    return a && b && c && d;
   }
   return true;
 }
 
-function nextStep() {
-  if (!validateStep(step)) return;
-  if (step === 2) populateSummary();
-  step = Math.min(STEPS, step + 1);
+function go(dir) {
+  if (dir > 0) {
+    if (!validateStep(step)) return;
+    if (step === 2) populateSummary();
+    step = Math.min(STEPS, step + 1);
+  } else {
+    step = Math.max(1, step - 1);
+  }
   showStep(step);
 }
 
-function prevStep() {
-  step = Math.max(1, step - 1);
-  showStep(step);
+// ─── Platform selection ───
+function pickPlatform(el, val) {
+  document.querySelectorAll('#platformOpts .opt').forEach(o => o.classList.remove('sel'));
+  el.classList.add('sel');
+  const input = el.querySelector('input[type="radio"]');
+  if (input) input.checked = true;
+  const errPlatform = document.getElementById('err-platform');
+  if (errPlatform) errPlatform.style.display = 'none';
 }
 
-function val(id) {
+// ─── Summary ───
+function v(id) {
   return (document.getElementById(id)?.value || '').trim() || '—';
 }
 
 function populateSummary() {
-  document.getElementById('sum-name').textContent  = val('firstName') + ' ' + val('lastName');
-  document.getElementById('sum-email').textContent = val('email');
-  document.getElementById('sum-phone').textContent = val('phone');
-  document.getElementById('sum-business').textContent = val('businessName');
-  document.getElementById('sum-domain').textContent   = val('domainName');
-  document.getElementById('sum-emails').textContent   = val('emailAddresses');
-  const plat = document.getElementById('emailPlatform').value || '—';
-  document.getElementById('sum-platform').textContent = plat || '—';
-  const notes = val('notes');
+  document.getElementById('sum-name').textContent    = v('firstName') + ' ' + v('lastName');
+  document.getElementById('sum-email').textContent   = v('email');
+  document.getElementById('sum-phone').textContent   = v('phone');
+  const cm = document.getElementById('contactMethod');
+  document.getElementById('sum-contact').textContent = cm?.options[cm.selectedIndex]?.text || '—';
+  document.getElementById('sum-business').textContent = v('businessName');
+  document.getElementById('sum-domain').textContent   = v('domainName');
+  document.getElementById('sum-emails').textContent   = v('emailAddresses');
+  const plat = document.querySelector('input[name="emailPlatform"]:checked');
+  document.getElementById('sum-platform').textContent = plat ? plat.value : '—';
+  const notes = v('notes');
   const notesRow = document.getElementById('sum-notes-row');
-  if (notes && notes !== '—') {
-    document.getElementById('sum-notes').textContent = notes;
-    notesRow.style.display = 'flex';
-  } else {
-    notesRow.style.display = 'none';
-  }
+  const notesVal = document.getElementById('sum-notes');
+  notesVal.textContent = notes;
+  notesRow.style.display = (notes && notes !== '—') ? 'flex' : 'none';
 }
-
-// ─── Option card click ───
-document.querySelectorAll('.opt').forEach(opt => {
-  opt.addEventListener('click', () => {
-    const input = opt.querySelector('input');
-    if (!input) return;
-    if (input.type === 'radio') {
-      const name = input.name;
-      document.querySelectorAll(`input[name="${name}"]`).forEach(i => i.closest('.opt').classList.remove('sel'));
-      input.checked = true;
-      opt.classList.add('sel');
-    } else {
-      input.checked = !input.checked;
-      opt.classList.toggle('sel', input.checked);
-    }
-  });
-});
 
 // ─── Form submit ───
 document.getElementById('mainForm').addEventListener('submit', function(e) {
   e.preventDefault();
 
   const agreed = document.getElementById('agreeTerms').checked;
-  const agreeErr = document.getElementById('err-agreeTerms');
-  agreeErr.style.display = agreed ? 'none' : 'block';
+  const errAgree = document.getElementById('err-agree');
+  errAgree.style.display = agreed ? 'none' : 'block';
   if (!agreed) return;
 
   const btn = document.getElementById('submitBtn');
   btn.disabled = true;
   btn.textContent = 'Submitting…';
 
-  const data = new FormData(this);
-
-  fetch('/', { method: 'POST', body: data })
+  fetch('/', { method: 'POST', body: new FormData(this) })
     .then(() => {
       document.querySelectorAll('.step').forEach(s => s.style.display = 'none');
-      document.getElementById('progressBar')?.remove();
+      document.getElementById('progW').style.display = 'none';
       document.getElementById('successMsg').classList.add('active');
-      document.getElementById('progFill').style.width = '100%';
-      document.getElementById('progTxt').textContent = 'Complete';
       scrollTop();
     })
     .catch(() => {
@@ -505,7 +557,6 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
     });
 });
 
-// Init
 updateProgress();
 </script>
 </body>
