@@ -421,10 +421,10 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
     <h2 class="card-t">Select Your Package</h2>
     <p class="card-s">All packages include company name search, document preparation, state filing, and our 100% satisfaction guarantee.</p>
     <div class="pkg-grid">
-      <div class="pkg" onclick="pickPkg(this,'essentials',275)">
+      <div class="pkg" onclick="pickPkg(this,'essentials',249)">
         <input type="radio" name="package" value="essentials">
         <div class="pkg-name">Business Starter Package</div>
-        <div class="pkg-price">$275</div>
+        <div class="pkg-price">$249</div>
         <div class="pkg-pn" id="starterStateLine">+ state filing fees</div>
         <ul class="pkg-list">
           <li>Company Name Availability Search</li>
@@ -1099,19 +1099,19 @@ function updateStarterBreakdown() {
   if(st === 'California') {
     if(line) line.textContent = 'California fees: $' + CA_TOTAL_EXTRA + ' (see breakdown)';
     box.innerHTML = `
-      <div style="display:flex;justify-content:space-between;"><span>Service Fee</span><span>$275</span></div>
+      <div style="display:flex;justify-content:space-between;"><span>Service Fee</span><span>$249</span></div>
       <div style="border-top:1px solid rgba(255,255,255,.2);margin:.3rem 0;padding-top:.3rem;font-size:.68rem;opacity:.85;font-style:italic;">California Mandatory State Fees:</div>
       <div style="display:flex;justify-content:space-between;"><span>Articles of Organization</span><span>$${CA_EXTRA_FEES.articles}</span></div>
       <div style="display:flex;justify-content:space-between;"><span>Statement of Information (LLC-12)</span><span>$${CA_EXTRA_FEES.statementOfInfo}</span></div>
       <div style="display:flex;justify-content:space-between;"><span>Annual Franchise Tax (Year 1)</span><span>$${CA_EXTRA_FEES.franchiseTax}</span></div>
-      <div style="display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.3);padding-top:.3rem;margin-top:.3rem;font-weight:700;"><span>Subtotal</span><span>$${(275+CA_TOTAL_EXTRA).toLocaleString()}</span></div>
+      <div style="display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.3);padding-top:.3rem;margin-top:.3rem;font-weight:700;"><span>Subtotal</span><span>$${(249+CA_TOTAL_EXTRA).toLocaleString()}</span></div>
     `;
   } else {
     if(line) line.textContent = st + ' filing fee: $' + stateFee;
     box.innerHTML = `
-      <div style="display:flex;justify-content:space-between;"><span>Service Fee</span><span>$275</span></div>
+      <div style="display:flex;justify-content:space-between;"><span>Service Fee</span><span>$249</span></div>
       <div style="display:flex;justify-content:space-between;"><span>${st} Filing Fee</span><span>$${stateFee}</span></div>
-      <div style="display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.3);padding-top:.3rem;margin-top:.3rem;font-weight:700;"><span>Subtotal</span><span>$${(275+stateFee).toLocaleString()}</span></div>
+      <div style="display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.3);padding-top:.3rem;margin-top:.3rem;font-weight:700;"><span>Subtotal</span><span>$${(249+stateFee).toLocaleString()}</span></div>
     `;
   }
 }
