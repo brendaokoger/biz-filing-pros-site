@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Email Setup — Biz Filing Pros</title>
+<meta name="description" content="Set up a professional business email with your domain. Fast, clean, and branded for your business.">
+<link rel="icon" type="image/png" href="/images/biz-filing-pros-logo.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bizfilingpros.com">
+<meta property="og:title" content="File. Build. Grow.">
+<meta property="og:description" content="Start, protect, and grow your business with Biz Filing Pros.">
+<meta property="og:image" content="https://bizfilingpros.com/images/biz-filing-pros-logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="File. Build. Grow.">
+<meta name="twitter:description" content="Start, protect, and grow your business with Biz Filing Pros.">
+<meta name="twitter:image" content="https://bizfilingpros.com/images/biz-filing-pros-logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0B1D3A;
+  --navy-light: #132C55;
+  --navy-mid: #1A3A6E;
+  --gold: #C9A84C;
+  --gold-hover: #D4B85E;
+  --gold-light: #E2C97E;
+  --gold-pale: #FBF6E8;
+  --gold-glow: rgba(201,168,76,0.15);
+  --white: #FFFFFF;
+  --off-white: #FAFAF7;
+  --gray-50: #F7F6F3;
+  --gray-100: #F0EDE7;
+  --gray-200: #E0DCD3;
+  --gray-300: #CCC7BB;
+  --gray-400: #9B9688;
+  --gray-600: #6B665A;
+  --gray-800: #3D3A33;
+  --red: #C0392B;
+  --green: #1E8449;
+  --radius: 10px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 4px rgba(11,29,58,0.05);
+  --shadow: 0 2px 16px rgba(11,29,58,0.07);
+  --shadow-lg: 0 8px 40px rgba(11,29,58,0.10);
+  --shadow-gold: 0 4px 20px rgba(201,168,76,0.25);
+  --tr: 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--gray-800);min-height:100vh;line-height:1.6;-webkit-font-smoothing:antialiased;}
+
+/* ═══ HEADER ═══ */
+.hdr{background:#0a1528;padding:2.5rem 1.5rem 1.75rem;text-align:center;position:relative;}
+.hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent);}
+.hdr-logo{max-width:280px;width:65%;margin:0 auto 1rem;display:block;filter:drop-shadow(0 2px 12px rgba(201,168,76,.3));}
+.hdr-name{margin-bottom:.5rem;line-height:1.2;}
+.hdr-biz{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:800;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;}
+.hdr-pros{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--gold-light);letter-spacing:.35em;text-transform:uppercase;}
+.hdr-tagline{font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;color:var(--gold);letter-spacing:.25em;text-transform:uppercase;margin-bottom:.75rem;}
+.hdr-sub{color:rgba(255,255,255,.55);font-size:.78rem;line-height:1.6;}
+.hdr-sub a{color:var(--gold-light);text-decoration:none;}
+.hdr-divider{width:40px;height:1px;background:var(--gold);margin:.6rem auto;opacity:.4;}
+
+/* ═══ PROGRESS ═══ */
+.prog-w{background:var(--white);border-bottom:1px solid var(--gray-100);position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm);}
+.prog-i{max-width:680px;margin:0 auto;padding:1rem 1.25rem;display:flex;align-items:center;gap:.5rem;}
+.prog-track{flex:1;height:6px;background:var(--gray-100);border-radius:3px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:3px;transition:width .5s ease;width:0%;}
+.prog-txt{font-size:.72rem;font-weight:600;color:var(--gray-400);white-space:nowrap;min-width:72px;text-align:right;}
+
+/* ═══ BODY ═══ */
+.body{max-width:680px;margin:0 auto;padding:1.25rem 1rem;}
+.step{display:none;animation:stepIn .35s ease;}.step.active{display:block;}
+@keyframes stepIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══ CARDS ═══ */
+.card{background:var(--white);border-radius:var(--radius-lg);padding:1.75rem 1.5rem;margin-bottom:1rem;box-shadow:var(--shadow);border:1px solid var(--gray-100);}
+.card-t{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--navy);margin-bottom:.25rem;}
+.card-s{font-size:.82rem;color:var(--gray-600);margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--gray-50);}
+
+/* ═══ FIELDS ═══ */
+.row{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:.85rem;}
+.row.s1{grid-template-columns:1fr;}
+@media(max-width:580px){.row{grid-template-columns:1fr;}}
+.fg{display:flex;flex-direction:column;}
+.fg label{font-size:.7rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;}
+.fg label .req{color:var(--gold);}
+input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.92rem;padding:.65rem .85rem;border:1.5px solid var(--gray-200);border-radius:var(--radius);background:var(--white);color:var(--gray-800);transition:border-color var(--tr),box-shadow var(--tr);outline:none;width:100%;}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-glow);}
+textarea{resize:vertical;min-height:80px;}
+select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%239B9688'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:2rem;}
+.field-hint{font-size:.72rem;color:var(--gray-400);margin-top:4px;}
+.err{font-size:.72rem;color:var(--red);margin-top:4px;display:none;}
+input.invalid,select.invalid,textarea.invalid{border-color:var(--red);}
+
+/* ═══ OPTION CARDS ═══ */
+.opts{display:grid;gap:.6rem;margin-bottom:.85rem;}
+.opt{display:flex;align-items:flex-start;gap:.75rem;padding:.9rem 1rem;border:1.5px solid var(--gray-200);border-radius:var(--radius);cursor:pointer;transition:all var(--tr);background:var(--white);}
+.opt:hover{border-color:var(--gold-light);background:var(--gold-pale);}
+.opt.sel{border-color:var(--gold);background:var(--gold-pale);box-shadow:0 0 0 3px var(--gold-glow);}
+.opt input[type="radio"],.opt input[type="checkbox"]{width:17px;height:17px;margin-top:2px;flex-shrink:0;accent-color:var(--gold);}
+.opt-body{flex:1;}
+.opt-title{font-weight:600;font-size:.88rem;color:var(--navy);}
+.opt-desc{font-size:.78rem;color:var(--gray-600);margin-top:2px;line-height:1.5;}
+
+/* ═══ INFO ═══ */
+.info{background:var(--gold-pale);border-left:3px solid var(--gold);padding:.75rem .9rem;border-radius:0 var(--radius) var(--radius) 0;font-size:.78rem;color:var(--gray-800);margin:.85rem 0;line-height:1.55;}
+.info.muted{background:var(--gray-50);border-left-color:var(--gray-300);color:var(--gray-600);}
+
+/* ═══ BUTTONS ═══ */
+.btn-row{display:flex;justify-content:space-between;align-items:center;margin-top:1.25rem;gap:.75rem;}
+.btn{font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:600;padding:.75rem 1.75rem;border-radius:var(--radius);border:none;cursor:pointer;transition:all var(--tr);}
+.btn-next{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-hover) 100%);color:var(--navy);box-shadow:var(--shadow-gold);}
+.btn-next:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(201,168,76,.35);}
+.btn-back{background:var(--white);color:var(--gray-600);border:1.5px solid var(--gray-200);}
+.btn-back:hover{border-color:var(--navy);color:var(--navy);}
+.btn-submit{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);color:var(--gold);width:100%;padding:.9rem;font-size:.95rem;letter-spacing:.02em;box-shadow:0 4px 20px rgba(11,29,58,.3);}
+.btn-submit:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(11,29,58,.4);}
+
+/* ═══ SUMMARY ═══ */
+.sum-line{display:flex;justify-content:space-between;padding:.45rem 0;font-size:.82rem;border-bottom:1px solid var(--gray-50);gap:1rem;}
+.sum-line .lbl{color:var(--gray-600);flex-shrink:0;}
+.sum-line .val{color:var(--gray-800);font-weight:500;text-align:right;}
+.sum-line.head{font-weight:700;color:var(--navy);border-bottom-color:var(--gray-200);padding:.6rem 0;margin-top:.5rem;font-size:.85rem;}
+
+/* ═══ DISCLOSURES ═══ */
+.disc-box{background:var(--gray-50);border-radius:var(--radius);padding:.9rem 1.1rem;max-height:200px;overflow-y:auto;font-size:.75rem;color:var(--gray-600);line-height:1.7;margin-bottom:.85rem;border:1px solid var(--gray-200);}
+.disc-box h4{color:var(--navy);font-size:.78rem;margin-bottom:.4rem;}
+
+/* ═══ AGREE ═══ */
+.agree-row{display:flex;align-items:flex-start;gap:.65rem;padding:.85rem 0;}
+.agree-row input[type="checkbox"]{width:17px;height:17px;margin-top:2px;flex-shrink:0;accent-color:var(--gold);}
+.agree-row label{font-size:.8rem;color:var(--gray-600);line-height:1.5;cursor:pointer;}
+.agree-row label a{color:var(--gold);text-decoration:none;font-weight:600;}
+
+/* ═══ SUCCESS ═══ */
+.success{display:none;text-align:center;padding:3rem 1.5rem;max-width:520px;margin:0 auto;}
+.success.active{display:block;}
+.succ-icon{width:72px;height:72px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:1.8rem;color:white;box-shadow:0 4px 16px rgba(30,132,73,.3);}
+.success h2{font-family:'Playfair Display',serif;color:var(--navy);font-size:1.4rem;margin-bottom:.6rem;}
+.success p{color:var(--gray-600);font-size:.88rem;line-height:1.6;}
+.succ-box{background:var(--white);border-radius:var(--radius-lg);padding:1.25rem;margin:1.25rem 0;box-shadow:var(--shadow);border:1px solid var(--gray-100);text-align:left;}
+.succ-box h3{font-family:'Playfair Display',serif;font-size:1rem;color:var(--navy);margin-bottom:.5rem;}
+.succ-steps{list-style:none;padding:0;counter-reset:ss;}
+.succ-steps li{padding:.4rem 0 .4rem 2rem;position:relative;font-size:.82rem;color:var(--gray-600);counter-increment:ss;}
+.succ-steps li::before{content:counter(ss);position:absolute;left:0;width:22px;height:22px;background:var(--gold-pale);border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:var(--navy);}
+
+.footer{text-align:center;padding:1.25rem;font-size:.75rem;color:var(--gray-400);}
+.footer a{color:var(--gold);text-decoration:none;font-weight:600;}
+</style>
+<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="8993b2fd-b65a-4e40-aad8-469dc1be0639";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="hdr">
+  <a href="/">
+    <img src="/images/biz-filing-pros-logo.png" class="hdr-logo" alt="Biz Filing Pros logo">
+  </a>
+  <div class="hdr-name">
+    <div class="hdr-biz">Biz Filing</div>
+    <div class="hdr-pros">Pros</div>
+  </div>
+  <div class="hdr-tagline">Business Email Setup</div>
+  <div class="hdr-divider"></div>
+  <p class="hdr-sub">Get a professional email address using your domain — branded, clean, and ready to use.<br>Questions? <a href="tel:3177850113">(317) 785-0113</a> &nbsp;·&nbsp; <a href="mailto:support@bizfilingpros.com">support@bizfilingpros.com</a></p>
+</header>
+
+<!-- ═══ PROGRESS BAR ═══ -->
+<div class="prog-w">
+  <div class="prog-i">
+    <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+    <div class="prog-txt" id="progTxt">Step 1 of 3</div>
+  </div>
+</div>
+
+<!-- ═══ FORM ═══ -->
+<div class="body">
+<form id="mainForm" name="biz-email-setup" netlify data-netlify="true" novalidate>
+<input type="hidden" name="form-name" value="biz-email-setup">
+
+<!-- ════════ STEP 1: CONTACT INFO ════════ -->
+<div class="step active" data-step="1">
+  <div class="card">
+    <div class="card-t">Your Contact Information</div>
+    <div class="card-s">Tell us how to reach you regarding your email setup order.</div>
+
+    <div class="row">
+      <div class="fg">
+        <label>First Name <span class="req">*</span></label>
+        <input type="text" id="firstName" name="firstName" placeholder="Jane" autocomplete="given-name">
+        <span class="err" id="err-firstName">First name is required.</span>
+      </div>
+      <div class="fg">
+        <label>Last Name <span class="req">*</span></label>
+        <input type="text" id="lastName" name="lastName" placeholder="Smith" autocomplete="family-name">
+        <span class="err" id="err-lastName">Last name is required.</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="fg">
+        <label>Email Address <span class="req">*</span></label>
+        <input type="email" id="email" name="email" placeholder="jane@example.com" autocomplete="email">
+        <span class="err" id="err-email">A valid email address is required.</span>
+      </div>
+      <div class="fg">
+        <label>Phone Number <span class="req">*</span></label>
+        <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" autocomplete="tel">
+        <span class="err" id="err-phone">Phone number is required.</span>
+      </div>
+    </div>
+
+    <div class="info muted">
+      Your contact information is used only to coordinate your email setup order. We do not sell your information.
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <span></span>
+    <button type="button" class="btn btn-next" onclick="nextStep()">Continue &rarr;</button>
+  </div>
+</div>
+
+<!-- ════════ STEP 2: EMAIL SETUP DETAILS ════════ -->
+<div class="step" data-step="2">
+  <div class="card">
+    <div class="card-t">Business &amp; Domain Details</div>
+    <div class="card-s">Tell us about your business and the email setup you need.</div>
+
+    <div class="row s1">
+      <div class="fg">
+        <label>Business Name <span class="req">*</span></label>
+        <input type="text" id="businessName" name="businessName" placeholder="Smith Consulting LLC">
+        <span class="err" id="err-businessName">Business name is required.</span>
+      </div>
+    </div>
+
+    <div class="row s1">
+      <div class="fg">
+        <label>Domain Name <span class="req">*</span></label>
+        <input type="text" id="domainName" name="domainName" placeholder="example.com or I need help choosing">
+        <div class="field-hint">Enter your existing domain, or type "I need help choosing" if you don't have one yet.</div>
+        <span class="err" id="err-domainName">Please enter a domain or indicate you need help.</span>
+      </div>
+    </div>
+
+    <div class="row s1">
+      <div class="fg">
+        <label>Email Address(es) Needed <span class="req">*</span></label>
+        <input type="text" id="emailAddresses" name="emailAddresses" placeholder="e.g. info@, jane@, support@ — or describe what you need">
+        <div class="field-hint">List the email addresses you want set up, or describe the structure you're looking for.</div>
+        <span class="err" id="err-emailAddresses">Please describe the email addresses you need.</span>
+      </div>
+    </div>
+
+    <div class="row s1">
+      <div class="fg">
+        <label>Preferred Email Platform</label>
+        <select id="emailPlatform" name="emailPlatform">
+          <option value="">— Select a platform (optional) —</option>
+          <option>Google Workspace (Gmail)</option>
+          <option>Microsoft 365 (Outlook)</option>
+          <option>No Preference — Recommend one for me</option>
+          <option>Other — I'll explain in notes</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-t">Additional Information</div>
+    <div class="card-s">Anything else we should know to complete your setup.</div>
+
+    <div class="row s1">
+      <div class="fg">
+        <label>Notes or Special Requests</label>
+        <textarea id="notes" name="notes" placeholder="Any specific instructions, questions, or details about your setup..."></textarea>
+      </div>
+    </div>
+
+    <div class="info">
+      <strong>Heads up:</strong> If you need a domain purchased or transferred, let us know in the notes above. We can assist with that as part of your setup.
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button type="button" class="btn btn-back" onclick="prevStep()">&larr; Back</button>
+    <button type="button" class="btn btn-next" onclick="nextStep()">Review Order &rarr;</button>
+  </div>
+</div>
+
+<!-- ════════ STEP 3: REVIEW & SUBMIT ════════ -->
+<div class="step" data-step="3">
+  <div class="card">
+    <div class="card-t">Review Your Request</div>
+    <div class="card-s">Please confirm your information before submitting.</div>
+
+    <div class="sum-line head"><span>Contact Information</span></div>
+    <div class="sum-line"><span class="lbl">Name</span><span class="val" id="sum-name">—</span></div>
+    <div class="sum-line"><span class="lbl">Email</span><span class="val" id="sum-email">—</span></div>
+    <div class="sum-line"><span class="lbl">Phone</span><span class="val" id="sum-phone">—</span></div>
+
+    <div class="sum-line head" style="margin-top:1rem"><span>Email Setup Details</span></div>
+    <div class="sum-line"><span class="lbl">Business Name</span><span class="val" id="sum-business">—</span></div>
+    <div class="sum-line"><span class="lbl">Domain</span><span class="val" id="sum-domain">—</span></div>
+    <div class="sum-line"><span class="lbl">Email Addresses</span><span class="val" id="sum-emails">—</span></div>
+    <div class="sum-line"><span class="lbl">Platform</span><span class="val" id="sum-platform">—</span></div>
+    <div class="sum-line" id="sum-notes-row" style="display:none"><span class="lbl">Notes</span><span class="val" id="sum-notes">—</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-t">Agreement &amp; Authorization</div>
+    <div class="card-s">Please read and agree to the following before submitting.</div>
+
+    <div class="disc-box">
+      <h4>Service Agreement</h4>
+      <p>By submitting this form, you authorize Biz Filing Pros LLC to proceed with Business Email Setup services based on the information provided. You confirm that you own or have authority over the domain name listed, or that you are requesting assistance obtaining one.</p>
+      <br>
+      <h4>Pricing &amp; Payment</h4>
+      <p>Business Email Setup starts at $149. A team member will contact you to confirm the scope of work, confirm the total cost, and collect payment before setup begins. Government or third-party platform fees (such as Google Workspace or Microsoft 365 subscription fees) are separate and are the client's responsibility.</p>
+      <br>
+      <h4>Cancellation</h4>
+      <p>You may cancel your order before setup work has begun. Once domain configuration, email provisioning, or platform setup has started, cancellations may not be accepted. All cancellation requests must be submitted by email to support@bizfilingpros.com.</p>
+      <br>
+      <h4>No Legal Advice</h4>
+      <p>Biz Filing Pros LLC is not a law firm and does not provide legal, tax, financial, or accounting advice. Services are limited to email setup, document preparation, and administrative support.</p>
+    </div>
+
+    <div class="agree-row">
+      <input type="checkbox" id="agreeTerms" name="agreeTerms">
+      <label for="agreeTerms">I have read and agree to the Service Agreement above. I authorize Biz Filing Pros LLC to contact me regarding my Business Email Setup order. <span class="req">*</span></label>
+    </div>
+    <span class="err" id="err-agreeTerms" style="display:none;margin-bottom:.5rem;">You must agree to the terms to submit.</span>
+
+    <button type="submit" class="btn btn-submit" id="submitBtn">Submit My Email Setup Request</button>
+  </div>
+
+  <div class="btn-row" style="margin-top:0;">
+    <button type="button" class="btn btn-back" onclick="prevStep()">&larr; Back</button>
+    <span></span>
+  </div>
+</div>
+
+</form>
+
+<!-- ═══ SUCCESS ═══ -->
+<div class="success" id="successMsg">
+  <div class="succ-icon">✓</div>
+  <h2>Request Received!</h2>
+  <p>Thank you for choosing Biz Filing Pros. Your Business Email Setup request has been submitted successfully.</p>
+  <div class="succ-box">
+    <h3>What Happens Next</h3>
+    <ol class="succ-steps">
+      <li>You'll receive a confirmation email with your request details.</li>
+      <li>A team member will reach out within one business day to confirm scope and collect payment.</li>
+      <li>Once payment is confirmed, we'll begin your email setup and notify you when it's complete.</li>
+    </ol>
+  </div>
+  <p style="font-size:.78rem;color:var(--gray-400);margin-top:.75rem;">Questions? <a href="mailto:support@bizfilingpros.com" style="color:var(--gold);">support@bizfilingpros.com</a> &nbsp;·&nbsp; <a href="tel:3177850113" style="color:var(--gold);">(317) 785-0113</a></p>
+</div>
+
+</div><!-- /.body -->
+
+<footer class="footer">
+  &copy; 2026 Biz Filing Pros, LLC. All rights reserved. &nbsp;·&nbsp;
+  <a href="/policies">Policies</a> &nbsp;·&nbsp;
+  <a href="mailto:support@bizfilingpros.com">support@bizfilingpros.com</a><br>
+  <span style="opacity:.7;">Biz Filing Pros is not a law firm and does not provide legal, tax, or financial advice.</span>
+</footer>
+
+<script>
+let step = 1;
+const STEPS = 3;
+
+function updateProgress() {
+  const pct = ((step - 1) / (STEPS - 1)) * 100;
+  document.getElementById('progFill').style.width = pct + '%';
+  document.getElementById('progTxt').textContent = 'Step ' + step + ' of ' + STEPS;
+}
+
+function scrollTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showStep(n) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  const target = document.querySelector('[data-step="' + n + '"]');
+  if (target) target.classList.add('active');
+  updateProgress();
+  scrollTop();
+}
+
+// ─── Validation helpers ───
+function req(id, errId) {
+  const el = document.getElementById(id);
+  const err = document.getElementById(errId);
+  const ok = el.value.trim() !== '';
+  el.classList.toggle('invalid', !ok);
+  if (err) err.style.display = ok ? 'none' : 'block';
+  return ok;
+}
+
+function reqEmail(id, errId) {
+  const el = document.getElementById(id);
+  const err = document.getElementById(errId);
+  const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
+  el.classList.toggle('invalid', !ok);
+  if (err) err.style.display = ok ? 'none' : 'block';
+  return ok;
+}
+
+function validateStep(n) {
+  if (n === 1) {
+    const a = req('firstName', 'err-firstName');
+    const b = req('lastName', 'err-lastName');
+    const c = reqEmail('email', 'err-email');
+    const d = req('phone', 'err-phone');
+    return a && b && c && d;
+  }
+  if (n === 2) {
+    const a = req('businessName', 'err-businessName');
+    const b = req('domainName', 'err-domainName');
+    const c = req('emailAddresses', 'err-emailAddresses');
+    return a && b && c;
+  }
+  return true;
+}
+
+function nextStep() {
+  if (!validateStep(step)) return;
+  if (step === 2) populateSummary();
+  step = Math.min(STEPS, step + 1);
+  showStep(step);
+}
+
+function prevStep() {
+  step = Math.max(1, step - 1);
+  showStep(step);
+}
+
+function val(id) {
+  return (document.getElementById(id)?.value || '').trim() || '—';
+}
+
+function populateSummary() {
+  document.getElementById('sum-name').textContent  = val('firstName') + ' ' + val('lastName');
+  document.getElementById('sum-email').textContent = val('email');
+  document.getElementById('sum-phone').textContent = val('phone');
+  document.getElementById('sum-business').textContent = val('businessName');
+  document.getElementById('sum-domain').textContent   = val('domainName');
+  document.getElementById('sum-emails').textContent   = val('emailAddresses');
+  const plat = document.getElementById('emailPlatform').value || '—';
+  document.getElementById('sum-platform').textContent = plat || '—';
+  const notes = val('notes');
+  const notesRow = document.getElementById('sum-notes-row');
+  if (notes && notes !== '—') {
+    document.getElementById('sum-notes').textContent = notes;
+    notesRow.style.display = 'flex';
+  } else {
+    notesRow.style.display = 'none';
+  }
+}
+
+// ─── Option card click ───
+document.querySelectorAll('.opt').forEach(opt => {
+  opt.addEventListener('click', () => {
+    const input = opt.querySelector('input');
+    if (!input) return;
+    if (input.type === 'radio') {
+      const name = input.name;
+      document.querySelectorAll(`input[name="${name}"]`).forEach(i => i.closest('.opt').classList.remove('sel'));
+      input.checked = true;
+      opt.classList.add('sel');
+    } else {
+      input.checked = !input.checked;
+      opt.classList.toggle('sel', input.checked);
+    }
+  });
+});
+
+// ─── Form submit ───
+document.getElementById('mainForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const agreed = document.getElementById('agreeTerms').checked;
+  const agreeErr = document.getElementById('err-agreeTerms');
+  agreeErr.style.display = agreed ? 'none' : 'block';
+  if (!agreed) return;
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+
+  const data = new FormData(this);
+
+  fetch('/', { method: 'POST', body: data })
+    .then(() => {
+      document.querySelectorAll('.step').forEach(s => s.style.display = 'none');
+      document.getElementById('progressBar')?.remove();
+      document.getElementById('successMsg').classList.add('active');
+      document.getElementById('progFill').style.width = '100%';
+      document.getElementById('progTxt').textContent = 'Complete';
+      scrollTop();
+    })
+    .catch(() => {
+      btn.disabled = false;
+      btn.textContent = 'Submit My Email Setup Request';
+      alert('Something went wrong. Please try again or contact us directly.');
+    });
+});
+
+// Init
+updateProgress();
+</script>
+</body>
+</html>
