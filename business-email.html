@@ -251,9 +251,81 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
 
     <div class="row s1">
       <div class="fg">
-        <label>Domain Name</label>
-        <input type="text" id="domainName" name="domainName" placeholder="smithconsulting.com">
-        <div class="field-hint">Enter the domain you own and want email set up on.</div>
+        <label>Do you currently own a domain for your business?</label>
+        <div class="opts" style="margin-top:.5rem;margin-bottom:0;">
+          <label class="opt" id="opt-domain-yes">
+            <input type="radio" name="domainOwned" value="yes" onchange="onDomainOwned(this)">
+            <div class="opt-body"><div class="opt-title">Yes, I already own a domain.</div></div>
+          </label>
+          <label class="opt" id="opt-domain-no">
+            <input type="radio" name="domainOwned" value="no" onchange="onDomainOwned(this)">
+            <div class="opt-body"><div class="opt-title">No, I do not have a domain yet.</div></div>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div id="domain-details" style="display:none;">
+      <div class="row s1">
+        <div class="fg">
+          <label>Domain Name</label>
+          <input type="text" id="domainName" name="domainName" placeholder="yourbusiness.com">
+        </div>
+      </div>
+
+      <div class="row s1">
+        <div class="fg">
+          <label>Where did you purchase your domain?</label>
+          <select id="domainRegistrar" name="domainRegistrar">
+            <option value="">— Select registrar —</option>
+            <option value="GoDaddy">GoDaddy</option>
+            <option value="Namecheap">Namecheap</option>
+            <option value="Wix">Wix</option>
+            <option value="Squarespace">Squarespace</option>
+            <option value="Shopify">Shopify</option>
+            <option value="Cloudflare">Cloudflare</option>
+            <option value="Google Domains / Squarespace Domains">Google Domains / Squarespace Domains</option>
+            <option value="Bluehost">Bluehost</option>
+            <option value="HostGator">HostGator</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row s1">
+        <div class="fg">
+          <label>Do you have access to your domain account login?</label>
+          <div class="opts" style="margin-top:.5rem;margin-bottom:0;">
+            <label class="opt" id="opt-access-yes">
+              <input type="radio" name="domainAccess" value="yes" onchange="onDomainAccess(this)">
+              <div class="opt-body"><div class="opt-title">Yes, I have access</div></div>
+            </label>
+            <label class="opt" id="opt-access-no">
+              <input type="radio" name="domainAccess" value="no" onchange="onDomainAccess(this)">
+              <div class="opt-body"><div class="opt-title">No, I need help finding it</div></div>
+            </label>
+            <label class="opt" id="opt-access-unsure">
+              <input type="radio" name="domainAccess" value="unsure" onchange="onDomainAccess(this)">
+              <div class="opt-body"><div class="opt-title">I'm not sure</div></div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div id="domain-login-section" style="display:none;">
+        <div class="row s1">
+          <div class="fg">
+            <label>Domain Account Login Email or Username</label>
+            <input type="text" id="domainLoginEmail" name="domainLoginEmail" placeholder="you@example.com or username">
+            <div class="field-hint">For security, do not enter your password here unless you are comfortable submitting it through this secured form. If preferred, Biz Filing Pros can contact you with next steps for secure access.</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="domain-access-help" style="display:none;">
+        <div class="info muted">
+          We may need access to your domain account, registrar account, or DNS records to complete setup. We'll contact you with next steps.
+        </div>
       </div>
     </div>
 
@@ -314,7 +386,11 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
 
     <div class="sum-line head" style="margin-top:.85rem;"><span>Email Setup Details</span></div>
     <div class="sum-line"><span class="lbl">Business Name</span><span class="val" id="sum-business">—</span></div>
-    <div class="sum-line"><span class="lbl">Domain</span><span class="val" id="sum-domain">—</span></div>
+    <div class="sum-line"><span class="lbl">Domain Owned</span><span class="val" id="sum-domain-owned">—</span></div>
+    <div class="sum-line" id="sum-domain-name-row"><span class="lbl">Domain</span><span class="val" id="sum-domain">—</span></div>
+    <div class="sum-line" id="sum-registrar-row"><span class="lbl">Registrar</span><span class="val" id="sum-registrar">—</span></div>
+    <div class="sum-line" id="sum-access-row"><span class="lbl">Domain Access</span><span class="val" id="sum-access">—</span></div>
+    <div class="sum-line" id="sum-login-row"><span class="lbl">Domain Login</span><span class="val" id="sum-login">—</span></div>
     <div class="sum-line"><span class="lbl">Email Addresses</span><span class="val" id="sum-emails">—</span></div>
     <div class="sum-line"><span class="lbl">Email Users</span><span class="val" id="sum-users">—</span></div>
     <div class="sum-line"><span class="lbl">Email Platform</span><span class="val">Zoho Mail</span></div>
@@ -426,6 +502,31 @@ function go(dir) {
   showStep(step);
 }
 
+// ─── Domain conditional logic ───
+function onDomainOwned(radio) {
+  const val = radio.value;
+  document.getElementById('domain-details').style.display = val === 'yes' ? 'block' : 'none';
+  document.getElementById('opt-domain-yes').classList.toggle('sel', val === 'yes');
+  document.getElementById('opt-domain-no').classList.toggle('sel', val === 'no');
+  if (val === 'no') {
+    document.querySelectorAll('[name="domainAccess"]').forEach(r => { r.checked = false; });
+    ['opt-access-yes','opt-access-no','opt-access-unsure'].forEach(function(id) {
+      document.getElementById(id).classList.remove('sel');
+    });
+    document.getElementById('domain-login-section').style.display = 'none';
+    document.getElementById('domain-access-help').style.display = 'none';
+  }
+}
+
+function onDomainAccess(radio) {
+  const val = radio.value;
+  document.getElementById('domain-login-section').style.display = val === 'yes' ? 'block' : 'none';
+  document.getElementById('domain-access-help').style.display = (val === 'no' || val === 'unsure') ? 'block' : 'none';
+  document.getElementById('opt-access-yes').classList.toggle('sel', val === 'yes');
+  document.getElementById('opt-access-no').classList.toggle('sel', val === 'no');
+  document.getElementById('opt-access-unsure').classList.toggle('sel', val === 'unsure');
+}
+
 // ─── Summary ───
 function v(id) {
   return (document.getElementById(id)?.value || '').trim() || '—';
@@ -438,7 +539,37 @@ function populateSummary() {
   const cm = document.getElementById('contactMethod');
   document.getElementById('sum-contact').textContent  = cm?.options[cm.selectedIndex]?.text || '—';
   document.getElementById('sum-business').textContent = v('businessName');
-  document.getElementById('sum-domain').textContent   = v('domainName');
+
+  const domainOwnedEl = document.querySelector('[name="domainOwned"]:checked');
+  const domainOwned   = domainOwnedEl ? domainOwnedEl.value : null;
+  const domainAccessEl = document.querySelector('[name="domainAccess"]:checked');
+  const domainAccess  = domainAccessEl ? domainAccessEl.value : null;
+  document.getElementById('sum-domain-owned').textContent =
+    domainOwned === 'yes' ? 'Yes, I already own a domain.' :
+    domainOwned === 'no'  ? 'No, I do not have a domain yet.' : '—';
+  const hasDomain = domainOwned === 'yes';
+  ['sum-domain-name-row','sum-registrar-row','sum-access-row'].forEach(function(id) {
+    document.getElementById(id).style.display = hasDomain ? 'flex' : 'none';
+  });
+  if (hasDomain) {
+    document.getElementById('sum-domain').textContent    = v('domainName');
+    document.getElementById('sum-registrar').textContent = v('domainRegistrar') || '—';
+    document.getElementById('sum-access').textContent    =
+      domainAccess === 'yes'    ? 'Yes, I have access' :
+      domainAccess === 'no'     ? 'No, I need help finding it' :
+      domainAccess === 'unsure' ? "I'm not sure" : '—';
+    const loginRow = document.getElementById('sum-login-row');
+    const loginVal = v('domainLoginEmail');
+    if (domainAccess === 'yes' && loginVal && loginVal !== '—') {
+      document.getElementById('sum-login').textContent = loginVal;
+      loginRow.style.display = 'flex';
+    } else {
+      loginRow.style.display = 'none';
+    }
+  } else {
+    document.getElementById('sum-login-row').style.display = 'none';
+  }
+
   document.getElementById('sum-emails').textContent   = v('emailAddresses');
   document.getElementById('sum-users').textContent    = v('emailUsers');
   const notes = v('notes');
@@ -465,9 +596,15 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
   const email          = document.getElementById('email').value.trim();
   const phone          = document.getElementById('phone').value.trim();
   const contactMethod  = document.getElementById('contactMethod').value;
-  const businessName   = document.getElementById('businessName').value.trim();
-  const domainName     = document.getElementById('domainName').value.trim();
-  const emailAddresses = document.getElementById('emailAddresses').value.trim();
+  const businessName     = document.getElementById('businessName').value.trim();
+  const domainOwnedEl2   = document.querySelector('[name="domainOwned"]:checked');
+  const domainOwned2     = domainOwnedEl2 ? domainOwnedEl2.value : '';
+  const domainName       = document.getElementById('domainName').value.trim();
+  const domainRegistrar  = document.getElementById('domainRegistrar').value;
+  const domainAccessEl2  = document.querySelector('[name="domainAccess"]:checked');
+  const domainAccess2    = domainAccessEl2 ? domainAccessEl2.value : '';
+  const domainLoginEmail = document.getElementById('domainLoginEmail').value.trim();
+  const emailAddresses   = document.getElementById('emailAddresses').value.trim();
   const emailUsers     = document.getElementById('emailUsers').value;
   const notes          = document.getElementById('notes').value.trim();
 
@@ -477,7 +614,10 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
     body: JSON.stringify({
       firstName, lastName, email, phone, contactMethod,
-      businessName, domainName, emailAddresses, emailUsers,
+      businessName,
+      domainOwned: domainOwned2, domainName, domainRegistrar,
+      domainAccess: domainAccess2, domainLoginEmail,
+      emailAddresses, emailUsers,
       emailPlatform: 'Zoho Mail', notes,
     }),
   })
