@@ -119,6 +119,23 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red)!important;
 .btn-submit{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);color:var(--gold);width:100%;padding:.9rem;font-size:.95rem;letter-spacing:.02em;box-shadow:0 4px 20px rgba(11,29,58,.3);}
 .btn-submit:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(11,29,58,.4);}
 
+/* ═══ PRICING CARD ═══ */
+.price-card{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-light) 100%);border-radius:var(--radius-lg);padding:1.5rem 1.5rem 1.25rem;margin-bottom:1rem;box-shadow:var(--shadow-lg);}
+.price-card-label{font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:700;color:rgba(226,201,126,.7);letter-spacing:.18em;text-transform:uppercase;margin-bottom:.35rem;}
+.price-card-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--white);margin-bottom:.15rem;}
+.price-card-amount{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;color:var(--gold);line-height:1;margin:.5rem 0 1rem;}
+.price-card-amount sup{font-size:1.1rem;vertical-align:top;margin-top:.5rem;display:inline-block;}
+.price-card-divider{height:1px;background:rgba(226,201,126,.2);margin:.85rem 0;}
+.price-cols{display:grid;grid-template-columns:1fr 1fr;gap:.75rem 1.25rem;}
+@media(max-width:480px){.price-cols{grid-template-columns:1fr;}}
+.price-col-label{font-size:.68rem;font-weight:700;color:rgba(226,201,126,.65);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.4rem;}
+.price-list{list-style:none;padding:0;margin:0;}
+.price-list li{font-size:.78rem;color:rgba(255,255,255,.75);line-height:1.55;padding:.2rem 0 .2rem 1.1rem;position:relative;}
+.price-list li::before{position:absolute;left:0;font-size:.7rem;}
+.price-list.inc li::before{content:'✓';color:var(--gold);}
+.price-list.exc li::before{content:'✕';color:rgba(255,255,255,.35);}
+.price-card-note{font-size:.73rem;color:rgba(255,255,255,.45);line-height:1.6;margin-top:1rem;padding-top:.85rem;border-top:1px solid rgba(226,201,126,.15);}
+
 /* ═══ DISCLOSURES ═══ */
 .disc-box{background:var(--gray-50);border-radius:var(--radius);padding:.9rem 1.1rem;max-height:220px;overflow-y:auto;font-size:.75rem;color:var(--gray-600);line-height:1.7;margin-bottom:.85rem;border:1px solid var(--gray-200);}
 .disc-box h4{color:var(--navy);font-size:.78rem;margin-bottom:.4rem;margin-top:.9rem;}
@@ -297,6 +314,34 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red)!important;
     <div class="sum-line"><span class="lbl">Email Addresses</span><span class="val" id="sum-emails">—</span></div>
     <div class="sum-line"><span class="lbl">Email Platform</span><span class="val">Zoho Mail</span></div>
     <div class="sum-line" id="sum-notes-row"><span class="lbl">Notes</span><span class="val" id="sum-notes">—</span></div>
+  </div>
+
+  <div class="price-card">
+    <div class="price-card-label">Pricing Summary</div>
+    <div class="price-card-name">Business Email Setup</div>
+    <div class="price-card-amount"><sup>$</sup>149</div>
+    <div class="price-card-divider"></div>
+    <div class="price-cols">
+      <div>
+        <div class="price-col-label">Includes</div>
+        <ul class="price-list inc">
+          <li>Setup assistance for one domain</li>
+          <li>Setup assistance for up to 5 business email users</li>
+          <li>Business email configuration support</li>
+          <li>Domain/DNS connection support when access is provided</li>
+        </ul>
+      </div>
+      <div>
+        <div class="price-col-label">Not Included</div>
+        <ul class="price-list exc">
+          <li>Domain purchase</li>
+          <li>Domain renewal fees</li>
+          <li>Additional users above 5</li>
+          <li>Optional upgraded email platform fees</li>
+        </ul>
+      </div>
+    </div>
+    <p class="price-card-note">If you need more than 5 email users or choose to upgrade your email plan, any additional platform fees are your responsibility.</p>
   </div>
 
   <div class="card">
