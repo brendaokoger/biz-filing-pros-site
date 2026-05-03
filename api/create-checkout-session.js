@@ -157,7 +157,7 @@ module.exports = async function handler(req, res) {
     try {
       const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
       const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
+        automatic_payment_methods: { enabled: true },
         mode:           'payment',
         customer_email: customerEmail || undefined,
         line_items: [{
