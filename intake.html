@@ -1337,11 +1337,7 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
     body: formData
   })
   .then(function(fpRes) {
-    if(!fpRes.ok) throw new Error('formspree');
-    return fpRes.json();
-  })
-  .then(function(fpJson) {
-    if(fpJson.error) throw new Error('formspree');
+    if (!fpRes.ok) throw new Error('formspree');
 
     // Step 2 — Create Stripe Checkout session
     submitBtn.textContent = 'Preparing Payment…';
@@ -1382,9 +1378,9 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
     submitBtn.textContent = 'Continue to Payment';
     errorEl.style.display = 'block';
     if(err.message === 'formspree') {
-      errorEl.textContent = 'Something went wrong. Please try again or contact info@bizfilingpros.com.';
+      errorEl.textContent = 'Something went wrong. Please try again or contact support@bizfilingpros.com.';
     } else {
-      errorEl.textContent = 'Payment could not be started. Please contact info@bizfilingpros.com.';
+      errorEl.textContent = 'Payment could not be started. Please try again or contact support@bizfilingpros.com.';
     }
   });
 });
