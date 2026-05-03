@@ -265,6 +265,16 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
       </div>
     </div>
 
+    <div id="domain-no-block" style="display:none;margin-top:.75rem;">
+      <div class="info warn">
+        <strong>A domain is required</strong> before we can set up your business email. Please purchase a domain first, then return to complete this form.
+      </div>
+      <div style="display:flex;gap:.65rem;margin-top:.75rem;flex-wrap:wrap;">
+        <a href="https://www.namecheap.com/domains/" target="_blank" rel="noopener" class="btn btn-next" style="text-decoration:none;font-size:.82rem;padding:.65rem 1.25rem;">Namecheap &rarr;</a>
+        <a href="https://www.godaddy.com/domains" target="_blank" rel="noopener" class="btn btn-next" style="text-decoration:none;font-size:.82rem;padding:.65rem 1.25rem;">GoDaddy &rarr;</a>
+      </div>
+    </div>
+
     <div id="domain-details" style="display:none;">
       <div class="row s1">
         <div class="fg">
@@ -368,7 +378,7 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
 
   <div class="btn-row">
     <button type="button" class="btn btn-back" onclick="go(-1)">&larr; Back</button>
-    <button type="button" class="btn btn-next" onclick="go(1)">Review Order &rarr;</button>
+    <button type="button" class="btn btn-next" id="step2-next" onclick="go(1)">Review Order &rarr;</button>
   </div>
 </div>
 
@@ -505,10 +515,13 @@ function go(dir) {
 // ─── Domain conditional logic ───
 function onDomainOwned(radio) {
   const val = radio.value;
-  document.getElementById('domain-details').style.display = val === 'yes' ? 'block' : 'none';
-  document.getElementById('opt-domain-yes').classList.toggle('sel', val === 'yes');
-  document.getElementById('opt-domain-no').classList.toggle('sel', val === 'no');
-  if (val === 'no') {
+  const hasYes = val === 'yes';
+  document.getElementById('domain-details').style.display = hasYes ? 'block' : 'none';
+  document.getElementById('domain-no-block').style.display = hasYes ? 'none' : 'block';
+  document.getElementById('opt-domain-yes').classList.toggle('sel', hasYes);
+  document.getElementById('opt-domain-no').classList.toggle('sel', !hasYes);
+  document.getElementById('step2-next').disabled = !hasYes;
+  if (!hasYes) {
     document.querySelectorAll('[name="domainAccess"]').forEach(r => { r.checked = false; });
     ['opt-access-yes','opt-access-no','opt-access-unsure'].forEach(function(id) {
       document.getElementById(id).classList.remove('sel');
