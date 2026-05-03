@@ -89,7 +89,6 @@ textarea{resize:vertical;min-height:72px;}
 select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%239B9688'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:2rem;}
 .field-hint{font-size:.72rem;color:var(--gray-400);margin-top:4px;line-height:1.5;}
 .err{font-size:.72rem;color:var(--red);margin-top:4px;display:none;}
-input.invalid,select.invalid,textarea.invalid{border-color:var(--red)!important;box-shadow:none;}
 
 /* ═══ OPTION CARDS ═══ */
 .opts{display:grid;gap:.6rem;margin-bottom:.85rem;}
@@ -194,27 +193,23 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red)!important;
 
     <div class="row">
       <div class="fg">
-        <label>First Name <span class="req">*</span></label>
+        <label>First Name</label>
         <input type="text" id="firstName" name="firstName" placeholder="Jane" autocomplete="given-name">
-        <span class="err" id="err-firstName">First name is required.</span>
       </div>
       <div class="fg">
-        <label>Last Name <span class="req">*</span></label>
+        <label>Last Name</label>
         <input type="text" id="lastName" name="lastName" placeholder="Smith" autocomplete="family-name">
-        <span class="err" id="err-lastName">Last name is required.</span>
       </div>
     </div>
 
     <div class="row">
       <div class="fg">
-        <label>Email Address <span class="req">*</span></label>
+        <label>Email Address</label>
         <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email">
-        <span class="err" id="err-email">A valid email address is required.</span>
       </div>
       <div class="fg">
-        <label>Phone Number <span class="req">*</span></label>
+        <label>Phone Number</label>
         <input type="tel" id="phone" name="phone" placeholder="(317) 555-0123" autocomplete="tel">
-        <span class="err" id="err-phone">Phone number is required.</span>
       </div>
     </div>
 
@@ -249,27 +244,24 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red)!important;
 
     <div class="row s1">
       <div class="fg">
-        <label>Business Name <span class="req">*</span></label>
+        <label>Business Name</label>
         <input type="text" id="businessName" name="businessName" placeholder="Smith Consulting LLC">
-        <span class="err" id="err-businessName">Business name is required.</span>
       </div>
     </div>
 
     <div class="row s1">
       <div class="fg">
-        <label>Domain Name <span class="req">*</span></label>
+        <label>Domain Name</label>
         <input type="text" id="domainName" name="domainName" placeholder="smithconsulting.com">
         <div class="field-hint">Enter your existing domain. If you don't have one yet, type "I need help choosing."</div>
-        <span class="err" id="err-domainName">Please enter a domain or indicate you need help.</span>
       </div>
     </div>
 
     <div class="row s1">
       <div class="fg">
-        <label>Email Address(es) Needed <span class="req">*</span></label>
+        <label>Email Address(es) Needed</label>
         <input type="text" id="emailAddresses" name="emailAddresses" placeholder="info@, jane@, support@ — or describe what you need">
         <div class="field-hint">List the addresses you want set up, or describe the structure you have in mind.</div>
-        <span class="err" id="err-emailAddresses">Please describe the email addresses you need.</span>
       </div>
     </div>
   </div>
@@ -411,65 +403,8 @@ function showStep(n) {
   scrollTop();
 }
 
-// ─── Validation helpers ───
-function req(id, errId) {
-  const el = document.getElementById(id);
-  const ok = el.value.trim() !== '';
-  el.classList.toggle('invalid', !ok);
-  const err = document.getElementById(errId);
-  if (err) err.style.display = ok ? 'none' : 'block';
-  return ok;
-}
-
-function reqEmail(id, errId) {
-  const el = document.getElementById(id);
-  const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
-  el.classList.toggle('invalid', !ok);
-  const err = document.getElementById(errId);
-  if (err) err.style.display = ok ? 'none' : 'block';
-  return ok;
-}
-
-function clearInvalid(id) {
-  const el = document.getElementById(id);
-  if (el) {
-    el.addEventListener('input', function() {
-      if (this.value.trim()) {
-        this.classList.remove('invalid');
-        const err = document.getElementById('err-' + id);
-        if (err) err.style.display = 'none';
-      }
-    }, { once: true });
-  }
-}
-
-function validateStep(n) {
-  if (n === 1) {
-    const a = req('firstName','err-firstName');
-    const b = req('lastName','err-lastName');
-    const c = reqEmail('email','err-email');
-    const d = req('phone','err-phone');
-    if (!a) clearInvalid('firstName');
-    if (!b) clearInvalid('lastName');
-    if (!c) clearInvalid('email');
-    if (!d) clearInvalid('phone');
-    return a && b && c && d;
-  }
-  if (n === 2) {
-    const a = req('businessName','err-businessName');
-    const b = req('domainName','err-domainName');
-    const c = req('emailAddresses','err-emailAddresses');
-    if (!a) clearInvalid('businessName');
-    if (!b) clearInvalid('domainName');
-    if (!c) clearInvalid('emailAddresses');
-    return a && b && c;
-  }
-  return true;
-}
-
 function go(dir) {
   if (dir > 0) {
-    if (!validateStep(step)) return;
     if (step === 2) populateSummary();
     step = Math.min(STEPS, step + 1);
   } else {
