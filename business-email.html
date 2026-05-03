@@ -345,9 +345,6 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red)!important;
 </footer>
 
 <script>
-// ─── Replace with your Stripe Payment Link once created ───
-const STRIPE_PAYMENT_LINK = 'PASTE_BUSINESS_EMAIL_STRIPE_LINK_HERE';
-
 let step = 1;
 const STEPS = 3;
 
@@ -456,7 +453,7 @@ function populateSummary() {
   notesRow.style.display = (notes && notes !== '—') ? 'flex' : 'none';
 }
 
-// ─── Submit: Formspree → Stripe ───
+// ─── Submit: Formspree → /api/create-checkout-session → Stripe ───
 document.getElementById('mainForm').addEventListener('submit', function(e) {
   e.preventDefault();
 
@@ -469,42 +466,62 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
   btn.disabled = true;
   btn.textContent = 'Processing…';
 
-  const payload = {
-    firstName:      document.getElementById('firstName').value.trim(),
-    lastName:       document.getElementById('lastName').value.trim(),
-    email:          document.getElementById('email').value.trim(),
-    phone:          document.getElementById('phone').value.trim(),
-    contactMethod:  document.getElementById('contactMethod').value,
-    businessName:   document.getElementById('businessName').value.trim(),
-    domainName:     document.getElementById('domainName').value.trim(),
-    emailAddresses: document.getElementById('emailAddresses').value.trim(),
-    emailPlatform:  'Zoho Mail',
-    notes:          document.getElementById('notes').value.trim(),
-  };
+  const firstName      = document.getElementById('firstName').value.trim();
+  const lastName       = document.getElementById('lastName').value.trim();
+  const email          = document.getElementById('email').value.trim();
+  const phone          = document.getElementById('phone').value.trim();
+  const contactMethod  = document.getElementById('contactMethod').value;
+  const businessName   = document.getElementById('businessName').value.trim();
+  const domainName     = document.getElementById('domainName').value.trim();
+  const emailAddresses = document.getElementById('emailAddresses').value.trim();
+  const notes          = document.getElementById('notes').value.trim();
 
+  // Step 1 — Formspree (captures all form fields for Zapier)
   fetch('https://formspree.io/f/xojyryyw', {
     method:  'POST',
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-    body:    JSON.stringify(payload),
+    body: JSON.stringify({
+      firstName, lastName, email, phone, contactMethod,
+      businessName, domainName, emailAddresses,
+      emailPlatform: 'Zoho Mail', notes,
+    }),
   })
-    .then(function(res) {
-      if (!res.ok) throw new Error('formspree');
-      if (!STRIPE_PAYMENT_LINK || !STRIPE_PAYMENT_LINK.startsWith('http')) {
-        throw new Error('stripe-link-not-configured');
-      }
-      window.location.href = STRIPE_PAYMENT_LINK;
-    })
-    .catch(function(err) {
-      btn.disabled = false;
-      btn.textContent = 'Continue to Payment →';
-      const errEl = document.getElementById('submit-error');
-      if (errEl) {
-        errEl.innerHTML = err && err.message === 'stripe-link-not-configured'
-          ? 'Payment link not yet configured. Please contact us at <a href="mailto:support@bizfilingpros.com" style="color:inherit;font-weight:600;">support@bizfilingpros.com</a> to complete your order.'
-          : 'Something went wrong submitting your request. Please try again or contact us at <a href="mailto:support@bizfilingpros.com" style="color:inherit;font-weight:600;">support@bizfilingpros.com</a>.';
-        errEl.style.display = 'block';
-      }
+  .then(function(res) {
+    if (!res.ok) throw new Error('formspree');
+    btn.textContent = 'Preparing Payment…';
+
+    // Step 2 — create Stripe Checkout session via existing API
+    return fetch('/api/create-checkout-session', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        service:       'business-email',
+        customerName:  firstName + ' ' + lastName,
+        customerEmail: email,
+        businessName:  businessName,
+      }),
     });
+  })
+  .then(function(stripeRes) {
+    return stripeRes.json().then(function(data) {
+      if (!stripeRes.ok || !data.url) throw new Error('stripe');
+      return data.url;
+    });
+  })
+  .then(function(checkoutUrl) {
+    window.location.href = checkoutUrl;
+  })
+  .catch(function(err) {
+    btn.disabled = false;
+    btn.textContent = 'Continue to Payment →';
+    const errEl = document.getElementById('submit-error');
+    if (errEl) {
+      errEl.innerHTML = err && err.message === 'formspree'
+        ? 'Your information could not be submitted. Please try again or contact us at <a href="mailto:support@bizfilingpros.com" style="color:inherit;font-weight:600;">support@bizfilingpros.com</a>.'
+        : 'Payment could not be started. Please try again or contact us at <a href="mailto:support@bizfilingpros.com" style="color:inherit;font-weight:600;">support@bizfilingpros.com</a>.';
+      errEl.style.display = 'block';
+    }
+  });
 });
 
 updateProgress();

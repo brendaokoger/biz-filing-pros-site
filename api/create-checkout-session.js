@@ -4,6 +4,19 @@
 // All prices sourced directly from intake.html — do not edit independently
 // ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// Standalone services (fixed price, no package/state/entity logic)
+// ---------------------------------------------------------------------------
+const SERVICES = {
+  'business-email': {
+    stripeLabel: 'Biz Filing Pros Business Email Setup',
+    description: 'Professional business email setup on Zoho Mail using your domain.',
+    price:       149,
+    successUrl:  'https://www.bizfilingpros.com/application-received',
+    cancelUrl:   'https://www.bizfilingpros.com/business-email',
+  },
+};
+
 const PACKAGES = {
   essentials: {
     label:       'Business Starter Package',
@@ -104,6 +117,7 @@ module.exports = async function handler(req, res) {
   if (!body || typeof body !== 'object') body = {};
 
   const {
+    service,
     package: packageKey,
     stateFormation,
     entityType,
@@ -120,6 +134,7 @@ module.exports = async function handler(req, res) {
 
   // ---- Safe diagnostic logging (no secrets) -------------------------------
   console.log('[checkout] received payload:', JSON.stringify({
+    service,
     package:      packageKey,
     state:        stateFormation,
     entityType,
@@ -130,6 +145,46 @@ module.exports = async function handler(req, res) {
     couponCode,
     frontendTotal,
   }));
+
+  // ---- Standalone service path (business-email, etc.) ---------------------
+  if (service) {
+    const svc = SERVICES[service];
+    if (!svc) {
+      console.log('[checkout] FAIL unknown service:', service);
+      return res.status(400).json({ error: `Unknown service: "${service}".` });
+    }
+    console.log('[checkout] service OK:', service, '($' + svc.price + ')');
+    try {
+      const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        mode:           'payment',
+        customer_email: customerEmail || undefined,
+        line_items: [{
+          price_data: {
+            currency:     'usd',
+            product_data: { name: svc.stripeLabel, description: svc.description },
+            unit_amount:  svc.price * 100,
+          },
+          quantity: 1,
+        }],
+        success_url: svc.successUrl,
+        cancel_url:  svc.cancelUrl,
+        metadata: {
+          service:           service,
+          customer_name:     (customerName  || '').slice(0, 500),
+          customer_email:    (customerEmail || '').slice(0, 500),
+          business_name:     (businessName  || '').slice(0, 500),
+          backend_total_usd: String(svc.price),
+        },
+      });
+      console.log('[checkout] service session created OK:', session.id);
+      return res.status(200).json({ url: session.url });
+    } catch (err) {
+      console.error('[checkout] Stripe error (service):', err.message);
+      return res.status(500).json({ error: 'Payment session could not be created. Please try again.' });
+    }
+  }
 
   // ---- Validate package ---------------------------------------------------
   if (!packageKey || !PACKAGES[packageKey]) {
