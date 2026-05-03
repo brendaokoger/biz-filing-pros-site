@@ -106,6 +106,7 @@ module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed.' });
 
   if (!process.env.STRIPE_SECRET_KEY) {
+    console.error('[checkout] FATAL: STRIPE_SECRET_KEY env var is not set');
     return res.status(503).json({ error: 'Payment processing is not configured.' });
   }
 
@@ -181,7 +182,7 @@ module.exports = async function handler(req, res) {
       console.log('[checkout] service session created OK:', session.id);
       return res.status(200).json({ url: session.url });
     } catch (err) {
-      console.error('[checkout] Stripe error (service):', err.message);
+      console.error('[checkout] Stripe error (service):', err.message, '| type:', err.type, '| code:', err.code, '| status:', err.statusCode);
       return res.status(500).json({ error: 'Payment session could not be created. Please try again.' });
     }
   }
