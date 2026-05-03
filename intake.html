@@ -1365,12 +1365,12 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
     });
   })
   .then(function(stripeRes) {
-    return stripeRes.json().then(function(data) {
-      if(!stripeRes.ok || !data.url) throw new Error('stripe');
-      return data.url;
-    });
+    if (!stripeRes.ok) throw new Error('stripe');
+    return stripeRes.json();
   })
-  .then(function(checkoutUrl) {
+  .then(function(data) {
+    var checkoutUrl = data.url || data.checkoutUrl;
+    if (!checkoutUrl) throw new Error('stripe');
     window.location.href = checkoutUrl;
   })
   .catch(function(err) {
