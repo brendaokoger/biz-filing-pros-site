@@ -1337,11 +1337,7 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
     body: formData
   })
   .then(function(fpRes) {
-    if(!fpRes.ok) throw new Error('formspree');
-    return fpRes.json();
-  })
-  .then(function(fpJson) {
-    if(fpJson.error) throw new Error('formspree');
+    if (!fpRes.ok) throw new Error('formspree');
 
     // Step 2 — Create Stripe Checkout session
     submitBtn.textContent = 'Preparing Payment…';
