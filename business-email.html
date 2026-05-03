@@ -264,6 +264,21 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
         <div class="field-hint">List the addresses you want set up, or describe the structure you have in mind.</div>
       </div>
     </div>
+
+    <div class="row">
+      <div class="fg">
+        <label>Number of Email Users</label>
+        <select id="emailUsers" name="emailUsers">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <div class="field-hint">Your $149 setup includes up to 5 email users.</div>
+      </div>
+      <div></div>
+    </div>
   </div>
 
   <div class="card">
@@ -304,6 +319,7 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
     <div class="sum-line"><span class="lbl">Business Name</span><span class="val" id="sum-business">—</span></div>
     <div class="sum-line"><span class="lbl">Domain</span><span class="val" id="sum-domain">—</span></div>
     <div class="sum-line"><span class="lbl">Email Addresses</span><span class="val" id="sum-emails">—</span></div>
+    <div class="sum-line"><span class="lbl">Email Users</span><span class="val" id="sum-users">—</span></div>
     <div class="sum-line"><span class="lbl">Email Platform</span><span class="val">Zoho Mail</span></div>
     <div class="sum-line" id="sum-notes-row"><span class="lbl">Notes</span><span class="val" id="sum-notes">—</span></div>
   </div>
@@ -427,6 +443,7 @@ function populateSummary() {
   document.getElementById('sum-business').textContent = v('businessName');
   document.getElementById('sum-domain').textContent   = v('domainName');
   document.getElementById('sum-emails').textContent   = v('emailAddresses');
+  document.getElementById('sum-users').textContent    = v('emailUsers');
   const notes = v('notes');
   const notesRow = document.getElementById('sum-notes-row');
   document.getElementById('sum-notes').textContent = notes;
@@ -454,6 +471,7 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
   const businessName   = document.getElementById('businessName').value.trim();
   const domainName     = document.getElementById('domainName').value.trim();
   const emailAddresses = document.getElementById('emailAddresses').value.trim();
+  const emailUsers     = document.getElementById('emailUsers').value;
   const notes          = document.getElementById('notes').value.trim();
 
   // Step 1 — Formspree (captures all form fields for Zapier)
@@ -462,7 +480,7 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
     body: JSON.stringify({
       firstName, lastName, email, phone, contactMethod,
-      businessName, domainName, emailAddresses,
+      businessName, domainName, emailAddresses, emailUsers,
       emailPlatform: 'Zoho Mail', notes,
     }),
   })
