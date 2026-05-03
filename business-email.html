@@ -258,42 +258,10 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red)!important;
   </div>
 
   <div class="card">
-    <h2 class="card-t">Email Platform</h2>
-    <p class="card-s">Select your preferred email platform. Not sure? We'll recommend one that fits your needs.</p>
+    <h2 class="card-t">Additional Information</h2>
+    <p class="card-s">Anything else we should know to complete your setup.</p>
 
-    <div class="opts cols2" id="platformOpts">
-      <label class="opt" onclick="pickPlatform(this,'Google Workspace (Gmail)')">
-        <input type="radio" name="emailPlatform" value="Google Workspace (Gmail)">
-        <div class="opt-body">
-          <div class="opt-title">Google Workspace</div>
-          <div class="opt-desc">Gmail-powered business email. Familiar interface, strong collaboration tools.</div>
-        </div>
-      </label>
-      <label class="opt" onclick="pickPlatform(this,'Microsoft 365 (Outlook)')">
-        <input type="radio" name="emailPlatform" value="Microsoft 365 (Outlook)">
-        <div class="opt-body">
-          <div class="opt-title">Microsoft 365</div>
-          <div class="opt-desc">Outlook-powered email. Ideal if your team uses Word, Excel, or Teams.</div>
-        </div>
-      </label>
-      <label class="opt" onclick="pickPlatform(this,'No Preference — Recommend one for me')">
-        <input type="radio" name="emailPlatform" value="No Preference — Recommend one for me">
-        <div class="opt-body">
-          <div class="opt-title">No Preference</div>
-          <div class="opt-desc">We'll recommend the best fit based on your business needs.</div>
-        </div>
-      </label>
-      <label class="opt" onclick="pickPlatform(this,'Other — I\'ll explain in notes')">
-        <input type="radio" name="emailPlatform" value="Other — I'll explain in notes">
-        <div class="opt-body">
-          <div class="opt-title">Other</div>
-          <div class="opt-desc">Using a different provider? Describe it in the notes below.</div>
-        </div>
-      </label>
-    </div>
-    <span class="err" id="err-platform">Please select an email platform.</span>
-
-    <div class="row s1" style="margin-top:.85rem;">
+    <div class="row s1">
       <div class="fg">
         <label>Notes or Special Requests</label>
         <textarea id="notes" name="notes" placeholder="Any specific instructions, questions, or details about your setup…"></textarea>
@@ -327,7 +295,7 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red)!important;
     <div class="sum-line"><span class="lbl">Business Name</span><span class="val" id="sum-business">—</span></div>
     <div class="sum-line"><span class="lbl">Domain</span><span class="val" id="sum-domain">—</span></div>
     <div class="sum-line"><span class="lbl">Email Addresses</span><span class="val" id="sum-emails">—</span></div>
-    <div class="sum-line"><span class="lbl">Platform</span><span class="val" id="sum-platform">—</span></div>
+    <div class="sum-line"><span class="lbl">Email Platform</span><span class="val">Zoho Mail</span></div>
     <div class="sum-line" id="sum-notes-row"><span class="lbl">Notes</span><span class="val" id="sum-notes">—</span></div>
   </div>
 
@@ -339,7 +307,7 @@ input.invalid,select.invalid,textarea.invalid{border-color:var(--red)!important;
       <h4>Service Agreement</h4>
       <p>By submitting this form, you authorize Biz Filing Pros LLC to proceed with Business Email Setup services based on the information provided. You confirm that you own or have authority over the domain name listed, or that you are requesting assistance obtaining one.</p>
       <h4>Pricing &amp; Payment</h4>
-      <p>Business Email Setup is $149, payable immediately at checkout after this form is submitted. Third-party platform subscription fees (such as Google Workspace or Microsoft 365) are separate and are the client's responsibility.</p>
+      <p>Business Email Setup is $149, payable immediately at checkout after this form is submitted. Your email will be set up on Zoho Mail. Any optional Zoho Mail subscription upgrades beyond the included setup are the client's responsibility.</p>
       <h4>Cancellation</h4>
       <p>You may cancel before setup work has begun. Once domain configuration, email provisioning, or platform setup has started, cancellations may not be accepted. All cancellation requests must be submitted by email to support@bizfilingpros.com.</p>
       <h4>No Legal Advice</h4>
@@ -449,14 +417,10 @@ function validateStep(n) {
     const a = req('businessName','err-businessName');
     const b = req('domainName','err-domainName');
     const c = req('emailAddresses','err-emailAddresses');
-    const selPlatform = document.querySelector('input[name="emailPlatform"]:checked');
-    const errPlatform = document.getElementById('err-platform');
-    const d = !!selPlatform;
-    if (errPlatform) errPlatform.style.display = d ? 'none' : 'block';
     if (!a) clearInvalid('businessName');
     if (!b) clearInvalid('domainName');
     if (!c) clearInvalid('emailAddresses');
-    return a && b && c && d;
+    return a && b && c;
   }
   return true;
 }
@@ -470,16 +434,6 @@ function go(dir) {
     step = Math.max(1, step - 1);
   }
   showStep(step);
-}
-
-// ─── Platform selection ───
-function pickPlatform(el, val) {
-  document.querySelectorAll('#platformOpts .opt').forEach(o => o.classList.remove('sel'));
-  el.classList.add('sel');
-  const input = el.querySelector('input[type="radio"]');
-  if (input) input.checked = true;
-  const errPlatform = document.getElementById('err-platform');
-  if (errPlatform) errPlatform.style.display = 'none';
 }
 
 // ─── Summary ───
@@ -496,8 +450,6 @@ function populateSummary() {
   document.getElementById('sum-business').textContent = v('businessName');
   document.getElementById('sum-domain').textContent   = v('domainName');
   document.getElementById('sum-emails').textContent   = v('emailAddresses');
-  const plat = document.querySelector('input[name="emailPlatform"]:checked');
-  document.getElementById('sum-platform').textContent = plat ? plat.value : '—';
   const notes = v('notes');
   const notesRow = document.getElementById('sum-notes-row');
   document.getElementById('sum-notes').textContent = notes;
@@ -526,7 +478,7 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
     businessName:   document.getElementById('businessName').value.trim(),
     domainName:     document.getElementById('domainName').value.trim(),
     emailAddresses: document.getElementById('emailAddresses').value.trim(),
-    emailPlatform:  (document.querySelector('input[name="emailPlatform"]:checked') || {}).value || '',
+    emailPlatform:  'Zoho Mail',
     notes:          document.getElementById('notes').value.trim(),
   };
 
@@ -537,13 +489,21 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
   })
     .then(function(res) {
       if (!res.ok) throw new Error('formspree');
+      if (!STRIPE_PAYMENT_LINK || !STRIPE_PAYMENT_LINK.startsWith('http')) {
+        throw new Error('stripe-link-not-configured');
+      }
       window.location.href = STRIPE_PAYMENT_LINK;
     })
-    .catch(function() {
+    .catch(function(err) {
       btn.disabled = false;
       btn.textContent = 'Continue to Payment →';
       const errEl = document.getElementById('submit-error');
-      if (errEl) errEl.style.display = 'block';
+      if (errEl) {
+        errEl.innerHTML = err && err.message === 'stripe-link-not-configured'
+          ? 'Payment link not yet configured. Please contact us at <a href="mailto:support@bizfilingpros.com" style="color:inherit;font-weight:600;">support@bizfilingpros.com</a> to complete your order.'
+          : 'Something went wrong submitting your request. Please try again or contact us at <a href="mailto:support@bizfilingpros.com" style="color:inherit;font-weight:600;">support@bizfilingpros.com</a>.';
+        errEl.style.display = 'block';
+      }
     });
 });
 
