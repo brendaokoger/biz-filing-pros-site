@@ -531,6 +531,7 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
     </div>
   </div>
   <div class="btn-row"><button type="button" class="btn btn-back" onclick="go(-1)">← Back</button><button type="button" class="btn btn-next" onclick="go(1)">Continue →</button></div>
+  <p id="pkgStepError" style="display:none;font-size:.8rem;color:#c0392b;text-align:center;margin-top:.5rem;">Please select a package before continuing.</p>
 </div>
 
 <!-- ════════ STEP 6: REVIEW & SUBMIT ════════ -->
@@ -787,6 +788,15 @@ function resetAddrUI() {
 
 /* ═══ NAVIGATION ═══ */
 function go(dir) {
+  // Prevent advancing from Step 5 without a package selected
+  if (dir === 1 && step === 5 && !pkgName) {
+    const pkgErr = document.getElementById('pkgStepError');
+    if (pkgErr) { pkgErr.style.display = 'block'; }
+    return;
+  }
+  const pkgErr = document.getElementById('pkgStepError');
+  if (pkgErr) pkgErr.style.display = 'none';
+
   step += dir;
   step = Math.max(1, Math.min(STEPS, step));
   document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
@@ -868,6 +878,8 @@ function pickPkg(el,name,price) {
   applyPackageDisables();
   revalidateCoupon();
   calcTotal();
+  const pkgErr = document.getElementById('pkgStepError');
+  if (pkgErr) pkgErr.style.display = 'none';
 }
 
 // Disable add-ons that are already included in the selected package
@@ -1324,6 +1336,26 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
     if(PRO_EXCLUDED_FEES[st]) finalTotal += PRO_EXCLUDED_FEES[st];
   }
   if(couponApplied && couponDiscount > 0) finalTotal = Math.max(0, finalTotal - couponDiscount);
+
+  // Pre-flight: catch missing required values before calling any API
+  const _st = document.getElementById('stateSelect').value;
+  const _et = document.getElementById('entityType').value;
+  const _email = document.querySelector('input[name="email"]') ? document.querySelector('input[name="email"]').value.trim() : '';
+  if (!pkgName || !_st || !_et || !_email) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Continue to Payment';
+    errorEl.style.display = 'block';
+    if (!pkgName) {
+      errorEl.textContent = 'No package selected. Please go back to Step 5 and choose a package.';
+    } else if (!_st) {
+      errorEl.textContent = 'State of formation is missing. Please go back to Step 2 and select your state.';
+    } else if (!_et) {
+      errorEl.textContent = 'Entity type is missing. Please go back to Step 2 and select your entity type.';
+    } else {
+      errorEl.textContent = 'Email address is missing. Please go back to Step 1 and enter your email.';
+    }
+    return;
+  }
 
   const formData = new FormData(document.getElementById('mainForm'));
   formData.append('calculatedTotal', '$' + finalTotal.toLocaleString());
