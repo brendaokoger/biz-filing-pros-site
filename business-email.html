@@ -339,18 +339,10 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
       </div>
     </div>
 
-    <div class="row s1">
-      <div class="fg">
-        <label>Email Address(es) Needed</label>
-        <input type="text" id="emailAddresses" name="emailAddresses" placeholder="info@, jane@, support@ — or describe what you need">
-        <div class="field-hint">List the addresses you want set up, or describe the structure you have in mind.</div>
-      </div>
-    </div>
-
     <div class="row">
       <div class="fg">
         <label>Number of Email Users</label>
-        <select id="emailUsers" name="emailUsers">
+        <select id="emailUsers" name="emailUsers" onchange="renderEmailFields(parseInt(this.value,10));populateSummary();">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -361,6 +353,8 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
       </div>
       <div></div>
     </div>
+
+    <div id="emailAddressFields"></div>
   </div>
 
   <div class="card">
@@ -583,7 +577,13 @@ function populateSummary() {
     document.getElementById('sum-login-row').style.display = 'none';
   }
 
-  document.getElementById('sum-emails').textContent   = v('emailAddresses');
+  var _eCount = parseInt(document.getElementById('emailUsers').value, 10) || 1;
+  var _eParts = [];
+  for (var _i = 1; _i <= _eCount; _i++) {
+    var _ea = (document.getElementById('emailAddr_' + _i)?.value || '').trim();
+    if (_ea) _eParts.push(_ea);
+  }
+  document.getElementById('sum-emails').textContent   = _eParts.length ? _eParts.join(', ') : '—';
   document.getElementById('sum-users').textContent    = v('emailUsers');
   const notes = v('notes');
   const notesRow = document.getElementById('sum-notes-row');
@@ -617,8 +617,13 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
   const domainAccessEl2  = document.querySelector('[name="domainAccess"]:checked');
   const domainAccess2    = domainAccessEl2 ? domainAccessEl2.value : '';
   const domainLoginEmail = document.getElementById('domainLoginEmail').value.trim();
-  const emailAddresses   = document.getElementById('emailAddresses').value.trim();
-  const emailUsers     = document.getElementById('emailUsers').value;
+  const emailUsers       = document.getElementById('emailUsers').value;
+  var _submitEmailParts  = [];
+  for (var _si = 1; _si <= parseInt(emailUsers, 10); _si++) {
+    var _sev = (document.getElementById('emailAddr_' + _si)?.value || '').trim();
+    _submitEmailParts.push('Requested Email Address ' + _si + ': ' + (_sev || '(not provided)'));
+  }
+  const emailAddresses   = _submitEmailParts.join(' | ');
   const notes          = document.getElementById('notes').value.trim();
 
   // Step 1 — Formspree (captures all form fields for Zapier)
@@ -672,6 +677,40 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
   });
 });
 
+// ─── Dynamic email address fields ───
+var _emailPlaceholders = [
+  'info@businessname.com',
+  'support@businessname.com',
+  'admin@businessname.com',
+  'yourname@businessname.com',
+  'billing@businessname.com'
+];
+
+function renderEmailFields(count) {
+  var container = document.getElementById('emailAddressFields');
+  if (!container) return;
+  container.innerHTML = '';
+  for (var _ri = 1; _ri <= count; _ri++) {
+    var row = document.createElement('div');
+    row.className = 'row s1';
+    var fg = document.createElement('div');
+    fg.className = 'fg';
+    var lbl = document.createElement('label');
+    lbl.textContent = 'Requested Email Address ' + _ri;
+    var inp = document.createElement('input');
+    inp.type = 'text';
+    inp.id   = 'emailAddr_' + _ri;
+    inp.name = 'emailAddr_' + _ri;
+    inp.placeholder = _emailPlaceholders[_ri - 1];
+    inp.addEventListener('input', populateSummary);
+    fg.appendChild(lbl);
+    fg.appendChild(inp);
+    row.appendChild(fg);
+    container.appendChild(row);
+  }
+}
+
+renderEmailFields(parseInt(document.getElementById('emailUsers').value, 10) || 1);
 updateProgress();
 </script>
 </body>
