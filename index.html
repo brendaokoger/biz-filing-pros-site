@@ -89,11 +89,14 @@ ul{list-style:none}
 .hero-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:28px;opacity:0;animation:hero-reveal 0.8s var(--ease) 0.2s forwards}
 .hero-eyebrow-line{width:32px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);flex-shrink:0}
 .hero-eyebrow-text{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold)}
-.hero-headline{font-family:var(--font-serif);font-size:clamp(42px,5vw,72px);font-weight:400;line-height:1.04;color:var(--white);margin-bottom:4px;opacity:0;animation:hero-reveal 0.9s var(--ease) 0.35s forwards;letter-spacing:-0.01em}
-.hero-headline-italic{font-family:var(--font-serif);font-size:clamp(42px,5vw,72px);font-weight:300;font-style:italic;line-height:1.04;color:var(--gold-light);margin-bottom:36px;opacity:0;animation:hero-reveal 0.9s var(--ease) 0.48s forwards;letter-spacing:-0.01em}
-.hero-sub{font-family:var(--font-sans);font-size:15px;font-weight:300;line-height:1.85;color:rgba(255,255,255,0.48);max-width:440px;margin-bottom:52px;opacity:0;animation:hero-reveal 0.85s var(--ease) 0.6s forwards}
-.hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;opacity:0;animation:hero-reveal 0.85s var(--ease) 0.75s forwards}
-.hero-stats{display:flex;gap:32px;margin-top:44px;padding-top:32px;border-top:1px solid rgba(200,164,76,0.12);opacity:0;animation:hero-reveal 0.85s var(--ease) 0.9s forwards}
+.hero-headline{font-family:var(--font-serif);font-size:clamp(44px,5.5vw,78px);font-weight:400;line-height:1.06;color:var(--white);margin-bottom:24px;opacity:0;animation:hero-reveal 0.9s var(--ease) 0.35s forwards;letter-spacing:-0.01em}
+.hero-headline em{font-style:italic;color:var(--gold-light);font-weight:300}
+.hero-subhead{font-family:var(--font-sans);font-size:15.5px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.58);max-width:500px;margin-bottom:28px;opacity:0;animation:hero-reveal 0.85s var(--ease) 0.5s forwards}
+.hero-trust{display:flex;flex-wrap:wrap;align-items:center;margin-bottom:44px;opacity:0;animation:hero-reveal 0.85s var(--ease) 0.65s forwards}
+.hero-trust-item{font-family:var(--font-sans);font-size:9.5px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,164,76,0.68);white-space:nowrap}
+.hero-trust-sep{color:rgba(200,164,76,0.3);margin:0 14px;font-size:10px;line-height:1;flex-shrink:0}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;opacity:0;animation:hero-reveal 0.85s var(--ease) 0.8s forwards}
+.hero-stats{display:flex;gap:32px;margin-top:44px;padding-top:32px;border-top:1px solid rgba(200,164,76,0.12);opacity:0;animation:hero-reveal 0.85s var(--ease) 0.95s forwards}
 .hero-stat-num{font-family:var(--font-serif);font-size:28px;font-weight:400;color:var(--gold-light);line-height:1;display:block}
 .hero-stat-label{font-family:var(--font-sans);font-size:10px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:5px;display:block}
 
@@ -107,8 +110,8 @@ ul{list-style:none}
 .map-mobile-badge{display:none}
 @media(prefers-reduced-motion:reduce){.map-pulses{display:none}.city-ripple{display:none}.map-glow{animation:none}.map-badge-dot{animation:none}}
 
-@media(max-width:960px){.hero-inner{grid-template-columns:1fr;gap:52px;text-align:center;padding:0 24px}.hero-eyebrow{justify-content:center}.hero-sub{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.hero-stats{justify-content:center}.hero-map-scene{display:none}.map-mobile-badge{display:flex;justify-content:center;align-items:center;gap:9px;margin-top:14px;opacity:0;animation:hero-reveal 0.85s var(--ease) 1s forwards}.map-mobile-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 7px var(--gold);animation:glow-pulse 2.5s ease-in-out infinite}.map-mobile-text{font-family:var(--font-sans);font-size:9px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:rgba(200,164,76,0.7)}#hero{padding:110px 0 80px}}
-@media(max-width:560px){.hero-stats{gap:20px;flex-wrap:wrap}#hero{padding:100px 0 72px}.hero-headline,.hero-headline-italic{font-size:clamp(32px,8.5vw,48px);hyphens:none;word-break:keep-all}}
+@media(max-width:960px){.hero-inner{grid-template-columns:1fr;gap:52px;text-align:center;padding:0 24px}.hero-eyebrow{justify-content:center}.hero-subhead{margin-left:auto;margin-right:auto}.hero-trust{justify-content:center}.hero-actions{justify-content:center}.hero-stats{justify-content:center}.hero-map-scene{display:none}.map-mobile-badge{display:flex;justify-content:center;align-items:center;gap:9px;margin-top:14px;opacity:0;animation:hero-reveal 0.85s var(--ease) 1s forwards}.map-mobile-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 7px var(--gold);animation:glow-pulse 2.5s ease-in-out infinite}.map-mobile-text{font-family:var(--font-sans);font-size:9px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:rgba(200,164,76,0.7)}#hero{padding:110px 0 80px}}
+@media(max-width:560px){.hero-headline{font-size:clamp(36px,9vw,56px);hyphens:none;word-break:keep-all}.hero-trust{flex-direction:column;align-items:center;gap:8px}.hero-trust-sep{display:none}.hero-stats{gap:20px;flex-wrap:wrap}#hero{padding:100px 0 72px}}
 
 /* SERVICES */
 #services{padding:110px 0;background:var(--ivory);position:relative;overflow:hidden}
@@ -340,11 +343,19 @@ a.footer-detail-value:hover{color:var(--gold-light)}
         <div class="hero-eyebrow-line"></div>
         <span class="hero-eyebrow-text">Nationwide Business Filing Services</span>
       </div>
-      <h1 class="hero-headline">Start Your Business in 7 Days</h1>
-      <p class="hero-headline-italic">Without Mistakes, Delays, or Guesswork</p>
-      <p class="hero-sub">LLC filing, EIN setup, and business setup support handled for you from start to finish.</p>
+      <h1 class="hero-headline">Start Your Business<br><em>the Right Way</em></h1>
+      <p class="hero-subhead">Business formation, registered agent service, trademarks, nonprofit filings, and business setup support &mdash; all in one professional online process.</p>
+      <div class="hero-trust">
+        <span class="hero-trust-item">Secure Online Intake</span>
+        <span class="hero-trust-sep">&bull;</span>
+        <span class="hero-trust-item">Clear Pricing</span>
+        <span class="hero-trust-sep">&bull;</span>
+        <span class="hero-trust-item">Nationwide Filing Support</span>
+        <span class="hero-trust-sep">&bull;</span>
+        <span class="hero-trust-item">Real Human Assistance</span>
+      </div>
       <div class="hero-actions">
-        <a href="intake.html" class="btn-primary">Start My Business Now &rarr;</a>
+        <a href="intake.html" class="btn-primary">Start My Business Now</a>
         <a href="https://book.stripe.com/dRm6oI5yke0EbQkdN7a3u00" class="btn-outline">Book a Consultation</a>
       </div>
       <div class="hero-stats">
