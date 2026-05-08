@@ -641,28 +641,8 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
   })
   .then(function(res) {
     if (!res.ok) throw new Error('formspree');
-    btn.textContent = 'Preparing Payment…';
-
-    // Step 2 — create Stripe Checkout session via existing API
-    return fetch('/api/create-checkout-session', {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        service:       'business-email',
-        customerName:  firstName + ' ' + lastName,
-        customerEmail: email,
-        businessName:  businessName,
-      }),
-    });
-  })
-  .then(function(stripeRes) {
-    return stripeRes.json().then(function(data) {
-      if (!stripeRes.ok || !data.url) throw new Error('stripe');
-      return data.url;
-    });
-  })
-  .then(function(checkoutUrl) {
-    window.location.href = checkoutUrl;
+    btn.textContent = 'Redirecting to Payment…';
+    window.location.href = 'https://buy.stripe.com/3cIeVe5yk09ObQkbEZa3u01';
   })
   .catch(function(err) {
     btn.disabled = false;
