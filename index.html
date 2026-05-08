@@ -89,11 +89,14 @@ ul{list-style:none}
 .hero-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:28px;opacity:0;animation:hero-reveal 0.8s var(--ease) 0.2s forwards}
 .hero-eyebrow-line{width:32px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);flex-shrink:0}
 .hero-eyebrow-text{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold)}
-.hero-headline{font-family:var(--font-serif);font-size:clamp(42px,5vw,72px);font-weight:400;line-height:1.04;color:var(--white);margin-bottom:4px;opacity:0;animation:hero-reveal 0.9s var(--ease) 0.35s forwards;letter-spacing:-0.01em}
-.hero-headline-italic{font-family:var(--font-serif);font-size:clamp(42px,5vw,72px);font-weight:300;font-style:italic;line-height:1.04;color:var(--gold-light);margin-bottom:36px;opacity:0;animation:hero-reveal 0.9s var(--ease) 0.48s forwards;letter-spacing:-0.01em}
-.hero-sub{font-family:var(--font-sans);font-size:15px;font-weight:300;line-height:1.85;color:rgba(255,255,255,0.48);max-width:440px;margin-bottom:52px;opacity:0;animation:hero-reveal 0.85s var(--ease) 0.6s forwards}
-.hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;opacity:0;animation:hero-reveal 0.85s var(--ease) 0.75s forwards}
-.hero-stats{display:flex;gap:32px;margin-top:44px;padding-top:32px;border-top:1px solid rgba(200,164,76,0.12);opacity:0;animation:hero-reveal 0.85s var(--ease) 0.9s forwards}
+.hero-headline{font-family:var(--font-serif);font-size:clamp(44px,5.5vw,78px);font-weight:400;line-height:1.06;color:var(--white);margin-bottom:24px;opacity:0;animation:hero-reveal 0.9s var(--ease) 0.35s forwards;letter-spacing:-0.01em}
+.hero-headline em{font-style:italic;color:var(--gold-light);font-weight:300}
+.hero-subhead{font-family:var(--font-sans);font-size:15.5px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.58);max-width:500px;margin-bottom:28px;opacity:0;animation:hero-reveal 0.85s var(--ease) 0.5s forwards}
+.hero-trust{display:flex;flex-wrap:wrap;align-items:center;margin-bottom:44px;opacity:0;animation:hero-reveal 0.85s var(--ease) 0.65s forwards}
+.hero-trust-item{font-family:var(--font-sans);font-size:9.5px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,164,76,0.68);white-space:nowrap}
+.hero-trust-sep{color:rgba(200,164,76,0.3);margin:0 14px;font-size:10px;line-height:1;flex-shrink:0}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;opacity:0;animation:hero-reveal 0.85s var(--ease) 0.8s forwards}
+.hero-stats{display:flex;gap:32px;margin-top:44px;padding-top:32px;border-top:1px solid rgba(200,164,76,0.12);opacity:0;animation:hero-reveal 0.85s var(--ease) 0.95s forwards}
 .hero-stat-num{font-family:var(--font-serif);font-size:28px;font-weight:400;color:var(--gold-light);line-height:1;display:block}
 .hero-stat-label{font-family:var(--font-sans);font-size:10px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:5px;display:block}
 
@@ -107,8 +110,8 @@ ul{list-style:none}
 .map-mobile-badge{display:none}
 @media(prefers-reduced-motion:reduce){.map-pulses{display:none}.city-ripple{display:none}.map-glow{animation:none}.map-badge-dot{animation:none}}
 
-@media(max-width:960px){.hero-inner{grid-template-columns:1fr;gap:52px;text-align:center;padding:0 24px}.hero-eyebrow{justify-content:center}.hero-sub{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.hero-stats{justify-content:center}.hero-map-scene{display:none}.map-mobile-badge{display:flex;justify-content:center;align-items:center;gap:9px;margin-top:14px;opacity:0;animation:hero-reveal 0.85s var(--ease) 1s forwards}.map-mobile-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 7px var(--gold);animation:glow-pulse 2.5s ease-in-out infinite}.map-mobile-text{font-family:var(--font-sans);font-size:9px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:rgba(200,164,76,0.7)}#hero{padding:110px 0 80px}}
-@media(max-width:560px){.hero-stats{gap:20px;flex-wrap:wrap}#hero{padding:100px 0 72px}.hero-headline,.hero-headline-italic{font-size:clamp(36px,9vw,52px)}}
+@media(max-width:960px){.hero-inner{grid-template-columns:1fr;gap:52px;text-align:center;padding:0 24px}.hero-eyebrow{justify-content:center}.hero-subhead{margin-left:auto;margin-right:auto}.hero-trust{justify-content:center}.hero-actions{justify-content:center}.hero-stats{justify-content:center}.hero-map-scene{display:none}.map-mobile-badge{display:flex;justify-content:center;align-items:center;gap:9px;margin-top:14px;opacity:0;animation:hero-reveal 0.85s var(--ease) 1s forwards}.map-mobile-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 7px var(--gold);animation:glow-pulse 2.5s ease-in-out infinite}.map-mobile-text{font-family:var(--font-sans);font-size:9px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:rgba(200,164,76,0.7)}#hero{padding:110px 0 80px}}
+@media(max-width:560px){.hero-headline{font-size:clamp(36px,9vw,56px);hyphens:none;word-break:keep-all}.hero-trust{flex-direction:column;align-items:center;gap:8px}.hero-trust-sep{display:none}.hero-stats{gap:20px;flex-wrap:wrap}#hero{padding:100px 0 72px}}
 
 /* SERVICES */
 #services{padding:110px 0;background:var(--ivory);position:relative;overflow:hidden}
@@ -135,6 +138,8 @@ ul{list-style:none}
 .svc-cta{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:7px;transition:gap 0.25s var(--ease),color 0.25s;min-height:40px}
 .svc-cta::after{content:'→';font-size:12px;transition:transform 0.25s var(--ease)}
 .svc-cta:hover{color:var(--gold-light);gap:11px}
+.svc-cta-disabled{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.2);display:flex;align-items:center;min-height:40px;cursor:not-allowed;pointer-events:none;user-select:none}
+.svc-ribbon{position:absolute;top:20px;right:-22px;width:96px;padding:6px 0;background:var(--gold);color:var(--navy);font-family:var(--font-sans);font-size:8px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;text-align:center;transform:rotate(45deg);pointer-events:none;z-index:3;box-shadow:0 2px 10px rgba(200,164,76,0.4)}
 .services-disclaimer{max-width:700px;margin:52px auto 0;text-align:center;font-family:var(--font-sans);font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.8;border-top:1px solid rgba(200,164,76,0.2);padding-top:36px;position:relative;z-index:1}
 .services-cta-block{margin:48px auto 0;max-width:600px;text-align:center;padding:36px 40px;background:var(--navy);border:1px solid rgba(200,164,76,0.2);border-radius:var(--radius-lg);position:relative;z-index:1}
 .services-cta-block p{font-family:var(--font-sans);font-size:14px;font-weight:300;color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:22px}
@@ -338,11 +343,10 @@ a.footer-detail-value:hover{color:var(--gold-light)}
         <div class="hero-eyebrow-line"></div>
         <span class="hero-eyebrow-text">Nationwide Business Filing Services</span>
       </div>
-      <h1 class="hero-headline">Start Your Business</h1>
-      <p class="hero-headline-italic">the Right Way</p>
-      <p class="hero-sub">LLC formation, trademarks, registered agent service, and business setup support in all 50 states. No guesswork. No missed steps. Just professional filing done right.</p>
+      <h1 class="hero-headline">Start Your Business<br><em>the Right Way</em></h1>
+      <p class="hero-subhead">Professional business filing and setup support for LLCs, corporations, nonprofits, trademarks, registered agent service, and business essentials &mdash; built to help you file with clarity and confidence.</p>
       <div class="hero-actions">
-        <a href="intake.html" class="btn-primary">Start Your Filing</a>
+        <a href="intake.html" class="btn-primary">Start My Business</a>
         <a href="https://book.stripe.com/dRm6oI5yke0EbQkdN7a3u00" class="btn-outline">Book a Consultation</a>
       </div>
       <div class="hero-stats">
@@ -552,46 +556,51 @@ a.footer-detail-value:hover{color:var(--gold-light)}
         <a href="intake.html?service=llc" class="svc-cta">Get Started</a>
       </div>
       <div class="svc-card fade-up d2">
+        <div class="svc-ribbon">Coming Soon</div>
         <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></div>
         <h3 class="svc-name">Registered Agent Service</h3>
         <p class="svc-desc">Professional registered agent service to help keep your business organized and compliant.</p>
         <div class="svc-price"><span class="svc-price-amount">$149<span class="svc-price-period">/year</span></span></div>
-        <a href="#contact" class="svc-cta">Get Started</a>
+        <span class="svc-cta-disabled">Coming Soon</span>
       </div>
       <div class="svc-card fade-up d3">
+        <div class="svc-ribbon">Coming Soon</div>
         <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
         <h3 class="svc-name">State Trademark Filing</h3>
         <p class="svc-desc">State-level trademark filing support for businesses protecting a name, phrase, slogan, or logo within one state.</p>
         <div class="svc-price"><span class="svc-price-from">Starting at</span><span class="svc-price-amount">$249</span><span class="svc-price-note">+ state filing fees</span></div>
-        <a href="#contact" class="svc-cta">Get Started</a>
+        <span class="svc-cta-disabled">Coming Soon</span>
       </div>
       <div class="svc-card fade-up d1">
+        <div class="svc-ribbon">Coming Soon</div>
         <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
         <h3 class="svc-name">Federal Trademark Filing</h3>
         <p class="svc-desc">Federal trademark filing support for businesses seeking nationwide brand protection through the USPTO.</p>
         <div class="svc-price"><span class="svc-price-from">Starting at</span><span class="svc-price-amount">$1,050</span><span class="svc-price-note">+ USPTO filing fees</span></div>
-        <a href="#contact" class="svc-cta">Get Started</a>
+        <span class="svc-cta-disabled">Coming Soon</span>
       </div>
       <div class="svc-card fade-up d2">
+        <div class="svc-ribbon">Coming Soon</div>
         <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zm-2 9H7v-2h4v2zm4-4H7v-2h8v2zm0-4H7V8h8v2z"/></svg></div>
         <h3 class="svc-name">Operating Agreements &amp; Bylaws</h3>
         <p class="svc-desc">Often requested by banks, lenders, partners, and internal records. We prepare a professional agreement or bylaws document based on your entity type and ownership structure.</p>
         <div class="svc-price"><span class="svc-price-from">Starting at</span><span class="svc-price-amount">$199</span></div>
-        <a href="#contact" class="svc-cta">Get Started</a>
+        <span class="svc-cta-disabled">Coming Soon</span>
       </div>
       <div class="svc-card fade-up d3">
         <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
         <h3 class="svc-name">Business Email Setup</h3>
         <p class="svc-desc">Professional business email setup using your domain so your brand looks official and organized.</p>
-        <div class="svc-price"><span class="svc-price-from">Starting at</span><span class="svc-price-amount">$149</span></div>
+        <div class="svc-price"><span class="svc-price-amount">$149</span></div>
         <a href="/business-email" class="svc-cta">Get Started</a>
       </div>
       <div class="svc-card fade-up d1">
+        <div class="svc-ribbon">Coming Soon</div>
         <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
         <h3 class="svc-name">501(c)(3) Nonprofit Formation</h3>
         <p class="svc-desc">Nonprofit formation support for organizations preparing to structure, file, and move toward tax-exempt status.</p>
         <div class="svc-price"><span class="svc-price-from">Starting at</span><span class="svc-price-amount">$2,500</span><span class="svc-price-note">+ government filing fees</span></div>
-        <a href="#contact" class="svc-cta">Get Started</a>
+        <span class="svc-cta-disabled">Coming Soon</span>
       </div>
     </div>
     <p class="services-disclaimer fade-up">Final pricing may vary based on state filing fees, government fees, entity type, processing speed, domain access, and optional add-ons. You will review your total before payment.</p>
