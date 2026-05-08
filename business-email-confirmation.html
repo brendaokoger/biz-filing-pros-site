@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Email Setup — Request Received — Biz Filing Pros</title>
+<meta name="description" content="Your Business Email Setup request has been received. Biz Filing Pros will be in touch to coordinate your setup.">
+<link rel="icon" type="image/png" href="/images/biz-filing-pros-logo.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bizfilingpros.com/business-email-confirmation">
+<meta property="og:title" content="File. Build. Grow.">
+<meta property="og:description" content="Start, protect, and grow your business with Biz Filing Pros.">
+<meta property="og:image" content="https://bizfilingpros.com/images/biz-filing-pros-logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="File. Build. Grow.">
+<meta name="twitter:description" content="Start, protect, and grow your business with Biz Filing Pros.">
+<meta name="twitter:image" content="https://bizfilingpros.com/images/biz-filing-pros-logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0B1D3A;
+  --navy-light: #132C55;
+  --navy-mid: #1A3A6E;
+  --gold: #C9A84C;
+  --gold-hover: #D4B85E;
+  --gold-light: #E2C97E;
+  --gold-pale: #FBF6E8;
+  --gold-glow: rgba(201,168,76,0.15);
+  --white: #FFFFFF;
+  --off-white: #FAFAF7;
+  --gray-50: #F7F6F3;
+  --gray-100: #F0EDE7;
+  --gray-200: #E0DCD3;
+  --gray-300: #CCC7BB;
+  --gray-400: #9B9688;
+  --gray-600: #6B665A;
+  --gray-800: #3D3A33;
+  --radius: 10px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 4px rgba(11,29,58,0.05);
+  --shadow: 0 2px 16px rgba(11,29,58,0.07);
+  --shadow-lg: 0 8px 40px rgba(11,29,58,0.10);
+  --shadow-gold: 0 4px 20px rgba(201,168,76,0.25);
+  --tr: 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--gray-800);min-height:100vh;line-height:1.6;-webkit-font-smoothing:antialiased;}
+
+/* ═══ HEADER ═══ */
+.hdr{background:#0a1528;padding:2.5rem 1.5rem 1.75rem;text-align:center;position:relative;}
+.hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent);}
+.hdr-logo{max-width:280px;width:65%;margin:0 auto 1rem;display:block;filter:drop-shadow(0 2px 12px rgba(201,168,76,.3));}
+.hdr-tagline{font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;color:var(--gold);letter-spacing:.25em;text-transform:uppercase;margin-bottom:.75rem;}
+.hdr-sub{color:rgba(255,255,255,.55);font-size:.78rem;line-height:1.6;}
+.hdr-sub a{color:var(--gold-light);text-decoration:none;}
+.hdr-divider{width:40px;height:1px;background:var(--gold);margin:.6rem auto;opacity:.4;}
+
+/* ═══ BODY ═══ */
+.body{max-width:680px;margin:0 auto;padding:2rem 1rem 3rem;}
+
+/* ═══ CONFIRMATION ICON ═══ */
+.confirm-icon{display:flex;align-items:center;justify-content:center;width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-hover) 100%);margin:0 auto 1.75rem;box-shadow:var(--shadow-gold);}
+.confirm-icon svg{width:36px;height:36px;fill:var(--navy);}
+
+/* ═══ HEADLINE BLOCK ═══ */
+.confirm-title{font-family:'Playfair Display',serif;font-size:clamp(1.55rem,4vw,2rem);font-weight:700;color:var(--navy);text-align:center;margin-bottom:.75rem;line-height:1.25;}
+.confirm-sub{font-size:.92rem;color:var(--gray-600);text-align:center;max-width:540px;margin:0 auto 2rem;line-height:1.7;}
+
+/* ═══ CARDS ═══ */
+.card{background:var(--white);border-radius:var(--radius-lg);padding:1.75rem 1.5rem;margin-bottom:1rem;box-shadow:var(--shadow);border:1px solid var(--gray-100);}
+.card-t{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:1.25rem;}
+
+/* ═══ STEPS LIST ═══ */
+.steps{list-style:none;display:flex;flex-direction:column;gap:.85rem;}
+.steps li{display:flex;align-items:flex-start;gap:1rem;font-size:.9rem;color:var(--gray-800);line-height:1.55;}
+.step-num{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--gold-pale);border:1.5px solid var(--gold);font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:700;color:var(--gold);margin-top:.05rem;}
+
+/* ═══ SUPPORT BLOCK ═══ */
+.support-block{display:flex;flex-direction:column;gap:.45rem;margin-top:.25rem;}
+.support-line{display:flex;align-items:center;gap:.6rem;font-size:.9rem;color:var(--gray-800);}
+.support-line svg{width:16px;height:16px;flex-shrink:0;fill:var(--gold);}
+.support-line a{color:var(--navy);font-weight:600;text-decoration:none;}
+.support-line a:hover{color:var(--gold);}
+
+/* ═══ BUTTONS ═══ */
+.btn-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.75rem;}
+.btn{font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;padding:.8rem 1.75rem;border-radius:var(--radius);border:none;cursor:pointer;transition:all var(--tr);text-decoration:none;text-align:center;display:inline-block;}
+.btn-primary{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-hover) 100%);color:var(--navy);box-shadow:var(--shadow-gold);}
+.btn-primary:hover{box-shadow:0 6px 28px rgba(201,168,76,0.4);transform:translateY(-1px);}
+.btn-outline{background:var(--white);color:var(--navy);border:1.5px solid var(--gray-200);}
+.btn-outline:hover{border-color:var(--navy);color:var(--navy);}
+@media(max-width:480px){.btn-row{flex-direction:column;}.btn{width:100%;text-align:center;}}
+
+/* ═══ FOOTER ═══ */
+.footer{text-align:center;padding:1.25rem;font-size:.75rem;color:var(--gray-400);}
+.footer a{color:var(--gold);text-decoration:none;font-weight:600;}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="hdr">
+  <a href="/" style="display:block;text-decoration:none;">
+    <img src="/images/biz-filing-pros-logo.png" class="hdr-logo" alt="Biz Filing Pros">
+  </a>
+  <div class="hdr-tagline">File. Build. Grow.</div>
+  <div class="hdr-divider"></div>
+  <p class="hdr-sub">
+    <a href="mailto:support@bizfilingpros.com">support@bizfilingpros.com</a> &nbsp;·&nbsp; <a href="tel:+13177850113">(317) 785-0113</a><br>
+    Monday–Friday &nbsp;·&nbsp; 9:00 AM – 5:00 PM CST
+  </p>
+</header>
+
+<!-- ═══ MAIN ═══ -->
+<div class="body">
+
+  <div class="confirm-icon">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+  </div>
+
+  <h1 class="confirm-title">Business Email Setup Request Received</h1>
+  <p class="confirm-sub">Thank you for choosing Biz Filing Pros. Your Business Email Setup payment has been received. Our team will review your submission and contact you if any domain access, DNS details, or additional information is needed.</p>
+
+  <!-- What Happens Next -->
+  <div class="card">
+    <h2 class="card-t">What Happens Next</h2>
+    <ol class="steps">
+      <li>
+        <div class="step-num">1</div>
+        <span>We review your Business Email Setup form.</span>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <span>We verify your domain and requested email users.</span>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <span>We contact you if domain, registrar, or DNS access is needed.</span>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <span>We begin setup once all required access is available.</span>
+      </li>
+      <li>
+        <div class="step-num">5</div>
+        <span>You receive completion details by email.</span>
+      </li>
+    </ol>
+  </div>
+
+  <!-- Support -->
+  <div class="card">
+    <h2 class="card-t">Questions? We're Here.</h2>
+    <div class="support-block">
+      <div class="support-line">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        <a href="mailto:support@bizfilingpros.com">support@bizfilingpros.com</a>
+      </div>
+      <div class="support-line">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.5 11.5 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1C10.18 21 3 13.82 3 5a1 1 0 011-1h3.5a1 1 0 011 1 11.5 11.5 0 00.57 3.6 1 1 0 01-.25 1.01l-2.2 2.18z"/></svg>
+        <a href="tel:+13177850113">(317) 785-0113</a>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <a href="/index.html" class="btn btn-primary">Return Home</a>
+      <a href="mailto:support@bizfilingpros.com" class="btn btn-outline">Contact Support</a>
+    </div>
+  </div>
+
+</div><!-- /.body -->
+
+<footer class="footer">
+  &copy; 2026 Biz Filing Pros, LLC. All rights reserved. &nbsp;·&nbsp;
+  <a href="/policies">Policies</a> &nbsp;·&nbsp;
+  <a href="mailto:support@bizfilingpros.com">support@bizfilingpros.com</a><br>
+  <span style="opacity:.7;">Biz Filing Pros is not a law firm and does not provide legal, tax, or financial advice.</span>
+</footer>
+
+</body>
+</html>
