@@ -368,7 +368,7 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
 
   <div class="btn-row">
     <button type="button" class="btn btn-back" onclick="go(-1)">&larr; Back</button>
-    <button type="button" class="btn btn-next" id="step2-next" onclick="go(1)">Review Order &rarr;</button>
+    <button type="button" class="btn btn-next" id="step2-next" onclick="go(1)" disabled>Review Order &rarr;</button>
   </div>
 </div>
 
@@ -619,6 +619,13 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
   }
   const emailAddresses   = _submitEmailParts.join(' | ');
   const notes          = document.getElementById('notes').value.trim();
+
+  // Hard stop — domain ownership must be confirmed before any submission
+  if (domainOwned2 !== 'yes') {
+    btn.disabled = false;
+    btn.textContent = 'Continue to Payment →';
+    return;
+  }
 
   // Step 1 — Formspree (captures all form fields for Zapier)
   fetch('https://formspree.io/f/xojyryyw', {
