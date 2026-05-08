@@ -312,11 +312,7 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
             </label>
             <label class="opt" id="opt-access-no">
               <input type="radio" name="domainAccess" value="no" onchange="onDomainAccess(this)">
-              <div class="opt-body"><div class="opt-title">No, I need help finding it</div></div>
-            </label>
-            <label class="opt" id="opt-access-unsure">
-              <input type="radio" name="domainAccess" value="unsure" onchange="onDomainAccess(this)">
-              <div class="opt-body"><div class="opt-title">I'm not sure</div></div>
+              <div class="opt-body"><div class="opt-title">No, I need to contact my domain provider</div></div>
             </label>
           </div>
         </div>
@@ -333,8 +329,8 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
       </div>
 
       <div id="domain-access-help" style="display:none;">
-        <div class="info muted">
-          We may need access to your domain account, registrar account, or DNS records to complete setup. We'll contact you with next steps.
+        <div class="info warn">
+          You'll need to contact the company where you purchased your domain, such as GoDaddy, Namecheap, Wix, Squarespace, Shopify, Cloudflare, or another registrar, to regain access before setup can be completed. Biz Filing Pros needs domain or DNS access to complete business email setup.
         </div>
       </div>
     </div>
@@ -517,7 +513,7 @@ function onDomainOwned(radio) {
   document.getElementById('step2-next').disabled = !hasYes;
   if (!hasYes) {
     document.querySelectorAll('[name="domainAccess"]').forEach(r => { r.checked = false; });
-    ['opt-access-yes','opt-access-no','opt-access-unsure'].forEach(function(id) {
+    ['opt-access-yes','opt-access-no'].forEach(function(id) {
       document.getElementById(id).classList.remove('sel');
     });
     document.getElementById('domain-login-section').style.display = 'none';
@@ -528,10 +524,9 @@ function onDomainOwned(radio) {
 function onDomainAccess(radio) {
   const val = radio.value;
   document.getElementById('domain-login-section').style.display = val === 'yes' ? 'block' : 'none';
-  document.getElementById('domain-access-help').style.display = (val === 'no' || val === 'unsure') ? 'block' : 'none';
+  document.getElementById('domain-access-help').style.display = val === 'no' ? 'block' : 'none';
   document.getElementById('opt-access-yes').classList.toggle('sel', val === 'yes');
   document.getElementById('opt-access-no').classList.toggle('sel', val === 'no');
-  document.getElementById('opt-access-unsure').classList.toggle('sel', val === 'unsure');
 }
 
 // ─── Summary ───
@@ -562,9 +557,8 @@ function populateSummary() {
     document.getElementById('sum-domain').textContent    = v('domainName');
     document.getElementById('sum-registrar').textContent = v('domainRegistrar') || '—';
     document.getElementById('sum-access').textContent    =
-      domainAccess === 'yes'    ? 'Yes, I have access' :
-      domainAccess === 'no'     ? 'No, I need help finding it' :
-      domainAccess === 'unsure' ? "I'm not sure" : '—';
+      domainAccess === 'yes' ? 'Yes, I have access' :
+      domainAccess === 'no'  ? 'No, I need to contact my domain provider' : '—';
     const loginRow = document.getElementById('sum-login-row');
     const loginVal = v('domainLoginEmail');
     if (domainAccess === 'yes' && loginVal && loginVal !== '—') {
@@ -641,28 +635,8 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
   })
   .then(function(res) {
     if (!res.ok) throw new Error('formspree');
-    btn.textContent = 'Preparing Payment…';
-
-    // Step 2 — create Stripe Checkout session via existing API
-    return fetch('/api/create-checkout-session', {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        service:       'business-email',
-        customerName:  firstName + ' ' + lastName,
-        customerEmail: email,
-        businessName:  businessName,
-      }),
-    });
-  })
-  .then(function(stripeRes) {
-    return stripeRes.json().then(function(data) {
-      if (!stripeRes.ok || !data.url) throw new Error('stripe');
-      return data.url;
-    });
-  })
-  .then(function(checkoutUrl) {
-    window.location.href = checkoutUrl;
+    btn.textContent = 'Redirecting to Payment…';
+    window.location.href = 'https://buy.stripe.com/3cIeVe5yk09ObQkbEZa3u01';
   })
   .catch(function(err) {
     btn.disabled = false;
