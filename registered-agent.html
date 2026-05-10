@@ -270,9 +270,12 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
       </div>
     </div>
 
+    <div id="state-restriction-notice" class="info warn" style="display:none;">
+      <strong id="state-restriction-heading" style="display:block;margin-bottom:.35rem;font-size:.8rem;"></strong>
+      <span id="state-restriction-text" style="font-size:.77rem;line-height:1.6;"></span>
+    </div>
+
     <div class="row s1">
-      <div class="fg">
-        <label>Is this a new or existing business? <span class="req">*</span></label>
         <select id="businessStatus" name="businessStatus">
           <option value="">— Select —</option>
           <option value="New Business Formation">New Business Formation</option>
@@ -530,6 +533,35 @@ function go(dir) {
   }
   showStep(step);
 }
+
+// ─── State SoS restriction notices ───
+const STATE_RESTRICTIONS = {
+  'Arkansas':      'All entity types can use the registered agent address, but Arkansas requires an alternative address on the state filing as well. The registered agent address cannot be the only address listed on state filings.',
+  'California':    'As of 9/27/2024, clients are able to use the Sacramento County registered agent address for DBA filings. From 7/24 through 9/24, clients could not file Sacramento County DBA filings listing the registered agent address as their principal address. Address use may depend on filing type and county review.',
+  'Delaware':      'All corporations, foreign and domestic, cannot list the Delaware registered agent address or Delaware mail forwarding/virtual office address as the principal address or officer address on state filings or annual reports.',
+  'Hawaii':        'If the client lists an LLC as a member or manager and that company/member uses the Hawaii registered agent address, the Hawaii SOS may flag it and require an address from the company\'s domestic state. If that LLC is also registered in Hawaii, the registered agent address may be usable for the member LLC address.',
+  'Illinois':      'As of 9/18/2024, the Illinois Secretary of State is rejecting formation filings where the registered agent address is used as the principal address or member/officer address. The registered agent address may be used on annual report filings if submitted online. Paper annual report filings may be rejected.',
+  'Indiana':       'All entity types cannot list the registered agent address as the principal address or officer address on state filings.',
+  'Massachusetts': 'The registered agent address cannot be listed on Massachusetts DBA filings as of 12/12/2023.',
+  'Montana':       'The registered agent address cannot be listed as the member/manager address if the member/manager is an LLC that is not registered with the Montana Secretary of State. The LLC listed as member/manager must be registered with the Montana SOS in order to use the registered agent address for member/manager.',
+  'New Jersey':    'Paper filings, usually for name issues, are manually reviewed. Registered agent address use may be difficult to approve during manual state review.',
+  'New York':      'All corporations cannot list Northwest as the registered agent because LLCs cannot be the agent for corporations in New York. Since New York does not require a registered agent to be listed, Northwest can still be hired for registered agent service and listed as the Service of Process address.',
+  'Virginia':      'Paper filings may be rejected if the registered agent address is listed as both principal and mailing address. This affects corporations and foreign filings because those filings can only be filed by paper.',
+};
+
+document.getElementById('stateFormation').addEventListener('change', function() {
+  const msg = STATE_RESTRICTIONS[this.value];
+  const notice  = document.getElementById('state-restriction-notice');
+  const heading = document.getElementById('state-restriction-heading');
+  const text    = document.getElementById('state-restriction-text');
+  if (msg) {
+    heading.textContent = this.value + ' — State Address Restriction Notice';
+    text.textContent    = msg;
+    notice.style.display = 'block';
+  } else {
+    notice.style.display = 'none';
+  }
+});
 
 // ─── Step 3 conditional field ───
 document.getElementById('hasSeparateAddress').addEventListener('change', function() {
