@@ -532,6 +532,7 @@ function showStep(n) {
   if (target) target.classList.add('active');
   updateProgress();
   scrollTop();
+  if (n === 3) checkRestrictionAck();
 }
 
 function go(dir) {
@@ -558,7 +559,7 @@ const STATE_RESTRICTIONS = {
   'Arkansas':      'All entity types can use the registered agent address, but Arkansas requires an alternative address on the state filing as well. The registered agent address cannot be the only address listed on state filings.',
   'California':    'As of 9/27/2024, clients are able to use the Sacramento County registered agent address for DBA filings. From 7/24 through 9/24, clients could not file Sacramento County DBA filings listing the registered agent address as their principal address. Address use may depend on filing type and county review.',
   'Delaware':      'All corporations, foreign and domestic, cannot list the Delaware registered agent address or Delaware mail forwarding/virtual office address as the principal address or officer address on state filings or annual reports.',
-  'Hawaii':        'If the client lists an LLC as a member or manager and that company/member uses the Hawaii registered agent address, the Hawaii SOS may flag it and require an address from the company\'s domestic state. If that LLC is also registered in Hawaii, the registered agent address may be usable for the member LLC address.',
+  'Hawaii':        "If the client lists an LLC as a member or manager and that company/member uses the Hawaii registered agent address, the Hawaii SOS may flag it and require an address from the company's domestic state. If that LLC is also registered in Hawaii, the registered agent address may be usable for the member LLC address.",
   'Illinois':      'As of 9/18/2024, the Illinois Secretary of State is rejecting formation filings where the registered agent address is used as the principal address or member/officer address. The registered agent address may be used on annual report filings if submitted online. Paper annual report filings may be rejected.',
   'Indiana':       'All entity types cannot list the registered agent address as the principal address or officer address on state filings.',
   'Massachusetts': 'The registered agent address cannot be listed on Massachusetts DBA filings as of 12/12/2023.',
@@ -568,27 +569,11 @@ const STATE_RESTRICTIONS = {
   'Virginia':      'Paper filings may be rejected if the registered agent address is listed as both principal and mailing address. This affects corporations and foreign filings because those filings can only be filed by paper.',
 };
 
-function updateStateNotice() {
-  const state   = document.getElementById('stateFormation').value;
-  const msg     = STATE_RESTRICTIONS[state];
-  const notice  = document.getElementById('state-restriction-notice');
-  const heading = document.getElementById('state-restriction-heading');
-  const text    = document.getElementById('state-restriction-text');
-  if (!state) {
-    notice.style.display = 'none';
-  } else if (msg) {
-    notice.className    = 'info warn';
-    heading.textContent = state + ' — State Address Restriction Notice';
-    text.textContent    = msg;
-    notice.style.display = 'block';
-  } else {
-    notice.className    = 'info';
-    heading.textContent = 'State Notice';
-    text.textContent    = 'Registered agent address use may still be subject to state filing rules. Biz Filing Pros will review your selected state, entity type, and intended address use before processing.';
-    notice.style.display = 'block';
-  }
-  checkRestrictionAck();
-}
+const STATE_ABBREVS = {
+  'AR': 'Arkansas',  'CA': 'California', 'DE': 'Delaware',      'HI': 'Hawaii',
+  'IL': 'Illinois',  'IN': 'Indiana',    'MA': 'Massachusetts',  'MT': 'Montana',
+  'NJ': 'New Jersey','NY': 'New York',   'VA': 'Virginia',
+};
 
 const TRIGGERING_ADDRESS_USES = new Set([
   'Principal business address',
@@ -599,22 +584,57 @@ const TRIGGERING_ADDRESS_USES = new Set([
   'Annual report address',
 ]);
 
+function resolveRestrictedState(val) {
+  if (!val) return '';
+  const trimmed = val.trim();
+  if (STATE_RESTRICTIONS[trimmed]) return trimmed;
+  const viaAbbrev = STATE_ABBREVS[trimmed.toUpperCase()];
+  if (viaAbbrev) return viaAbbrev;
+  return '';
+}
+
+function updateStateNotice() {
+  const raw     = (document.getElementById('stateFormation') || {}).value || '';
+  const state   = resolveRestrictedState(raw);
+  const notice  = document.getElementById('state-restriction-notice');
+  const heading = document.getElementById('state-restriction-heading');
+  const text    = document.getElementById('state-restriction-text');
+  if (!raw) {
+    notice.style.display = 'none';
+  } else if (state) {
+    notice.className     = 'info warn';
+    heading.textContent  = raw.trim() + ' — State Address Restriction Notice';
+    text.textContent     = STATE_RESTRICTIONS[state];
+    notice.style.display = 'block';
+  } else {
+    notice.className     = 'info';
+    heading.textContent  = 'State Notice';
+    text.textContent     = 'Registered agent address use may still be subject to state filing rules. Biz Filing Pros will review your selected state, entity type, and intended address use before processing.';
+    notice.style.display = 'block';
+  }
+  checkRestrictionAck();
+}
+
 function checkRestrictionAck() {
-  const state    = document.getElementById('stateFormation').value;
-  const addrUse  = document.getElementById('raAddressUse').value;
+  const raw      = (document.getElementById('stateFormation') || {}).value || '';
+  const state    = resolveRestrictedState(raw);
+  const addrUse  = (document.getElementById('raAddressUse') || {}).value || '';
   const ackBlock = document.getElementById('restriction-ack');
   const ackCheck = document.getElementById('ackCheck');
   const errAck   = document.getElementById('err-ack');
-  const show = !!STATE_RESTRICTIONS[state] && TRIGGERING_ADDRESS_USES.has(addrUse);
+  if (!ackBlock) return;
+  const show = !!state && TRIGGERING_ADDRESS_USES.has(addrUse);
   ackBlock.style.display = show ? 'block' : 'none';
   if (!show) {
-    ackCheck.checked     = false;
-    errAck.style.display = 'none';
+    if (ackCheck) ackCheck.checked = false;
+    if (errAck)   errAck.style.display = 'none';
   }
 }
 
 document.getElementById('stateFormation').addEventListener('change', updateStateNotice);
-document.getElementById('raAddressUse').addEventListener('change', checkRestrictionAck);
+document.getElementById('raAddressUse').addEventListener('change', function() {
+  checkRestrictionAck();
+});
 
 // ─── Step 3 conditional field ───
 document.getElementById('hasSeparateAddress').addEventListener('change', function() {
