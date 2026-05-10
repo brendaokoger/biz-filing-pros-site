@@ -371,6 +371,12 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
       </div>
     </div>
 
+    <div id="hard-block-notice" style="display:none;background:#FEF2F2;border-left:3px solid var(--red);padding:.85rem .9rem;border-radius:0 var(--radius) var(--radius) 0;margin:.85rem 0 0;">
+      <strong style="display:block;font-size:.8rem;color:#7A0000;margin-bottom:.4rem;">Registered Agent Service Requires Manual Review</strong>
+      <p id="hard-block-text" style="font-size:.77rem;color:#7A0000;line-height:1.6;margin-bottom:.65rem;"></p>
+      <p style="font-size:.77rem;color:#7A0000;">Contact us before continuing: <a href="mailto:support@bizfilingpros.com" style="color:inherit;font-weight:700;">support@bizfilingpros.com</a> &nbsp;·&nbsp; <a href="tel:+13177850113" style="color:inherit;font-weight:700;">(317) 785-0113</a></p>
+    </div>
+
     <div id="restriction-ack" style="display:none;background:var(--amber-pale);border-left:3px solid var(--amber);padding:.85rem .9rem;border-radius:0 var(--radius) var(--radius) 0;margin:.85rem 0 0;">
       <strong style="display:block;font-size:.8rem;color:#7A5500;margin-bottom:.4rem;">Important State Filing Restriction</strong>
       <p style="font-size:.77rem;color:#7A5500;line-height:1.6;margin-bottom:.65rem;">Based on the state selected, the registered agent address may not be accepted as your principal office, mailing address, member/officer address, DBA address, annual report address, or other business address. You may need to provide a separate address before filing can be completed.</p>
@@ -532,17 +538,18 @@ function showStep(n) {
   if (target) target.classList.add('active');
   updateProgress();
   scrollTop();
-  if (n === 3) checkRestrictionAck();
+  if (n === 3) { checkHardBlock(); checkRestrictionAck(); }
 }
 
 function go(dir) {
   if (dir > 0) {
     if (step === 3) {
+      if (checkHardBlock()) return;
       const ackBlock = document.getElementById('restriction-ack');
       const ackCheck = document.getElementById('ackCheck');
       const errAck   = document.getElementById('err-ack');
-      if (ackBlock.style.display !== 'none' && !ackCheck.checked) {
-        errAck.style.display = 'block';
+      if (ackBlock && ackBlock.style.display !== 'none' && ackCheck && !ackCheck.checked) {
+        if (errAck) errAck.style.display = 'block';
         return;
       }
       populateSummary();
@@ -631,7 +638,38 @@ function checkRestrictionAck() {
   }
 }
 
-document.getElementById('stateFormation').addEventListener('change', updateStateNotice);
+const HARD_BLOCK_RULES = [
+  {
+    state:       'New York',
+    entityTypes: new Set(['Corporation', 'S-Corporation', 'C-Corporation', 'Foreign Corporation']),
+    message:     'New York corporations cannot list Northwest as the registered agent because LLCs cannot serve as agent for corporations in New York. Northwest may still be used as the Service of Process address. Please submit a support request or contact Biz Filing Pros before continuing.',
+  },
+];
+
+function checkHardBlock() {
+  const raw        = (document.getElementById('stateFormation') || {}).value || '';
+  const state      = resolveRestrictedState(raw) || raw.trim();
+  const entityType = (document.getElementById('entityType') || {}).value || '';
+  const block      = document.getElementById('hard-block-notice');
+  const blockText  = document.getElementById('hard-block-text');
+  if (!block) return false;
+  const rule = HARD_BLOCK_RULES.find(r => r.state === state && r.entityTypes.has(entityType));
+  if (rule) {
+    if (blockText) blockText.textContent = rule.message;
+    block.style.display = 'block';
+    return true;
+  }
+  block.style.display = 'none';
+  return false;
+}
+
+document.getElementById('stateFormation').addEventListener('change', function() {
+  updateStateNotice();
+  checkHardBlock();
+});
+document.getElementById('entityType').addEventListener('change', function() {
+  if (step === 3) checkHardBlock();
+});
 document.getElementById('raAddressUse').addEventListener('change', function() {
   checkRestrictionAck();
 });
