@@ -322,12 +322,65 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
 
   <div class="btn-row">
     <button type="button" class="btn btn-back" onclick="go(-1)">&larr; Back</button>
+    <button type="button" class="btn btn-next" onclick="go(1)">Continue &rarr;</button>
+  </div>
+</div>
+
+<!-- ════════ STEP 3: REGISTERED AGENT ADDRESS USE ════════ -->
+<div class="step" data-step="3">
+  <div class="card">
+    <h2 class="card-t">Registered Agent Address Use</h2>
+    <p class="card-s">Some states require businesses to provide separate addresses for certain purposes. Help us understand how you plan to use the registered agent address.</p>
+
+    <div class="row s1">
+      <div class="fg">
+        <label>How do you plan to use the registered agent address? <span class="req">*</span></label>
+        <select id="raAddressUse" name="raAddressUse">
+          <option value="">— Select —</option>
+          <option value="Registered Agent service only">Registered Agent service only</option>
+          <option value="Principal business address">Principal business address</option>
+          <option value="Mailing address">Mailing address</option>
+          <option value="Member / manager address">Member / manager address</option>
+          <option value="Officer / director address">Officer / director address</option>
+          <option value="DBA address">DBA address</option>
+          <option value="Annual report address">Annual report address</option>
+          <option value="Not sure">Not sure</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row s1">
+      <div class="fg">
+        <label>Do you have a separate business or mailing address available if the state requires one? <span class="req">*</span></label>
+        <select id="hasSeparateAddress" name="hasSeparateAddress">
+          <option value="">— Select —</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+          <option value="Not sure">Not sure</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row s1" id="alt-addr-wrap" style="display:none;">
+      <div class="fg">
+        <label>Alternate Business or Mailing Address</label>
+        <input type="text" id="alternateAddress" name="alternateAddress" placeholder="Street address, city, state, ZIP">
+      </div>
+    </div>
+
+    <div class="info muted">
+      Some states restrict how a registered agent address may be used for official business purposes. Our team will notify you if your state requires a separate address for any filings.
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button type="button" class="btn btn-back" onclick="go(-1)">&larr; Back</button>
     <button type="button" class="btn btn-next" onclick="go(1)">Review Order &rarr;</button>
   </div>
 </div>
 
-<!-- ════════ STEP 3: REVIEW & SUBMIT ════════ -->
-<div class="step" data-step="3">
+<!-- ════════ STEP 4: REVIEW & SUBMIT ════════ -->
+<div class="step" data-step="4">
   <div class="card">
     <h2 class="card-t">Review Your Order</h2>
     <p class="card-s">Confirm your information before submitting. Use the Back button to make changes.</p>
@@ -348,6 +401,11 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
     <div class="sum-line" id="sum-biz-mailing-row"><span class="lbl">Business Mailing Address</span><span class="val" id="sum-biz-mailing">—</span></div>
     <div class="sum-line" id="sum-owner-name-row"><span class="lbl">Owner / Authorized Contact</span><span class="val" id="sum-owner-name">—</span></div>
     <div class="sum-line" id="sum-owner-addr-row"><span class="lbl">Owner Address</span><span class="val" id="sum-owner-addr">—</span></div>
+
+    <div class="sum-line head" style="margin-top:.85rem;"><span>Registered Agent Address Use</span></div>
+    <div class="sum-line"><span class="lbl">Address Use</span><span class="val" id="sum-ra-addr-use">—</span></div>
+    <div class="sum-line"><span class="lbl">Separate Address Available</span><span class="val" id="sum-has-separate">—</span></div>
+    <div class="sum-line" id="sum-alt-addr-row"><span class="lbl">Alternate Address</span><span class="val" id="sum-alt-addr">—</span></div>
   </div>
 
   <div class="price-card">
@@ -426,7 +484,7 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
 
 <script>
 let step = 1;
-const STEPS = 3;
+const STEPS = 4;
 
 function updateProgress() {
   const pct = ((step - 1) / (STEPS - 1)) * 100;
@@ -448,13 +506,19 @@ function showStep(n) {
 
 function go(dir) {
   if (dir > 0) {
-    if (step === 2) populateSummary();
+    if (step === 3) populateSummary();
     step = Math.min(STEPS, step + 1);
   } else {
     step = Math.max(1, step - 1);
   }
   showStep(step);
 }
+
+// ─── Step 3 conditional field ───
+document.getElementById('hasSeparateAddress').addEventListener('change', function() {
+  document.getElementById('alt-addr-wrap').style.display = this.value === 'Yes' ? 'block' : 'none';
+  if (this.value !== 'Yes') document.getElementById('alternateAddress').value = '';
+});
 
 // ─── Summary ───
 function v(id) {
@@ -493,6 +557,16 @@ function populateSummary() {
   const ownerAddr = v('ownerAddress');
   document.getElementById('sum-owner-addr').textContent = ownerAddr;
   document.getElementById('sum-owner-addr-row').style.display = (ownerAddr && ownerAddr !== '—') ? 'flex' : 'none';
+
+  const rau = document.getElementById('raAddressUse');
+  document.getElementById('sum-ra-addr-use').textContent = rau?.options[rau.selectedIndex]?.text || '—';
+
+  const hsa = document.getElementById('hasSeparateAddress');
+  document.getElementById('sum-has-separate').textContent = hsa?.options[hsa.selectedIndex]?.text || '—';
+
+  const altAddr = v('alternateAddress');
+  document.getElementById('sum-alt-addr').textContent = altAddr;
+  document.getElementById('sum-alt-addr-row').style.display = (altAddr && altAddr !== '—') ? 'flex' : 'none';
 }
 
 // ─── Submit: Formspree → Stripe payment link ───
@@ -522,6 +596,9 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
   const bizMailingAddress   = document.getElementById('bizMailingAddress').value.trim();
   const ownerName           = document.getElementById('ownerName').value.trim();
   const ownerAddress        = document.getElementById('ownerAddress').value.trim();
+  const raAddressUse        = document.getElementById('raAddressUse').value;
+  const hasSeparateAddress  = document.getElementById('hasSeparateAddress').value;
+  const alternateAddress    = document.getElementById('alternateAddress').value.trim();
 
   fetch('https://formspree.io/f/REGISTERED_AGENT_FORMSPREE_ID', {
     method:  'POST',
@@ -530,6 +607,7 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
       firstName, lastName, email, phone, contactMethod, mailingAddress,
       businessName, stateFormation, entityType, businessStatus,
       bizPrincipalAddress, bizMailingAddress, ownerName, ownerAddress,
+      raAddressUse, hasSeparateAddress, alternateAddress,
       service: 'Registered Agent Service',
       price:   '$149/year',
     }),
