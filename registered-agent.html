@@ -230,92 +230,88 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
   </div>
 </div>
 
-<!-- ════════ STEP 2: BUSINESS DETAILS ════════ -->
+<!-- ════════ STEP 2: BUSINESS INFORMATION ════════ -->
 <div class="step" data-step="2">
   <div class="card">
-    <h2 class="card-t">Business Details</h2>
+    <h2 class="card-t">Business Information</h2>
     <p class="card-s">Tell us about your business so we can assign the correct Registered Agent for your state.</p>
 
     <div class="row s1">
       <div class="fg">
-        <label>Legal Business Name <span class="req">*</span></label>
+        <label>Business Name <span class="req">*</span></label>
         <input type="text" id="businessName" name="businessName" placeholder="Smith Consulting LLC">
-        <div class="field-hint">Enter the full legal name exactly as it appears on your state filing.</div>
+        <div class="field-hint">Enter the full legal name exactly as it appears or will appear on your state filing.</div>
       </div>
     </div>
 
     <div class="row">
-      <div class="fg">
-        <label>State of Formation <span class="req">*</span></label>
-        <select id="stateFormation" name="stateFormation">
-          <option value="">— Select state —</option>
-          <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>Washington D.C.</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
-        </select>
-        <div class="field-hint">The state where your business was formed or incorporated.</div>
-      </div>
       <div class="fg">
         <label>Entity Type <span class="req">*</span></label>
         <select id="entityType" name="entityType">
           <option value="">— Select type —</option>
           <option value="LLC">LLC</option>
-          <option value="S-Corp">S-Corporation</option>
-          <option value="C-Corp">C-Corporation</option>
-          <option value="Nonprofit">Nonprofit Corporation</option>
-          <option value="Other">Other</option>
+          <option value="Corporation">Corporation</option>
+          <option value="S-Corporation">S-Corporation</option>
+          <option value="C-Corporation">C-Corporation</option>
+          <option value="Nonprofit Corporation">Nonprofit Corporation</option>
+          <option value="Professional LLC">Professional LLC</option>
+          <option value="Foreign LLC">Foreign LLC</option>
+          <option value="Foreign Corporation">Foreign Corporation</option>
+          <option value="DBA / Assumed Name">DBA / Assumed Name</option>
+          <option value="Not Sure">Not Sure</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>State Where Business Is Filed or Will Be Filed <span class="req">*</span></label>
+        <select id="stateFormation" name="stateFormation">
+          <option value="">— Select state —</option>
+          <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>Washington D.C.</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
         </select>
       </div>
     </div>
 
     <div class="row s1">
       <div class="fg">
-        <label>EIN (Employer Identification Number)</label>
-        <input type="text" id="ein" name="ein" placeholder="XX-XXXXXXX" maxlength="10">
-        <div class="field-hint">Optional. Include if you have one. We use this for record-keeping only.</div>
-      </div>
-    </div>
-
-    <div class="row s1">
-      <div class="fg">
-        <label>Do you currently have a Registered Agent?</label>
-        <select id="hasCurrentRA" name="hasCurrentRA">
+        <label>Is this a new or existing business? <span class="req">*</span></label>
+        <select id="businessStatus" name="businessStatus">
           <option value="">— Select —</option>
-          <option value="no">No — this is a new business or I have not yet appointed one</option>
-          <option value="yes-switching">Yes — I am switching from another provider</option>
-          <option value="yes-self">Yes — I am currently acting as my own registered agent</option>
+          <option value="New Business Formation">New Business Formation</option>
+          <option value="Existing Business">Existing Business</option>
+          <option value="Foreign Registration">Foreign Registration</option>
+          <option value="Annual Report / Compliance Filing">Annual Report / Compliance Filing</option>
+          <option value="DBA Filing">DBA Filing</option>
+          <option value="Not Sure">Not Sure</option>
         </select>
-        <div class="field-hint">This helps us prepare the correct change of agent documents if needed.</div>
       </div>
     </div>
 
-    <div id="switching-notice" style="display:none;">
-      <div class="info warn">
-        If you are switching from another Registered Agent provider, you will need to file a Change of Registered Agent form with your state after setup. We will provide guidance after your order is complete.
+    <div class="row s1">
+      <div class="fg">
+        <label>Business Principal Address</label>
+        <input type="text" id="bizPrincipalAddress" name="bizPrincipalAddress" placeholder="Street address, city, state, ZIP">
+        <div class="field-hint">The primary office or place of business. This is not your registered agent address.</div>
       </div>
     </div>
 
-    <div class="row s1" style="margin-top:.85rem;">
+    <div class="row s1">
       <div class="fg">
         <label>Business Mailing Address</label>
-        <input type="text" id="bizAddress" name="bizAddress" placeholder="123 Main Street, Suite 100">
-        <div class="field-hint">Your business address. Some states require a separate principal office or member address. This is not your registered agent address.</div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="fg">
-        <label>City</label>
-        <input type="text" id="bizCity" name="bizCity" placeholder="Indianapolis">
-      </div>
-      <div class="fg">
-        <label>ZIP Code</label>
-        <input type="text" id="bizZip" name="bizZip" placeholder="46201" maxlength="10">
+        <input type="text" id="bizMailingAddress" name="bizMailingAddress" placeholder="Street address, city, state, ZIP">
+        <div class="field-hint">Leave blank if same as principal address above.</div>
       </div>
     </div>
 
     <div class="row s1">
       <div class="fg">
-        <label>Notes or Special Instructions</label>
-        <textarea id="notes" name="notes" placeholder="Any additional details, questions, or special instructions."></textarea>
+        <label>Owner / Authorized Contact Name</label>
+        <input type="text" id="ownerName" name="ownerName" placeholder="Full name of owner or authorized representative">
+      </div>
+    </div>
+
+    <div class="row s1">
+      <div class="fg">
+        <label>Personal Address of Owner / Authorized Contact</label>
+        <input type="text" id="ownerAddress" name="ownerAddress" placeholder="Street address, city, state, ZIP">
       </div>
     </div>
 
@@ -347,10 +343,11 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
     <div class="sum-line"><span class="lbl">Business Name</span><span class="val" id="sum-biz">—</span></div>
     <div class="sum-line"><span class="lbl">State</span><span class="val" id="sum-state">—</span></div>
     <div class="sum-line"><span class="lbl">Entity Type</span><span class="val" id="sum-entity">—</span></div>
-    <div class="sum-line" id="sum-ein-row"><span class="lbl">EIN</span><span class="val" id="sum-ein">—</span></div>
-    <div class="sum-line"><span class="lbl">Current RA Status</span><span class="val" id="sum-ra-status">—</span></div>
-    <div class="sum-line" id="sum-address-row"><span class="lbl">Business Address</span><span class="val" id="sum-address">—</span></div>
-    <div class="sum-line" id="sum-notes-row"><span class="lbl">Notes</span><span class="val" id="sum-notes">—</span></div>
+    <div class="sum-line"><span class="lbl">Business Status</span><span class="val" id="sum-biz-status">—</span></div>
+    <div class="sum-line" id="sum-principal-addr-row"><span class="lbl">Principal Address</span><span class="val" id="sum-principal-addr">—</span></div>
+    <div class="sum-line" id="sum-biz-mailing-row"><span class="lbl">Business Mailing Address</span><span class="val" id="sum-biz-mailing">—</span></div>
+    <div class="sum-line" id="sum-owner-name-row"><span class="lbl">Owner / Authorized Contact</span><span class="val" id="sum-owner-name">—</span></div>
+    <div class="sum-line" id="sum-owner-addr-row"><span class="lbl">Owner Address</span><span class="val" id="sum-owner-addr">—</span></div>
   </div>
 
   <div class="price-card">
@@ -459,12 +456,6 @@ function go(dir) {
   showStep(step);
 }
 
-// ─── Current RA select logic ───
-document.getElementById('hasCurrentRA').addEventListener('change', function() {
-  const notice = document.getElementById('switching-notice');
-  notice.style.display = this.value === 'yes-switching' ? 'block' : 'none';
-});
-
 // ─── Summary ───
 function v(id) {
   return (document.getElementById(id)?.value || '').trim() || '—';
@@ -484,26 +475,24 @@ function populateSummary() {
   const et = document.getElementById('entityType');
   document.getElementById('sum-entity').textContent  = et?.options[et.selectedIndex]?.text || '—';
 
-  const ein = v('ein');
-  const einRow = document.getElementById('sum-ein-row');
-  document.getElementById('sum-ein').textContent = ein;
-  einRow.style.display = (ein && ein !== '—') ? 'flex' : 'none';
+  const bs = document.getElementById('businessStatus');
+  document.getElementById('sum-biz-status').textContent = bs?.options[bs.selectedIndex]?.text || '—';
 
-  const ra = document.getElementById('hasCurrentRA');
-  document.getElementById('sum-ra-status').textContent = ra?.options[ra.selectedIndex]?.text || '—';
+  const principalAddr = v('bizPrincipalAddress');
+  document.getElementById('sum-principal-addr').textContent = principalAddr;
+  document.getElementById('sum-principal-addr-row').style.display = (principalAddr && principalAddr !== '—') ? 'flex' : 'none';
 
-  const addr = v('bizAddress');
-  const city = v('bizCity');
-  const zip  = v('bizZip');
-  const addrRow = document.getElementById('sum-address-row');
-  const addrFull = [addr !== '—' ? addr : '', city !== '—' ? city : '', zip !== '—' ? zip : ''].filter(Boolean).join(', ');
-  document.getElementById('sum-address').textContent = addrFull || '—';
-  addrRow.style.display = addrFull ? 'flex' : 'none';
+  const bizMailing = v('bizMailingAddress');
+  document.getElementById('sum-biz-mailing').textContent = bizMailing;
+  document.getElementById('sum-biz-mailing-row').style.display = (bizMailing && bizMailing !== '—') ? 'flex' : 'none';
 
-  const notes = v('notes');
-  const notesRow = document.getElementById('sum-notes-row');
-  document.getElementById('sum-notes').textContent = notes;
-  notesRow.style.display = (notes && notes !== '—') ? 'flex' : 'none';
+  const ownerName = v('ownerName');
+  document.getElementById('sum-owner-name').textContent = ownerName;
+  document.getElementById('sum-owner-name-row').style.display = (ownerName && ownerName !== '—') ? 'flex' : 'none';
+
+  const ownerAddr = v('ownerAddress');
+  document.getElementById('sum-owner-addr').textContent = ownerAddr;
+  document.getElementById('sum-owner-addr-row').style.display = (ownerAddr && ownerAddr !== '—') ? 'flex' : 'none';
 }
 
 // ─── Submit: Formspree → Stripe payment link ───
@@ -525,24 +514,22 @@ document.getElementById('mainForm').addEventListener('submit', function(e) {
   const phone         = document.getElementById('phone').value.trim();
   const contactMethod  = document.getElementById('contactMethod').value;
   const mailingAddress = document.getElementById('mailingAddress').value.trim();
-  const businessName   = document.getElementById('businessName').value.trim();
-  const stateFormation = document.getElementById('stateFormation').value;
-  const entityType    = document.getElementById('entityType').value;
-  const ein           = document.getElementById('ein').value.trim();
-  const hasCurrentRA  = document.getElementById('hasCurrentRA').value;
-  const bizAddress    = document.getElementById('bizAddress').value.trim();
-  const bizCity       = document.getElementById('bizCity').value.trim();
-  const bizZip        = document.getElementById('bizZip').value.trim();
-  const notes         = document.getElementById('notes').value.trim();
+  const businessName        = document.getElementById('businessName').value.trim();
+  const stateFormation      = document.getElementById('stateFormation').value;
+  const entityType          = document.getElementById('entityType').value;
+  const businessStatus      = document.getElementById('businessStatus').value;
+  const bizPrincipalAddress = document.getElementById('bizPrincipalAddress').value.trim();
+  const bizMailingAddress   = document.getElementById('bizMailingAddress').value.trim();
+  const ownerName           = document.getElementById('ownerName').value.trim();
+  const ownerAddress        = document.getElementById('ownerAddress').value.trim();
 
-  // Step 1 — Formspree (captures all form fields)
   fetch('https://formspree.io/f/REGISTERED_AGENT_FORMSPREE_ID', {
     method:  'POST',
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
     body: JSON.stringify({
       firstName, lastName, email, phone, contactMethod, mailingAddress,
-      businessName, stateFormation, entityType, ein,
-      hasCurrentRA, bizAddress, bizCity, bizZip, notes,
+      businessName, stateFormation, entityType, businessStatus,
+      bizPrincipalAddress, bizMailingAddress, ownerName, ownerAddress,
       service: 'Registered Agent Service',
       price:   '$149/year',
     }),
