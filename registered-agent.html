@@ -270,9 +270,12 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
       </div>
     </div>
 
+    <div id="state-restriction-notice" class="info warn" style="display:none;">
+      <strong id="state-restriction-heading" style="display:block;margin-bottom:.35rem;font-size:.8rem;"></strong>
+      <span id="state-restriction-text" style="font-size:.77rem;line-height:1.6;"></span>
+    </div>
+
     <div class="row s1">
-      <div class="fg">
-        <label>Is this a new or existing business? <span class="req">*</span></label>
         <select id="businessStatus" name="businessStatus">
           <option value="">— Select —</option>
           <option value="New Business Formation">New Business Formation</option>
@@ -368,7 +371,23 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
       </div>
     </div>
 
-    <div class="info muted">
+    <div id="hard-block-notice" style="display:none;background:#FEF2F2;border-left:3px solid var(--red);padding:.85rem .9rem;border-radius:0 var(--radius) var(--radius) 0;margin:.85rem 0 0;">
+      <strong style="display:block;font-size:.8rem;color:#7A0000;margin-bottom:.4rem;">Registered Agent Service Requires Manual Review</strong>
+      <p id="hard-block-text" style="font-size:.77rem;color:#7A0000;line-height:1.6;margin-bottom:.65rem;"></p>
+      <p style="font-size:.77rem;color:#7A0000;">Contact us before continuing: <a href="mailto:support@bizfilingpros.com" style="color:inherit;font-weight:700;">support@bizfilingpros.com</a> &nbsp;·&nbsp; <a href="tel:+13177850113" style="color:inherit;font-weight:700;">(317) 785-0113</a></p>
+    </div>
+
+    <div id="restriction-ack" style="display:none;background:var(--amber-pale);border-left:3px solid var(--amber);padding:.85rem .9rem;border-radius:0 var(--radius) var(--radius) 0;margin:.85rem 0 0;">
+      <strong style="display:block;font-size:.8rem;color:#7A5500;margin-bottom:.4rem;">Important State Filing Restriction</strong>
+      <p style="font-size:.77rem;color:#7A5500;line-height:1.6;margin-bottom:.65rem;">Based on the state selected, the registered agent address may not be accepted as your principal office, mailing address, member/officer address, DBA address, annual report address, or other business address. You may need to provide a separate address before filing can be completed.</p>
+      <div class="agree-row" style="padding:.4rem 0 0;">
+        <input type="checkbox" id="ackCheck" name="ackCheck" style="accent-color:var(--amber);">
+        <label for="ackCheck" style="font-size:.78rem;color:#7A5500;line-height:1.5;cursor:pointer;">I understand that I may need to provide a separate address if my state does not allow the registered agent address to be used for this purpose.</label>
+      </div>
+      <span class="err" id="err-ack" style="margin-top:6px;">You must acknowledge this restriction to continue.</span>
+    </div>
+
+    <div class="info muted" style="margin-top:.85rem;">
       Some states restrict how a registered agent address may be used for official business purposes. Our team will notify you if your state requires a separate address for any filings.
     </div>
   </div>
@@ -519,17 +538,141 @@ function showStep(n) {
   if (target) target.classList.add('active');
   updateProgress();
   scrollTop();
+  if (n === 3) { checkHardBlock(); checkRestrictionAck(); }
 }
 
 function go(dir) {
   if (dir > 0) {
-    if (step === 3) populateSummary();
+    if (step === 3) {
+      if (checkHardBlock()) return;
+      const ackBlock = document.getElementById('restriction-ack');
+      const ackCheck = document.getElementById('ackCheck');
+      const errAck   = document.getElementById('err-ack');
+      if (ackBlock && ackBlock.style.display !== 'none' && ackCheck && !ackCheck.checked) {
+        if (errAck) errAck.style.display = 'block';
+        return;
+      }
+      populateSummary();
+    }
     step = Math.min(STEPS, step + 1);
   } else {
     step = Math.max(1, step - 1);
   }
   showStep(step);
 }
+
+// ─── State SoS restriction notices ───
+const STATE_RESTRICTIONS = {
+  'Arkansas':      'All entity types can use the registered agent address, but Arkansas requires an alternative address on the state filing as well. The registered agent address cannot be the only address listed on state filings.',
+  'California':    'As of 9/27/2024, clients are able to use the Sacramento County registered agent address for DBA filings. From 7/24 through 9/24, clients could not file Sacramento County DBA filings listing the registered agent address as their principal address. Address use may depend on filing type and county review.',
+  'Delaware':      'All corporations, foreign and domestic, cannot list the Delaware registered agent address or Delaware mail forwarding/virtual office address as the principal address or officer address on state filings or annual reports.',
+  'Hawaii':        "If the client lists an LLC as a member or manager and that company/member uses the Hawaii registered agent address, the Hawaii SOS may flag it and require an address from the company's domestic state. If that LLC is also registered in Hawaii, the registered agent address may be usable for the member LLC address.",
+  'Illinois':      'As of 9/18/2024, the Illinois Secretary of State is rejecting formation filings where the registered agent address is used as the principal address or member/officer address. The registered agent address may be used on annual report filings if submitted online. Paper annual report filings may be rejected.',
+  'Indiana':       'All entity types cannot list the registered agent address as the principal address or officer address on state filings.',
+  'Massachusetts': 'The registered agent address cannot be listed on Massachusetts DBA filings as of 12/12/2023.',
+  'Montana':       'The registered agent address cannot be listed as the member/manager address if the member/manager is an LLC that is not registered with the Montana Secretary of State. The LLC listed as member/manager must be registered with the Montana SOS in order to use the registered agent address for member/manager.',
+  'New Jersey':    'Paper filings, usually for name issues, are manually reviewed. Registered agent address use may be difficult to approve during manual state review.',
+  'New York':      'All corporations cannot list Northwest as the registered agent because LLCs cannot be the agent for corporations in New York. Since New York does not require a registered agent to be listed, Northwest can still be hired for registered agent service and listed as the Service of Process address.',
+  'Virginia':      'Paper filings may be rejected if the registered agent address is listed as both principal and mailing address. This affects corporations and foreign filings because those filings can only be filed by paper.',
+};
+
+const STATE_ABBREVS = {
+  'AR': 'Arkansas',  'CA': 'California', 'DE': 'Delaware',      'HI': 'Hawaii',
+  'IL': 'Illinois',  'IN': 'Indiana',    'MA': 'Massachusetts',  'MT': 'Montana',
+  'NJ': 'New Jersey','NY': 'New York',   'VA': 'Virginia',
+};
+
+const TRIGGERING_ADDRESS_USES = new Set([
+  'Principal business address',
+  'Mailing address',
+  'Member / manager address',
+  'Officer / director address',
+  'DBA address',
+  'Annual report address',
+]);
+
+function resolveRestrictedState(val) {
+  if (!val) return '';
+  const trimmed = val.trim();
+  if (STATE_RESTRICTIONS[trimmed]) return trimmed;
+  const viaAbbrev = STATE_ABBREVS[trimmed.toUpperCase()];
+  if (viaAbbrev) return viaAbbrev;
+  return '';
+}
+
+function updateStateNotice() {
+  const raw     = (document.getElementById('stateFormation') || {}).value || '';
+  const state   = resolveRestrictedState(raw);
+  const notice  = document.getElementById('state-restriction-notice');
+  const heading = document.getElementById('state-restriction-heading');
+  const text    = document.getElementById('state-restriction-text');
+  if (!raw) {
+    notice.style.display = 'none';
+  } else if (state) {
+    notice.className     = 'info warn';
+    heading.textContent  = raw.trim() + ' — State Address Restriction Notice';
+    text.textContent     = STATE_RESTRICTIONS[state];
+    notice.style.display = 'block';
+  } else {
+    notice.className     = 'info';
+    heading.textContent  = 'State Notice';
+    text.textContent     = 'Registered agent address use may still be subject to state filing rules. Biz Filing Pros will review your selected state, entity type, and intended address use before processing.';
+    notice.style.display = 'block';
+  }
+  checkRestrictionAck();
+}
+
+function checkRestrictionAck() {
+  const raw      = (document.getElementById('stateFormation') || {}).value || '';
+  const state    = resolveRestrictedState(raw);
+  const addrUse  = (document.getElementById('raAddressUse') || {}).value || '';
+  const ackBlock = document.getElementById('restriction-ack');
+  const ackCheck = document.getElementById('ackCheck');
+  const errAck   = document.getElementById('err-ack');
+  if (!ackBlock) return;
+  const show = !!state && TRIGGERING_ADDRESS_USES.has(addrUse);
+  ackBlock.style.display = show ? 'block' : 'none';
+  if (!show) {
+    if (ackCheck) ackCheck.checked = false;
+    if (errAck)   errAck.style.display = 'none';
+  }
+}
+
+const HARD_BLOCK_RULES = [
+  {
+    state:       'New York',
+    entityTypes: new Set(['Corporation', 'S-Corporation', 'C-Corporation', 'Foreign Corporation']),
+    message:     'New York corporations cannot list Northwest as the registered agent because LLCs cannot serve as agent for corporations in New York. Northwest may still be used as the Service of Process address. Please submit a support request or contact Biz Filing Pros before continuing.',
+  },
+];
+
+function checkHardBlock() {
+  const raw        = (document.getElementById('stateFormation') || {}).value || '';
+  const state      = resolveRestrictedState(raw) || raw.trim();
+  const entityType = (document.getElementById('entityType') || {}).value || '';
+  const block      = document.getElementById('hard-block-notice');
+  const blockText  = document.getElementById('hard-block-text');
+  if (!block) return false;
+  const rule = HARD_BLOCK_RULES.find(r => r.state === state && r.entityTypes.has(entityType));
+  if (rule) {
+    if (blockText) blockText.textContent = rule.message;
+    block.style.display = 'block';
+    return true;
+  }
+  block.style.display = 'none';
+  return false;
+}
+
+document.getElementById('stateFormation').addEventListener('change', function() {
+  updateStateNotice();
+  checkHardBlock();
+});
+document.getElementById('entityType').addEventListener('change', function() {
+  if (step === 3) checkHardBlock();
+});
+document.getElementById('raAddressUse').addEventListener('change', function() {
+  checkRestrictionAck();
+});
 
 // ─── Step 3 conditional field ───
 document.getElementById('hasSeparateAddress').addEventListener('change', function() {

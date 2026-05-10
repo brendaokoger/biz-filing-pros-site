@@ -25,6 +25,10 @@
     {
       "source": "/business-email",
       "destination": "/business-email.html"
+    },
+    {
+      "source": "/registered-agent",
+      "destination": "/registered-agent.html"
     }
   ]
 }
