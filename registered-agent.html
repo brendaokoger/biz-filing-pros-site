@@ -379,7 +379,7 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
 
     <div id="restriction-ack" style="display:none;background:var(--amber-pale);border-left:3px solid var(--amber);padding:.85rem .9rem;border-radius:0 var(--radius) var(--radius) 0;margin:.85rem 0 0;">
       <strong style="display:block;font-size:.8rem;color:#7A5500;margin-bottom:.4rem;">Important State Filing Restriction</strong>
-      <p style="font-size:.77rem;color:#7A5500;line-height:1.6;margin-bottom:.65rem;">Based on the state selected, the registered agent address may not be accepted as your principal office, mailing address, member/officer address, DBA address, annual report address, or other business address. You may need to provide a separate address before filing can be completed.</p>
+      <p id="ack-text" style="font-size:.77rem;color:#7A5500;line-height:1.6;margin-bottom:.65rem;">Based on the state selected, the registered agent address may not be accepted as your principal office, mailing address, member/officer address, DBA address, annual report address, or other business address. You may need to provide a separate address before filing can be completed.</p>
       <div class="agree-row" style="padding:.4rem 0 0;">
         <input type="checkbox" id="ackCheck" name="ackCheck" style="accent-color:var(--amber);">
         <label for="ackCheck" style="font-size:.78rem;color:#7A5500;line-height:1.5;cursor:pointer;">I understand that I may need to provide a separate address if my state does not allow the registered agent address to be used for this purpose.</label>
@@ -587,18 +587,19 @@ const STATE_ABBREVS = {
 // Per-state, per-address-use restriction levels: 'notice' | 'ack' | 'hard'
 const RESTRICTION_CONFIG = {
   'Arkansas': {
-    // RA address usable, but state requires an alternate address on the filing too
     rules: {
-      'Principal business address': 'ack',
-      'Mailing address':            'ack',
-      'Member / manager address':   'ack',
-      'Officer / director address': 'ack',
-      'DBA address':                'ack',
-      'Annual report address':      'ack',
+      'Registered Agent service only': 'hard',
+      'Principal business address':    'ack',
+      'Mailing address':               'ack',
+      'Member / manager address':      'ack',
+      'Officer / director address':    'ack',
+      'DBA address':                   'ack',
+      'Annual report address':         'ack',
     },
+    hardMessage: 'Arkansas requires an alternative address on the state filing. The registered agent address cannot be the only address listed. Please provide a separate business or mailing address before continuing.',
+    ackMessage: 'Arkansas requires an alternative address on state filings in addition to the registered agent address. Biz Filing Pros must confirm a separate address is available before processing.',
   },
   'California': {
-    // Address use depends on filing type and county review
     rules: {
       'Principal business address': 'ack',
       'Mailing address':            'ack',
@@ -607,44 +608,46 @@ const RESTRICTION_CONFIG = {
       'DBA address':                'ack',
       'Annual report address':      'ack',
     },
+    ackMessage: 'California DBA address use may depend on filing type and county review. Biz Filing Pros must review this before processing.',
   },
   'Delaware': {
-    // Corporations CANNOT list RA address as principal, officer, or on annual reports
+    // Corps hard-blocked via ENTITY_HARD_BLOCKS (entity + address use combined); non-corps get ack
     rules: {
-      'Principal business address': 'hard',
-      'Officer / director address': 'hard',
-      'Annual report address':      'hard',
+      'Principal business address': 'ack',
+      'Officer / director address': 'ack',
+      'Annual report address':      'ack',
       'Mailing address':            'ack',
       'Member / manager address':   'ack',
       'DBA address':                'ack',
     },
-    hardMessage: 'Delaware law prohibits corporations from listing the registered agent address as their principal address, officer address, or on annual reports. This combination cannot be filed as submitted. Please contact Biz Filing Pros before proceeding.',
+    ackMessage: 'Delaware has restrictions on registered agent address use depending on entity type and filing type. Biz Filing Pros must review your filing before processing.',
   },
   'Hawaii': {
-    // Restriction is narrow: LLC-as-member/manager using HA RA address may be flagged
     rules: {
-      'Member / manager address':   'ack',
+      'Member / manager address':   'hard',
       'Principal business address': 'notice',
       'Mailing address':            'notice',
       'Officer / director address': 'notice',
       'DBA address':                'notice',
       'Annual report address':      'notice',
     },
+    hardMessage: 'Hawaii may require an address from the LLC\'s domestic state if an LLC is listed as a member or manager and is not registered in Hawaii. Please provide the domestic state address or confirm the LLC is registered in Hawaii before continuing.',
   },
   'Illinois': {
-    // SOS is REJECTING formation filings with RA as principal/member/officer address
     rules: {
       'Principal business address': 'hard',
       'Member / manager address':   'hard',
       'Officer / director address': 'hard',
-      'Annual report address':      'ack',  // online OK; paper may be rejected
+      'Annual report address':      'ack',
       'Mailing address':            'ack',
       'DBA address':                'ack',
     },
     hardMessage: 'The Illinois Secretary of State is rejecting formation filings that list the registered agent address as the principal address or member/officer address. This combination cannot be filed. Please contact Biz Filing Pros before proceeding.',
+    ackMessages: {
+      'Annual report address': 'Illinois annual reports may allow use of the registered agent address if submitted online. Paper annual report filings may be rejected. Biz Filing Pros must review the filing type before processing.',
+    },
   },
   'Indiana': {
-    // All entities CANNOT list RA address as principal or officer address
     rules: {
       'Principal business address': 'hard',
       'Officer / director address': 'hard',
@@ -656,7 +659,6 @@ const RESTRICTION_CONFIG = {
     hardMessage: 'Indiana does not permit any entity type to list the registered agent address as the principal address or officer address on state filings. This combination cannot be filed. Please contact Biz Filing Pros before proceeding.',
   },
   'Massachusetts': {
-    // RA address CANNOT appear on DBA filings (effective 12/12/2023)
     rules: {
       'DBA address':                'hard',
       'Principal business address': 'ack',
@@ -668,18 +670,17 @@ const RESTRICTION_CONFIG = {
     hardMessage: 'The registered agent address cannot be listed on Massachusetts DBA filings (effective 12/12/2023). This combination cannot be processed. Please contact Biz Filing Pros to discuss alternatives.',
   },
   'Montana': {
-    // Restriction is narrow: LLC-as-member/manager NOT registered with MT SOS
     rules: {
-      'Member / manager address':   'ack',
+      'Member / manager address':   'hard',
       'Principal business address': 'notice',
       'Mailing address':            'notice',
       'Officer / director address': 'notice',
       'DBA address':                'notice',
       'Annual report address':      'notice',
     },
+    hardMessage: 'Montana does not allow the registered agent address to be listed as the member/manager address if the member/manager is an LLC that is not registered with the Montana Secretary of State. Please provide another address or confirm the LLC is registered in Montana before continuing.',
   },
   'New Jersey': {
-    // Paper filings manually reviewed; RA address use may be difficult to approve
     rules: {
       'Principal business address': 'ack',
       'Mailing address':            'ack',
@@ -688,9 +689,10 @@ const RESTRICTION_CONFIG = {
       'DBA address':                'ack',
       'Annual report address':      'ack',
     },
+    ackMessage: 'New Jersey paper filings, especially filings involving name issues, are manually reviewed. Registered agent address use may be difficult to approve during manual review. Biz Filing Pros must review before processing.',
   },
   'New York': {
-    // Corps hard-blocked via entity-type rule; LLC address uses need ack
+    // Corps hard-blocked via ENTITY_HARD_BLOCKS; non-corp address uses need ack
     rules: {
       'Principal business address': 'ack',
       'Mailing address':            'ack',
@@ -701,7 +703,7 @@ const RESTRICTION_CONFIG = {
     },
   },
   'Virginia': {
-    // Paper filings may be rejected if RA address listed as BOTH principal AND mailing
+    // Corp + Principal or Mailing → hard (via ENTITY_HARD_BLOCKS); others get ack or notice
     rules: {
       'Principal business address': 'ack',
       'Mailing address':            'ack',
@@ -714,7 +716,7 @@ const RESTRICTION_CONFIG = {
 };
 
 function getAddressLevel(state, addrUse) {
-  if (!state || !addrUse || addrUse === 'Registered Agent service only' || addrUse === 'Not sure') return 'notice';
+  if (!state || !addrUse || addrUse === 'Not sure') return 'notice';
   const config = RESTRICTION_CONFIG[state];
   if (!config) return 'none';
   return config.rules[addrUse] || 'notice';
@@ -751,12 +753,25 @@ function updateStateNotice() {
   checkStep3Restrictions();
 }
 
-// Entity-type hard block (state + entity type, independent of address use)
+// Entity-type hard block: checked before address-use rules.
+// If addressUses is defined, the block only applies when BOTH entity type AND address use match.
 const ENTITY_HARD_BLOCKS = [
   {
     state:       'New York',
     entityTypes: new Set(['Corporation', 'S-Corporation', 'C-Corporation', 'Foreign Corporation']),
     message:     'New York corporations cannot list Northwest as the registered agent because LLCs cannot serve as agent for corporations in New York. Northwest may still be used as the Service of Process address. Please contact Biz Filing Pros before continuing.',
+  },
+  {
+    state:        'Delaware',
+    entityTypes:  new Set(['Corporation', 'S-Corporation', 'C-Corporation', 'Foreign Corporation']),
+    addressUses:  new Set(['Principal business address', 'Officer / director address', 'Annual report address']),
+    message:      'Delaware law prohibits corporations from listing the registered agent address as their principal address, officer address, or on annual reports. This combination cannot be filed as submitted. Please contact Biz Filing Pros before proceeding.',
+  },
+  {
+    state:        'Virginia',
+    entityTypes:  new Set(['Corporation', 'Foreign Corporation']),
+    addressUses:  new Set(['Principal business address', 'Mailing address']),
+    message:      'Virginia paper filings may be rejected if the registered agent address is listed as both principal and mailing address. This commonly affects corporations and foreign filings. Please provide separate address information before continuing.',
   },
 ];
 
@@ -764,16 +779,32 @@ function checkEntityHardBlock() {
   const raw        = (document.getElementById('stateFormation') || {}).value || '';
   const state      = resolveRestrictedState(raw) || raw.trim();
   const entityType = (document.getElementById('entityType') || {}).value || '';
+  const addrUse    = (document.getElementById('raAddressUse') || {}).value || '';
   const block      = document.getElementById('hard-block-notice');
   const blockText  = document.getElementById('hard-block-text');
   if (!block) return false;
-  const rule = ENTITY_HARD_BLOCKS.find(r => r.state === state && r.entityTypes.has(entityType));
+  const rule = ENTITY_HARD_BLOCKS.find(r => {
+    if (r.state !== state) return false;
+    if (!r.entityTypes.has(entityType)) return false;
+    if (r.addressUses && !r.addressUses.has(addrUse)) return false;
+    return true;
+  });
   if (rule) {
     if (blockText) blockText.textContent = rule.message;
     block.style.display = 'block';
     return true;
   }
   return false;
+}
+
+const DEFAULT_ACK_MSG = 'Based on the state selected, the registered agent address may not be accepted as your principal office, mailing address, member/officer address, DBA address, annual report address, or other business address. You may need to provide a separate address before filing can be completed.';
+
+function getAckMessage(state, addrUse) {
+  const config = RESTRICTION_CONFIG[state];
+  if (!config) return DEFAULT_ACK_MSG;
+  if (config.ackMessages && config.ackMessages[addrUse]) return config.ackMessages[addrUse];
+  if (config.ackMessage) return config.ackMessage;
+  return DEFAULT_ACK_MSG;
 }
 
 function checkStep3Restrictions() {
@@ -783,11 +814,12 @@ function checkStep3Restrictions() {
   const hardBlock = document.getElementById('hard-block-notice');
   const hardText  = document.getElementById('hard-block-text');
   const ackBlock  = document.getElementById('restriction-ack');
+  const ackText   = document.getElementById('ack-text');
   const ackCheck  = document.getElementById('ackCheck');
   const errAck    = document.getElementById('err-ack');
   if (!hardBlock || !ackBlock) return;
 
-  // Entity-type hard block takes priority (e.g. NY + Corp)
+  // Entity-type hard block takes priority (also checks addressUses when defined)
   if (checkEntityHardBlock()) {
     ackBlock.style.display = 'none';
     if (ackCheck) ackCheck.checked = false;
@@ -807,6 +839,7 @@ function checkStep3Restrictions() {
     if (errAck)   errAck.style.display = 'none';
   } else if (level === 'ack') {
     hardBlock.style.display = 'none';
+    if (ackText) ackText.textContent = getAckMessage(state, addrUse);
     ackBlock.style.display  = 'block';
   } else {
     // 'notice' or 'none' — clear both blocks
