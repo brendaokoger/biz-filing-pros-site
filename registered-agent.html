@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registered Agent Service — Biz Filing Pros</title>
+<meta name="description" content="Registered Agent Service for your business. Stay compliant and never miss a legal notice.">
+<link rel="icon" type="image/png" href="/images/biz-filing-pros-logo.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bizfilingpros.com/registered-agent">
+<meta property="og:title" content="File. Build. Grow.">
+<meta property="og:description" content="Start, protect, and grow your business with Biz Filing Pros.">
+<meta property="og:image" content="https://bizfilingpros.com/images/biz-filing-pros-logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="File. Build. Grow.">
+<meta name="twitter:description" content="Start, protect, and grow your business with Biz Filing Pros.">
+<meta name="twitter:image" content="https://bizfilingpros.com/images/biz-filing-pros-logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0B1D3A;
+  --navy-light: #132C55;
+  --navy-mid: #1A3A6E;
+  --gold: #C9A84C;
+  --gold-hover: #D4B85E;
+  --gold-light: #E2C97E;
+  --gold-pale: #FBF6E8;
+  --gold-glow: rgba(201,168,76,0.15);
+  --white: #FFFFFF;
+  --off-white: #FAFAF7;
+  --gray-50: #F7F6F3;
+  --gray-100: #F0EDE7;
+  --gray-200: #E0DCD3;
+  --gray-300: #CCC7BB;
+  --gray-400: #9B9688;
+  --gray-600: #6B665A;
+  --gray-800: #3D3A33;
+  --red: #C0392B;
+  --green: #1E8449;
+  --amber: #D4920B;
+  --amber-pale: #FEF7E6;
+  --radius: 10px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 4px rgba(11,29,58,0.05);
+  --shadow: 0 2px 16px rgba(11,29,58,0.07);
+  --shadow-lg: 0 8px 40px rgba(11,29,58,0.10);
+  --shadow-gold: 0 4px 20px rgba(201,168,76,0.25);
+  --tr: 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--gray-800);min-height:100vh;line-height:1.6;-webkit-font-smoothing:antialiased;}
+
+/* ═══ HEADER ═══ */
+.hdr{background:#0a1528;padding:2.5rem 1.5rem 1.75rem;text-align:center;position:relative;}
+.hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent);}
+.hdr-logo{max-width:280px;width:65%;margin:0 auto 1rem;display:block;filter:drop-shadow(0 2px 12px rgba(201,168,76,.3));}
+.hdr-tagline{font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;color:var(--gold);letter-spacing:.25em;text-transform:uppercase;margin-bottom:.75rem;}
+.hdr-sub{color:rgba(255,255,255,.55);font-size:.78rem;line-height:1.6;}
+.hdr-sub a{color:var(--gold-light);text-decoration:none;}
+.hdr-divider{width:40px;height:1px;background:var(--gold);margin:.6rem auto;opacity:.4;}
+
+/* ═══ PROGRESS ═══ */
+.prog-w{background:var(--white);border-bottom:1px solid var(--gray-100);position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm);}
+.prog-i{max-width:680px;margin:0 auto;padding:1rem 1.25rem;display:flex;align-items:center;gap:.5rem;}
+.prog-track{flex:1;height:6px;background:var(--gray-100);border-radius:3px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:3px;transition:width .5s ease;width:0%;}
+.prog-txt{font-size:.72rem;font-weight:600;color:var(--gray-400);white-space:nowrap;min-width:72px;text-align:right;}
+
+/* ═══ BODY ═══ */
+.body{max-width:680px;margin:0 auto;padding:1.25rem 1rem;}
+.step{display:none;animation:stepIn .35s ease;}.step.active{display:block;}
+@keyframes stepIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══ CARDS ═══ */
+.card{background:var(--white);border-radius:var(--radius-lg);padding:1.75rem 1.5rem;margin-bottom:1rem;box-shadow:var(--shadow);border:1px solid var(--gray-100);}
+.card-t{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--navy);margin-bottom:.25rem;}
+.card-s{font-size:.82rem;color:var(--gray-600);margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--gray-50);}
+
+/* ═══ FIELDS ═══ */
+.row{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:.85rem;}
+.row.s1{grid-template-columns:1fr;}.row.s3{grid-template-columns:1fr 1fr 1fr;}
+@media(max-width:580px){.row,.row.s3{grid-template-columns:1fr;}}
+.fg{display:flex;flex-direction:column;}
+.fg label{font-size:.7rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;}
+.fg label .req{color:var(--gold);}
+input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.92rem;padding:.65rem .85rem;border:1.5px solid var(--gray-200);border-radius:var(--radius);background:var(--white);color:var(--gray-800);transition:border-color var(--tr),box-shadow var(--tr);outline:none;width:100%;}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-glow);}
+textarea{resize:vertical;min-height:72px;}
+select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%239B9688'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:2rem;}
+.field-hint{font-size:.72rem;color:var(--gray-400);margin-top:4px;line-height:1.5;}
+.err{font-size:.72rem;color:var(--red);margin-top:4px;display:none;}
+
+/* ═══ INFO ═══ */
+.info{background:var(--gold-pale);border-left:3px solid var(--gold);padding:.75rem .9rem;border-radius:0 var(--radius) var(--radius) 0;font-size:.78rem;color:var(--gray-800);margin:.85rem 0;line-height:1.55;}
+.info.muted{background:var(--gray-50);border-left-color:var(--gray-300);color:var(--gray-600);}
+.info.warn{background:var(--amber-pale);border-left-color:var(--amber);color:#7A5500;}
+
+/* ═══ BUTTONS ═══ */
+.btn-row{display:flex;justify-content:space-between;align-items:center;margin-top:1.25rem;gap:.75rem;}
+.btn{font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:600;padding:.75rem 1.75rem;border-radius:var(--radius);border:none;cursor:pointer;transition:all var(--tr);}
+.btn-next{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-hover) 100%);color:var(--navy);box-shadow:var(--shadow-gold);}
+.btn-next:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(201,168,76,.35);}
+.btn-back{background:var(--white);color:var(--gray-600);border:1.5px solid var(--gray-200);}
+.btn-back:hover{border-color:var(--navy);color:var(--navy);}
+.btn-submit{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);color:var(--gold);width:100%;padding:.9rem;font-size:.95rem;letter-spacing:.02em;box-shadow:0 4px 20px rgba(11,29,58,.3);}
+.btn-submit:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(11,29,58,.4);}
+
+/* ═══ PRICING CARD ═══ */
+.price-card{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-light) 100%);border-radius:var(--radius-lg);padding:1.5rem 1.5rem 1.25rem;margin-bottom:1rem;box-shadow:var(--shadow-lg);}
+.price-card-label{font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:700;color:rgba(226,201,126,.7);letter-spacing:.18em;text-transform:uppercase;margin-bottom:.35rem;}
+.price-card-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--white);margin-bottom:.15rem;}
+.price-card-amount{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;color:var(--gold);line-height:1;margin:.5rem 0 1rem;}
+.price-card-amount sup{font-size:1.1rem;vertical-align:top;margin-top:.5rem;display:inline-block;}
+.price-card-amount sub{font-size:.95rem;font-weight:400;color:rgba(226,201,126,.6);margin-left:2px;}
+.price-card-divider{height:1px;background:rgba(226,201,126,.2);margin:.85rem 0;}
+.price-cols{display:grid;grid-template-columns:1fr 1fr;gap:.75rem 1.25rem;}
+@media(max-width:480px){.price-cols{grid-template-columns:1fr;}}
+.price-col-label{font-size:.68rem;font-weight:700;color:rgba(226,201,126,.65);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.4rem;}
+.price-list{list-style:none;padding:0;margin:0;}
+.price-list li{font-size:.78rem;color:rgba(255,255,255,.75);line-height:1.55;padding:.2rem 0 .2rem 1.1rem;position:relative;}
+.price-list li::before{position:absolute;left:0;font-size:.7rem;}
+.price-list.inc li::before{content:'✓';color:var(--gold);}
+.price-list.exc li::before{content:'✕';color:rgba(255,255,255,.35);}
+.price-card-note{font-size:.73rem;color:rgba(255,255,255,.45);line-height:1.6;margin-top:1rem;padding-top:.85rem;border-top:1px solid rgba(226,201,126,.15);}
+
+/* ═══ DISCLOSURES ═══ */
+.disc-box{background:var(--gray-50);border-radius:var(--radius);padding:.9rem 1.1rem;max-height:220px;overflow-y:auto;font-size:.75rem;color:var(--gray-600);line-height:1.7;margin-bottom:.85rem;border:1px solid var(--gray-200);}
+.disc-box h4{color:var(--navy);font-size:.78rem;margin-bottom:.4rem;margin-top:.9rem;}
+.disc-box h4:first-child{margin-top:0;}
+
+/* ═══ AGREE ═══ */
+.agree-row{display:flex;align-items:flex-start;gap:.65rem;padding:.85rem 0;}
+.agree-row input[type="checkbox"]{width:17px;height:17px;margin-top:2px;flex-shrink:0;accent-color:var(--gold);}
+.agree-row label{font-size:.8rem;color:var(--gray-600);line-height:1.5;cursor:pointer;}
+.agree-row label a{color:var(--gold);text-decoration:none;font-weight:600;}
+
+/* ═══ SUMMARY ═══ */
+.sum-line{display:flex;justify-content:space-between;padding:.45rem 0;font-size:.82rem;border-bottom:1px solid var(--gray-50);gap:1rem;}
+.sum-line .lbl{color:var(--gray-600);flex-shrink:0;}
+.sum-line .val{color:var(--gray-800);font-weight:500;text-align:right;word-break:break-word;}
+.sum-line.head{font-weight:600;color:var(--navy);border-bottom-color:var(--gray-200);padding:.6rem 0;margin-top:.5rem;}
+
+.footer{text-align:center;padding:1.25rem;font-size:.75rem;color:var(--gray-400);}
+.footer a{color:var(--gold);text-decoration:none;font-weight:600;}
+</style>
+<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="8993b2fd-b65a-4e40-aad8-469dc1be0639";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="hdr">
+  <a href="/" style="display:block;text-decoration:none;">
+    <img src="/images/biz-filing-pros-logo.png" class="hdr-logo" alt="Biz Filing Pros">
+  </a>
+  <div class="hdr-tagline">File. Build. Grow.</div>
+  <div class="hdr-divider"></div>
+  <p class="hdr-sub">
+    <a href="mailto:support@bizfilingpros.com">support@bizfilingpros.com</a> &nbsp;·&nbsp; <a href="tel:+13177850113">(317) 785-0113</a><br>
+    Monday–Friday &nbsp;·&nbsp; 9:00 AM – 5:00 PM CST
+  </p>
+</header>
+
+<!-- ═══ PROGRESS BAR ═══ -->
+<div class="prog-w" id="progW">
+  <div class="prog-i">
+    <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+    <div class="prog-txt" id="progTxt">Step 1 of 3</div>
+  </div>
+</div>
+
+<!-- ═══ FORM ═══ -->
+<div class="body">
+<form id="mainForm" novalidate>
+
+<!-- ════════ STEP 1: CONTACT INFO ════════ -->
+<div class="step active" data-step="1">
+  <div class="card">
+    <h2 class="card-t">Your Contact Information</h2>
+    <p class="card-s">We use this to coordinate your Registered Agent Service. Never shared with third parties.</p>
+
+    <div class="row">
+      <div class="fg">
+        <label>First Name <span class="req">*</span></label>
+        <input type="text" id="firstName" name="firstName" placeholder="Jane" autocomplete="given-name">
+      </div>
+      <div class="fg">
+        <label>Last Name <span class="req">*</span></label>
+        <input type="text" id="lastName" name="lastName" placeholder="Smith" autocomplete="family-name">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="fg">
+        <label>Email Address <span class="req">*</span></label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <div class="fg">
+        <label>Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="(317) 555-0123" autocomplete="tel">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="fg">
+        <label>Preferred Contact Method</label>
+        <select id="contactMethod" name="contactMethod">
+          <option value="email">Email</option>
+          <option value="phone">Phone</option>
+          <option value="text">Text Message</option>
+        </select>
+      </div>
+      <div></div>
+    </div>
+
+    <div class="row s1">
+      <div class="fg">
+        <label>Mailing Address</label>
+        <input type="text" id="mailingAddress" name="mailingAddress" placeholder="Street address, city, state, ZIP" autocomplete="street-address">
+      </div>
+    </div>
+
+    <div class="info muted">
+      Your contact information is used only to coordinate your Registered Agent Service order. We do not sell your information.
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <div></div>
+    <button type="button" class="btn btn-next" onclick="go(1)">Continue &rarr;</button>
+  </div>
+</div>
+
+<!-- ════════ STEP 2: BUSINESS INFORMATION ════════ -->
+<div class="step" data-step="2">
+  <div class="card">
+    <h2 class="card-t">Business Information</h2>
+    <p class="card-s">Tell us about your business so we can assign the correct Registered Agent for your state.</p>
+
+    <div class="row s1">
+      <div class="fg">
+        <label>Business Name <span class="req">*</span></label>
+        <input type="text" id="businessName" name="businessName" placeholder="Smith Consulting LLC">
+        <div class="field-hint">Enter the full legal name exactly as it appears or will appear on your state filing.</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="fg">
+        <label>Entity Type <span class="req">*</span></label>
+        <select id="entityType" name="entityType">
+          <option value="">— Select type —</option>
+          <option value="LLC">LLC</option>
+          <option value="Corporation">Corporation</option>
+          <option value="S-Corporation">S-Corporation</option>
+          <option value="C-Corporation">C-Corporation</option>
+          <option value="Nonprofit Corporation">Nonprofit Corporation</option>
+          <option value="Professional LLC">Professional LLC</option>
+          <option value="Foreign LLC">Foreign LLC</option>
+          <option value="Foreign Corporation">Foreign Corporation</option>
+          <option value="DBA / Assumed Name">DBA / Assumed Name</option>
+          <option value="Not Sure">Not Sure</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>State Where Business Is Filed or Will Be Filed <span class="req">*</span></label>
+        <select id="stateFormation" name="stateFormation">
+          <option value="">— Select state —</option>
+          <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>Washington, D.C.</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row s1">
+      <div class="fg">
+        <label>Is this a new or existing business? <span class="req">*</span></label>
+        <select id="businessStatus" name="businessStatus">
+          <option value="">— Select —</option>
+          <option value="New Business Formation">New Business Formation</option>
+          <option value="Existing Business">Existing Business</option>
+          <option value="Foreign Registration">Foreign Registration</option>
+          <option value="Annual Report / Compliance Filing">Annual Report / Compliance Filing</option>
+          <option value="DBA Filing">DBA Filing</option>
+          <option value="Not Sure">Not Sure</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row s1">
+      <div class="fg">
+        <label>Business Principal Address</label>
+        <input type="text" id="bizPrincipalAddress" name="bizPrincipalAddress" placeholder="Street address, city, state, ZIP">
+        <div class="field-hint">The primary office or place of business. This is not your registered agent address.</div>
+      </div>
+    </div>
+
+    <div class="row s1">
+      <div class="fg">
+        <label>Business Mailing Address</label>
+        <input type="text" id="bizMailingAddress" name="bizMailingAddress" placeholder="Street address, city, state, ZIP">
+        <div class="field-hint">Leave blank if same as principal address above.</div>
+      </div>
+    </div>
+
+    <div class="row s1">
+      <div class="fg">
+        <label>Owner / Authorized Contact Name</label>
+        <input type="text" id="ownerName" name="ownerName" placeholder="Full name of owner or authorized representative">
+      </div>
+    </div>
+
+    <div class="row s1">
+      <div class="fg">
+        <label>Personal Address of Owner / Authorized Contact</label>
+        <input type="text" id="ownerAddress" name="ownerAddress" placeholder="Street address, city, state, ZIP">
+      </div>
+    </div>
+
+    <div class="info muted">
+      Some states restrict how a registered agent address may be used. Clients may be required to provide a separate business, mailing, principal office, member, or officer address. Our team will notify you if any state-specific requirements apply.
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button type="button" class="btn btn-back" onclick="go(-1)">&larr; Back</button>
+    <button type="button" class="btn btn-next" onclick="go(1)">Continue &rarr;</button>
+  </div>
+</div>
+
+<!-- ════════ STEP 3: REGISTERED AGENT ADDRESS USE ════════ -->
+<div class="step" data-step="3">
+  <div class="card">
+    <h2 class="card-t">Registered Agent Address Use</h2>
+    <p class="card-s">Some states require businesses to provide separate addresses for certain purposes. Help us understand how you plan to use the registered agent address.</p>
+
+    <div class="row s1">
+      <div class="fg">
+        <label>How do you plan to use the registered agent address? <span class="req">*</span></label>
+        <select id="raAddressUse" name="raAddressUse">
+          <option value="">— Select —</option>
+          <option value="Registered Agent service only">Registered Agent service only</option>
+          <option value="Principal business address">Principal business address</option>
+          <option value="Mailing address">Mailing address</option>
+          <option value="Member / manager address">Member / manager address</option>
+          <option value="Officer / director address">Officer / director address</option>
+          <option value="DBA address">DBA address</option>
+          <option value="Annual report address">Annual report address</option>
+          <option value="Not sure">Not sure</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row s1">
+      <div class="fg">
+        <label>Do you have a separate business or mailing address available if the state requires one? <span class="req">*</span></label>
+        <select id="hasSeparateAddress" name="hasSeparateAddress">
+          <option value="">— Select —</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+          <option value="Not sure">Not sure</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row s1" id="alt-addr-wrap" style="display:none;">
+      <div class="fg">
+        <label>Alternate Business or Mailing Address</label>
+        <input type="text" id="alternateAddress" name="alternateAddress" placeholder="Street address, city, state, ZIP">
+      </div>
+    </div>
+
+    <div class="info muted">
+      Some states restrict how a registered agent address may be used for official business purposes. Our team will notify you if your state requires a separate address for any filings.
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button type="button" class="btn btn-back" onclick="go(-1)">&larr; Back</button>
+    <button type="button" class="btn btn-next" onclick="go(1)">Review Order &rarr;</button>
+  </div>
+</div>
+
+<!-- ════════ STEP 4: REVIEW & SUBMIT ════════ -->
+<div class="step" data-step="4">
+  <div class="card">
+    <h2 class="card-t">Review Your Order</h2>
+    <p class="card-s">Confirm your information before submitting. Use the Back button to make changes.</p>
+
+    <div class="sum-line head"><span>Contact Information</span></div>
+    <div class="sum-line"><span class="lbl">Name</span><span class="val" id="sum-name">—</span></div>
+    <div class="sum-line"><span class="lbl">Email</span><span class="val" id="sum-email">—</span></div>
+    <div class="sum-line"><span class="lbl">Phone</span><span class="val" id="sum-phone">—</span></div>
+    <div class="sum-line"><span class="lbl">Preferred Contact</span><span class="val" id="sum-contact">—</span></div>
+    <div class="sum-line" id="sum-mailing-row"><span class="lbl">Mailing Address</span><span class="val" id="sum-mailing">—</span></div>
+
+    <div class="sum-line head" style="margin-top:.85rem;"><span>Business Details</span></div>
+    <div class="sum-line"><span class="lbl">Business Name</span><span class="val" id="sum-biz">—</span></div>
+    <div class="sum-line"><span class="lbl">State</span><span class="val" id="sum-state">—</span></div>
+    <div class="sum-line"><span class="lbl">Entity Type</span><span class="val" id="sum-entity">—</span></div>
+    <div class="sum-line"><span class="lbl">Business Status</span><span class="val" id="sum-biz-status">—</span></div>
+    <div class="sum-line" id="sum-principal-addr-row"><span class="lbl">Principal Address</span><span class="val" id="sum-principal-addr">—</span></div>
+    <div class="sum-line" id="sum-biz-mailing-row"><span class="lbl">Business Mailing Address</span><span class="val" id="sum-biz-mailing">—</span></div>
+    <div class="sum-line" id="sum-owner-name-row"><span class="lbl">Owner / Authorized Contact</span><span class="val" id="sum-owner-name">—</span></div>
+    <div class="sum-line" id="sum-owner-addr-row"><span class="lbl">Owner Address</span><span class="val" id="sum-owner-addr">—</span></div>
+
+    <div class="sum-line head" style="margin-top:.85rem;"><span>Registered Agent Address Use</span></div>
+    <div class="sum-line"><span class="lbl">Address Use</span><span class="val" id="sum-ra-addr-use">—</span></div>
+    <div class="sum-line"><span class="lbl">Separate Address Available</span><span class="val" id="sum-has-separate">—</span></div>
+    <div class="sum-line" id="sum-alt-addr-row"><span class="lbl">Alternate Address</span><span class="val" id="sum-alt-addr">—</span></div>
+  </div>
+
+  <div class="price-card">
+    <div class="price-card-label">Pricing Summary</div>
+    <div class="price-card-name">Registered Agent Service</div>
+    <div class="price-card-amount"><sup>$</sup>149<sub>/year</sub></div>
+    <div class="price-card-divider"></div>
+    <div class="price-cols">
+      <div>
+        <div class="price-col-label">Includes</div>
+        <ul class="price-list inc">
+          <li>Registered Agent service for 1 year</li>
+          <li>Acceptance of legal documents and state notices</li>
+          <li>Digital forwarding of received documents</li>
+          <li>Coverage in your selected state</li>
+          <li>Compliance alerts and renewal reminders</li>
+        </ul>
+      </div>
+      <div>
+        <div class="price-col-label">Not Included</div>
+        <ul class="price-list exc">
+          <li>Multiple states</li>
+          <li>Future renewal fees</li>
+          <li>State filing fees</li>
+          <li>Change of agent filing fees (if applicable)</li>
+        </ul>
+      </div>
+    </div>
+    <p class="price-card-note">Registered Agent service renews annually at $149/year. You will receive a renewal notice before your service expires. Service is billed per state. If your business operates in multiple states, each state requires a separate Registered Agent.</p>
+  </div>
+
+  <div class="card">
+    <h2 class="card-t">Agreement &amp; Authorization</h2>
+    <p class="card-s">Please read and agree to the following before submitting.</p>
+
+    <div class="disc-box">
+      <h4>Service Agreement</h4>
+      <p>By submitting this form, you authorize Biz Filing Pros LLC to act as or coordinate Registered Agent services for the business listed above in the selected state. You confirm that the information provided is accurate and that you have authority to appoint a registered agent on behalf of this business.</p>
+      <h4>Pricing &amp; Renewal</h4>
+      <p>Registered Agent service is $149 per year, per state, payable immediately at checkout after this form is submitted. Your service will be active for one year from the date of setup. Renewal notices will be sent before your annual renewal date. Continued service requires annual renewal at the then-current rate.</p>
+      <h4>Cancellation</h4>
+      <p>You may cancel Registered Agent service before the service term begins. Once the service term has started or any related state filings have been submitted, cancellations may not result in a refund. All cancellation requests must be submitted in writing by email to support@bizfilingpros.com.</p>
+      <h4>State Restrictions</h4>
+      <p>Some states restrict how a registered agent address may be used. Clients in those states may be required to provide a separate business, mailing, principal office, member, or officer address. Our team will contact you if any state-specific restrictions apply to your filing.</p>
+      <h4>No Legal Advice</h4>
+      <p>Biz Filing Pros LLC is not a law firm and does not provide legal, tax, financial, or accounting advice. Services are limited to registered agent coordination, document preparation, and administrative support.</p>
+    </div>
+
+    <div class="agree-row">
+      <input type="checkbox" id="agreeTerms" name="agreeTerms">
+      <label for="agreeTerms">I have read and agree to the Service Agreement above. I authorize Biz Filing Pros LLC to act as or coordinate Registered Agent services for my business. <span class="req">*</span></label>
+    </div>
+    <span class="err" id="err-agree">You must agree to the terms to submit.</span>
+    <div class="info warn" id="submit-error" style="display:none;margin-top:.85rem;">
+      Something went wrong submitting your request. Please try again or contact us at <a href="mailto:support@bizfilingpros.com" style="color:inherit;font-weight:600;">support@bizfilingpros.com</a>.
+    </div>
+
+    <button type="submit" class="btn btn-submit" id="submitBtn" style="margin-top:1rem;">Submit &amp; Continue to Payment &rarr;</button>
+  </div>
+
+  <div class="btn-row" style="margin-top:0;">
+    <button type="button" class="btn btn-back" onclick="go(-1)">&larr; Back</button>
+    <span></span>
+  </div>
+</div>
+
+</form>
+</div><!-- /.body -->
+
+<!-- ═══ SUCCESS MESSAGE ═══ -->
+<div id="successMsg" style="display:none;max-width:680px;margin:0 auto;padding:1.25rem 1rem;">
+  <div class="card" style="text-align:center;padding:2.5rem 1.5rem;">
+    <div style="width:56px;height:56px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;box-shadow:var(--shadow-gold);">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M5 13l6 6L21 7" stroke="#0B1D3A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h2 class="card-t" style="margin-bottom:.75rem;">Registered Agent Request Received</h2>
+    <p style="font-size:.88rem;color:var(--gray-600);line-height:1.75;max-width:500px;margin:0 auto 1.5rem;">
+      Thank you for submitting your Registered Agent Service request. Our team will review your business details, selected state, entity type, and intended address use. If additional information is needed, we will contact you by email or phone.
+    </p>
+    <div class="info" style="text-align:left;max-width:440px;margin:0 auto 1.5rem;">
+      Questions? Reach us at <a href="mailto:support@bizfilingpros.com" style="color:var(--gold);font-weight:600;">support@bizfilingpros.com</a> or <a href="tel:+13177850113" style="color:var(--gold);font-weight:600;">(317) 785-0113</a> — Monday–Friday, 9 AM–5 PM CST.
+    </div>
+    <a href="/" class="btn btn-next" style="display:inline-block;text-decoration:none;">Return Home</a>
+  </div>
+</div>
+
+<footer class="footer">
+  &copy; 2026 Biz Filing Pros, LLC. All rights reserved. &nbsp;·&nbsp;
+  <a href="/policies">Policies</a> &nbsp;·&nbsp;
+  <a href="mailto:support@bizfilingpros.com">support@bizfilingpros.com</a><br>
+  <span style="opacity:.7;">Biz Filing Pros is not a law firm and does not provide legal, tax, or financial advice.</span>
+</footer>
+
+<script>
+let step = 1;
+const STEPS = 4;
+
+function updateProgress() {
+  const pct = ((step - 1) / (STEPS - 1)) * 100;
+  document.getElementById('progFill').style.width = pct + '%';
+  document.getElementById('progTxt').textContent = 'Step ' + step + ' of ' + STEPS;
+}
+
+function scrollTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showStep(n) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  const target = document.querySelector('[data-step="' + n + '"]');
+  if (target) target.classList.add('active');
+  updateProgress();
+  scrollTop();
+}
+
+function go(dir) {
+  if (dir > 0) {
+    if (step === 3) populateSummary();
+    step = Math.min(STEPS, step + 1);
+  } else {
+    step = Math.max(1, step - 1);
+  }
+  showStep(step);
+}
+
+// ─── Step 3 conditional field ───
+document.getElementById('hasSeparateAddress').addEventListener('change', function() {
+  document.getElementById('alt-addr-wrap').style.display = this.value === 'Yes' ? 'block' : 'none';
+  if (this.value !== 'Yes') document.getElementById('alternateAddress').value = '';
+});
+
+// ─── Summary ───
+function v(id) {
+  return (document.getElementById(id)?.value || '').trim() || '—';
+}
+
+function populateSummary() {
+  document.getElementById('sum-name').textContent    = v('firstName') + ' ' + v('lastName');
+  document.getElementById('sum-email').textContent   = v('email');
+  document.getElementById('sum-phone').textContent   = v('phone');
+  const cm = document.getElementById('contactMethod');
+  document.getElementById('sum-contact').textContent = cm?.options[cm.selectedIndex]?.text || '—';
+  const mailing = v('mailingAddress');
+  document.getElementById('sum-mailing').textContent = mailing;
+  document.getElementById('sum-mailing-row').style.display = (mailing && mailing !== '—') ? 'flex' : 'none';
+  document.getElementById('sum-biz').textContent     = v('businessName');
+  document.getElementById('sum-state').textContent   = v('stateFormation');
+  const et = document.getElementById('entityType');
+  document.getElementById('sum-entity').textContent  = et?.options[et.selectedIndex]?.text || '—';
+
+  const bs = document.getElementById('businessStatus');
+  document.getElementById('sum-biz-status').textContent = bs?.options[bs.selectedIndex]?.text || '—';
+
+  const principalAddr = v('bizPrincipalAddress');
+  document.getElementById('sum-principal-addr').textContent = principalAddr;
+  document.getElementById('sum-principal-addr-row').style.display = (principalAddr && principalAddr !== '—') ? 'flex' : 'none';
+
+  const bizMailing = v('bizMailingAddress');
+  document.getElementById('sum-biz-mailing').textContent = bizMailing;
+  document.getElementById('sum-biz-mailing-row').style.display = (bizMailing && bizMailing !== '—') ? 'flex' : 'none';
+
+  const ownerName = v('ownerName');
+  document.getElementById('sum-owner-name').textContent = ownerName;
+  document.getElementById('sum-owner-name-row').style.display = (ownerName && ownerName !== '—') ? 'flex' : 'none';
+
+  const ownerAddr = v('ownerAddress');
+  document.getElementById('sum-owner-addr').textContent = ownerAddr;
+  document.getElementById('sum-owner-addr-row').style.display = (ownerAddr && ownerAddr !== '—') ? 'flex' : 'none';
+
+  const rau = document.getElementById('raAddressUse');
+  document.getElementById('sum-ra-addr-use').textContent = rau?.options[rau.selectedIndex]?.text || '—';
+
+  const hsa = document.getElementById('hasSeparateAddress');
+  document.getElementById('sum-has-separate').textContent = hsa?.options[hsa.selectedIndex]?.text || '—';
+
+  const altAddr = v('alternateAddress');
+  document.getElementById('sum-alt-addr').textContent = altAddr;
+  document.getElementById('sum-alt-addr-row').style.display = (altAddr && altAddr !== '—') ? 'flex' : 'none';
+}
+
+// ─── Submit: Formspree → Stripe payment link ───
+document.getElementById('mainForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const agreed = document.getElementById('agreeTerms').checked;
+  const errAgree = document.getElementById('err-agree');
+  errAgree.style.display = agreed ? 'none' : 'block';
+  if (!agreed) return;
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Processing…';
+
+  const firstName     = document.getElementById('firstName').value.trim();
+  const lastName      = document.getElementById('lastName').value.trim();
+  const email         = document.getElementById('email').value.trim();
+  const phone         = document.getElementById('phone').value.trim();
+  const contactMethod  = document.getElementById('contactMethod').value;
+  const mailingAddress = document.getElementById('mailingAddress').value.trim();
+  const businessName        = document.getElementById('businessName').value.trim();
+  const stateFormation      = document.getElementById('stateFormation').value;
+  const entityType          = document.getElementById('entityType').value;
+  const businessStatus      = document.getElementById('businessStatus').value;
+  const bizPrincipalAddress = document.getElementById('bizPrincipalAddress').value.trim();
+  const bizMailingAddress   = document.getElementById('bizMailingAddress').value.trim();
+  const ownerName           = document.getElementById('ownerName').value.trim();
+  const ownerAddress        = document.getElementById('ownerAddress').value.trim();
+  const raAddressUse        = document.getElementById('raAddressUse').value;
+  const hasSeparateAddress  = document.getElementById('hasSeparateAddress').value;
+  const alternateAddress    = document.getElementById('alternateAddress').value.trim();
+
+  fetch('https://formspree.io/f/mpqbobjy', {
+    method:  'POST',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      firstName, lastName, email, phone, contactMethod, mailingAddress,
+      businessName, stateFormation, entityType, businessStatus,
+      bizPrincipalAddress, bizMailingAddress, ownerName, ownerAddress,
+      raAddressUse, hasSeparateAddress, alternateAddress,
+      service: 'Registered Agent Service',
+      price:   '$149/year',
+    }),
+  })
+  .then(function(res) {
+    if (!res.ok) throw new Error('formspree');
+    document.getElementById('progW').style.display = 'none';
+    document.querySelector('.body').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  })
+  .catch(function(err) {
+    btn.disabled = false;
+    btn.textContent = 'Submit & Continue to Payment →';
+    const errEl = document.getElementById('submit-error');
+    if (errEl) {
+      errEl.innerHTML = err && err.message === 'formspree'
+        ? 'Your information could not be submitted. Please try again or contact us at <a href="mailto:support@bizfilingpros.com" style="color:inherit;font-weight:600;">support@bizfilingpros.com</a>.'
+        : 'Payment could not be started. Please try again or contact us at <a href="mailto:support@bizfilingpros.com" style="color:inherit;font-weight:600;">support@bizfilingpros.com</a>.';
+      errEl.style.display = 'block';
+    }
+  });
+});
+
+updateProgress();
+</script>
+</body>
+</html>
