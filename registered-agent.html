@@ -222,6 +222,7 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
     <div class="info muted">
       Your contact information is used only to coordinate your Registered Agent Service order. We do not sell your information.
     </div>
+    <span class="err" id="err-step1" style="display:none;margin-top:.5rem;font-size:.78rem;">Please complete all required fields: First Name, Last Name, and Email.</span>
   </div>
 
   <div class="btn-row">
@@ -276,6 +277,8 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
     </div>
 
     <div class="row s1">
+      <div class="fg">
+        <label>Business Status</label>
         <select id="businessStatus" name="businessStatus">
           <option value="">— Select —</option>
           <option value="New Business Formation">New Business Formation</option>
@@ -321,6 +324,7 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
     <div class="info muted">
       Some states restrict how a registered agent address may be used. Clients may be required to provide a separate business, mailing, principal office, member, or officer address. Our team will notify you if any state-specific requirements apply.
     </div>
+    <span class="err" id="err-step2" style="display:none;margin-top:.5rem;font-size:.78rem;">Please complete all required fields: Business Name, Entity Type, and State.</span>
   </div>
 
   <div class="btn-row">
@@ -349,6 +353,7 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
           <option value="Annual report address">Annual report address</option>
           <option value="Not sure">Not sure</option>
         </select>
+        <span class="err" id="err-raAddrUse" style="display:none;margin-top:4px;">Please select how you plan to use the registered agent address.</span>
       </div>
     </div>
 
@@ -541,8 +546,35 @@ function showStep(n) {
   if (n === 3) checkStep3Restrictions();
 }
 
+function fieldVal(id) {
+  return (document.getElementById(id)?.value || '').trim();
+}
+
+function validateStep(n) {
+  if (n === 1) {
+    const ok = fieldVal('firstName') && fieldVal('lastName') && fieldVal('email');
+    const err = document.getElementById('err-step1');
+    if (err) err.style.display = ok ? 'none' : 'block';
+    return !!ok;
+  }
+  if (n === 2) {
+    const ok = fieldVal('businessName') && fieldVal('entityType') && fieldVal('stateFormation');
+    const err = document.getElementById('err-step2');
+    if (err) err.style.display = ok ? 'none' : 'block';
+    return !!ok;
+  }
+  if (n === 3) {
+    const ok = !!fieldVal('raAddressUse');
+    const err = document.getElementById('err-raAddrUse');
+    if (err) err.style.display = ok ? 'none' : 'block';
+    return ok;
+  }
+  return true;
+}
+
 function go(dir) {
   if (dir > 0) {
+    if (!validateStep(step)) return;
     if (step === 3) {
       checkStep3Restrictions();
       const hardBlock = document.getElementById('hard-block-notice');
