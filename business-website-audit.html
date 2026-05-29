@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Website & Online Presence Audit | Biz Filing Pros</title>
+<meta name="description" content="Complete the Business Website & Online Presence Audit to receive a custom website strategy and proposal from Biz Filing Pros.">
+<link rel="icon" type="image/png" href="/images/biz-filing-pros-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#06101C;--navy-mid:#0A1726;--navy-card:#0C1B30;--navy-light:#0F1F38;--gold:#C8A44C;--gold-light:#DEB96E;--ivory:#F9F7F2;--ivory-dark:#F1EDE4;--white:#FFFFFF;--text-body:#3A3A4A;--text-muted:#78788A;--font-display:'Cinzel',Georgia,serif;--font-serif:'Cormorant Garamond',Georgia,serif;--font-sans:'DM Sans',system-ui,sans-serif;--radius:6px;--radius-lg:14px;--max-w:740px;--ease:cubic-bezier(0.4,0,0.2,1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);background:var(--ivory);color:var(--text-body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+
+/* ── NAVBAR ── */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:1000;height:70px;display:flex;align-items:center;background:rgba(6,16,28,0.98);border-bottom:1px solid rgba(200,164,76,0.15);backdrop-filter:blur(20px);padding:0 36px}
+.nav-inner{max-width:1160px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:10px}
+.logo-shield{width:48px;height:48px;object-fit:contain}
+.logo-name{font-family:var(--font-display);font-size:14px;font-weight:600;letter-spacing:0.14em;color:var(--gold-light);line-height:1.15;display:block}
+.logo-sub{font-family:var(--font-sans);font-size:8px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:rgba(200,164,76,0.4);margin-top:3px;display:block}
+.nav-return{font-family:var(--font-sans);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.45);display:flex;align-items:center;gap:7px;transition:color 0.25s}
+.nav-return:hover{color:var(--gold-light)}
+
+/* ── PROGRESS ── */
+.audit-progress{background:var(--navy);padding:18px 36px;border-bottom:1px solid rgba(200,164,76,0.12)}
+.audit-progress-inner{max-width:var(--max-w);margin:0 auto}
+.progress-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
+.progress-label{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:rgba(200,164,76,0.6)}
+.progress-counter{font-family:var(--font-sans);font-size:10px;font-weight:400;letter-spacing:0.08em;color:rgba(255,255,255,0.35)}
+.progress-track{height:2px;background:rgba(200,164,76,0.1);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:2px;transition:width 0.5s var(--ease)}
+
+/* ── PAGE SHELL ── */
+.page-shell{padding-top:70px;min-height:100vh;display:flex;flex-direction:column}
+.audit-body{flex:1;padding:44px 36px 80px;display:flex;flex-direction:column;align-items:center}
+
+/* ── STEPS ── */
+.step{display:none;width:100%;max-width:var(--max-w)}
+.step.active{display:block;animation:fadeUp 0.38s var(--ease) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── INTRO PAGE 1 ── */
+.intro-wrap{text-align:center;margin-bottom:32px}
+.intro-eyebrow{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:12px}
+.intro-headline{font-family:var(--font-serif);font-size:clamp(28px,4vw,46px);font-weight:500;color:var(--navy);line-height:1.1;margin-bottom:14px}
+.intro-headline em{font-style:italic;color:var(--gold)}
+.gold-rule{display:block;width:48px;height:1.5px;background:linear-gradient(90deg,var(--gold),var(--gold-light));margin:0 auto 24px}
+.intro-lead{font-family:var(--font-sans);font-size:14.5px;font-weight:300;color:var(--text-muted);line-height:1.85;max-width:600px;margin:0 auto}
+
+/* ── PACKAGE CARD ── */
+.pkg-card{background:var(--navy-card);border:1px solid rgba(200,164,76,0.22);border-radius:var(--radius-lg);padding:30px 34px;margin:28px 0 18px;position:relative;overflow:hidden}
+.pkg-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light))}
+.pkg-title{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.pkg-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 20px}
+.pkg-item{display:flex;align-items:flex-start;gap:10px;font-family:var(--font-sans);font-size:13px;font-weight:300;color:rgba(255,255,255,0.78);line-height:1.4}
+.pkg-check{width:17px;height:17px;background:rgba(200,164,76,0.1);border:1px solid rgba(200,164,76,0.28);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.pkg-check svg{width:9px;height:9px;fill:var(--gold)}
+
+/* ── INFO TILES ── */
+.info-tile{background:var(--white);border:1px solid rgba(200,164,76,0.14);border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:14px}
+.info-tile-title{font-family:var(--font-sans);font-size:9.5px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+.info-tile-body{font-family:var(--font-sans);font-size:13px;font-weight:300;color:var(--text-muted);line-height:1.75}
+
+/* ── NOTICE ── */
+.notice{background:rgba(200,164,76,0.05);border:1px solid rgba(200,164,76,0.18);border-radius:var(--radius);padding:15px 18px;margin-bottom:26px}
+.notice p{font-family:var(--font-sans);font-size:12.5px;font-weight:300;color:var(--text-body);line-height:1.8}
+.notice strong{font-weight:600;color:var(--navy)}
+
+/* ── FORM CARD ── */
+.form-card{background:var(--white);border:1px solid rgba(200,164,76,0.14);border-radius:var(--radius-lg);padding:40px 44px;box-shadow:0 12px 48px rgba(6,16,28,0.09);position:relative;overflow:hidden;margin-bottom:26px}
+.form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--gold))}
+.step-eyebrow{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:7px}
+.step-headline{font-family:var(--font-serif);font-size:28px;font-weight:500;color:var(--navy);line-height:1.15;margin-bottom:5px}
+.step-sub{font-family:var(--font-sans);font-size:13px;font-weight:300;color:var(--text-muted);line-height:1.7;margin-bottom:24px}
+.step-rule{width:100%;height:1px;background:rgba(200,164,76,0.12);margin-bottom:24px}
+
+/* ── FIELD GROUPS ── */
+.fg{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+.fg:last-child,.fg.last{margin-bottom:0}
+.fg label,.field-label{font-family:var(--font-sans);font-size:10.5px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--navy);display:block;margin-bottom:2px}
+.fg input,.fg textarea,.fg select{font-family:var(--font-sans);font-size:14px;font-weight:300;color:var(--text-body);background:var(--ivory);border:1px solid rgba(200,164,76,0.18);border-radius:var(--radius);padding:13px 16px;width:100%;outline:none;transition:border-color 0.25s,box-shadow 0.25s;-webkit-appearance:none;appearance:none}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--text-muted);font-weight:300}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,164,76,0.09);background:var(--white)}
+.fg textarea{resize:vertical;min-height:108px;line-height:1.7}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+
+/* ── RADIO ── */
+.radio-group{display:grid;gap:9px;margin-top:3px}
+.radio-group.col2{grid-template-columns:1fr 1fr}
+.radio-group.col3{grid-template-columns:repeat(3,1fr)}
+.radio-opt{display:flex;align-items:center;gap:11px;cursor:pointer;padding:12px 15px;background:var(--ivory);border:1px solid rgba(200,164,76,0.16);border-radius:var(--radius);transition:border-color 0.22s,background 0.22s;user-select:none}
+.radio-opt:hover{border-color:rgba(200,164,76,0.38);background:rgba(200,164,76,0.03)}
+.radio-opt input[type="radio"]{display:none}
+.radio-dot{width:16px;height:16px;border-radius:50%;border:1.5px solid rgba(200,164,76,0.35);flex-shrink:0;position:relative;transition:border-color 0.22s}
+.radio-dot::after{content:'';position:absolute;inset:3px;border-radius:50%;background:var(--gold);transform:scale(0);transition:transform 0.18s var(--ease)}
+.radio-opt input[type="radio"]:checked~.radio-dot{border-color:var(--gold)}
+.radio-opt input[type="radio"]:checked~.radio-dot::after{transform:scale(1)}
+.radio-opt.sel{border-color:rgba(200,164,76,0.45);background:rgba(200,164,76,0.05)}
+.radio-lbl{font-family:var(--font-sans);font-size:13.5px;font-weight:300;color:var(--text-body)}
+
+/* ── CHECKBOX ── */
+.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:3px}
+.check-opt{display:flex;align-items:center;gap:11px;cursor:pointer;padding:12px 15px;background:var(--ivory);border:1px solid rgba(200,164,76,0.16);border-radius:var(--radius);transition:border-color 0.22s,background 0.22s;user-select:none}
+.check-opt:hover{border-color:rgba(200,164,76,0.38);background:rgba(200,164,76,0.03)}
+.check-opt input[type="checkbox"]{display:none}
+.check-box{width:16px;height:16px;border-radius:3px;border:1.5px solid rgba(200,164,76,0.35);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:background 0.18s,border-color 0.18s}
+.check-box svg{width:10px;height:10px;fill:var(--navy);transform:scale(0);transition:transform 0.18s var(--ease)}
+.check-opt input[type="checkbox"]:checked~.check-box{background:var(--gold);border-color:var(--gold)}
+.check-opt input[type="checkbox"]:checked~.check-box svg{transform:scale(1)}
+.check-opt.sel{border-color:rgba(200,164,76,0.42);background:rgba(200,164,76,0.05)}
+.check-lbl{font-family:var(--font-sans);font-size:13.5px;font-weight:300;color:var(--text-body);line-height:1.3}
+
+/* ── CONDITIONAL ── */
+.cond{display:none;margin-top:16px}
+.cond.show{display:block;animation:fadeUp 0.28s var(--ease) both}
+
+/* ── FIELD NOTICE ── */
+.field-notice{background:transparent;border-left:2px solid rgba(200,164,76,0.4);padding:11px 16px;margin-top:18px;border-radius:0 var(--radius) var(--radius) 0}
+.field-notice p{font-family:var(--font-sans);font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.78}
+.field-notice strong{font-weight:600;color:var(--text-body)}
+
+/* ── BUTTONS ── */
+.btn-row{display:flex;align-items:center;gap:12px}
+.btn-row.end{justify-content:flex-end}
+.btn-cont{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(120deg,var(--gold) 0%,var(--gold-light) 50%,var(--gold) 100%);background-size:200% 100%;color:var(--navy);font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;padding:15px 34px;border-radius:var(--radius);border:none;cursor:pointer;transition:background-position 0.5s var(--ease),box-shadow 0.3s,transform 0.3s;box-shadow:0 4px 20px rgba(200,164,76,0.28);min-height:50px}
+.btn-cont:hover:not(:disabled){background-position:100% 0;box-shadow:0 6px 30px rgba(200,164,76,0.42);transform:translateY(-2px)}
+.btn-cont:disabled{opacity:0.7;cursor:not-allowed;transform:none}
+.btn-back{display:inline-flex;align-items:center;justify-content:center;gap:7px;background:transparent;color:var(--text-muted);font-family:var(--font-sans);font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;padding:15px 22px;border-radius:var(--radius);border:1px solid rgba(200,164,76,0.18);cursor:pointer;transition:all 0.28s;min-height:50px}
+.btn-back:hover{border-color:rgba(200,164,76,0.38);color:var(--navy);background:rgba(200,164,76,0.05)}
+
+/* ── SUCCESS ── */
+.success-wrap{text-align:center;padding:16px 0 8px}
+.success-icon{width:76px;height:76px;background:rgba(200,164,76,0.08);border:1px solid rgba(200,164,76,0.28);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px}
+.success-icon svg{width:34px;height:34px;fill:var(--gold)}
+.success-hed{font-family:var(--font-serif);font-size:clamp(26px,4vw,40px);font-weight:500;color:var(--navy);margin-bottom:10px;line-height:1.12}
+.success-hed em{font-style:italic;color:var(--gold)}
+.success-body{font-family:var(--font-sans);font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.85;max-width:520px;margin:0 auto 28px}
+.success-list{display:flex;flex-direction:column;gap:10px;margin-bottom:32px;max-width:440px;margin-left:auto;margin-right:auto;text-align:left}
+.sl-item{display:flex;align-items:flex-start;gap:11px;font-family:var(--font-sans);font-size:13px;font-weight:300;color:var(--text-body);line-height:1.55}
+.sl-dot{width:20px;height:20px;background:rgba(200,164,76,0.09);border:1px solid rgba(200,164,76,0.26);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.sl-dot svg{width:10px;height:10px;fill:var(--gold)}
+.btn-home{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--navy);background:linear-gradient(120deg,var(--gold),var(--gold-light));padding:15px 34px;border-radius:var(--radius);transition:box-shadow 0.3s,transform 0.3s;box-shadow:0 4px 20px rgba(200,164,76,0.28)}
+.btn-home:hover{box-shadow:0 6px 30px rgba(200,164,76,0.42);transform:translateY(-2px)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  #navbar{padding:0 20px}
+  .audit-progress{padding:15px 20px}
+  .audit-body{padding:30px 18px 60px}
+  .form-card{padding:28px 22px}
+  .pkg-card{padding:24px 22px}
+  .form-row{grid-template-columns:1fr}
+  .check-grid{grid-template-columns:1fr}
+  .radio-group.col3{grid-template-columns:1fr 1fr}
+  .pkg-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .radio-group.col2,.radio-group.col3{grid-template-columns:1fr}
+  .btn-row{flex-direction:column-reverse;gap:10px}
+  .btn-cont,.btn-back{width:100%;justify-content:center}
+}
+</style>
+<script>window.$crisp=[];window.CRISP_WEBSITE_ID="8993b2fd-b65a-4e40-aad8-469dc1be0639";(function(){var d=document,s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})()</script>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">
+      <img src="/images/biz-filing-pros-logo.png" class="logo-shield" alt="Biz Filing Pros">
+      <div>
+        <span class="logo-name">Biz Filing Pros</span>
+        <span class="logo-sub">File · Build · Grow</span>
+      </div>
+    </a>
+    <a href="/#services" class="nav-return">← Back to Services</a>
+  </div>
+</nav>
+
+<div class="page-shell">
+  <div class="audit-progress" id="auditProgress">
+    <div class="audit-progress-inner">
+      <div class="progress-meta">
+        <span class="progress-label">Business Website &amp; Online Presence Audit</span>
+        <span class="progress-counter" id="progressCounter">Step 1 of 11</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill" style="width:9%"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="audit-body">
+    <form id="auditForm" novalidate>
+
+      <!-- ════════════════════════════════════════
+           STEP 1 — INTRO / WELCOME
+      ════════════════════════════════════════ -->
+      <div class="step active" id="step1">
+        <div class="intro-wrap">
+          <span class="intro-eyebrow">Biz Filing Pros</span>
+          <h1 class="intro-headline">Business Website &amp;<br><em>Online Presence Audit</em></h1>
+          <span class="gold-rule"></span>
+          <p class="intro-lead">Thank you for your interest in our Business Website &amp; Online Presence Package. Before preparing a proposal, we need to learn more about your business, customers, goals, and website requirements. This audit helps us determine the best website strategy for your business and identify opportunities for automation, lead generation, customer management, and growth.</p>
+        </div>
+
+        <div class="pkg-card">
+          <div class="pkg-title">Package Includes</div>
+          <div class="pkg-grid">
+            <div class="pkg-item"><div class="pkg-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>High-Converting Website Design</div>
+            <div class="pkg-item"><div class="pkg-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Professional Copywriting</div>
+            <div class="pkg-item"><div class="pkg-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Mobile &amp; Desktop Optimization</div>
+            <div class="pkg-item"><div class="pkg-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Basic SEO Setup</div>
+            <div class="pkg-item"><div class="pkg-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Domain Connection</div>
+            <div class="pkg-item"><div class="pkg-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Hosting Setup</div>
+            <div class="pkg-item"><div class="pkg-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Contact Forms</div>
+            <div class="pkg-item"><div class="pkg-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Lead Capture Integration</div>
+            <div class="pkg-item"><div class="pkg-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Analytics Setup</div>
+          </div>
+        </div>
+
+        <div class="info-tile">
+          <div class="info-tile-title">Website Ownership</div>
+          <p class="info-tile-body">The client owns all website content, branding, and website assets upon full payment of the website setup fee.</p>
+        </div>
+
+        <div class="info-tile">
+          <div class="info-tile-title">Hosting &amp; Maintenance</div>
+          <p class="info-tile-body">Website hosting, maintenance, updates, monitoring, and technical support are separate recurring services.</p>
+        </div>
+
+        <div class="notice">
+          <p><strong>Please Note:</strong> Website pricing is determined after completion of this audit and review of project requirements. Complex websites, memberships, booking systems, automations, customer portals, e-commerce platforms, and custom functionality may require additional development.</p>
+        </div>
+
+        <div class="btn-row end">
+          <button type="button" class="btn-cont" onclick="go(2)">Continue</button>
+        </div>
+      </div>
+
+      <!-- ════════════════════════════════════════
+           STEP 2 — BUSINESS INFORMATION
+      ════════════════════════════════════════ -->
+      <div class="step" id="step2">
+        <div class="form-card">
+          <span class="step-eyebrow">Step 2 of 11</span>
+          <h2 class="step-headline">Business Information</h2>
+          <p class="step-sub">Tell us about your business and how to reach you.</p>
+          <div class="step-rule"></div>
+          <div class="fg"><label for="s2_biz_name">Business Name</label><input type="text" id="s2_biz_name" name="business_name" placeholder="Your Business Name" autocomplete="organization"></div>
+          <div class="fg"><label for="s2_owner">Business Owner Name</label><input type="text" id="s2_owner" name="owner_name" placeholder="Full Name" autocomplete="name"></div>
+          <div class="fg"><label for="s2_address">Business Address</label><input type="text" id="s2_address" name="business_address" placeholder="Street, City, State, ZIP"></div>
+          <div class="form-row">
+            <div class="fg"><label for="s2_biz_phone">Business Phone Number</label><input type="tel" id="s2_biz_phone" name="business_phone" placeholder="(000) 000-0000"></div>
+            <div class="fg"><label for="s2_biz_email">Business Email Address</label><input type="email" id="s2_biz_email" name="business_email" placeholder="hello@yourbusiness.com"></div>
+          </div>
+          <div class="form-row">
+            <div class="fg"><label for="s2_personal_phone">Personal Phone Number</label><input type="tel" id="s2_personal_phone" name="personal_phone" placeholder="(000) 000-0000"></div>
+            <div class="fg"><label for="s2_personal_email">Personal Email Address</label><input type="email" id="s2_personal_email" name="personal_email" placeholder="you@email.com"></div>
+          </div>
+          <div class="fg last"><label for="s2_website">Current Website URL <span style="font-weight:300;text-transform:none;letter-spacing:0">(if applicable)</span></label><input type="url" id="s2_website" name="current_website" placeholder="https://www.yourwebsite.com"></div>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn-back" onclick="go(1)">← Back</button>
+          <button type="button" class="btn-cont" onclick="go(3)">Continue</button>
+        </div>
+      </div>
+
+      <!-- ════════════════════════════════════════
+           STEP 3 — DOMAIN INFORMATION
+      ════════════════════════════════════════ -->
+      <div class="step" id="step3">
+        <div class="form-card">
+          <span class="step-eyebrow">Step 3 of 11</span>
+          <h2 class="step-headline">Domain Information</h2>
+          <p class="step-sub">Your domain name is your website address on the internet.</p>
+          <div class="step-rule"></div>
+
+          <div class="fg">
+            <label class="field-label">Do you currently own a domain name?</label>
+            <div class="radio-group col2">
+              <label class="radio-opt"><input type="radio" name="has_domain" value="Yes" onchange="domainToggle(this)"><div class="radio-dot"></div><span class="radio-lbl">Yes</span></label>
+              <label class="radio-opt"><input type="radio" name="has_domain" value="No" onchange="domainToggle(this)"><div class="radio-dot"></div><span class="radio-lbl">No</span></label>
+            </div>
+          </div>
+
+          <div class="cond" id="domainYes">
+            <div class="fg last"><label for="s3_current_domain">What is your current domain name?</label><input type="text" id="s3_current_domain" name="current_domain" placeholder="www.yourbusiness.com"></div>
+          </div>
+          <div class="cond" id="domainNo">
+            <div class="fg last"><label for="s3_desired_domain">What would you like your domain name to be?</label><input type="text" id="s3_desired_domain" name="desired_domain" placeholder="www.yourbusiness.com"></div>
+          </div>
+
+          <div class="field-notice">
+            <p><strong>Domain Requirement:</strong> A domain name is required for all website projects. Clients are responsible for purchasing and maintaining ownership of their domain name. Biz Filing Pros will assist with domain connection and setup.</p>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn-back" onclick="go(2)">← Back</button>
+          <button type="button" class="btn-cont" onclick="go(4)">Continue</button>
+        </div>
+      </div>
+
+      <!-- ════════════════════════════════════════
+           STEP 4 — UNDERSTANDING YOUR BUSINESS
+      ════════════════════════════════════════ -->
+      <div class="step" id="step4">
+        <div class="form-card">
+          <span class="step-eyebrow">Step 4 of 11</span>
+          <h2 class="step-headline">Understanding Your Business</h2>
+          <p class="step-sub">Help us understand what you do, who you serve, and what sets you apart.</p>
+          <div class="step-rule"></div>
+          <div class="fg"><label for="s4_about">Tell us about your business.</label><textarea id="s4_about" name="about_business" placeholder="Describe what your business does..."></textarea></div>
+          <div class="fg"><label for="s4_products">What products or services do you offer?</label><textarea id="s4_products" name="products_services" placeholder="List your main products or services..."></textarea></div>
+          <div class="fg"><label for="s4_customer">Who is your ideal customer?</label><textarea id="s4_customer" name="ideal_customer" placeholder="Describe your target audience — age, location, income, needs, interests..."></textarea></div>
+          <div class="fg"><label for="s4_problem">What problem does your business solve?</label><textarea id="s4_problem" name="problem_solved" placeholder="What challenge do you help your customers overcome?"></textarea></div>
+          <div class="fg"><label for="s4_why">Why should customers choose your business?</label><textarea id="s4_why" name="unique_value" placeholder="What makes you different from competitors?"></textarea></div>
+          <div class="form-row">
+            <div class="fg last"><label for="s4_years">How long have you been in business?</label><input type="text" id="s4_years" name="years_in_business" placeholder="e.g., 3 years, Just starting"></div>
+            <div class="fg last"><label for="s4_areas">Geographic areas you serve?</label><input type="text" id="s4_areas" name="geographic_areas" placeholder="e.g., Indianapolis, IN / Nationwide"></div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn-back" onclick="go(3)">← Back</button>
+          <button type="button" class="btn-cont" onclick="go(5)">Continue</button>
+        </div>
+      </div>
+
+      <!-- ════════════════════════════════════════
+           STEP 5 — BUSINESS GOALS
+      ════════════════════════════════════════ -->
+      <div class="step" id="step5">
+        <div class="form-card">
+          <span class="step-eyebrow">Step 5 of 11</span>
+          <h2 class="step-headline">Business Goals</h2>
+          <p class="step-sub">Select all goals you want to achieve over the next 12 months.</p>
+          <div class="step-rule"></div>
+          <div class="fg last">
+            <label class="field-label">What are your goals over the next 12 months?</label>
+            <div class="check-grid">
+              <label class="check-opt"><input type="checkbox" name="goals" value="Generate Leads"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Generate Leads</span></label>
+              <label class="check-opt"><input type="checkbox" name="goals" value="Increase Sales"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Increase Sales</span></label>
+              <label class="check-opt"><input type="checkbox" name="goals" value="Increase Bookings"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Increase Bookings</span></label>
+              <label class="check-opt"><input type="checkbox" name="goals" value="Build Credibility"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Build Credibility</span></label>
+              <label class="check-opt"><input type="checkbox" name="goals" value="Improve Customer Experience"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Improve Customer Experience</span></label>
+              <label class="check-opt"><input type="checkbox" name="goals" value="Automate Business Processes"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Automate Business Processes</span></label>
+              <label class="check-opt"><input type="checkbox" name="goals" value="Grow Online Presence"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Grow Online Presence</span></label>
+              <label class="check-opt"><input type="checkbox" name="goals" value="Other"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Other</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn-back" onclick="go(4)">← Back</button>
+          <button type="button" class="btn-cont" onclick="go(6)">Continue</button>
+        </div>
+      </div>
+
+      <!-- ════════════════════════════════════════
+           STEP 6 — WEBSITE FUNCTIONALITY
+      ════════════════════════════════════════ -->
+      <div class="step" id="step6">
+        <div class="form-card">
+          <span class="step-eyebrow">Step 6 of 11</span>
+          <h2 class="step-headline">Website Functionality</h2>
+          <p class="step-sub">Select all functionality you may need on your website.</p>
+          <div class="step-rule"></div>
+          <div class="fg last">
+            <label class="field-label">Select all that apply.</label>
+            <div class="check-grid">
+              <label class="check-opt"><input type="checkbox" name="functionality" value="Appointment Booking"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Appointment Booking</span></label>
+              <label class="check-opt"><input type="checkbox" name="functionality" value="CRM Integration"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">CRM Integration</span></label>
+              <label class="check-opt"><input type="checkbox" name="functionality" value="Customer Portal"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Customer Portal</span></label>
+              <label class="check-opt"><input type="checkbox" name="functionality" value="Membership Portal"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Membership Portal</span></label>
+              <label class="check-opt"><input type="checkbox" name="functionality" value="Online Courses"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Online Courses</span></label>
+              <label class="check-opt"><input type="checkbox" name="functionality" value="Document Uploads"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Document Uploads</span></label>
+              <label class="check-opt"><input type="checkbox" name="functionality" value="Online Payments"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Online Payments</span></label>
+              <label class="check-opt"><input type="checkbox" name="functionality" value="Lead Capture Forms"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Lead Capture Forms</span></label>
+              <label class="check-opt"><input type="checkbox" name="functionality" value="AI Chat Assistant"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">AI Chat Assistant</span></label>
+              <label class="check-opt"><input type="checkbox" name="functionality" value="Live Chat"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Live Chat</span></label>
+              <label class="check-opt"><input type="checkbox" name="functionality" value="Calendar Integration"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Calendar Integration</span></label>
+              <label class="check-opt"><input type="checkbox" name="functionality" value="Email Marketing"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Email Marketing</span></label>
+              <label class="check-opt"><input type="checkbox" name="functionality" value="SMS Marketing"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">SMS Marketing</span></label>
+              <label class="check-opt"><input type="checkbox" name="functionality" value="Automated Follow-Up"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Automated Follow-Up</span></label>
+              <label class="check-opt"><input type="checkbox" name="functionality" value="Online Store"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Online Store</span></label>
+              <label class="check-opt"><input type="checkbox" name="functionality" value="Multi-Step Intake Forms"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Multi-Step Intake Forms</span></label>
+              <label class="check-opt"><input type="checkbox" name="functionality" value="Other"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Other</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn-back" onclick="go(5)">← Back</button>
+          <button type="button" class="btn-cont" onclick="go(7)">Continue</button>
+        </div>
+      </div>
+
+      <!-- ════════════════════════════════════════
+           STEP 7 — BOOKING & APPOINTMENTS
+      ════════════════════════════════════════ -->
+      <div class="step" id="step7">
+        <div class="form-card">
+          <span class="step-eyebrow">Step 7 of 11</span>
+          <h2 class="step-headline">Booking &amp; Appointments</h2>
+          <p class="step-sub">Tell us about your scheduling and appointment needs.</p>
+          <div class="step-rule"></div>
+          <div class="fg">
+            <label class="field-label">Do customers schedule appointments?</label>
+            <div class="radio-group col2">
+              <label class="radio-opt"><input type="radio" name="customers_book" value="Yes"><div class="radio-dot"></div><span class="radio-lbl">Yes</span></label>
+              <label class="radio-opt"><input type="radio" name="customers_book" value="No"><div class="radio-dot"></div><span class="radio-lbl">No</span></label>
+            </div>
+          </div>
+          <div class="fg">
+            <label class="field-label">Do you need online booking?</label>
+            <div class="radio-group col3">
+              <label class="radio-opt"><input type="radio" name="needs_booking" value="Yes"><div class="radio-dot"></div><span class="radio-lbl">Yes</span></label>
+              <label class="radio-opt"><input type="radio" name="needs_booking" value="No"><div class="radio-dot"></div><span class="radio-lbl">No</span></label>
+              <label class="radio-opt"><input type="radio" name="needs_booking" value="Not Sure"><div class="radio-dot"></div><span class="radio-lbl">Not Sure</span></label>
+            </div>
+          </div>
+          <div class="fg">
+            <label class="field-label">Do you need appointment reminders?</label>
+            <div class="radio-group col3">
+              <label class="radio-opt"><input type="radio" name="needs_reminders" value="Yes"><div class="radio-dot"></div><span class="radio-lbl">Yes</span></label>
+              <label class="radio-opt"><input type="radio" name="needs_reminders" value="No"><div class="radio-dot"></div><span class="radio-lbl">No</span></label>
+              <label class="radio-opt"><input type="radio" name="needs_reminders" value="Not Sure"><div class="radio-dot"></div><span class="radio-lbl">Not Sure</span></label>
+            </div>
+          </div>
+          <div class="fg last">
+            <label class="field-label">Do you need calendar synchronization?</label>
+            <div class="radio-group col3">
+              <label class="radio-opt"><input type="radio" name="needs_cal_sync" value="Yes"><div class="radio-dot"></div><span class="radio-lbl">Yes</span></label>
+              <label class="radio-opt"><input type="radio" name="needs_cal_sync" value="No"><div class="radio-dot"></div><span class="radio-lbl">No</span></label>
+              <label class="radio-opt"><input type="radio" name="needs_cal_sync" value="Not Sure"><div class="radio-dot"></div><span class="radio-lbl">Not Sure</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn-back" onclick="go(6)">← Back</button>
+          <button type="button" class="btn-cont" onclick="go(8)">Continue</button>
+        </div>
+      </div>
+
+      <!-- ════════════════════════════════════════
+           STEP 8 — PAYMENTS & CUSTOMER EXPERIENCE
+      ════════════════════════════════════════ -->
+      <div class="step" id="step8">
+        <div class="form-card">
+          <span class="step-eyebrow">Step 8 of 11</span>
+          <h2 class="step-headline">Payments &amp; Customer Experience</h2>
+          <p class="step-sub">Help us understand your payment and customer experience needs.</p>
+          <div class="step-rule"></div>
+          <div class="fg">
+            <label class="field-label">Do you currently accept online payments?</label>
+            <div class="radio-group col2">
+              <label class="radio-opt"><input type="radio" name="accepts_payments" value="Yes"><div class="radio-dot"></div><span class="radio-lbl">Yes</span></label>
+              <label class="radio-opt"><input type="radio" name="accepts_payments" value="No"><div class="radio-dot"></div><span class="radio-lbl">No</span></label>
+            </div>
+          </div>
+          <div class="fg">
+            <label class="field-label">Would you like customers to pay through the website?</label>
+            <div class="radio-group col3">
+              <label class="radio-opt"><input type="radio" name="wants_web_payments" value="Yes"><div class="radio-dot"></div><span class="radio-lbl">Yes</span></label>
+              <label class="radio-opt"><input type="radio" name="wants_web_payments" value="No"><div class="radio-dot"></div><span class="radio-lbl">No</span></label>
+              <label class="radio-opt"><input type="radio" name="wants_web_payments" value="Not Sure"><div class="radio-dot"></div><span class="radio-lbl">Not Sure</span></label>
+            </div>
+          </div>
+          <div class="fg last">
+            <label class="field-label">Which payment processor do you use?</label>
+            <div class="check-grid">
+              <label class="check-opt"><input type="checkbox" name="payment_processor" value="Stripe"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Stripe</span></label>
+              <label class="check-opt"><input type="checkbox" name="payment_processor" value="Square"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Square</span></label>
+              <label class="check-opt"><input type="checkbox" name="payment_processor" value="PayPal"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">PayPal</span></label>
+              <label class="check-opt"><input type="checkbox" name="payment_processor" value="Other"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Other</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn-back" onclick="go(7)">← Back</button>
+          <button type="button" class="btn-cont" onclick="go(9)">Continue</button>
+        </div>
+      </div>
+
+      <!-- ════════════════════════════════════════
+           STEP 9 — GOOGLE BUSINESS PROFILE
+      ════════════════════════════════════════ -->
+      <div class="step" id="step9">
+        <div class="form-card">
+          <span class="step-eyebrow">Step 9 of 11</span>
+          <h2 class="step-headline">Google Business Profile</h2>
+          <p class="step-sub">Your Google Business Profile helps customers find you on Google Search and Maps.</p>
+          <div class="step-rule"></div>
+          <div class="fg">
+            <label class="field-label">Do you currently have a Google Business Profile?</label>
+            <div class="radio-group col3">
+              <label class="radio-opt"><input type="radio" name="has_google_profile" value="Yes"><div class="radio-dot"></div><span class="radio-lbl">Yes</span></label>
+              <label class="radio-opt"><input type="radio" name="has_google_profile" value="No"><div class="radio-dot"></div><span class="radio-lbl">No</span></label>
+              <label class="radio-opt"><input type="radio" name="has_google_profile" value="Not Sure"><div class="radio-dot"></div><span class="radio-lbl">Not Sure</span></label>
+            </div>
+          </div>
+          <div class="fg last">
+            <label class="field-label">Would you like us to:</label>
+            <div class="check-grid">
+              <label class="check-opt"><input type="checkbox" name="google_services" value="Create One"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Create One</span></label>
+              <label class="check-opt"><input type="checkbox" name="google_services" value="Optimize One"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Optimize One</span></label>
+              <label class="check-opt"><input type="checkbox" name="google_services" value="Update One"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Update One</span></label>
+              <label class="check-opt"><input type="checkbox" name="google_services" value="Review One"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Review One</span></label>
+              <label class="check-opt"><input type="checkbox" name="google_services" value="Improve Visibility"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Improve Visibility</span></label>
+              <label class="check-opt"><input type="checkbox" name="google_services" value="Manage Reviews"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Manage Reviews</span></label>
+              <label class="check-opt"><input type="checkbox" name="google_services" value="Not Needed"><div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><span class="check-lbl">Not Needed</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn-back" onclick="go(8)">← Back</button>
+          <button type="button" class="btn-cont" onclick="go(10)">Continue</button>
+        </div>
+      </div>
+
+      <!-- ════════════════════════════════════════
+           STEP 10 — COMPETITOR RESEARCH
+      ════════════════════════════════════════ -->
+      <div class="step" id="step10">
+        <div class="form-card">
+          <span class="step-eyebrow">Step 10 of 11</span>
+          <h2 class="step-headline">Competitor Research</h2>
+          <p class="step-sub">Help us understand your industry and your design preferences.</p>
+          <div class="step-rule"></div>
+          <div class="fg"><label for="s10_liked">List up to five websites you like.</label><textarea id="s10_liked" name="liked_websites" placeholder="1. https://&#10;2. https://&#10;3. https://&#10;4. https://&#10;5. https://" style="min-height:130px"></textarea></div>
+          <div class="fg"><label for="s10_what_like">What do you like about them?</label><textarea id="s10_what_like" name="what_you_like" placeholder="Colors, layout, tone, content style, functionality..."></textarea></div>
+          <div class="fg last"><label for="s10_dislikes">What do you dislike about competitor websites in your industry?</label><textarea id="s10_dislikes" name="competitor_dislikes" placeholder="What frustrates you about how other businesses in your industry present themselves online?"></textarea></div>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn-back" onclick="go(9)">← Back</button>
+          <button type="button" class="btn-cont" onclick="go(11)">Continue</button>
+        </div>
+      </div>
+
+      <!-- ════════════════════════════════════════
+           STEP 11 — ADDITIONAL NOTES + SUBMIT
+      ════════════════════════════════════════ -->
+      <div class="step" id="step11">
+        <div class="form-card">
+          <span class="step-eyebrow">Step 11 of 11</span>
+          <h2 class="step-headline">Additional Notes</h2>
+          <p class="step-sub">Almost done. Share any final details before submitting your audit.</p>
+          <div class="step-rule"></div>
+          <div class="fg last"><label for="s11_notes">Is there anything else we should know?</label><textarea id="s11_notes" name="additional_notes" style="min-height:160px" placeholder="Business goals, website requirements, automation needs, customer journey, functionality, timeline, budget range, or anything else that would help us prepare the best proposal for your business..."></textarea></div>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn-back" onclick="go(10)">← Back</button>
+          <button type="button" class="btn-cont" id="submitBtn" onclick="submitAudit()">Submit Audit</button>
+        </div>
+      </div>
+
+      <!-- ════════════════════════════════════════
+           SUCCESS PAGE
+      ════════════════════════════════════════ -->
+      <div class="step" id="stepSuccess">
+        <div class="form-card">
+          <div class="success-wrap">
+            <div class="success-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+            <span class="gold-rule"></span>
+            <h2 class="success-hed">Audit <em>Received</em></h2>
+            <p class="success-body">Thank you for completing the Business Website &amp; Online Presence Audit. Our team will review your responses and determine the best website strategy based on your business goals, functionality requirements, and project scope.</p>
+            <div class="success-list">
+              <div class="sl-item"><div class="sl-dot"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Your audit responses have been received.</div>
+              <div class="sl-item"><div class="sl-dot"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>Our team will review your business and website requirements.</div>
+              <div class="sl-item"><div class="sl-dot"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>You will be contacted regarding next steps and a custom website proposal.</div>
+            </div>
+            <a href="/" class="btn-home">Return to Home</a>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────────────────────────
+// Replace with a dedicated Formspree endpoint for this audit form.
+// Create a new form at https://formspree.io and paste the endpoint ID below.
+const ENDPOINT = 'https://formspree.io/f/mpqbobjy';
+const TOTAL = 11;
+const STORAGE_KEY = 'bfp_web_audit';
+
+// ── STATE ────────────────────────────────────────────────────────────────────
+let current = 1;
+
+// ── NAVIGATION ───────────────────────────────────────────────────────────────
+function go(n) {
+  save();
+  const from = current <= TOTAL ? document.getElementById('step' + current) : document.getElementById('stepSuccess');
+  const to = n <= TOTAL ? document.getElementById('step' + n) : document.getElementById('stepSuccess');
+  if (from) from.classList.remove('active');
+  if (to) { to.classList.add('active'); current = n; updateProgress(); }
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function updateProgress() {
+  const pct = Math.min(Math.round((current / TOTAL) * 100), 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressCounter').textContent = current <= TOTAL ? 'Step ' + current + ' of ' + TOTAL : 'Complete';
+  document.getElementById('auditProgress').style.display = current > TOTAL ? 'none' : '';
+}
+
+// ── DOMAIN CONDITIONAL ──────────────────────────────────────────────────────
+function domainToggle(radio) {
+  document.getElementById('domainYes').classList.toggle('show', radio.value === 'Yes');
+  document.getElementById('domainNo').classList.toggle('show', radio.value === 'No');
+  syncRadioStyles(radio.name);
+}
+
+// ── INTERACTIVE STYLES ──────────────────────────────────────────────────────
+function syncRadioStyles(name) {
+  document.querySelectorAll('input[name="' + name + '"]').forEach(el => {
+    el.closest('.radio-opt').classList.toggle('sel', el.checked);
+  });
+}
+
+document.addEventListener('change', function(e) {
+  if (e.target.type === 'radio') syncRadioStyles(e.target.name);
+  if (e.target.type === 'checkbox') {
+    e.target.closest('.check-opt').classList.toggle('sel', e.target.checked);
+  }
+});
+
+// ── SAVE / LOAD ──────────────────────────────────────────────────────────────
+function save() {
+  const d = {};
+  document.querySelectorAll('#auditForm [name]').forEach(el => {
+    if (el.type === 'checkbox') {
+      if (!d[el.name]) d[el.name] = [];
+      if (el.checked) d[el.name].push(el.value);
+    } else if (el.type === 'radio') {
+      if (el.checked) d[el.name] = el.value;
+    } else if (el.value.trim()) {
+      d[el.name] = el.value;
+    }
+  });
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); } catch(e) {}
+}
+
+function load() {
+  let d;
+  try { d = JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch(e) {}
+  if (!d) return;
+  Object.keys(d).forEach(name => {
+    document.querySelectorAll('#auditForm [name="' + name + '"]').forEach(el => {
+      if (el.type === 'checkbox') {
+        el.checked = Array.isArray(d[name]) && d[name].includes(el.value);
+        el.closest('.check-opt').classList.toggle('sel', el.checked);
+      } else if (el.type === 'radio') {
+        el.checked = el.value === d[name];
+        el.closest('.radio-opt').classList.toggle('sel', el.checked);
+      } else {
+        el.value = d[name] || '';
+      }
+    });
+  });
+  // Restore domain conditional
+  const dv = d['has_domain'];
+  if (dv) {
+    const r = document.querySelector('input[name="has_domain"][value="' + dv + '"]');
+    if (r) domainToggle(r);
+  }
+}
+
+// ── SUBMIT ───────────────────────────────────────────────────────────────────
+async function submitAudit() {
+  const btn = document.getElementById('submitBtn');
+  btn.innerHTML = '<svg style="width:16px;height:16px;fill:currentColor;margin-right:7px;animation:spin 0.8s linear infinite;flex-shrink:0" viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>Submitting…';
+  btn.disabled = true;
+  save();
+
+  const fd = new FormData();
+  const cbMap = {};
+  document.querySelectorAll('#auditForm [name]').forEach(el => {
+    if (el.type === 'checkbox') {
+      if (el.checked) { if (!cbMap[el.name]) cbMap[el.name] = []; cbMap[el.name].push(el.value); }
+    } else if (el.type === 'radio') {
+      if (el.checked) fd.append(el.name, el.value);
+    } else if (el.value.trim()) {
+      fd.append(el.name, el.value.trim());
+    }
+  });
+  Object.keys(cbMap).forEach(k => fd.append(k, cbMap[k].join(', ')));
+  fd.append('_subject', 'New Website Audit — ' + (fd.get('business_name') || 'Unnamed Business'));
+  fd.append('form_type', 'Business Website & Online Presence Audit');
+
+  try {
+    const res = await fetch(ENDPOINT, { method: 'POST', body: fd, headers: { Accept: 'application/json' } });
+    if (res.ok) {
+      try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+      document.getElementById('step11').classList.remove('active');
+      document.getElementById('stepSuccess').classList.add('active');
+      current = TOTAL + 1;
+      updateProgress();
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    } else {
+      throw new Error('error');
+    }
+  } catch(e) {
+    btn.innerHTML = 'Submit Audit';
+    btn.disabled = false;
+    alert('Something went wrong. Please try again or email us at info@bizfilingpros.com');
+  }
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+  load();
+  updateProgress();
+});
+</script>
+</body>
+</html>
