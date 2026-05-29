@@ -29,7 +29,7 @@ ul{list-style:none}
 .gold-rule{display:block;width:48px;height:1.5px;background:linear-gradient(90deg,var(--gold),var(--gold-light));margin:0 auto 20px}
 .gold-rule-left{display:block;width:48px;height:1.5px;background:linear-gradient(90deg,var(--gold),var(--gold-light));margin:0 0 20px}
 .eyebrow{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:10px}
-.section-header{text-align:center;margin-bottom:64px}
+.section-header{text-align:center;margin-bottom:48px}
 .section-headline{font-family:var(--font-serif);font-size:clamp(30px,3.8vw,50px);font-weight:500;color:var(--navy);line-height:1.15;margin-bottom:16px}
 .section-headline em{font-style:italic;color:var(--gold)}
 .section-sub{font-family:var(--font-sans);font-size:14.5px;font-weight:300;color:var(--text-muted);max-width:500px;margin:0 auto;line-height:1.8}
@@ -80,7 +80,7 @@ ul{list-style:none}
 @keyframes map-appear{from{opacity:0;transform:scale(0.94)}to{opacity:1;transform:scale(1)}}
 @keyframes glow-pulse{0%,100%{opacity:0.6;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
 
-#hero{min-height:100vh;background:var(--navy);position:relative;display:flex;align-items:center;overflow:hidden;padding:140px 0 100px}
+#hero{min-height:100vh;background:var(--navy);position:relative;display:flex;align-items:center;overflow:hidden;padding:120px 0 80px}
 .hero-cinematic-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 15% 60%,rgba(200,164,76,0.06) 0%,transparent 55%),radial-gradient(ellipse 60% 80% at 85% 20%,rgba(15,31,56,0.95) 0%,transparent 50%),radial-gradient(ellipse 50% 50% at 50% 100%,rgba(200,164,76,0.04) 0%,transparent 60%),linear-gradient(165deg,#06101C 0%,#08131F 40%,#050E18 75%,#030A12 100%)}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,164,76,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(200,164,76,0.022) 1px,transparent 1px);background-size:80px 80px;pointer-events:none}
 .hero-top-line{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,var(--gold) 25%,var(--gold-light) 50%,var(--gold) 75%,transparent 100%)}
@@ -110,11 +110,11 @@ ul{list-style:none}
 .map-mobile-badge{display:none}
 @media(prefers-reduced-motion:reduce){.map-pulses{display:none}.city-ripple{display:none}.map-glow{animation:none}.map-badge-dot{animation:none}}
 
-@media(max-width:960px){.hero-inner{grid-template-columns:1fr;gap:52px;text-align:center;padding:0 24px}.hero-eyebrow{justify-content:center}.hero-subhead{margin-left:auto;margin-right:auto}.hero-trust{justify-content:center}.hero-actions{justify-content:center}.hero-stats{justify-content:center}.hero-map-scene{display:none}.map-mobile-badge{display:flex;justify-content:center;align-items:center;gap:9px;margin-top:14px;opacity:0;animation:hero-reveal 0.85s var(--ease) 1s forwards}.map-mobile-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 7px var(--gold);animation:glow-pulse 2.5s ease-in-out infinite}.map-mobile-text{font-family:var(--font-sans);font-size:9px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:rgba(200,164,76,0.7)}#hero{padding:110px 0 80px}}
-@media(max-width:560px){.hero-headline{font-size:clamp(36px,9vw,56px);hyphens:none;word-break:keep-all}.hero-trust{flex-direction:column;align-items:center;gap:8px}.hero-trust-sep{display:none}.hero-stats{gap:20px;flex-wrap:wrap}#hero{padding:100px 0 72px}}
+@media(max-width:960px){.hero-inner{grid-template-columns:1fr;gap:52px;text-align:center;padding:0 24px}.hero-eyebrow{justify-content:center}.hero-subhead{margin-left:auto;margin-right:auto}.hero-trust{justify-content:center}.hero-actions{justify-content:center}.hero-stats{justify-content:center}.hero-map-scene{display:none}.map-mobile-badge{display:flex;justify-content:center;align-items:center;gap:9px;margin-top:14px;opacity:0;animation:hero-reveal 0.85s var(--ease) 1s forwards}.map-mobile-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 7px var(--gold);animation:glow-pulse 2.5s ease-in-out infinite}.map-mobile-text{font-family:var(--font-sans);font-size:9px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:rgba(200,164,76,0.7)}#hero{padding:100px 0 72px}}
+@media(max-width:560px){.hero-headline{font-size:clamp(36px,9vw,56px);hyphens:none;word-break:keep-all}.hero-trust{flex-direction:column;align-items:center;gap:8px}.hero-trust-sep{display:none}.hero-stats{gap:20px;flex-wrap:wrap}#hero{padding:90px 0 64px}}
 
 /* SERVICES */
-#services{padding:110px 0;background:var(--ivory);position:relative;overflow:hidden}
+#services{padding:80px 0;background:var(--ivory);position:relative;overflow:hidden}
 .services-top-line{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
 .services-bg-glow{position:absolute;top:-80px;right:-80px;width:560px;height:560px;background:radial-gradient(ellipse,rgba(200,164,76,0.06) 0%,transparent 70%);pointer-events:none}
 #services .section-headline{color:var(--navy)}
@@ -132,9 +132,9 @@ ul{list-style:none}
 .svc-desc{font-family:var(--font-sans);font-size:12.5px;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:14px;flex:1}
 .svc-price{padding:10px 0;border-top:1px solid rgba(200,164,76,0.12);margin-bottom:14px}
 .svc-price-from{font-family:var(--font-sans);font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(200,164,76,0.55);display:block;margin-bottom:3px}
-.svc-price-amount{font-family:var(--font-serif);font-size:22px;font-weight:300;color:var(--gold-light);line-height:1;display:block}
+.svc-price-amount{font-family:var(--font-serif);font-size:22px;font-weight:300;color:var(--gold-light);line-height:1}
 .svc-price-period{font-family:var(--font-sans);font-size:13px;font-weight:300;color:rgba(200,164,76,0.65)}
-.svc-price-note{font-family:var(--font-sans);font-size:11px;font-weight:300;color:rgba(255,255,255,0.32);line-height:1.55;margin-top:5px;display:block}
+.svc-price-note{font-family:var(--font-sans);font-size:11px;font-weight:300;color:rgba(255,255,255,0.32);margin-left:6px;vertical-align:middle}
 .svc-cta{font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:7px;transition:gap 0.25s var(--ease),color 0.25s;min-height:40px}
 .svc-cta::after{content:'→';font-size:12px;transition:transform 0.25s var(--ease)}
 .svc-cta:hover{color:var(--gold-light);gap:11px}
@@ -157,9 +157,9 @@ ul{list-style:none}
 .service-cta:hover::after{transform:translateX(4px)}
 
 /* WHY US */
-#why{padding:110px 0;background:var(--ivory)}
+#why{padding:80px 0;background:var(--ivory)}
 .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.why-card{background:var(--navy-card);border:1px solid rgba(200,164,76,0.22);border-radius:var(--radius-lg);padding:44px 32px;position:relative;overflow:hidden;transition:var(--transition)}
+.why-card{background:var(--navy-card);border:1px solid rgba(200,164,76,0.22);border-radius:var(--radius-lg);padding:36px 28px;position:relative;overflow:hidden;transition:var(--transition)}
 .why-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transform-origin:left;transition:transform 0.4s var(--ease)}
 .why-card:hover{box-shadow:0 24px 56px rgba(6,16,28,0.18),var(--shadow-gold);border-color:rgba(200,164,76,0.42);transform:translateY(-5px);background:var(--navy-light)}
 .why-card:hover::before{transform:scaleX(1)}
@@ -171,7 +171,7 @@ ul{list-style:none}
 .why-body{font-family:var(--font-sans);font-size:13.5px;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.78}
 
 /* REVIEWS */
-#reviews{padding:110px 0;background:var(--ivory)}
+#reviews{padding:80px 0;background:var(--ivory)}
 .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
 .review-card{background:var(--white);border:1px solid rgba(200,164,76,0.15);border-radius:var(--radius-lg);padding:32px 30px 28px;position:relative;overflow:hidden;transition:var(--transition);display:flex;flex-direction:column}
 .review-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light));opacity:0;transition:opacity 0.35s}
@@ -213,7 +213,7 @@ ul{list-style:none}
 .faq-a-text{padding:0 28px 22px;font-family:var(--font-sans);font-size:13.5px;font-weight:300;color:rgba(255,255,255,0.48);line-height:1.8}
 
 /* CONTACT */
-#contact{padding:110px 0;background:var(--ivory);position:relative;overflow:hidden}
+#contact{padding:80px 0;background:var(--ivory);position:relative;overflow:hidden}
 .contact-bg-glow{position:absolute;bottom:-100px;left:-100px;width:500px;height:500px;background:radial-gradient(ellipse,rgba(200,164,76,0.05) 0%,transparent 70%);pointer-events:none}
 .contact-layout{display:grid;grid-template-columns:340px 1fr;gap:80px;align-items:start;position:relative;z-index:2}
 .contact-info-headline{font-family:var(--font-serif);font-size:clamp(28px,3vw,40px);font-weight:500;color:var(--navy);line-height:1.18;margin-bottom:16px}
@@ -281,7 +281,7 @@ a.footer-detail-value:hover{color:var(--gold-light)}
 @media(max-width:768px){.trust-inner{padding:0 16px}.trust-item{padding:9px 10px}.trust-sep{display:none}.trust-text{font-size:8.5px;letter-spacing:0.15em}}
 
 /* HOW IT WORKS */
-#how-it-works{padding:110px 0;background:var(--ivory)}
+#how-it-works{padding:80px 0;background:var(--ivory)}
 .steps-track{max-width:720px;margin:0 auto}
 .step-item{display:grid;grid-template-columns:68px 1fr;gap:24px;align-items:start;padding:32px 0;border-bottom:1px solid rgba(200,164,76,0.1)}
 .step-item:last-child{border-bottom:none}
@@ -311,7 +311,7 @@ a.footer-detail-value:hover{color:var(--gold-light)}
 @media(max-width:380px){.nav-pill-book{display:none}}
 
 /* REVIEWS ENHANCED */
-#reviews{padding:100px 0;background:var(--ivory)}
+#reviews{padding:80px 0;background:var(--ivory)}
 .reviews-google-header{display:flex;align-items:center;justify-content:center;gap:18px;margin-bottom:36px}
 .reviews-google-badge{display:inline-flex;align-items:center;gap:14px;background:var(--white);border:1px solid rgba(200,164,76,0.2);border-radius:var(--radius-lg);padding:14px 24px;box-shadow:0 4px 24px rgba(6,16,28,0.07)}
 .reviews-google-g{width:32px;height:32px;flex-shrink:0}
@@ -333,6 +333,7 @@ a.footer-detail-value:hover{color:var(--gold-light)}
 .svc-badge{display:inline-block;font-family:var(--font-sans);font-size:8px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:10px;align-self:flex-start}
 .svc-badge-popular{background:rgba(200,164,76,0.14);color:var(--gold-light);border:1px solid rgba(200,164,76,0.3)}
 .svc-badge-available{background:rgba(60,180,110,0.12);color:#5dba8a;border:1px solid rgba(60,180,110,0.25)}
+.svc-badge-soon{background:rgba(200,164,76,0.08);color:rgba(200,164,76,0.6);border:1px solid rgba(200,164,76,0.2)}
 </style>
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="8993b2fd-b65a-4e40-aad8-469dc1be0639";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 </head>
@@ -365,7 +366,6 @@ a.footer-detail-value:hover{color:var(--gold-light)}
         <a href="https://book.stripe.com/dRm6oI5yke0EbQkdN7a3u00" class="nav-pill-book">Book A Consultation</a>
       </div>
     </div>
-    <a href="intake.html" class="nav-cta desktop-cta">Start Your Filing</a>
     <button class="hamburger" id="hamburger" aria-label="Open Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -399,7 +399,7 @@ a.footer-detail-value:hover{color:var(--gold-light)}
       </div>
       <div class="hero-stats" id="heroStats">
         <div><span class="hero-stat-num" data-count="50" data-suffix="">50</span><span class="hero-stat-label">States Served</span></div>
-        <div><span class="hero-stat-num" data-count="7" data-suffix="">7</span><span class="hero-stat-label">Core Services</span></div>
+        <div><span class="hero-stat-num" data-count="8" data-suffix="">8</span><span class="hero-stat-label">Core Services</span></div>
         <div><span class="hero-stat-num" data-count="100" data-suffix="%">100%</span><span class="hero-stat-label">Secure Online Process</span></div>
       </div>
       <div class="map-mobile-badge">
@@ -613,6 +613,7 @@ a.footer-detail-value:hover{color:var(--gold-light)}
         <a href="registered-agent.html" class="svc-cta">Get Started</a>
       </div>
       <div class="svc-card fade-up d3">
+        <span class="svc-badge svc-badge-soon">Coming Soon</span>
         <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
         <h3 class="svc-name">State Trademark Filing</h3>
         <p class="svc-desc">State-level trademark filing support for businesses protecting a name, phrase, slogan, or logo within one state.</p>
@@ -620,6 +621,7 @@ a.footer-detail-value:hover{color:var(--gold-light)}
         <span class="svc-cta-disabled">Coming Soon</span>
       </div>
       <div class="svc-card fade-up d1">
+        <span class="svc-badge svc-badge-soon">Coming Soon</span>
         <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
         <h3 class="svc-name">Federal Trademark Filing</h3>
         <p class="svc-desc">Federal trademark filing support for businesses seeking nationwide brand protection through the USPTO.</p>
@@ -627,6 +629,7 @@ a.footer-detail-value:hover{color:var(--gold-light)}
         <span class="svc-cta-disabled">Coming Soon</span>
       </div>
       <div class="svc-card fade-up d2">
+        <span class="svc-badge svc-badge-soon">Coming Soon</span>
         <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zm-2 9H7v-2h4v2zm4-4H7v-2h8v2zm0-4H7V8h8v2z"/></svg></div>
         <h3 class="svc-name">Operating Agreements &amp; Bylaws</h3>
         <p class="svc-desc">Often requested by banks, lenders, partners, and internal records. We prepare a professional agreement or bylaws document based on your entity type and ownership structure.</p>
@@ -642,26 +645,15 @@ a.footer-detail-value:hover{color:var(--gold-light)}
         <a href="/business-email" class="svc-cta">Get Started</a>
       </div>
       <div class="svc-card fade-up d2">
-        <div class="svc-ribbon">Coming Soon</div>
+        <span class="svc-badge svc-badge-soon">Coming Soon</span>
         <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-9 12H5v-2h6v2zm4-4H5v-2h10v2zm0-4H5V6h10v2zm4 8h-2v-2h-2v-2h2V12h2v2h2v2h-2v2z"/></svg></div>
         <h3 class="svc-name">Business Website &amp; Online Presence Package</h3>
         <p class="svc-desc">Professional websites designed to help business owners attract customers, generate leads, and establish a credible online presence.</p>
-        <ul class="svc-features">
-          <li>&#10004; Custom Website Design</li>
-          <li>&#10004; High-Converting Copywriting</li>
-          <li>&#10004; Mobile Optimization</li>
-          <li>&#10004; Basic SEO Setup</li>
-          <li>&#10004; Google Business Profile Setup</li>
-          <li>&#10004; Domain Connection</li>
-          <li>&#10004; Hosting Setup</li>
-          <li>&#10004; Lead Capture Forms</li>
-          <li>&#10004; Analytics Installation</li>
-          <li>&#10004; 30 Days Support</li>
-        </ul>
         <div class="svc-price"><span class="svc-price-from">Starting at</span><span class="svc-price-amount">$1,000</span></div>
         <span class="svc-cta-disabled">Coming Soon</span>
       </div>
       <div class="svc-card fade-up d1">
+        <span class="svc-badge svc-badge-soon">Coming Soon</span>
         <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
         <h3 class="svc-name">501(c)(3) Nonprofit Formation</h3>
         <p class="svc-desc">Nonprofit formation support for organizations preparing to structure, file, and move toward tax-exempt status.</p>
@@ -889,7 +881,6 @@ a.footer-detail-value:hover{color:var(--gold-light)}
               <span class="logo-sub">File · Build · Grow</span>
             </div>
           </a>
-          <div class="footer-tagline">File &middot; Build &middot; Grow</div>
           <p class="footer-desc">Professional business filing services for entrepreneurs across all 50 states. Built for clarity, trust, and results.</p>
         </div>
         <div class="footer-details">
