@@ -12,7 +12,7 @@ const SERVICES = {
     stripeLabel: 'Biz Filing Pros Business Email Setup',
     description: 'Professional business email setup on Zoho Mail using your domain.',
     price:       149,
-    successUrl:  'https://www.bizfilingpros.com/application-received',
+    successUrl:  'https://www.bizfilingpros.com/thank-you.html?session_id={CHECKOUT_SESSION_ID}',
     cancelUrl:   'https://www.bizfilingpros.com/business-email',
   },
 };
@@ -318,8 +318,8 @@ module.exports = async function handler(req, res) {
         },
         quantity: 1,
       }],
-      success_url: 'https://www.bizfilingpros.com/application-received',
-      cancel_url:  'https://www.bizfilingpros.com/formation',
+      success_url: 'https://www.bizfilingpros.com/thank-you.html?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url:  'https://www.bizfilingpros.com/intake.html',
       metadata,
     });
 
