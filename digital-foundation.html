@@ -373,6 +373,18 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
 <input type="hidden" name="service_page_count" id="hServicePageCount">
 <input type="hidden" name="location_pages_needed" id="hLocationPagesNeeded">
 <input type="hidden" name="location_page_count" id="hLocationPageCount">
+<!-- Feature flags — internal use only, never shown to customer -->
+<input type="hidden" name="flag_booking" id="flagBooking">
+<input type="hidden" name="flag_payments" id="flagPayments">
+<input type="hidden" name="flag_ecommerce" id="flagEcommerce">
+<input type="hidden" name="flag_quote" id="flagQuote">
+<input type="hidden" name="flag_portal" id="flagPortal">
+<input type="hidden" name="flag_ai" id="flagAI">
+<input type="hidden" name="flag_automation" id="flagAutomation">
+<input type="hidden" name="flag_document_upload" id="flagDocumentUpload">
+<input type="hidden" name="flag_membership" id="flagMembership">
+<input type="hidden" name="flag_account" id="flagAccount">
+<input type="hidden" name="flag_events" id="flagEvents">
 
 <div class="df-body">
 
@@ -1031,7 +1043,7 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
           <input type="checkbox" name="_page" value="Events / Experiences">
           <span class="page-chk"></span>Events / Experiences
         </label>
-        <label class="page-item" onclick="togglePage(this,'Something Else')">
+        <label class="page-item" id="pageItemSomethingElse" onclick="togglePage(this,'Something Else')">
           <input type="checkbox" name="_page" value="Something Else">
           <span class="page-chk"></span>Something Else
         </label>
@@ -1040,6 +1052,17 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
           <span class="page-chk"></span>Not Sure — Recommend
         </label>
 
+      </div>
+
+      <!-- Conditional: Something Else page description -->
+      <div class="reveal" id="rev-pageElse">
+        <div class="reveal-inner">
+          <div class="fg">
+            <label class="f-label" for="pageOtherText">What other page or section do you have in mind?</label>
+            <textarea id="pageOtherText" name="page_other_description" placeholder="Describe the page or section — plain language is fine." rows="2" maxlength="400" oninput="updateCount(this,'cPageOther')"></textarea>
+            <div class="char-count"><span id="cPageOther">0</span> / 400</div>
+          </div>
+        </div>
       </div>
 
       <!-- Conditional: Individual Service Pages — how many? -->
@@ -1098,6 +1121,18 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
         </div>
       </div>
 
+    </div>
+
+    <!-- ── CARD: Special Website Idea ── -->
+    <div class="df-card">
+      <h3 class="df-card-title">Is there a special tool, page, or experience you already have in mind?</h3>
+      <p class="df-card-sub">Optional — share any idea you've been thinking about, no matter how rough it is.</p>
+
+      <div class="fg">
+        <textarea id="specialIdea" name="special_website_idea" placeholder="For example: an interactive service selector, before-and-after gallery, product finder, instant estimate tool, private customer area, event experience, or another custom idea. Don't worry about how it would be built — just describe what you're imagining." rows="4" maxlength="600" oninput="updateCount(this,'cSpecialIdea')"></textarea>
+        <div class="char-count"><span id="cSpecialIdea">0</span> / 600</div>
+        <span class="f-hint">No technical knowledge needed. We'll figure out how to bring it to life.</span>
+      </div>
     </div>
 
     <!-- Navigation -->
@@ -1363,6 +1398,29 @@ document.querySelectorAll('input[type=text], input[type=email], input[type=tel],
   });
 });
 
+/* ══ FEATURE FLAG COMPUTATION (internal — never shown to customer) ══ */
+function computeFeatureFlags() {
+  const g = selectedGoals;
+  const p = selectedPages;
+  const a = document.getElementById('hPrimaryAction').value;
+
+  function flag(id, val) {
+    document.getElementById(id).value = val ? 'yes' : '';
+  }
+
+  flag('flagBooking',        g.has('Increase appointments or bookings')        || p.has('Booking')                              || a === 'Book an appointment or service');
+  flag('flagPayments',       g.has('Accept online payments')                   || a === 'Make a payment');
+  flag('flagEcommerce',      g.has('Sell products online')                     || p.has('Shop / Products')                      || a === 'Purchase a product');
+  flag('flagQuote',          g.has('Provide estimates or quotes')               || a === 'Request a quote or estimate');
+  flag('flagPortal',         g.has('Give customers access to a private portal') || p.has('Customer Portal'));
+  flag('flagAI',             g.has('Answer customer questions with AI'));
+  flag('flagAutomation',     g.has('Automate customer follow-up'));
+  flag('flagDocumentUpload', g.has('Collect documents or files')                || a === 'Upload documents');
+  flag('flagMembership',     g.has('Offer memberships or subscriptions')        || p.has('Memberships')                         || a === 'Join or subscribe');
+  flag('flagAccount',        g.has('Allow customers to create accounts')        || a === 'Create an account');
+  flag('flagEvents',         g.has('Promote events or experiences')             || p.has('Events / Experiences'));
+}
+
 /* ══ STAGE 2 — WEBSITE GOALS (multi-select) ══ */
 const selectedGoals = new Set();
 function toggleGoal(card, value) {
@@ -1372,6 +1430,7 @@ function toggleGoal(card, value) {
   document.getElementById('hWebsiteGoals').value = [...selectedGoals].join(', ');
   reveal('rev-goalCustom', selectedGoals.has('Something custom'));
   clearErr('e-goals');
+  computeFeatureFlags();
 }
 
 /* ══ PRIMARY ACTION (single-select) ══ */
@@ -1381,6 +1440,7 @@ function pickAction(item, value) {
   document.getElementById('hPrimaryAction').value = value;
   reveal('rev-actionElse', value === 'Something else');
   clearErr('e-action');
+  computeFeatureFlags();
 }
 
 /* ══ PAGE CHECKLIST (multi-select) ══ */
@@ -1390,7 +1450,8 @@ function togglePage(item, value) {
   if (selectedPages.has(value)) selectedPages.delete(value);
   else selectedPages.add(value);
   document.getElementById('hDesiredPages').value = [...selectedPages].join(', ');
-  // Conditionals
+  // Page-specific conditionals
+  reveal('rev-pageElse',         selectedPages.has('Something Else'));
   reveal('rev-servicePageCount', selectedPages.has('Individual Service Pages'));
   reveal('rev-locationPages',    selectedPages.has('Locations / Service Areas'));
   // Reset nested location count when locations deselected
@@ -1401,6 +1462,7 @@ function togglePage(item, value) {
     document.querySelectorAll('#locationCountGrid .ind-pill').forEach(p => p.classList.remove('sel'));
     reveal('rev-locationCount', false);
   }
+  computeFeatureFlags();
 }
 
 /* ══ SERVICE PAGE COUNT (single-select pill) ══ */
