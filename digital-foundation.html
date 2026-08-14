@@ -399,6 +399,15 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
 <input type="hidden" name="quote_pricing_model"        id="hQuotePricingModel">
 <input type="hidden" name="quote_website_goal"         id="hQuoteWebsiteGoal">
 <input type="hidden" name="quote_pricing_factors"      id="hQuotePricingFactors">
+<input type="hidden" name="quote_addons"               id="hQuoteAddOns">
+<!-- Internal quote tool signals — never shown to customer -->
+<input type="hidden" name="quote_instant_price"        id="qInstantPrice">
+<input type="hidden" name="quote_price_range"          id="qPriceRange">
+<input type="hidden" name="quote_manual_review"        id="qManualReview">
+<input type="hidden" name="quote_lead_capture"         id="qLeadCapture">
+<input type="hidden" name="quote_booking_next"         id="qBookingNext">
+<input type="hidden" name="quote_payment_next"         id="qPaymentNext">
+<input type="hidden" name="quote_conditional_pricing"  id="qConditionalPricing">
 
 <div class="df-body">
 
@@ -1467,6 +1476,38 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
           </div>
         </div>
 
+        <!-- Q5: Add-ons? -->
+        <div class="field-section" style="margin-top:1.1rem;">
+          <span class="field-section-label">Should customers be able to add optional services or upgrades to the estimate? <span class="req">*</span></span>
+          <div class="cc-row three-up" id="quoteAddOnsRow">
+            <label class="cc" onclick="pickQuoteAddOns(this,'yes')">
+              <input type="radio" name="_quoteAddOns">
+              <div class="cc-check">✓</div>
+              <div class="cc-label">Yes</div>
+            </label>
+            <label class="cc" onclick="pickQuoteAddOns(this,'no')">
+              <input type="radio" name="_quoteAddOns">
+              <div class="cc-check">✓</div>
+              <div class="cc-label">No</div>
+            </label>
+            <label class="cc" onclick="pickQuoteAddOns(this,'not-sure')">
+              <input type="radio" name="_quoteAddOns">
+              <div class="cc-check">✓</div>
+              <div class="cc-label">Not sure</div>
+            </label>
+          </div>
+          <span class="f-err" id="e-quoteAddOns">Please select an option.</span>
+          <div class="reveal" id="rev-quoteAddOns">
+            <div class="reveal-inner">
+              <div class="fg">
+                <label class="f-label" for="quoteAddOnsDesc">What kinds of add-ons or upgrades might customers choose?</label>
+                <textarea id="quoteAddOnsDesc" name="quote_addons_description" placeholder="e.g. rush delivery, premium materials, extended warranty, extra sessions…" rows="3" maxlength="400" oninput="updateCount(this,'cQuoteAddOns')"></textarea>
+                <div class="char-count"><span id="cQuoteAddOns">0</span> / 400</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -1861,6 +1902,8 @@ function initStage3() {
   document.getElementById('featPayments').style.display = showPayments ? 'block' : 'none';
   document.getElementById('featQuote').style.display    = showQuote    ? 'block' : 'none';
   document.getElementById('featNone').style.display     = anyVisible   ? 'none'  : 'block';
+  // Recompute quote signals in case Stage 2 answers changed
+  if (showQuote) computeQuoteFlags();
 }
 
 /* ── BOOKING ── */
@@ -1965,11 +2008,27 @@ function pickProcessorName(pill, value) {
 }
 
 /* ── QUOTE ── */
+function computeQuoteFlags() {
+  const model   = document.getElementById('hQuotePricingModel').value;
+  const goal    = document.getElementById('hQuoteWebsiteGoal').value;
+  const factors = selectedQuoteFactors;
+  function qf(id, val) { document.getElementById(id).value = val ? 'yes' : ''; }
+  qf('qInstantPrice',      goal === 'instant-estimate');
+  qf('qPriceRange',        model === 'custom' || model === 'hourly');
+  qf('qManualReview',      goal === 'request-quote');
+  qf('qLeadCapture',       goal === 'request-quote' || goal === 'instant-estimate');
+  qf('qBookingNext',       document.getElementById('flagBooking').value === 'yes');
+  qf('qPaymentNext',       document.getElementById('flagPayments').value  === 'yes'
+                        || document.getElementById('flagEcommerce').value  === 'yes');
+  qf('qConditionalPricing', factors.size > 0 && !factors.has('None — my rate is always the same'));
+}
+
 function pickQuotePricing(item, value) {
   document.querySelectorAll('#quotePricingList .action-item').forEach(i => i.classList.remove('sel'));
   item.classList.add('sel');
   document.getElementById('hQuotePricingModel').value = value;
   clearErr('e-quotePricing');
+  computeQuoteFlags();
 }
 
 function pickQuoteGoal(item, value) {
@@ -1977,6 +2036,7 @@ function pickQuoteGoal(item, value) {
   item.classList.add('sel');
   document.getElementById('hQuoteWebsiteGoal').value = value;
   clearErr('e-quoteGoal');
+  computeQuoteFlags();
 }
 
 const selectedQuoteFactors = new Set();
@@ -1998,6 +2058,15 @@ function toggleQuoteFactor(pill, value) {
   }
   document.getElementById('hQuotePricingFactors').value = [...selectedQuoteFactors].join(', ');
   clearErr('e-quotePricingFactors');
+  computeQuoteFlags();
+}
+
+function pickQuoteAddOns(card, value) {
+  document.querySelectorAll('#quoteAddOnsRow .cc').forEach(c => c.classList.remove('sel'));
+  card.classList.add('sel');
+  document.getElementById('hQuoteAddOns').value = value;
+  reveal('rev-quoteAddOns', value === 'yes');
+  clearErr('e-quoteAddOns');
 }
 
 /* ── STAGE 3 VALIDATION ── */
@@ -2047,6 +2116,9 @@ function validateStage3() {
     }
     if (selectedQuoteFactors.size === 0) {
       document.getElementById('e-quotePricingFactors').classList.add('show'); ok = false;
+    }
+    if (!document.getElementById('hQuoteAddOns').value) {
+      document.getElementById('e-quoteAddOns').classList.add('show'); ok = false;
     }
   }
 
