@@ -6,19 +6,13 @@
 <title>Digital Foundation — Biz Filing Pros</title>
 <meta name="description" content="Tell us about your business and your goals. We'll build the digital infrastructure that helps your business run and grow.">
 <link rel="icon" type="image/png" href="/images/biz-filing-pros-logo.png">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://bizfilingpros.com/digital-foundation">
-<meta property="og:title" content="Digital Foundation — Biz Filing Pros">
-<meta property="og:description" content="Your website is only the beginning. Let's build your digital foundation together.">
-<meta property="og:image" content="https://bizfilingpros.com/images/biz-filing-pros-logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+/* ══ TOKENS ══════════════════════════════════════════ */
 :root {
   --navy:        #0B1D3A;
   --navy-light:  #132C55;
-  --navy-mid:    #1A3A6E;
   --gold:        #C9A84C;
-  --gold-hover:  #D4B85E;
   --gold-light:  #E2C97E;
   --gold-pale:   #FBF6E8;
   --gold-glow:   rgba(201,168,76,0.15);
@@ -32,7 +26,7 @@
   --gray-600:    #6B665A;
   --gray-800:    #3D3A33;
   --red:         #C0392B;
-  --red-pale:    #FDF0EF;
+  --red-pale:    rgba(192,57,43,0.08);
   --radius:      10px;
   --radius-lg:   14px;
   --shadow-sm:   0 1px 4px rgba(11,29,58,0.05);
@@ -42,170 +36,178 @@
   --tr:          0.25s cubic-bezier(0.4,0,0.2,1);
 }
 
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:'DM Sans',system-ui,sans-serif;background:var(--off-white);color:var(--gray-800);min-height:100vh;line-height:1.6;-webkit-font-smoothing:antialiased;}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { font-family:'DM Sans',system-ui,sans-serif; background:var(--off-white); color:var(--gray-800); min-height:100vh; line-height:1.6; -webkit-font-smoothing:antialiased; }
 
-/* ══════════════════════════════════════
-   HEADER
-══════════════════════════════════════ */
-.df-hdr{background:#0a1528;padding:2.25rem 1.5rem 1.75rem;text-align:center;position:relative;}
-.df-hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent);}
-.df-hdr-logo{max-width:240px;width:60%;margin:0 auto 1rem;display:block;filter:drop-shadow(0 2px 10px rgba(201,168,76,.3));}
-.df-hdr-service{font-family:'DM Sans',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:rgba(201,168,76,.6);margin-bottom:.3rem;}
-.df-hdr-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;color:var(--gold-light);letter-spacing:.04em;margin-bottom:.45rem;line-height:1.15;}
-.df-hdr-divider{width:36px;height:1px;background:var(--gold);opacity:.35;margin:.5rem auto;}
-.df-hdr-sub{color:rgba(255,255,255,.5);font-size:.8rem;line-height:1.65;max-width:380px;margin:0 auto;}
-.df-hdr-sub strong{color:rgba(201,168,76,.75);font-weight:500;}
+/* ══ HEADER ══════════════════════════════════════════ */
+.df-hdr { background:#0a1528; padding:2.25rem 1.5rem 1.75rem; text-align:center; position:relative; }
+.df-hdr::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent); }
+.df-hdr-logo { max-width:230px; width:58%; margin:0 auto 1rem; display:block; filter:drop-shadow(0 2px 10px rgba(201,168,76,.3)); }
+.df-hdr-service { font-size:.63rem; font-weight:700; letter-spacing:.32em; text-transform:uppercase; color:rgba(201,168,76,.6); margin-bottom:.3rem; }
+.df-hdr-title { font-family:'Playfair Display',serif; font-size:clamp(1.6rem,4vw,2.4rem); font-weight:800; color:var(--gold-light); letter-spacing:.04em; margin-bottom:.4rem; line-height:1.15; }
+.df-hdr-divider { width:36px; height:1px; background:var(--gold); opacity:.35; margin:.45rem auto; }
+.df-hdr-sub { color:rgba(255,255,255,.5); font-size:.8rem; line-height:1.65; max-width:380px; margin:0 auto; }
+.df-hdr-sub strong { color:rgba(201,168,76,.75); font-weight:500; }
 
-/* ══════════════════════════════════════
-   PROGRESS — 6 NAMED STAGES
-══════════════════════════════════════ */
-.df-prog{background:var(--white);border-bottom:1px solid var(--gray-100);position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm);}
-.df-prog-inner{max-width:680px;margin:0 auto;padding:.9rem 1.25rem;}
+/* ══ PROGRESS ════════════════════════════════════════ */
+.df-prog { background:var(--white); border-bottom:1px solid var(--gray-100); position:sticky; top:0; z-index:100; box-shadow:var(--shadow-sm); }
+.df-prog-inner { max-width:680px; margin:0 auto; padding:.9rem 1.25rem; }
 
-/* Desktop: named dots */
-.df-stages{display:flex;align-items:flex-start;gap:0;}
-.df-stage-item{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;}
-.df-stage-item:not(:last-child)::after{content:'';position:absolute;top:13px;left:50%;width:100%;height:2px;background:var(--gray-200);z-index:0;transition:background .4s ease;}
-.df-stage-item.is-done:not(:last-child)::after{background:var(--gold);}
-.df-stage-dot{width:26px;height:26px;border-radius:50%;border:2px solid var(--gray-200);background:var(--white);display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;color:var(--gray-400);z-index:1;position:relative;transition:all .3s ease;}
-.df-stage-item.is-active .df-stage-dot{background:var(--navy);border-color:var(--navy);color:var(--white);box-shadow:0 0 0 3px rgba(11,29,58,.1);}
-.df-stage-item.is-done .df-stage-dot{background:var(--gold);border-color:var(--gold);color:var(--navy);}
-.df-stage-label{font-size:.58rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-300);margin-top:.35rem;text-align:center;line-height:1.25;transition:color .3s;}
-.df-stage-item.is-active .df-stage-label{color:var(--navy);}
-.df-stage-item.is-done .df-stage-label{color:var(--gold);}
+/* Desktop dots */
+.df-stages { display:flex; align-items:flex-start; }
+.df-si { flex:1; display:flex; flex-direction:column; align-items:center; position:relative; }
+.df-si:not(:last-child)::after { content:''; position:absolute; top:13px; left:50%; width:100%; height:2px; background:var(--gray-200); z-index:0; transition:background .4s; }
+.df-si.done:not(:last-child)::after { background:var(--gold); }
+.df-si-dot { width:26px; height:26px; border-radius:50%; border:2px solid var(--gray-200); background:var(--white); display:flex; align-items:center; justify-content:center; font-size:.68rem; font-weight:700; color:var(--gray-400); z-index:1; position:relative; transition:all .3s; }
+.df-si.active .df-si-dot { background:var(--navy); border-color:var(--navy); color:var(--white); box-shadow:0 0 0 3px rgba(11,29,58,.1); }
+.df-si.done .df-si-dot { background:var(--gold); border-color:var(--gold); color:var(--navy); font-size:.6rem; }
+.df-si-label { font-size:.57rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--gray-300); margin-top:.35rem; text-align:center; line-height:1.25; transition:color .3s; }
+.df-si.active .df-si-label { color:var(--navy); }
+.df-si.done .df-si-label { color:var(--gold); }
 
-/* Mobile: label + bar */
-.df-prog-mobile{display:none;}
-.df-pm-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem;}
-.df-pm-name{font-size:.75rem;font-weight:700;color:var(--navy);letter-spacing:.05em;text-transform:uppercase;}
-.df-pm-count{font-size:.7rem;color:var(--gray-400);}
-.df-pm-track{height:4px;background:var(--gray-100);border-radius:2px;overflow:hidden;}
-.df-pm-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:2px;transition:width .5s ease;}
+/* Mobile bar */
+.df-prog-mobile { display:none; }
+.df-pm-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:.4rem; }
+.df-pm-name { font-size:.75rem; font-weight:700; color:var(--navy); letter-spacing:.05em; text-transform:uppercase; }
+.df-pm-count { font-size:.7rem; color:var(--gray-400); }
+.df-pm-track { height:4px; background:var(--gray-100); border-radius:2px; overflow:hidden; }
+.df-pm-fill { height:100%; background:linear-gradient(90deg,var(--gold),var(--gold-light)); border-radius:2px; transition:width .5s ease; }
 
-@media(max-width:600px){
-  .df-stages{display:none;}
-  .df-prog-mobile{display:block;}
-  .df-prog-inner{padding:.75rem 1.25rem;}
-}
+@media(max-width:600px) { .df-stages { display:none; } .df-prog-mobile { display:block; } .df-prog-inner { padding:.75rem 1.25rem; } }
 
-/* ══════════════════════════════════════
-   BODY / STAGE PANELS
-══════════════════════════════════════ */
-.df-body{max-width:660px;margin:0 auto;padding:2rem 1.25rem 5rem;}
-
-.df-panel{display:none;}
-.df-panel.is-active{display:block;animation:panelIn .38s cubic-bezier(.4,0,.2,1);}
-@keyframes panelIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+/* ══ BODY / PANELS ═══════════════════════════════════ */
+.df-body { max-width:660px; margin:0 auto; padding:2rem 1.25rem 5rem; }
+.df-panel { display:none; }
+.df-panel.active { display:block; animation:panelIn .38s cubic-bezier(.4,0,.2,1); }
+@keyframes panelIn { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
 
 /* Stage intro */
-.s-intro{margin-bottom:1.75rem;}
-.s-eyebrow{display:block;font-size:.63rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem;}
-.s-title{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3.5vw,1.8rem);font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:.45rem;}
-.s-sub{font-size:.88rem;color:var(--gray-600);line-height:1.7;max-width:500px;}
+.s-intro { margin-bottom:1.75rem; }
+.s-eyebrow { display:block; font-size:.63rem; font-weight:700; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); margin-bottom:.35rem; }
+.s-title { font-family:'Playfair Display',serif; font-size:clamp(1.3rem,3.5vw,1.75rem); font-weight:700; color:var(--navy); line-height:1.2; margin-bottom:.4rem; }
+.s-sub { font-size:.88rem; color:var(--gray-600); line-height:1.7; max-width:500px; }
 
-/* Cards */
-.df-card{background:var(--white);border-radius:var(--radius-lg);padding:1.65rem 1.5rem;margin-bottom:1.1rem;box-shadow:var(--shadow);border:1px solid var(--gray-100);}
-.df-card-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:.2rem;}
-.df-card-sub{font-size:.78rem;color:var(--gray-400);margin-bottom:1.25rem;line-height:1.5;padding-bottom:.9rem;border-bottom:1px solid var(--gray-50);}
+/* ══ CARDS ═══════════════════════════════════════════ */
+.df-card { background:var(--white); border-radius:var(--radius-lg); padding:1.65rem 1.5rem; margin-bottom:1.1rem; box-shadow:var(--shadow); border:1px solid var(--gray-100); }
+.df-card-title { font-family:'Playfair Display',serif; font-size:1.02rem; font-weight:700; color:var(--navy); margin-bottom:.2rem; }
+.df-card-sub { font-size:.77rem; color:var(--gray-400); margin-bottom:1.2rem; line-height:1.5; padding-bottom:.9rem; border-bottom:1px solid var(--gray-50); }
 
-/* ══════════════════════════════════════
-   FIELDS
-══════════════════════════════════════ */
-.f-row{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:.85rem;}
-.f-row.f-full{grid-template-columns:1fr;}
-.f-row:last-child{margin-bottom:0;}
-@media(max-width:520px){.f-row{grid-template-columns:1fr;}}
+/* ══ FIELDS ══════════════════════════════════════════ */
+.f-row { display:grid; grid-template-columns:1fr 1fr; gap:.85rem; margin-bottom:.85rem; }
+.f-row.full { grid-template-columns:1fr; }
+.f-row:last-child { margin-bottom:0; }
+@media(max-width:520px) { .f-row { grid-template-columns:1fr; } }
 
-.f-group{display:flex;flex-direction:column;}
-.f-label{font-size:.68rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;}
-.f-label .req{color:var(--gold);margin-left:2px;}
-.f-hint{font-size:.7rem;color:var(--gray-400);margin-top:4px;line-height:1.45;}
-.f-err{font-size:.7rem;color:var(--red);margin-top:4px;display:none;}
-.f-err.show{display:block;}
-.char-info{font-size:.67rem;color:var(--gray-300);text-align:right;margin-top:3px;}
-.char-info.warn{color:var(--gold);}
+.fg { display:flex; flex-direction:column; }
+.f-label { font-size:.68rem; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:.07em; margin-bottom:5px; }
+.f-label .req { color:var(--gold); margin-left:2px; }
+.f-hint { font-size:.7rem; color:var(--gray-400); margin-top:4px; line-height:1.45; }
+.f-err { font-size:.7rem; color:var(--red); margin-top:4px; display:none; }
+.f-err.show { display:block; }
+.char-count { font-size:.67rem; color:var(--gray-300); text-align:right; margin-top:3px; }
 
-input[type=text],input[type=email],input[type=tel],textarea,select{
-  font-family:'DM Sans',sans-serif;font-size:.92rem;
+input[type=text], input[type=email], input[type=tel], input[type=url], textarea, select {
+  font-family:'DM Sans',sans-serif; font-size:.9rem;
   padding:.65rem .85rem;
   border:1.5px solid var(--gray-200);
   border-radius:var(--radius);
-  background:var(--white);color:var(--gray-800);
-  transition:border-color var(--tr),box-shadow var(--tr);
-  outline:none;width:100%;
+  background:var(--white); color:var(--gray-800);
+  transition:border-color var(--tr), box-shadow var(--tr);
+  outline:none; width:100%;
 }
-input:focus,textarea:focus,select:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-glow);}
-input.has-err,textarea.has-err{border-color:var(--red);box-shadow:0 0 0 3px rgba(192,57,43,.08);}
-textarea{resize:vertical;min-height:88px;line-height:1.6;}
+input:focus, textarea:focus, select:focus { border-color:var(--gold); box-shadow:0 0 0 3px var(--gold-glow); }
+input.err, textarea.err { border-color:var(--red); box-shadow:0 0 0 3px var(--red-pale); }
+textarea { resize:vertical; min-height:90px; line-height:1.65; }
 
-/* ══════════════════════════════════════
-   CHOICE CARDS (visual selection)
-══════════════════════════════════════ */
-.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
-@media(max-width:480px){.choice-grid{grid-template-columns:1fr;}}
+/* ══ INDUSTRY PILLS (single-select) ════════════════════ */
+.pill-grid { display:flex; flex-wrap:wrap; gap:8px; }
+.ind-pill {
+  display:inline-flex; align-items:center;
+  padding:7px 14px;
+  border:1.5px solid var(--gray-200);
+  border-radius:100px;
+  font-size:.82rem; font-weight:500; color:var(--gray-600);
+  cursor:pointer; transition:all var(--tr); user-select:none;
+  background:var(--white);
+}
+.ind-pill:hover { border-color:var(--gold); color:var(--navy); background:var(--gold-pale); }
+.ind-pill.sel { background:var(--navy); border-color:var(--navy); color:var(--white); font-weight:600; }
+.ind-pill input { position:absolute; opacity:0; pointer-events:none; }
 
-.cc{
-  position:relative;
-  display:block;
+/* ══ IMPROVEMENT CHECKBOXES (multi-select) ════════════ */
+.chk-pill {
+  display:inline-flex; align-items:center; gap:6px;
+  padding:7px 13px;
+  border:1.5px solid var(--gray-200);
+  border-radius:100px;
+  font-size:.8rem; font-weight:500; color:var(--gray-600);
+  cursor:pointer; transition:all var(--tr); user-select:none;
+  background:var(--white);
+}
+.chk-pill:hover { border-color:var(--gold); color:var(--navy); background:var(--gold-pale); }
+.chk-pill.sel { border-color:var(--gold); background:var(--gold-pale); color:var(--navy); font-weight:600; }
+.chk-pill.sel::before { content:'✓'; font-size:.7rem; font-weight:800; color:var(--gold); }
+.chk-pill input { position:absolute; opacity:0; pointer-events:none; }
+
+/* ══ CHOICE CARDS (website yes/no, domain) ════════════ */
+.cc-row { display:flex; gap:.75rem; flex-wrap:wrap; }
+.cc-row.three-up .cc { flex:1; min-width:130px; }
+.cc-row:not(.three-up) .cc { flex:1; min-width:180px; }
+
+.cc {
+  position:relative; display:flex; flex-direction:column;
   background:var(--white);
   border:1.5px solid var(--gray-200);
   border-radius:var(--radius-lg);
-  padding:1.1rem 1rem 1rem;
-  cursor:pointer;
-  transition:border-color var(--tr),box-shadow var(--tr),background var(--tr);
-  user-select:none;
+  padding:1.05rem 1rem;
+  cursor:pointer; transition:all var(--tr); user-select:none;
 }
-.cc:hover{border-color:rgba(201,168,76,.5);box-shadow:0 3px 14px rgba(201,168,76,.1);}
-.cc.cc-sel{border-color:var(--gold);background:var(--gold-pale);box-shadow:0 4px 18px rgba(201,168,76,.18);}
-.cc input[type=radio]{position:absolute;opacity:0;pointer-events:none;}
+.cc:hover { border-color:rgba(201,168,76,.5); background:var(--gold-pale); }
+.cc.sel { border-color:var(--gold); background:var(--gold-pale); box-shadow:0 3px 14px rgba(201,168,76,.18); }
+.cc input { position:absolute; opacity:0; pointer-events:none; }
+.cc-check { position:absolute; top:.6rem; right:.6rem; width:18px; height:18px; border-radius:50%; background:var(--gold); display:flex; align-items:center; justify-content:center; font-size:.6rem; font-weight:800; color:var(--navy); opacity:0; transform:scale(.5); transition:all var(--tr); }
+.cc.sel .cc-check { opacity:1; transform:scale(1); }
+.cc-icon { font-size:1.3rem; margin-bottom:.4rem; line-height:1; }
+.cc-label { font-size:.85rem; font-weight:600; color:var(--navy); line-height:1.3; }
+.cc-sub { font-size:.72rem; color:var(--gray-600); margin-top:.2rem; line-height:1.4; }
 
-.cc-check{
-  position:absolute;top:.6rem;right:.6rem;
-  width:20px;height:20px;border-radius:50%;
-  background:var(--gold);color:var(--navy);
-  display:flex;align-items:center;justify-content:center;
-  font-size:.65rem;font-weight:800;
-  opacity:0;transform:scale(.5);
-  transition:opacity var(--tr),transform var(--tr);
-}
-.cc.cc-sel .cc-check{opacity:1;transform:scale(1);}
-.cc-icon{font-size:1.5rem;display:block;margin-bottom:.45rem;line-height:1;}
-.cc-label{font-size:.88rem;font-weight:600;color:var(--navy);margin-bottom:.2rem;line-height:1.3;}
-.cc-sub{font-size:.73rem;color:var(--gray-600);line-height:1.45;}
+/* ══ CONDITIONAL REVEAL ══════════════════════════════ */
+.reveal { max-height:0; overflow:hidden; opacity:0; transition:max-height .45s cubic-bezier(.4,0,.2,1), opacity .3s ease; }
+.reveal.open { max-height:900px; opacity:1; }
+.reveal-inner { padding-top:1rem; }
+.reveal-divider { margin:1rem 0; border:none; border-top:1px solid var(--gray-100); }
 
-/* ══════════════════════════════════════
-   NAVIGATION
-══════════════════════════════════════ */
-.s-nav{margin-top:1.75rem;display:flex;gap:.75rem;flex-wrap:wrap;}
-.btn-continue{
-  flex:1;min-width:180px;
+/* ══ NAVIGATION ══════════════════════════════════════ */
+.s-nav { margin-top:1.75rem; display:flex; gap:.75rem; flex-wrap:wrap; }
+.btn-continue {
+  flex:1; min-width:180px;
   background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);
   color:var(--gold-light);
-  font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;
-  letter-spacing:.06em;padding:.95rem 1.5rem;
-  border:none;border-radius:var(--radius);cursor:pointer;
-  transition:transform var(--tr),box-shadow var(--tr);
+  font-family:'DM Sans',sans-serif; font-size:.9rem; font-weight:600; letter-spacing:.06em;
+  padding:.95rem 1.5rem; border:none; border-radius:var(--radius); cursor:pointer;
+  transition:transform var(--tr), box-shadow var(--tr);
   box-shadow:0 4px 20px rgba(11,29,58,.25);
-  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  display:flex; align-items:center; justify-content:center; gap:.5rem;
 }
-.btn-continue:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(11,29,58,.35);}
-.btn-continue .arr{transition:transform var(--tr);}
-.btn-continue:hover .arr{transform:translateX(3px);}
-.btn-back{
-  background:transparent;color:var(--gray-600);
-  font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:500;
-  padding:.95rem 1.25rem;border:1.5px solid var(--gray-200);
-  border-radius:var(--radius);cursor:pointer;transition:all var(--tr);
+.btn-continue:hover { transform:translateY(-1px); box-shadow:0 6px 28px rgba(11,29,58,.35); }
+.btn-continue .arr { transition:transform var(--tr); }
+.btn-continue:hover .arr { transform:translateX(3px); }
+.btn-back {
+  background:transparent; color:var(--gray-600);
+  font-family:'DM Sans',sans-serif; font-size:.85rem; font-weight:500;
+  padding:.95rem 1.25rem; border:1.5px solid var(--gray-200);
+  border-radius:var(--radius); cursor:pointer; transition:all var(--tr);
 }
-.btn-back:hover{border-color:var(--navy);color:var(--navy);}
-.next-hint{
-  display:flex;align-items:center;gap:.5rem;
-  margin-top:1rem;font-size:.72rem;color:var(--gray-400);
-}
-.next-hint::before{content:'';display:block;width:16px;height:1px;background:var(--gray-300);flex-shrink:0;}
-.next-hint strong{color:var(--gray-600);font-weight:600;}
+.btn-back:hover { border-color:var(--navy); color:var(--navy); }
+.next-hint { display:flex; align-items:center; gap:.5rem; margin-top:1rem; font-size:.72rem; color:var(--gray-400); }
+.next-hint::before { content:''; display:block; width:16px; height:1px; background:var(--gray-300); flex-shrink:0; }
+.next-hint strong { color:var(--gray-600); font-weight:600; }
+
+/* ══ SECTION SPACING ═════════════════════════════════ */
+.field-section { margin-top:1.1rem; }
+.field-section-label { font-size:.7rem; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:.07em; margin-bottom:.55rem; display:block; }
+.field-section-label .req { color:var(--gold); margin-left:2px; }
 </style>
 </head>
 <body>
@@ -216,165 +218,270 @@ textarea{resize:vertical;min-height:88px;line-height:1.6;}
   <p class="df-hdr-service">Biz Filing Pros</p>
   <h1 class="df-hdr-title">Digital Foundation</h1>
   <div class="df-hdr-divider"></div>
-  <p class="df-hdr-sub">Tell us about your business and what you need.<br><strong>Takes about 8 minutes.</strong> No tech background required.</p>
+  <p class="df-hdr-sub">Tell us about your business and what you're looking for.<br><strong>About 8 minutes.</strong> No technical background needed.</p>
 </header>
 
 <!-- ══ PROGRESS ══ -->
 <div class="df-prog">
   <div class="df-prog-inner">
-
-    <!-- Desktop -->
     <div class="df-stages" id="dfStages">
-      <div class="df-stage-item is-active" data-stage="1">
-        <div class="df-stage-dot">1</div>
-        <div class="df-stage-label">Your<br>Business</div>
-      </div>
-      <div class="df-stage-item" data-stage="2">
-        <div class="df-stage-dot">2</div>
-        <div class="df-stage-label">Your<br>Goals</div>
-      </div>
-      <div class="df-stage-item" data-stage="3">
-        <div class="df-stage-dot">3</div>
-        <div class="df-stage-label">Features</div>
-      </div>
-      <div class="df-stage-item" data-stage="4">
-        <div class="df-stage-dot">4</div>
-        <div class="df-stage-label">Design</div>
-      </div>
-      <div class="df-stage-item" data-stage="5">
-        <div class="df-stage-dot">5</div>
-        <div class="df-stage-label">Project<br>Details</div>
-      </div>
-      <div class="df-stage-item" data-stage="6">
-        <div class="df-stage-dot">6</div>
-        <div class="df-stage-label">Review</div>
-      </div>
+      <div class="df-si active" data-stage="1"><div class="df-si-dot">1</div><div class="df-si-label">Your<br>Business</div></div>
+      <div class="df-si" data-stage="2"><div class="df-si-dot">2</div><div class="df-si-label">Your<br>Goals</div></div>
+      <div class="df-si" data-stage="3"><div class="df-si-dot">3</div><div class="df-si-label">Features</div></div>
+      <div class="df-si" data-stage="4"><div class="df-si-dot">4</div><div class="df-si-label">Design</div></div>
+      <div class="df-si" data-stage="5"><div class="df-si-dot">5</div><div class="df-si-label">Project<br>Details</div></div>
+      <div class="df-si" data-stage="6"><div class="df-si-dot">6</div><div class="df-si-label">Review</div></div>
     </div>
-
-    <!-- Mobile -->
     <div class="df-prog-mobile">
-      <div class="df-pm-top">
+      <div class="df-pm-row">
         <span class="df-pm-name" id="pmName">Your Business</span>
         <span class="df-pm-count" id="pmCount">Stage 1 of 6</span>
       </div>
-      <div class="df-pm-track">
-        <div class="df-pm-fill" id="pmFill" style="width:16.67%"></div>
-      </div>
+      <div class="df-pm-track"><div class="df-pm-fill" id="pmFill" style="width:16.67%"></div></div>
     </div>
-
   </div>
 </div>
 
 <!-- ══ FORM ══ -->
 <form id="dfForm" action="https://formspree.io/f/xgoqqyjd" method="POST" novalidate>
+
+<!-- Hidden inputs for conditional data -->
+<input type="hidden" name="industry" id="hIndustry">
+<input type="hidden" name="website_status" id="hWebsiteStatus">
+<input type="hidden" name="domain_status" id="hDomainStatus">
+<input type="hidden" name="website_improvements" id="hImprovements">
+
 <div class="df-body">
 
-  <!-- ════════════════════════════════
+  <!-- ══════════════════════════════════════
        STAGE 1 — YOUR BUSINESS
-  ════════════════════════════════ -->
-  <div class="df-panel is-active" id="panel-1">
+  ══════════════════════════════════════ -->
+  <div class="df-panel active" id="panel-1">
 
     <div class="s-intro">
-      <span class="s-eyebrow">Stage 1 of 6 · Your Business</span>
-      <h2 class="s-title">Let's start with you.</h2>
-      <p class="s-sub">A few basics so we understand who you are and what you're building. No jargon — just tell us in your own words.</p>
+      <span class="s-eyebrow">Stage 1 of 6 &middot; Your Business</span>
+      <h2 class="s-title">Let's start with your business.</h2>
+      <p class="s-sub">A few basics so we understand who you are and what you're building. No jargon required — just tell us in plain language.</p>
     </div>
 
-    <!-- How to reach you -->
+    <!-- ── CARD 1: Contact Info ── -->
     <div class="df-card">
       <h3 class="df-card-title">How can we reach you?</h3>
       <p class="df-card-sub">We'll use this to follow up and schedule your consultation.</p>
 
-      <div class="f-row">
-        <div class="f-group">
-          <label class="f-label" for="firstName">First Name <span class="req">*</span></label>
-          <input type="text" id="firstName" name="first_name" placeholder="Jane" required autocomplete="given-name">
-          <span class="f-err" id="e-firstName">Please enter your first name.</span>
-        </div>
-        <div class="f-group">
-          <label class="f-label" for="lastName">Last Name <span class="req">*</span></label>
-          <input type="text" id="lastName" name="last_name" placeholder="Smith" required autocomplete="family-name">
-          <span class="f-err" id="e-lastName">Please enter your last name.</span>
-        </div>
-      </div>
-
-      <div class="f-row">
-        <div class="f-group">
-          <label class="f-label" for="email">Email Address <span class="req">*</span></label>
-          <input type="email" id="email" name="email" placeholder="jane@yourbusiness.com" required autocomplete="email">
-          <span class="f-err" id="e-email">Please enter a valid email address.</span>
-        </div>
-        <div class="f-group">
-          <label class="f-label" for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" autocomplete="tel">
-          <span class="f-hint">Optional — helpful if we need to reach you quickly.</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- About your business -->
-    <div class="df-card">
-      <h3 class="df-card-title">About your business</h3>
-      <p class="df-card-sub">Don't worry about being formal. Just tell us what you do.</p>
-
-      <div class="f-row f-full" style="margin-bottom:.85rem;">
-        <div class="f-group">
+      <div class="f-row full" style="margin-bottom:.85rem;">
+        <div class="fg">
           <label class="f-label" for="bizName">Business Name <span class="req">*</span></label>
           <input type="text" id="bizName" name="business_name" placeholder="e.g. Luxe Beauty Studio" required autocomplete="organization">
-          <span class="f-hint">If you're not yet registered, your planned name is fine.</span>
           <span class="f-err" id="e-bizName">Please enter your business name.</span>
         </div>
       </div>
 
-      <div class="f-row f-full">
-        <div class="f-group">
-          <label class="f-label" for="bizDesc">What does your business offer? <span class="req">*</span></label>
-          <textarea id="bizDesc" name="business_description" placeholder="e.g. I run a mobile hair salon in Houston. I specialize in bridal styles, protective styles, and everyday cuts for women." rows="3" maxlength="300" required oninput="updateCount(this,'cBizDesc')"></textarea>
-          <div class="char-info"><span id="cBizDesc">0</span>&thinsp;/&thinsp;300</div>
-          <span class="f-hint">What you offer, who you serve, where you operate. Plain language is perfect.</span>
-          <span class="f-err" id="e-bizDesc">Please briefly describe what your business offers.</span>
+      <div class="f-row" style="margin-bottom:.85rem;">
+        <div class="fg">
+          <label class="f-label" for="contactName">Contact Name <span class="req">*</span></label>
+          <input type="text" id="contactName" name="contact_name" placeholder="Your full name" required autocomplete="name">
+          <span class="f-err" id="e-contactName">Please enter your name.</span>
+        </div>
+        <div class="fg">
+          <label class="f-label" for="email">Email Address <span class="req">*</span></label>
+          <input type="email" id="email" name="email" placeholder="you@yourbusiness.com" required autocomplete="email">
+          <span class="f-err" id="e-email">Please enter a valid email address.</span>
+        </div>
+      </div>
+
+      <div class="f-row full">
+        <div class="fg">
+          <label class="f-label" for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" autocomplete="tel" oninput="fmtPhone(this)" maxlength="14">
+          <span class="f-hint">Optional. We may call to schedule your consultation.</span>
+          <span class="f-err" id="e-phone">Please enter a valid 10-digit phone number.</span>
         </div>
       </div>
     </div>
 
-    <!-- Where are you in your journey -->
+    <!-- ── CARD 2: Industry ── -->
     <div class="df-card">
-      <h3 class="df-card-title">Where are you in your journey?</h3>
-      <p class="df-card-sub">This helps us understand your starting point and tailor the right approach for you.</p>
+      <h3 class="df-card-title">What type of business is this?</h3>
+      <p class="df-card-sub">Select the category that best describes what you do.</p>
 
-      <div class="choice-grid">
-        <label class="cc" onclick="pickChoice(this,'biz_stage','starting')">
-          <input type="radio" name="biz_stage" value="starting">
-          <div class="cc-check">✓</div>
-          <span class="cc-icon">🌱</span>
-          <div class="cc-label">Just getting started</div>
-          <div class="cc-sub">Planning phase, or I just formed my business</div>
-        </label>
-        <label class="cc" onclick="pickChoice(this,'biz_stage','new')">
-          <input type="radio" name="biz_stage" value="new">
-          <div class="cc-check">✓</div>
-          <span class="cc-icon">🚀</span>
-          <div class="cc-label">Newly open</div>
-          <div class="cc-sub">We're up and running — less than a year in</div>
-        </label>
-        <label class="cc" onclick="pickChoice(this,'biz_stage','growing')">
-          <input type="radio" name="biz_stage" value="growing">
-          <div class="cc-check">✓</div>
-          <span class="cc-icon">📈</span>
-          <div class="cc-label">Building momentum</div>
-          <div class="cc-sub">1–3 years in and ready to grow our presence</div>
-        </label>
-        <label class="cc" onclick="pickChoice(this,'biz_stage','established')">
-          <input type="radio" name="biz_stage" value="established">
-          <div class="cc-check">✓</div>
-          <span class="cc-icon">🏛️</span>
-          <div class="cc-label">Established business</div>
-          <div class="cc-sub">3+ years — time to level up our digital presence</div>
-        </label>
+      <div class="pill-grid" id="industryGrid" role="radiogroup" aria-label="Industry">
+        <label class="ind-pill" onclick="pickIndustry(this,'Professional Services')"><input type="radio" name="_ind" value="Professional Services">Professional Services</label>
+        <label class="ind-pill" onclick="pickIndustry(this,'Beauty / Wellness')"><input type="radio" name="_ind" value="Beauty / Wellness">Beauty / Wellness</label>
+        <label class="ind-pill" onclick="pickIndustry(this,'Health / Medical')"><input type="radio" name="_ind" value="Health / Medical">Health / Medical</label>
+        <label class="ind-pill" onclick="pickIndustry(this,'Home Services')"><input type="radio" name="_ind" value="Home Services">Home Services</label>
+        <label class="ind-pill" onclick="pickIndustry(this,'Cleaning')"><input type="radio" name="_ind" value="Cleaning">Cleaning</label>
+        <label class="ind-pill" onclick="pickIndustry(this,'Transportation / Logistics')"><input type="radio" name="_ind" value="Transportation / Logistics">Transportation / Logistics</label>
+        <label class="ind-pill" onclick="pickIndustry(this,'Restaurant / Food')"><input type="radio" name="_ind" value="Restaurant / Food">Restaurant / Food</label>
+        <label class="ind-pill" onclick="pickIndustry(this,'Retail')"><input type="radio" name="_ind" value="Retail">Retail</label>
+        <label class="ind-pill" onclick="pickIndustry(this,'E-Commerce')"><input type="radio" name="_ind" value="E-Commerce">E-Commerce</label>
+        <label class="ind-pill" onclick="pickIndustry(this,'Real Estate')"><input type="radio" name="_ind" value="Real Estate">Real Estate</label>
+        <label class="ind-pill" onclick="pickIndustry(this,'Legal')"><input type="radio" name="_ind" value="Legal">Legal</label>
+        <label class="ind-pill" onclick="pickIndustry(this,'Financial / Tax')"><input type="radio" name="_ind" value="Financial / Tax">Financial / Tax</label>
+        <label class="ind-pill" onclick="pickIndustry(this,'Construction / Contractor')"><input type="radio" name="_ind" value="Construction / Contractor">Construction / Contractor</label>
+        <label class="ind-pill" onclick="pickIndustry(this,'Events / Entertainment')"><input type="radio" name="_ind" value="Events / Entertainment">Events / Entertainment</label>
+        <label class="ind-pill" onclick="pickIndustry(this,'Hospitality / Tourism')"><input type="radio" name="_ind" value="Hospitality / Tourism">Hospitality / Tourism</label>
+        <label class="ind-pill" onclick="pickIndustry(this,'Consulting')"><input type="radio" name="_ind" value="Consulting">Consulting</label>
+        <label class="ind-pill" onclick="pickIndustry(this,'Nonprofit')"><input type="radio" name="_ind" value="Nonprofit">Nonprofit</label>
+        <label class="ind-pill" onclick="pickIndustry(this,'Other')"><input type="radio" name="_ind" value="Other">Other</label>
       </div>
-      <span class="f-err" id="e-bizStage" style="display:block;margin-top:.75rem;">Please select where you are in your journey.</span>
+      <span class="f-err" id="e-industry" style="margin-top:.65rem;">Please select your industry.</span>
+
+      <!-- Conditional: Other industry text -->
+      <div class="reveal" id="rev-industryOther">
+        <div class="reveal-inner">
+          <div class="fg">
+            <label class="f-label" for="industryOther">Tell us your industry <span class="req">*</span></label>
+            <input type="text" id="industryOther" name="industry_other" placeholder="Describe your type of business">
+            <span class="f-err" id="e-industryOther">Please describe your industry.</span>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <!-- ── CARD 3: Current Website ── -->
+    <div class="df-card">
+      <h3 class="df-card-title">Do you currently have a website?</h3>
+      <p class="df-card-sub">This helps us understand where we're starting from.</p>
+
+      <div class="cc-row">
+        <label class="cc" id="cc-web-yes" onclick="pickWebsite(this,'yes')">
+          <input type="radio" name="_website" value="yes">
+          <div class="cc-check">✓</div>
+          <div class="cc-icon">🌐</div>
+          <div class="cc-label">Yes — I want to redesign or improve it</div>
+        </label>
+        <label class="cc" id="cc-web-no" onclick="pickWebsite(this,'no')">
+          <input type="radio" name="_website" value="no">
+          <div class="cc-check">✓</div>
+          <div class="cc-icon">✨</div>
+          <div class="cc-label">No — this will be a brand new website</div>
+        </label>
+      </div>
+      <span class="f-err" id="e-website" style="margin-top:.65rem;">Please select an option.</span>
+
+      <!-- Conditional: YES — existing website fields -->
+      <div class="reveal" id="rev-websiteYes">
+        <div class="reveal-inner">
+          <hr class="reveal-divider">
+
+          <div class="fg" style="margin-bottom:1.1rem;">
+            <label class="f-label" for="currentUrl">Current Website URL</label>
+            <input type="url" id="currentUrl" name="current_url" placeholder="https://www.yourwebsite.com">
+            <span class="f-hint">Don't worry if you don't remember it exactly.</span>
+          </div>
+
+          <div class="field-section">
+            <span class="field-section-label">What would you like to improve?</span>
+            <div class="pill-grid" id="improvGrid">
+              <label class="chk-pill" onclick="toggleImprov(this,'Design looks outdated')"><input type="checkbox" name="_improv" value="Design looks outdated">Design looks outdated</label>
+              <label class="chk-pill" onclick="toggleImprov(this,'Does not represent my brand')"><input type="checkbox" name="_improv" value="Does not represent my brand">Does not represent my brand</label>
+              <label class="chk-pill" onclick="toggleImprov(this,'Difficult to navigate')"><input type="checkbox" name="_improv" value="Difficult to navigate">Difficult to navigate</label>
+              <label class="chk-pill" onclick="toggleImprov(this,'Not mobile friendly')"><input type="checkbox" name="_improv" value="Not mobile friendly">Not mobile friendly</label>
+              <label class="chk-pill" onclick="toggleImprov(this,'Not generating enough leads')"><input type="checkbox" name="_improv" value="Not generating enough leads">Not generating enough leads</label>
+              <label class="chk-pill" onclick="toggleImprov(this,'Customers cannot book online')"><input type="checkbox" name="_improv" value="Customers cannot book online">Customers cannot book online</label>
+              <label class="chk-pill" onclick="toggleImprov(this,'Customers cannot pay online')"><input type="checkbox" name="_improv" value="Customers cannot pay online">Customers cannot pay online</label>
+              <label class="chk-pill" onclick="toggleImprov(this,'Missing important features')"><input type="checkbox" name="_improv" value="Missing important features">Missing important features</label>
+              <label class="chk-pill" onclick="toggleImprov(this,'Website feels slow')"><input type="checkbox" name="_improv" value="Website feels slow">Website feels slow</label>
+              <label class="chk-pill" onclick="toggleImprov(this,'Hard for me to update')"><input type="checkbox" name="_improv" value="Hard for me to update">Hard for me to update</label>
+              <label class="chk-pill" onclick="toggleImprov(this,'Not performing well in search')"><input type="checkbox" name="_improv" value="Not performing well in search">Not performing well in search</label>
+              <label class="chk-pill" id="improvSomethingElse" onclick="toggleImprov(this,'Something else')"><input type="checkbox" name="_improv" value="Something else">Something else</label>
+            </div>
+          </div>
+
+          <!-- Conditional: "Something else" text field -->
+          <div class="reveal" id="rev-improvOther" style="margin-top:.5rem;">
+            <div class="reveal-inner" style="padding-top:.65rem;">
+              <div class="fg">
+                <label class="f-label" for="improvOther">What else would you like to improve?</label>
+                <input type="text" id="improvOther" name="improvement_other" placeholder="Tell us what's not working">
+              </div>
+            </div>
+          </div>
+
+          <div class="fg" style="margin-top:1.1rem;">
+            <label class="f-label" for="websiteNotes">Anything else we should know about your current website?</label>
+            <textarea id="websiteNotes" name="website_notes" placeholder="Optional — any context that would help us understand what you've got now." rows="2"></textarea>
+          </div>
+
+        </div>
+      </div>
+      <!-- /YES reveal -->
+
+    </div>
+
+    <!-- ── CARD 4: Domain ── -->
+    <div class="df-card">
+      <h3 class="df-card-title">Do you already own a domain name?</h3>
+      <p class="df-card-sub">A domain is your web address — like <em>yourbusiness.com</em>.</p>
+
+      <div class="cc-row three-up">
+        <label class="cc" onclick="pickDomain(this,'yes')">
+          <input type="radio" name="_domain" value="yes">
+          <div class="cc-check">✓</div>
+          <div class="cc-label">Yes, I own one</div>
+        </label>
+        <label class="cc" onclick="pickDomain(this,'no')">
+          <input type="radio" name="_domain" value="no">
+          <div class="cc-check">✓</div>
+          <div class="cc-label">No, not yet</div>
+        </label>
+        <label class="cc" onclick="pickDomain(this,'unsure')">
+          <input type="radio" name="_domain" value="unsure">
+          <div class="cc-check">✓</div>
+          <div class="cc-label">I'm not sure</div>
+        </label>
+      </div>
+      <span class="f-err" id="e-domain" style="margin-top:.65rem;">Please select an option.</span>
+
+      <!-- Conditional: YES — domain name field -->
+      <div class="reveal" id="rev-domainYes">
+        <div class="reveal-inner">
+          <hr class="reveal-divider">
+          <div class="fg">
+            <label class="f-label" for="domainName">What is your domain?</label>
+            <input type="text" id="domainName" name="domain_name" placeholder="e.g. yourbusiness.com">
+            <span class="f-hint">Just the domain name — we'll handle the technical setup.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CARD 5: About Your Business ── -->
+    <div class="df-card">
+      <h3 class="df-card-title">Tell us about your business.</h3>
+      <p class="df-card-sub">This helps us understand how to structure your website and what to include.</p>
+
+      <div class="f-row full" style="margin-bottom:.85rem;">
+        <div class="fg">
+          <label class="f-label" for="bizDesc">What does your business do? <span class="req">*</span></label>
+          <textarea id="bizDesc" name="business_description" placeholder="e.g. We're a mobile hair salon based in Houston. We specialize in bridal styles, protective styles, and cuts for women. We travel to the client's location." rows="3" maxlength="500" required oninput="updateCount(this,'cBizDesc')"></textarea>
+          <div class="char-count"><span id="cBizDesc">0</span> / 500</div>
+          <span class="f-hint">A few sentences is enough. Plain language is perfect.</span>
+          <span class="f-err" id="e-bizDesc">Please briefly describe what your business does.</span>
+        </div>
+      </div>
+
+      <div class="f-row full" style="margin-bottom:.85rem;">
+        <div class="fg">
+          <label class="f-label" for="bizServices">What products or services do you offer?</label>
+          <textarea id="bizServices" name="products_services" placeholder="e.g. Box braids, knotless braids, loc retwist, natural hair care, bridal styling — starting at $150." rows="3" maxlength="500" oninput="updateCount(this,'cBizServices')"></textarea>
+          <div class="char-count"><span id="cBizServices">0</span> / 500</div>
+          <span class="f-hint">This helps us plan the right pages and sections for your site.</span>
+        </div>
+      </div>
+
+      <div class="f-row full">
+        <div class="fg">
+          <label class="f-label" for="idealCustomer">Who is your ideal customer?</label>
+          <textarea id="idealCustomer" name="ideal_customer" placeholder="e.g. Women aged 25–45 in the Houston area who want protective styles and natural hair care. Also bridal parties planning destination events." rows="3" maxlength="400" oninput="updateCount(this,'cIdeal')"></textarea>
+          <div class="char-count"><span id="cIdeal">0</span> / 400</div>
+          <span class="f-hint">Individuals, families, businesses, local customers, nationwide — however you think about it.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
     <div class="s-nav">
       <button type="button" class="btn-continue" onclick="goNext(1)">
         Continue to Your Goals <span class="arr">→</span>
@@ -386,164 +493,219 @@ textarea{resize:vertical;min-height:88px;line-height:1.6;}
   <!-- /STAGE 1 -->
 
 
-  <!-- ════════════════════════════════
-       STAGES 2–6  (built section by section)
-  ════════════════════════════════ -->
+  <!-- ══════════════════════════════════════
+       STAGES 2–6 · Built section by section
+  ══════════════════════════════════════ -->
 
   <div class="df-panel" id="panel-2">
     <div class="s-intro">
-      <span class="s-eyebrow">Stage 2 of 6 · Your Goals</span>
+      <span class="s-eyebrow">Stage 2 of 6 &middot; Your Goals</span>
       <h2 class="s-title">Your Goals</h2>
-      <p class="s-sub">This section is coming soon.</p>
+      <p class="s-sub">Coming up next — we're building this section now.</p>
     </div>
-    <div class="s-nav">
-      <button type="button" class="btn-back" onclick="goBack(2)">← Back</button>
-    </div>
+    <div class="s-nav"><button type="button" class="btn-back" onclick="goBack(2)">← Back</button></div>
   </div>
 
   <div class="df-panel" id="panel-3">
     <div class="s-intro">
-      <span class="s-eyebrow">Stage 3 of 6 · Features</span>
+      <span class="s-eyebrow">Stage 3 of 6 &middot; Features</span>
       <h2 class="s-title">Features</h2>
-      <p class="s-sub">This section is coming soon.</p>
+      <p class="s-sub">Coming up next — we're building this section now.</p>
     </div>
-    <div class="s-nav">
-      <button type="button" class="btn-back" onclick="goBack(3)">← Back</button>
-    </div>
+    <div class="s-nav"><button type="button" class="btn-back" onclick="goBack(3)">← Back</button></div>
   </div>
 
   <div class="df-panel" id="panel-4">
     <div class="s-intro">
-      <span class="s-eyebrow">Stage 4 of 6 · Design</span>
+      <span class="s-eyebrow">Stage 4 of 6 &middot; Design</span>
       <h2 class="s-title">Design</h2>
-      <p class="s-sub">This section is coming soon.</p>
+      <p class="s-sub">Coming up next — we're building this section now.</p>
     </div>
-    <div class="s-nav">
-      <button type="button" class="btn-back" onclick="goBack(4)">← Back</button>
-    </div>
+    <div class="s-nav"><button type="button" class="btn-back" onclick="goBack(4)">← Back</button></div>
   </div>
 
   <div class="df-panel" id="panel-5">
     <div class="s-intro">
-      <span class="s-eyebrow">Stage 5 of 6 · Project Details</span>
+      <span class="s-eyebrow">Stage 5 of 6 &middot; Project Details</span>
       <h2 class="s-title">Project Details</h2>
-      <p class="s-sub">This section is coming soon.</p>
+      <p class="s-sub">Coming up next — we're building this section now.</p>
     </div>
-    <div class="s-nav">
-      <button type="button" class="btn-back" onclick="goBack(5)">← Back</button>
-    </div>
+    <div class="s-nav"><button type="button" class="btn-back" onclick="goBack(5)">← Back</button></div>
   </div>
 
   <div class="df-panel" id="panel-6">
     <div class="s-intro">
-      <span class="s-eyebrow">Stage 6 of 6 · Review</span>
+      <span class="s-eyebrow">Stage 6 of 6 &middot; Review</span>
       <h2 class="s-title">Review &amp; Submit</h2>
-      <p class="s-sub">This section is coming soon.</p>
+      <p class="s-sub">Coming up next — we're building this section now.</p>
     </div>
-    <div class="s-nav">
-      <button type="button" class="btn-back" onclick="goBack(6)">← Back</button>
-    </div>
+    <div class="s-nav"><button type="button" class="btn-back" onclick="goBack(6)">← Back</button></div>
   </div>
 
 </div><!-- /df-body -->
 </form>
 
 <script>
-/* ══ Stage data ══ */
-const STAGE_META = {
-  1: { name:'Your Business',   pct: 16.67 },
-  2: { name:'Your Goals',      pct: 33.33 },
-  3: { name:'Features',        pct: 50.00 },
-  4: { name:'Design',          pct: 66.67 },
-  5: { name:'Project Details', pct: 83.33 },
+/* ══ STAGE METADATA ══ */
+const STAGES = {
+  1: { name:'Your Business',   pct:16.67 },
+  2: { name:'Your Goals',      pct:33.33 },
+  3: { name:'Features',        pct:50.00 },
+  4: { name:'Design',          pct:66.67 },
+  5: { name:'Project Details', pct:83.33 },
   6: { name:'Review',          pct:100.00 }
 };
-let currentStage = 1;
+let cur = 1;
 
-/* ══ Progress update ══ */
-function setProgress(stage) {
-  document.querySelectorAll('.df-stage-item').forEach(el => {
-    const s = +el.dataset.stage;
-    el.classList.toggle('is-active', s === stage);
-    el.classList.toggle('is-done',   s < stage);
+/* ══ PROGRESS ══ */
+function setProgress(s) {
+  document.querySelectorAll('.df-si').forEach(el => {
+    const n = +el.dataset.stage;
+    el.classList.toggle('active', n === s);
+    el.classList.toggle('done',   n < s);
+    if (n < s) el.querySelector('.df-si-dot').textContent = '✓';
+    else el.querySelector('.df-si-dot').textContent = n;
   });
-  const meta = STAGE_META[stage];
-  document.getElementById('pmName').textContent  = meta.name;
-  document.getElementById('pmCount').textContent = 'Stage ' + stage + ' of 6';
-  document.getElementById('pmFill').style.width  = meta.pct + '%';
+  document.getElementById('pmName').textContent  = STAGES[s].name;
+  document.getElementById('pmCount').textContent = 'Stage ' + s + ' of 6';
+  document.getElementById('pmFill').style.width  = STAGES[s].pct + '%';
 }
 
-/* ══ Show panel ══ */
-function showPanel(stage) {
-  document.querySelectorAll('.df-panel').forEach(p => p.classList.remove('is-active'));
-  document.getElementById('panel-' + stage).classList.add('is-active');
-  setProgress(stage);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  currentStage = stage;
+/* ══ SHOW PANEL ══ */
+function showPanel(s) {
+  document.querySelectorAll('.df-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + s).classList.add('active');
+  setProgress(s);
+  window.scrollTo({ top:0, behavior:'smooth' });
+  cur = s;
 }
 
-/* ══ Choice cards ══ */
-function pickChoice(card, name, value) {
-  document.querySelectorAll('input[name="' + name + '"]').forEach(inp => {
-    inp.closest('.cc').classList.remove('cc-sel');
+/* ══ INDUSTRY PILLS ══ */
+function pickIndustry(pill, value) {
+  document.querySelectorAll('#industryGrid .ind-pill').forEach(p => p.classList.remove('sel'));
+  pill.classList.add('sel');
+  document.getElementById('hIndustry').value = value;
+  reveal('rev-industryOther', value === 'Other');
+  clearErr('e-industry');
+}
+
+/* ══ WEBSITE CHOICE ══ */
+function pickWebsite(card, value) {
+  document.querySelectorAll('.cc[id^="cc-web"]').forEach(c => c.classList.remove('sel'));
+  card.classList.add('sel');
+  document.getElementById('hWebsiteStatus').value = value;
+  reveal('rev-websiteYes', value === 'yes');
+  clearErr('e-website');
+}
+
+/* ══ DOMAIN CHOICE ══ */
+function pickDomain(card, value) {
+  // deselect siblings in this card
+  card.closest('.cc-row').querySelectorAll('.cc').forEach(c => c.classList.remove('sel'));
+  card.classList.add('sel');
+  document.getElementById('hDomainStatus').value = value;
+  reveal('rev-domainYes', value === 'yes');
+  clearErr('e-domain');
+}
+
+/* ══ IMPROVEMENT CHECKBOXES ══ */
+const selectedImprovements = new Set();
+function toggleImprov(pill, value) {
+  pill.classList.toggle('sel');
+  if (selectedImprovements.has(value)) selectedImprovements.delete(value);
+  else selectedImprovements.add(value);
+  document.getElementById('hImprovements').value = [...selectedImprovements].join(', ');
+  // Reveal "Something else" text field
+  reveal('rev-improvOther', selectedImprovements.has('Something else'));
+}
+
+/* ══ REVEAL / HIDE ══ */
+function reveal(id, show) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.toggle('open', show);
+  // Toggle required on fields inside
+  el.querySelectorAll('[data-req-open]').forEach(f => {
+    f.required = show;
+    if (!show) { f.classList.remove('err'); clearErr('e-' + f.id); }
   });
-  card.classList.add('cc-sel');
-  card.querySelector('input[type=radio]').checked = true;
-  // Clear error
-  const err = document.getElementById('e-' + name.replace('biz_','biz') + 'Stage') ||
-               document.getElementById('e-' + name);
-  if (err) err.classList.remove('show');
 }
 
-/* ══ Char counter ══ */
-function updateCount(ta, countId) {
-  const el = document.getElementById(countId);
-  el.textContent = ta.value.length;
-  el.parentElement.classList.toggle('warn', ta.value.length > 250);
+/* ══ CLEAR ERROR ══ */
+function clearErr(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.remove('show');
 }
 
-/* ══ Validation — Stage 1 ══ */
+/* ══ PHONE FORMAT ══ */
+function fmtPhone(input) {
+  let v = input.value.replace(/\D/g, '').substring(0, 10);
+  let f = '';
+  if (v.length > 0)  f = '(' + v.substring(0, 3);
+  if (v.length >= 4) f += ') ' + v.substring(3, 6);
+  if (v.length >= 7) f += '-' + v.substring(6, 10);
+  input.value = f;
+}
+
+/* ══ CHAR COUNTERS ══ */
+function updateCount(ta, id) {
+  document.getElementById(id).textContent = ta.value.length;
+}
+
+/* ══ STAGE 1 VALIDATION ══ */
 function validateStage1() {
   let ok = true;
 
-  const fields = [
-    { id:'firstName',  errId:'e-firstName', test: v => v.trim().length > 0 },
-    { id:'lastName',   errId:'e-lastName',  test: v => v.trim().length > 0 },
-    { id:'email',      errId:'e-email',     test: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
-    { id:'bizName',    errId:'e-bizName',   test: v => v.trim().length > 0 },
-    { id:'bizDesc',    errId:'e-bizDesc',   test: v => v.trim().length > 8 },
+  const textFields = [
+    { id:'bizName',     errId:'e-bizName',     test: v => v.trim().length > 0 },
+    { id:'contactName', errId:'e-contactName', test: v => v.trim().length > 0 },
+    { id:'email',       errId:'e-email',       test: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
+    { id:'bizDesc',     errId:'e-bizDesc',     test: v => v.trim().length > 8 },
   ];
 
-  fields.forEach(({ id, errId, test }) => {
+  textFields.forEach(({ id, errId, test }) => {
     const el  = document.getElementById(id);
     const err = document.getElementById(errId);
-    if (!test(el.value)) {
-      el.classList.add('has-err');
-      err.classList.add('show');
-      ok = false;
-    } else {
-      el.classList.remove('has-err');
-      err.classList.remove('show');
-    }
+    if (!test(el.value)) { el.classList.add('err'); err.classList.add('show'); ok = false; }
+    else                 { el.classList.remove('err'); err.classList.remove('show'); }
   });
 
-  const stageOk = document.querySelector('input[name="biz_stage"]:checked');
-  const stageErr = document.getElementById('e-bizStage');
-  if (!stageOk) {
-    stageErr.classList.add('show');
-    ok = false;
-  } else {
-    stageErr.classList.remove('show');
+  // Phone — only validate if entered
+  const phone = document.getElementById('phone');
+  const phoneErr = document.getElementById('e-phone');
+  if (phone.value && phone.value.replace(/\D/g,'').length !== 10) {
+    phone.classList.add('err'); phoneErr.classList.add('show'); ok = false;
+  } else { phone.classList.remove('err'); phoneErr.classList.remove('show'); }
+
+  // Industry
+  if (!document.getElementById('hIndustry').value) {
+    document.getElementById('e-industry').classList.add('show'); ok = false;
+  }
+  // Industry "Other" text
+  if (document.getElementById('hIndustry').value === 'Other') {
+    const oth = document.getElementById('industryOther');
+    if (!oth.value.trim()) { oth.classList.add('err'); document.getElementById('e-industryOther').classList.add('show'); ok = false; }
+    else                   { oth.classList.remove('err'); document.getElementById('e-industryOther').classList.remove('show'); }
+  }
+
+  // Website
+  if (!document.getElementById('hWebsiteStatus').value) {
+    document.getElementById('e-website').classList.add('show'); ok = false;
+  }
+
+  // Domain
+  if (!document.getElementById('hDomainStatus').value) {
+    document.getElementById('e-domain').classList.add('show'); ok = false;
   }
 
   if (!ok) {
-    const first = document.querySelector('.has-err, .f-err.show');
+    const first = document.querySelector('.err, .f-err.show');
     if (first) first.scrollIntoView({ behavior:'smooth', block:'center' });
   }
   return ok;
 }
 
-/* ══ Navigation ══ */
+/* ══ NAVIGATION ══ */
 function goNext(from) {
   if (from === 1 && !validateStage1()) return;
   showPanel(from + 1);
@@ -552,10 +714,10 @@ function goBack(from) {
   if (from > 1) showPanel(from - 1);
 }
 
-/* ══ Live error clearing ══ */
-document.querySelectorAll('input, textarea').forEach(el => {
+/* ══ LIVE ERROR CLEARING ══ */
+document.querySelectorAll('input[type=text], input[type=email], input[type=tel], input[type=url], textarea').forEach(el => {
   el.addEventListener('input', () => {
-    el.classList.remove('has-err');
+    el.classList.remove('err');
     const err = document.getElementById('e-' + el.id);
     if (err) err.classList.remove('show');
   });
