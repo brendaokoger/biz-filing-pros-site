@@ -29,6 +29,10 @@
     {
       "source": "/registered-agent",
       "destination": "/registered-agent.html"
+    },
+    {
+      "source": "/digital-foundation",
+      "destination": "/digital-foundation.html"
     }
   ]
 }

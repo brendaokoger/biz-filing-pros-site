@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Foundation — Biz Filing Pros</title>
+<meta name="description" content="Tell us about your business and your goals. We'll build the digital infrastructure that helps your business run and grow.">
+<link rel="icon" type="image/png" href="/images/biz-filing-pros-logo.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bizfilingpros.com/digital-foundation">
+<meta property="og:title" content="Digital Foundation — Biz Filing Pros">
+<meta property="og:description" content="Your website is only the beginning. Let's build your digital foundation together.">
+<meta property="og:image" content="https://bizfilingpros.com/images/biz-filing-pros-logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:        #0B1D3A;
+  --navy-light:  #132C55;
+  --navy-mid:    #1A3A6E;
+  --gold:        #C9A84C;
+  --gold-hover:  #D4B85E;
+  --gold-light:  #E2C97E;
+  --gold-pale:   #FBF6E8;
+  --gold-glow:   rgba(201,168,76,0.15);
+  --white:       #FFFFFF;
+  --off-white:   #FAFAF7;
+  --gray-50:     #F7F6F3;
+  --gray-100:    #F0EDE7;
+  --gray-200:    #E0DCD3;
+  --gray-300:    #CCC7BB;
+  --gray-400:    #9B9688;
+  --gray-600:    #6B665A;
+  --gray-800:    #3D3A33;
+  --red:         #C0392B;
+  --red-pale:    #FDF0EF;
+  --radius:      10px;
+  --radius-lg:   14px;
+  --shadow-sm:   0 1px 4px rgba(11,29,58,0.05);
+  --shadow:      0 2px 16px rgba(11,29,58,0.08);
+  --shadow-lg:   0 8px 40px rgba(11,29,58,0.11);
+  --shadow-gold: 0 4px 24px rgba(201,168,76,0.22);
+  --tr:          0.25s cubic-bezier(0.4,0,0.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--off-white);color:var(--gray-800);min-height:100vh;line-height:1.6;-webkit-font-smoothing:antialiased;}
+
+/* ══════════════════════════════════════
+   HEADER
+══════════════════════════════════════ */
+.df-hdr{background:#0a1528;padding:2.25rem 1.5rem 1.75rem;text-align:center;position:relative;}
+.df-hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent);}
+.df-hdr-logo{max-width:240px;width:60%;margin:0 auto 1rem;display:block;filter:drop-shadow(0 2px 10px rgba(201,168,76,.3));}
+.df-hdr-service{font-family:'DM Sans',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:rgba(201,168,76,.6);margin-bottom:.3rem;}
+.df-hdr-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;color:var(--gold-light);letter-spacing:.04em;margin-bottom:.45rem;line-height:1.15;}
+.df-hdr-divider{width:36px;height:1px;background:var(--gold);opacity:.35;margin:.5rem auto;}
+.df-hdr-sub{color:rgba(255,255,255,.5);font-size:.8rem;line-height:1.65;max-width:380px;margin:0 auto;}
+.df-hdr-sub strong{color:rgba(201,168,76,.75);font-weight:500;}
+
+/* ══════════════════════════════════════
+   PROGRESS — 6 NAMED STAGES
+══════════════════════════════════════ */
+.df-prog{background:var(--white);border-bottom:1px solid var(--gray-100);position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm);}
+.df-prog-inner{max-width:680px;margin:0 auto;padding:.9rem 1.25rem;}
+
+/* Desktop: named dots */
+.df-stages{display:flex;align-items:flex-start;gap:0;}
+.df-stage-item{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;}
+.df-stage-item:not(:last-child)::after{content:'';position:absolute;top:13px;left:50%;width:100%;height:2px;background:var(--gray-200);z-index:0;transition:background .4s ease;}
+.df-stage-item.is-done:not(:last-child)::after{background:var(--gold);}
+.df-stage-dot{width:26px;height:26px;border-radius:50%;border:2px solid var(--gray-200);background:var(--white);display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;color:var(--gray-400);z-index:1;position:relative;transition:all .3s ease;}
+.df-stage-item.is-active .df-stage-dot{background:var(--navy);border-color:var(--navy);color:var(--white);box-shadow:0 0 0 3px rgba(11,29,58,.1);}
+.df-stage-item.is-done .df-stage-dot{background:var(--gold);border-color:var(--gold);color:var(--navy);}
+.df-stage-label{font-size:.58rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-300);margin-top:.35rem;text-align:center;line-height:1.25;transition:color .3s;}
+.df-stage-item.is-active .df-stage-label{color:var(--navy);}
+.df-stage-item.is-done .df-stage-label{color:var(--gold);}
+
+/* Mobile: label + bar */
+.df-prog-mobile{display:none;}
+.df-pm-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem;}
+.df-pm-name{font-size:.75rem;font-weight:700;color:var(--navy);letter-spacing:.05em;text-transform:uppercase;}
+.df-pm-count{font-size:.7rem;color:var(--gray-400);}
+.df-pm-track{height:4px;background:var(--gray-100);border-radius:2px;overflow:hidden;}
+.df-pm-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:2px;transition:width .5s ease;}
+
+@media(max-width:600px){
+  .df-stages{display:none;}
+  .df-prog-mobile{display:block;}
+  .df-prog-inner{padding:.75rem 1.25rem;}
+}
+
+/* ══════════════════════════════════════
+   BODY / STAGE PANELS
+══════════════════════════════════════ */
+.df-body{max-width:660px;margin:0 auto;padding:2rem 1.25rem 5rem;}
+
+.df-panel{display:none;}
+.df-panel.is-active{display:block;animation:panelIn .38s cubic-bezier(.4,0,.2,1);}
+@keyframes panelIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+/* Stage intro */
+.s-intro{margin-bottom:1.75rem;}
+.s-eyebrow{display:block;font-size:.63rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem;}
+.s-title{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3.5vw,1.8rem);font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:.45rem;}
+.s-sub{font-size:.88rem;color:var(--gray-600);line-height:1.7;max-width:500px;}
+
+/* Cards */
+.df-card{background:var(--white);border-radius:var(--radius-lg);padding:1.65rem 1.5rem;margin-bottom:1.1rem;box-shadow:var(--shadow);border:1px solid var(--gray-100);}
+.df-card-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:.2rem;}
+.df-card-sub{font-size:.78rem;color:var(--gray-400);margin-bottom:1.25rem;line-height:1.5;padding-bottom:.9rem;border-bottom:1px solid var(--gray-50);}
+
+/* ══════════════════════════════════════
+   FIELDS
+══════════════════════════════════════ */
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:.85rem;}
+.f-row.f-full{grid-template-columns:1fr;}
+.f-row:last-child{margin-bottom:0;}
+@media(max-width:520px){.f-row{grid-template-columns:1fr;}}
+
+.f-group{display:flex;flex-direction:column;}
+.f-label{font-size:.68rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;}
+.f-label .req{color:var(--gold);margin-left:2px;}
+.f-hint{font-size:.7rem;color:var(--gray-400);margin-top:4px;line-height:1.45;}
+.f-err{font-size:.7rem;color:var(--red);margin-top:4px;display:none;}
+.f-err.show{display:block;}
+.char-info{font-size:.67rem;color:var(--gray-300);text-align:right;margin-top:3px;}
+.char-info.warn{color:var(--gold);}
+
+input[type=text],input[type=email],input[type=tel],textarea,select{
+  font-family:'DM Sans',sans-serif;font-size:.92rem;
+  padding:.65rem .85rem;
+  border:1.5px solid var(--gray-200);
+  border-radius:var(--radius);
+  background:var(--white);color:var(--gray-800);
+  transition:border-color var(--tr),box-shadow var(--tr);
+  outline:none;width:100%;
+}
+input:focus,textarea:focus,select:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-glow);}
+input.has-err,textarea.has-err{border-color:var(--red);box-shadow:0 0 0 3px rgba(192,57,43,.08);}
+textarea{resize:vertical;min-height:88px;line-height:1.6;}
+
+/* ══════════════════════════════════════
+   CHOICE CARDS (visual selection)
+══════════════════════════════════════ */
+.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
+@media(max-width:480px){.choice-grid{grid-template-columns:1fr;}}
+
+.cc{
+  position:relative;
+  display:block;
+  background:var(--white);
+  border:1.5px solid var(--gray-200);
+  border-radius:var(--radius-lg);
+  padding:1.1rem 1rem 1rem;
+  cursor:pointer;
+  transition:border-color var(--tr),box-shadow var(--tr),background var(--tr);
+  user-select:none;
+}
+.cc:hover{border-color:rgba(201,168,76,.5);box-shadow:0 3px 14px rgba(201,168,76,.1);}
+.cc.cc-sel{border-color:var(--gold);background:var(--gold-pale);box-shadow:0 4px 18px rgba(201,168,76,.18);}
+.cc input[type=radio]{position:absolute;opacity:0;pointer-events:none;}
+
+.cc-check{
+  position:absolute;top:.6rem;right:.6rem;
+  width:20px;height:20px;border-radius:50%;
+  background:var(--gold);color:var(--navy);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.65rem;font-weight:800;
+  opacity:0;transform:scale(.5);
+  transition:opacity var(--tr),transform var(--tr);
+}
+.cc.cc-sel .cc-check{opacity:1;transform:scale(1);}
+.cc-icon{font-size:1.5rem;display:block;margin-bottom:.45rem;line-height:1;}
+.cc-label{font-size:.88rem;font-weight:600;color:var(--navy);margin-bottom:.2rem;line-height:1.3;}
+.cc-sub{font-size:.73rem;color:var(--gray-600);line-height:1.45;}
+
+/* ══════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════ */
+.s-nav{margin-top:1.75rem;display:flex;gap:.75rem;flex-wrap:wrap;}
+.btn-continue{
+  flex:1;min-width:180px;
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);
+  color:var(--gold-light);
+  font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;
+  letter-spacing:.06em;padding:.95rem 1.5rem;
+  border:none;border-radius:var(--radius);cursor:pointer;
+  transition:transform var(--tr),box-shadow var(--tr);
+  box-shadow:0 4px 20px rgba(11,29,58,.25);
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+}
+.btn-continue:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(11,29,58,.35);}
+.btn-continue .arr{transition:transform var(--tr);}
+.btn-continue:hover .arr{transform:translateX(3px);}
+.btn-back{
+  background:transparent;color:var(--gray-600);
+  font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:500;
+  padding:.95rem 1.25rem;border:1.5px solid var(--gray-200);
+  border-radius:var(--radius);cursor:pointer;transition:all var(--tr);
+}
+.btn-back:hover{border-color:var(--navy);color:var(--navy);}
+.next-hint{
+  display:flex;align-items:center;gap:.5rem;
+  margin-top:1rem;font-size:.72rem;color:var(--gray-400);
+}
+.next-hint::before{content:'';display:block;width:16px;height:1px;background:var(--gray-300);flex-shrink:0;}
+.next-hint strong{color:var(--gray-600);font-weight:600;}
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header class="df-hdr">
+  <img src="/images/biz-filing-pros-logo.png" alt="Biz Filing Pros" class="df-hdr-logo" onerror="this.style.display='none'">
+  <p class="df-hdr-service">Biz Filing Pros</p>
+  <h1 class="df-hdr-title">Digital Foundation</h1>
+  <div class="df-hdr-divider"></div>
+  <p class="df-hdr-sub">Tell us about your business and what you need.<br><strong>Takes about 8 minutes.</strong> No tech background required.</p>
+</header>
+
+<!-- ══ PROGRESS ══ -->
+<div class="df-prog">
+  <div class="df-prog-inner">
+
+    <!-- Desktop -->
+    <div class="df-stages" id="dfStages">
+      <div class="df-stage-item is-active" data-stage="1">
+        <div class="df-stage-dot">1</div>
+        <div class="df-stage-label">Your<br>Business</div>
+      </div>
+      <div class="df-stage-item" data-stage="2">
+        <div class="df-stage-dot">2</div>
+        <div class="df-stage-label">Your<br>Goals</div>
+      </div>
+      <div class="df-stage-item" data-stage="3">
+        <div class="df-stage-dot">3</div>
+        <div class="df-stage-label">Features</div>
+      </div>
+      <div class="df-stage-item" data-stage="4">
+        <div class="df-stage-dot">4</div>
+        <div class="df-stage-label">Design</div>
+      </div>
+      <div class="df-stage-item" data-stage="5">
+        <div class="df-stage-dot">5</div>
+        <div class="df-stage-label">Project<br>Details</div>
+      </div>
+      <div class="df-stage-item" data-stage="6">
+        <div class="df-stage-dot">6</div>
+        <div class="df-stage-label">Review</div>
+      </div>
+    </div>
+
+    <!-- Mobile -->
+    <div class="df-prog-mobile">
+      <div class="df-pm-top">
+        <span class="df-pm-name" id="pmName">Your Business</span>
+        <span class="df-pm-count" id="pmCount">Stage 1 of 6</span>
+      </div>
+      <div class="df-pm-track">
+        <div class="df-pm-fill" id="pmFill" style="width:16.67%"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ FORM ══ -->
+<form id="dfForm" action="https://formspree.io/f/xgoqqyjd" method="POST" novalidate>
+<div class="df-body">
+
+  <!-- ════════════════════════════════
+       STAGE 1 — YOUR BUSINESS
+  ════════════════════════════════ -->
+  <div class="df-panel is-active" id="panel-1">
+
+    <div class="s-intro">
+      <span class="s-eyebrow">Stage 1 of 6 · Your Business</span>
+      <h2 class="s-title">Let's start with you.</h2>
+      <p class="s-sub">A few basics so we understand who you are and what you're building. No jargon — just tell us in your own words.</p>
+    </div>
+
+    <!-- How to reach you -->
+    <div class="df-card">
+      <h3 class="df-card-title">How can we reach you?</h3>
+      <p class="df-card-sub">We'll use this to follow up and schedule your consultation.</p>
+
+      <div class="f-row">
+        <div class="f-group">
+          <label class="f-label" for="firstName">First Name <span class="req">*</span></label>
+          <input type="text" id="firstName" name="first_name" placeholder="Jane" required autocomplete="given-name">
+          <span class="f-err" id="e-firstName">Please enter your first name.</span>
+        </div>
+        <div class="f-group">
+          <label class="f-label" for="lastName">Last Name <span class="req">*</span></label>
+          <input type="text" id="lastName" name="last_name" placeholder="Smith" required autocomplete="family-name">
+          <span class="f-err" id="e-lastName">Please enter your last name.</span>
+        </div>
+      </div>
+
+      <div class="f-row">
+        <div class="f-group">
+          <label class="f-label" for="email">Email Address <span class="req">*</span></label>
+          <input type="email" id="email" name="email" placeholder="jane@yourbusiness.com" required autocomplete="email">
+          <span class="f-err" id="e-email">Please enter a valid email address.</span>
+        </div>
+        <div class="f-group">
+          <label class="f-label" for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" autocomplete="tel">
+          <span class="f-hint">Optional — helpful if we need to reach you quickly.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- About your business -->
+    <div class="df-card">
+      <h3 class="df-card-title">About your business</h3>
+      <p class="df-card-sub">Don't worry about being formal. Just tell us what you do.</p>
+
+      <div class="f-row f-full" style="margin-bottom:.85rem;">
+        <div class="f-group">
+          <label class="f-label" for="bizName">Business Name <span class="req">*</span></label>
+          <input type="text" id="bizName" name="business_name" placeholder="e.g. Luxe Beauty Studio" required autocomplete="organization">
+          <span class="f-hint">If you're not yet registered, your planned name is fine.</span>
+          <span class="f-err" id="e-bizName">Please enter your business name.</span>
+        </div>
+      </div>
+
+      <div class="f-row f-full">
+        <div class="f-group">
+          <label class="f-label" for="bizDesc">What does your business offer? <span class="req">*</span></label>
+          <textarea id="bizDesc" name="business_description" placeholder="e.g. I run a mobile hair salon in Houston. I specialize in bridal styles, protective styles, and everyday cuts for women." rows="3" maxlength="300" required oninput="updateCount(this,'cBizDesc')"></textarea>
+          <div class="char-info"><span id="cBizDesc">0</span>&thinsp;/&thinsp;300</div>
+          <span class="f-hint">What you offer, who you serve, where you operate. Plain language is perfect.</span>
+          <span class="f-err" id="e-bizDesc">Please briefly describe what your business offers.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Where are you in your journey -->
+    <div class="df-card">
+      <h3 class="df-card-title">Where are you in your journey?</h3>
+      <p class="df-card-sub">This helps us understand your starting point and tailor the right approach for you.</p>
+
+      <div class="choice-grid">
+        <label class="cc" onclick="pickChoice(this,'biz_stage','starting')">
+          <input type="radio" name="biz_stage" value="starting">
+          <div class="cc-check">✓</div>
+          <span class="cc-icon">🌱</span>
+          <div class="cc-label">Just getting started</div>
+          <div class="cc-sub">Planning phase, or I just formed my business</div>
+        </label>
+        <label class="cc" onclick="pickChoice(this,'biz_stage','new')">
+          <input type="radio" name="biz_stage" value="new">
+          <div class="cc-check">✓</div>
+          <span class="cc-icon">🚀</span>
+          <div class="cc-label">Newly open</div>
+          <div class="cc-sub">We're up and running — less than a year in</div>
+        </label>
+        <label class="cc" onclick="pickChoice(this,'biz_stage','growing')">
+          <input type="radio" name="biz_stage" value="growing">
+          <div class="cc-check">✓</div>
+          <span class="cc-icon">📈</span>
+          <div class="cc-label">Building momentum</div>
+          <div class="cc-sub">1–3 years in and ready to grow our presence</div>
+        </label>
+        <label class="cc" onclick="pickChoice(this,'biz_stage','established')">
+          <input type="radio" name="biz_stage" value="established">
+          <div class="cc-check">✓</div>
+          <span class="cc-icon">🏛️</span>
+          <div class="cc-label">Established business</div>
+          <div class="cc-sub">3+ years — time to level up our digital presence</div>
+        </label>
+      </div>
+      <span class="f-err" id="e-bizStage" style="display:block;margin-top:.75rem;">Please select where you are in your journey.</span>
+    </div>
+
+    <div class="s-nav">
+      <button type="button" class="btn-continue" onclick="goNext(1)">
+        Continue to Your Goals <span class="arr">→</span>
+      </button>
+    </div>
+    <p class="next-hint">Next: <strong>Your Goals</strong> — what you want your digital presence to do for your business.</p>
+
+  </div>
+  <!-- /STAGE 1 -->
+
+
+  <!-- ════════════════════════════════
+       STAGES 2–6  (built section by section)
+  ════════════════════════════════ -->
+
+  <div class="df-panel" id="panel-2">
+    <div class="s-intro">
+      <span class="s-eyebrow">Stage 2 of 6 · Your Goals</span>
+      <h2 class="s-title">Your Goals</h2>
+      <p class="s-sub">This section is coming soon.</p>
+    </div>
+    <div class="s-nav">
+      <button type="button" class="btn-back" onclick="goBack(2)">← Back</button>
+    </div>
+  </div>
+
+  <div class="df-panel" id="panel-3">
+    <div class="s-intro">
+      <span class="s-eyebrow">Stage 3 of 6 · Features</span>
+      <h2 class="s-title">Features</h2>
+      <p class="s-sub">This section is coming soon.</p>
+    </div>
+    <div class="s-nav">
+      <button type="button" class="btn-back" onclick="goBack(3)">← Back</button>
+    </div>
+  </div>
+
+  <div class="df-panel" id="panel-4">
+    <div class="s-intro">
+      <span class="s-eyebrow">Stage 4 of 6 · Design</span>
+      <h2 class="s-title">Design</h2>
+      <p class="s-sub">This section is coming soon.</p>
+    </div>
+    <div class="s-nav">
+      <button type="button" class="btn-back" onclick="goBack(4)">← Back</button>
+    </div>
+  </div>
+
+  <div class="df-panel" id="panel-5">
+    <div class="s-intro">
+      <span class="s-eyebrow">Stage 5 of 6 · Project Details</span>
+      <h2 class="s-title">Project Details</h2>
+      <p class="s-sub">This section is coming soon.</p>
+    </div>
+    <div class="s-nav">
+      <button type="button" class="btn-back" onclick="goBack(5)">← Back</button>
+    </div>
+  </div>
+
+  <div class="df-panel" id="panel-6">
+    <div class="s-intro">
+      <span class="s-eyebrow">Stage 6 of 6 · Review</span>
+      <h2 class="s-title">Review &amp; Submit</h2>
+      <p class="s-sub">This section is coming soon.</p>
+    </div>
+    <div class="s-nav">
+      <button type="button" class="btn-back" onclick="goBack(6)">← Back</button>
+    </div>
+  </div>
+
+</div><!-- /df-body -->
+</form>
+
+<script>
+/* ══ Stage data ══ */
+const STAGE_META = {
+  1: { name:'Your Business',   pct: 16.67 },
+  2: { name:'Your Goals',      pct: 33.33 },
+  3: { name:'Features',        pct: 50.00 },
+  4: { name:'Design',          pct: 66.67 },
+  5: { name:'Project Details', pct: 83.33 },
+  6: { name:'Review',          pct:100.00 }
+};
+let currentStage = 1;
+
+/* ══ Progress update ══ */
+function setProgress(stage) {
+  document.querySelectorAll('.df-stage-item').forEach(el => {
+    const s = +el.dataset.stage;
+    el.classList.toggle('is-active', s === stage);
+    el.classList.toggle('is-done',   s < stage);
+  });
+  const meta = STAGE_META[stage];
+  document.getElementById('pmName').textContent  = meta.name;
+  document.getElementById('pmCount').textContent = 'Stage ' + stage + ' of 6';
+  document.getElementById('pmFill').style.width  = meta.pct + '%';
+}
+
+/* ══ Show panel ══ */
+function showPanel(stage) {
+  document.querySelectorAll('.df-panel').forEach(p => p.classList.remove('is-active'));
+  document.getElementById('panel-' + stage).classList.add('is-active');
+  setProgress(stage);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  currentStage = stage;
+}
+
+/* ══ Choice cards ══ */
+function pickChoice(card, name, value) {
+  document.querySelectorAll('input[name="' + name + '"]').forEach(inp => {
+    inp.closest('.cc').classList.remove('cc-sel');
+  });
+  card.classList.add('cc-sel');
+  card.querySelector('input[type=radio]').checked = true;
+  // Clear error
+  const err = document.getElementById('e-' + name.replace('biz_','biz') + 'Stage') ||
+               document.getElementById('e-' + name);
+  if (err) err.classList.remove('show');
+}
+
+/* ══ Char counter ══ */
+function updateCount(ta, countId) {
+  const el = document.getElementById(countId);
+  el.textContent = ta.value.length;
+  el.parentElement.classList.toggle('warn', ta.value.length > 250);
+}
+
+/* ══ Validation — Stage 1 ══ */
+function validateStage1() {
+  let ok = true;
+
+  const fields = [
+    { id:'firstName',  errId:'e-firstName', test: v => v.trim().length > 0 },
+    { id:'lastName',   errId:'e-lastName',  test: v => v.trim().length > 0 },
+    { id:'email',      errId:'e-email',     test: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
+    { id:'bizName',    errId:'e-bizName',   test: v => v.trim().length > 0 },
+    { id:'bizDesc',    errId:'e-bizDesc',   test: v => v.trim().length > 8 },
+  ];
+
+  fields.forEach(({ id, errId, test }) => {
+    const el  = document.getElementById(id);
+    const err = document.getElementById(errId);
+    if (!test(el.value)) {
+      el.classList.add('has-err');
+      err.classList.add('show');
+      ok = false;
+    } else {
+      el.classList.remove('has-err');
+      err.classList.remove('show');
+    }
+  });
+
+  const stageOk = document.querySelector('input[name="biz_stage"]:checked');
+  const stageErr = document.getElementById('e-bizStage');
+  if (!stageOk) {
+    stageErr.classList.add('show');
+    ok = false;
+  } else {
+    stageErr.classList.remove('show');
+  }
+
+  if (!ok) {
+    const first = document.querySelector('.has-err, .f-err.show');
+    if (first) first.scrollIntoView({ behavior:'smooth', block:'center' });
+  }
+  return ok;
+}
+
+/* ══ Navigation ══ */
+function goNext(from) {
+  if (from === 1 && !validateStage1()) return;
+  showPanel(from + 1);
+}
+function goBack(from) {
+  if (from > 1) showPanel(from - 1);
+}
+
+/* ══ Live error clearing ══ */
+document.querySelectorAll('input, textarea').forEach(el => {
+  el.addEventListener('input', () => {
+    el.classList.remove('has-err');
+    const err = document.getElementById('e-' + el.id);
+    if (err) err.classList.remove('show');
+  });
+});
+</script>
+</body>
+</html>
