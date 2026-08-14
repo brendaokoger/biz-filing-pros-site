@@ -250,6 +250,8 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
 <input type="hidden" name="website_status" id="hWebsiteStatus">
 <input type="hidden" name="domain_status" id="hDomainStatus">
 <input type="hidden" name="website_improvements" id="hImprovements">
+<input type="hidden" name="years_in_business" id="hYearsInBusiness">
+<input type="hidden" name="service_area_type" id="hServiceAreaType">
 
 <div class="df-body">
 
@@ -267,7 +269,7 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
     <!-- ── CARD 1: Contact Info ── -->
     <div class="df-card">
       <h3 class="df-card-title">How can we reach you?</h3>
-      <p class="df-card-sub">We'll use this to follow up and schedule your consultation.</p>
+      <p class="df-card-sub">We'll use this information to follow up about your website project and next steps.</p>
 
       <div class="f-row full" style="margin-bottom:.85rem;">
         <div class="fg">
@@ -471,7 +473,7 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
         </div>
       </div>
 
-      <div class="f-row full">
+      <div class="f-row full" style="margin-bottom:.85rem;">
         <div class="fg">
           <label class="f-label" for="idealCustomer">Who is your ideal customer?</label>
           <textarea id="idealCustomer" name="ideal_customer" placeholder="e.g. Women aged 25–45 in the Houston area who want protective styles and natural hair care. Also bridal parties planning destination events." rows="3" maxlength="400" oninput="updateCount(this,'cIdeal')"></textarea>
@@ -479,7 +481,76 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
           <span class="f-hint">Individuals, families, businesses, local customers, nationwide — however you think about it.</span>
         </div>
       </div>
+
+      <div class="f-row full" style="margin-bottom:.85rem;">
+        <div class="fg">
+          <label class="f-label" for="customerProblem">What problem does your business solve for your customers?</label>
+          <textarea id="customerProblem" name="customer_problem" placeholder="e.g. Most of our clients are busy professionals who struggle to find time for haircare. We come to them, so they don't have to rearrange their day." rows="3" maxlength="500" oninput="updateCount(this,'cProblem')"></textarea>
+          <div class="char-count"><span id="cProblem">0</span> / 500</div>
+          <span class="f-hint">Tell us what your customers typically need help with and how your business helps them.</span>
+        </div>
+      </div>
+
+      <div class="f-row full">
+        <div class="fg">
+          <label class="f-label" for="differentiator">Why do customers choose your business?</label>
+          <textarea id="differentiator" name="differentiator" placeholder="e.g. We're one of the few mobile stylists in Houston certified in both natural hair care and bridal styling. We also offer flexible evening and weekend availability." rows="3" maxlength="500" oninput="updateCount(this,'cDiff')"></textarea>
+          <div class="char-count"><span id="cDiff">0</span> / 500</div>
+          <span class="f-hint">What makes your business, service, experience, or approach different?</span>
+        </div>
+      </div>
     </div>
+
+    <!-- ── CARD 6: Business Background ── -->
+    <div class="df-card">
+      <h3 class="df-card-title">A little more about your business.</h3>
+      <p class="df-card-sub">This helps us plan the right structure, pages, and approach for your project.</p>
+
+      <!-- Years in business — single-select pills -->
+      <div class="field-section" style="margin-top:0;">
+        <span class="field-section-label">How long have you been in business? <span class="req">*</span></span>
+        <div class="pill-grid" id="yearsGrid" role="radiogroup" aria-label="Years in business">
+          <label class="ind-pill" onclick="pickYearsInBiz(this,'Not launched yet')"><input type="radio" name="_years" value="Not launched yet">Not launched yet</label>
+          <label class="ind-pill" onclick="pickYearsInBiz(this,'Less than 1 year')"><input type="radio" name="_years" value="Less than 1 year">Less than 1 year</label>
+          <label class="ind-pill" onclick="pickYearsInBiz(this,'1–3 years')"><input type="radio" name="_years" value="1–3 years">1–3 years</label>
+          <label class="ind-pill" onclick="pickYearsInBiz(this,'4–7 years')"><input type="radio" name="_years" value="4–7 years">4–7 years</label>
+          <label class="ind-pill" onclick="pickYearsInBiz(this,'8+ years')"><input type="radio" name="_years" value="8+ years">8+ years</label>
+        </div>
+        <span class="f-err" id="e-yearsInBiz" style="margin-top:.65rem;">Please select how long you've been in business.</span>
+      </div>
+
+      <hr class="reveal-divider" style="margin-top:1.5rem;">
+
+      <!-- Service area — multi-select pills -->
+      <div class="field-section">
+        <span class="field-section-label">Where do you serve customers? <span class="req">*</span></span>
+        <span style="display:block; font-size:.72rem; color:var(--gray-400); margin-bottom:.6rem; line-height:1.45;">Select all that apply.</span>
+        <div class="pill-grid" id="serviceAreaGrid">
+          <label class="chk-pill" onclick="toggleServiceArea(this,'Local area')"><input type="checkbox" name="_sarea" value="Local area">Local area</label>
+          <label class="chk-pill" onclick="toggleServiceArea(this,'Multiple cities or regions')"><input type="checkbox" name="_sarea" value="Multiple cities or regions">Multiple cities or regions</label>
+          <label class="chk-pill" onclick="toggleServiceArea(this,'Statewide')"><input type="checkbox" name="_sarea" value="Statewide">Statewide</label>
+          <label class="chk-pill" onclick="toggleServiceArea(this,'Nationwide')"><input type="checkbox" name="_sarea" value="Nationwide">Nationwide</label>
+          <label class="chk-pill" onclick="toggleServiceArea(this,'Online / Anywhere')"><input type="checkbox" name="_sarea" value="Online / Anywhere">Online / Anywhere</label>
+          <label class="chk-pill" onclick="toggleServiceArea(this,'International')"><input type="checkbox" name="_sarea" value="International">International</label>
+          <label class="chk-pill" onclick="toggleServiceArea(this,'Other')"><input type="checkbox" name="_sarea" value="Other">Other</label>
+        </div>
+        <span class="f-err" id="e-serviceArea" style="margin-top:.65rem;">Please select at least one area where you serve customers.</span>
+      </div>
+
+      <!-- Conditional: Local / Regional / Statewide → locations field -->
+      <div class="reveal" id="rev-serviceLocations">
+        <div class="reveal-inner">
+          <div class="fg">
+            <label class="f-label" for="serviceLocations">What cities, areas, or states do you primarily serve?</label>
+            <textarea id="serviceLocations" name="primary_service_locations" placeholder="e.g. Houston, Austin, and Dallas, TX — with occasional travel to San Antonio." rows="2" maxlength="400" oninput="updateCount(this,'cLocations')"></textarea>
+            <div class="char-count"><span id="cLocations">0</span> / 400</div>
+            <span class="f-hint">This helps us plan service-area pages and local search strategy for your site.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- /CARD 6 -->
 
     <!-- Navigation -->
     <div class="s-nav">
@@ -608,6 +679,29 @@ function pickDomain(card, value) {
   clearErr('e-domain');
 }
 
+/* ══ YEARS IN BUSINESS ══ */
+function pickYearsInBiz(pill, value) {
+  document.querySelectorAll('#yearsGrid .ind-pill').forEach(p => p.classList.remove('sel'));
+  pill.classList.add('sel');
+  document.getElementById('hYearsInBusiness').value = value;
+  clearErr('e-yearsInBiz');
+}
+
+/* ══ SERVICE AREA ══ */
+const selectedServiceAreas = new Set();
+const LOCAL_TRIGGERS = new Set(['Local area', 'Multiple cities or regions', 'Statewide']);
+
+function toggleServiceArea(pill, value) {
+  pill.classList.toggle('sel');
+  if (selectedServiceAreas.has(value)) selectedServiceAreas.delete(value);
+  else selectedServiceAreas.add(value);
+  document.getElementById('hServiceAreaType').value = [...selectedServiceAreas].join(', ');
+  // Show location field if any local/regional option is selected
+  const showLocations = [...selectedServiceAreas].some(v => LOCAL_TRIGGERS.has(v));
+  reveal('rev-serviceLocations', showLocations);
+  clearErr('e-serviceArea');
+}
+
 /* ══ IMPROVEMENT CHECKBOXES ══ */
 const selectedImprovements = new Set();
 function toggleImprov(pill, value) {
@@ -696,6 +790,16 @@ function validateStage1() {
   // Domain
   if (!document.getElementById('hDomainStatus').value) {
     document.getElementById('e-domain').classList.add('show'); ok = false;
+  }
+
+  // Years in business
+  if (!document.getElementById('hYearsInBusiness').value) {
+    document.getElementById('e-yearsInBiz').classList.add('show'); ok = false;
+  }
+
+  // Service area
+  if (!document.getElementById('hServiceAreaType').value) {
+    document.getElementById('e-serviceArea').classList.add('show'); ok = false;
   }
 
   if (!ok) {
