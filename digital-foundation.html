@@ -411,6 +411,13 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
 <input type="hidden" name="ai_involvement"        id="hAiInvolvement">
 <input type="hidden" name="ai_knowledge"          id="hAiKnowledge">
 <input type="hidden" name="ai_handoff"            id="hAiHandoff">
+<input type="hidden" name="ai_voice_channel"      id="hAiVoiceChannel">
+<input type="hidden" name="ai_system_connections" id="hAiSystemConnections">
+<!-- Internal AI signals — never shown to customer -->
+<input type="hidden" name="ai_requested"          id="aiRequested">
+<input type="hidden" name="ai_guidance_only"      id="aiGuidanceOnly">
+<input type="hidden" name="ai_performs_tasks"     id="aiPerformsTasks">
+<input type="hidden" name="ai_voice_requested"    id="aiVoiceRequested">
 <!-- Internal quote tool signals — never shown to customer -->
 <input type="hidden" name="quote_instant_price"        id="qInstantPrice">
 <input type="hidden" name="quote_price_range"          id="qPriceRange">
@@ -1650,6 +1657,62 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
           </div>
         </div>
 
+        <!-- Q5: Voice channel (conditional — only if "Have voice conversations" selected) -->
+        <div class="reveal" id="rev-aiVoice">
+          <div class="reveal-inner">
+            <hr class="reveal-divider">
+            <div class="field-section">
+              <span class="field-section-label">Where would you like customers to speak with the AI? <span class="req">*</span></span>
+              <div class="pill-grid" id="aiVoiceGrid" style="margin-top:.5rem;">
+                <label class="ind-pill" onclick="pickAiVoice(this,'website')"><input type="radio" name="_aiVoice">On the website</label>
+                <label class="ind-pill" onclick="pickAiVoice(this,'phone')"><input type="radio" name="_aiVoice">By phone</label>
+                <label class="ind-pill" onclick="pickAiVoice(this,'both')"><input type="radio" name="_aiVoice">Both website and phone</label>
+                <label class="ind-pill" onclick="pickAiVoice(this,'not-sure')"><input type="radio" name="_aiVoice">Not sure</label>
+              </div>
+              <span class="f-err" id="e-aiVoice">Please select an option.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q6: System connections (conditional — only if action-based tasks selected) -->
+        <div class="reveal" id="rev-aiSystems">
+          <div class="reveal-inner">
+            <hr class="reveal-divider">
+            <div class="field-section">
+              <span class="field-section-label">What business systems might the AI need to work with? <span class="req">*</span></span>
+              <span class="f-hint" style="display:block;margin-bottom:.65rem;">Select all that apply. If you're not sure, that's okay — we'll review your workflow and recommend what makes sense.</span>
+              <div class="pill-grid" id="aiSystemsGrid">
+                <label class="chk-pill" onclick="toggleAiSystem(this,'Booking system')"><input type="checkbox">Booking system</label>
+                <label class="chk-pill" onclick="toggleAiSystem(this,'CRM / customer management system')"><input type="checkbox">CRM / customer management system</label>
+                <label class="chk-pill" onclick="toggleAiSystem(this,'Email platform')"><input type="checkbox">Email platform</label>
+                <label class="chk-pill" onclick="toggleAiSystem(this,'SMS / text platform')"><input type="checkbox">SMS / text platform</label>
+                <label class="chk-pill" onclick="toggleAiSystem(this,'Payment system')"><input type="checkbox">Payment system</label>
+                <label class="chk-pill" onclick="toggleAiSystem(this,'Customer portal')"><input type="checkbox">Customer portal</label>
+                <label class="chk-pill" onclick="toggleAiSystem(this,'E-commerce / store')"><input type="checkbox">E-commerce / store</label>
+                <label class="chk-pill" onclick="toggleAiSystem(this,'Internal database')"><input type="checkbox">Internal database</label>
+                <label class="chk-pill" onclick="toggleAiSystem(this,'Other')"><input type="checkbox">Other</label>
+                <label class="chk-pill" onclick="toggleAiSystem(this,'Not sure')"><input type="checkbox">I'm not sure</label>
+              </div>
+              <span class="f-err" id="e-aiSystems">Please select at least one option.</span>
+              <div class="reveal" id="rev-aiSystemOther">
+                <div class="reveal-inner">
+                  <input type="text" name="ai_system_other" placeholder="Describe the system">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q7: AI limitations (always shown, optional) -->
+        <div class="field-section" style="margin-top:1.35rem;">
+          <span class="field-section-label">Are there any things the AI should <em>not</em> be allowed to do?</span>
+          <span class="f-hint" style="display:block;margin-bottom:.55rem;">Optional. For example: provide refunds, change pricing, access sensitive information, approve transactions, make legal or medical decisions.</span>
+          <div class="fg">
+            <textarea id="aiRestrictions" name="ai_restricted_actions" placeholder="Describe anything the AI should never do or say…" rows="3" maxlength="600" oninput="updateCount(this,'cAiRestrict')"></textarea>
+            <div class="char-count"><span id="cAiRestrict">0</span> / 600</div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -2046,8 +2109,14 @@ function initStage3() {
   document.getElementById('featQuote').style.display    = showQuote    ? 'block' : 'none';
   document.getElementById('featAI').style.display       = showAI       ? 'block' : 'none';
   document.getElementById('featNone').style.display     = anyVisible   ? 'none'  : 'block';
-  // Recompute quote signals in case Stage 2 answers changed
+  // Recompute signals in case Stage 2 answers changed on back-nav
   if (showQuote) computeQuoteFlags();
+  if (showAI) {
+    computeAiFlags();
+    // Restore Q5/Q6 conditional reveals based on current task selections
+    reveal('rev-aiVoice',   selectedAiTasks.has('Have voice conversations'));
+    reveal('rev-aiSystems', [...selectedAiTasks].some(t => AI_SYSTEM_TASKS.has(t)));
+  }
 }
 
 /* ── BOOKING ── */
@@ -2214,13 +2283,54 @@ function pickQuoteAddOns(card, value) {
 }
 
 /* ══ AI ══ */
+
+// Tasks that indicate system integration is needed (triggers Q6)
+const AI_SYSTEM_TASKS = new Set([
+  'Book appointments','Check appointment availability',
+  'Reschedule appointments','Cancel appointments',
+  'Send email messages','Send text messages',
+  'Create or update customer records','Retrieve approved account or service info',
+  'Route customers to the right person','Something else'
+]);
+
+function computeAiFlags() {
+  const involvement = document.getElementById('hAiInvolvement').value;
+  function af(id, val) { document.getElementById(id).value = val ? 'yes' : ''; }
+  af('aiRequested',      document.getElementById('featAI').style.display !== 'none');
+  af('aiGuidanceOnly',   involvement === 'answer-guide');
+  af('aiPerformsTasks',  involvement === 'answer-guide-act');
+  af('aiVoiceRequested', selectedAiTasks.has('Have voice conversations'));
+}
+
 const selectedAiTasks = new Set();
 function toggleAiTask(pill, value) {
   pill.classList.toggle('sel');
   if (selectedAiTasks.has(value)) selectedAiTasks.delete(value);
   else selectedAiTasks.add(value);
   document.getElementById('hAiTasks').value = [...selectedAiTasks].join(', ');
+
+  // Task-other reveal
   reveal('rev-aiTaskOther', selectedAiTasks.has('Something else'));
+
+  // Q5: voice channel — show if "Have voice conversations" selected
+  const voiceOn = selectedAiTasks.has('Have voice conversations');
+  reveal('rev-aiVoice', voiceOn);
+  if (!voiceOn) {
+    document.getElementById('hAiVoiceChannel').value = '';
+    document.querySelectorAll('#aiVoiceGrid .ind-pill').forEach(p => p.classList.remove('sel'));
+  }
+
+  // Q6: system connections — show if any action task selected
+  const needsSystems = [...selectedAiTasks].some(t => AI_SYSTEM_TASKS.has(t));
+  reveal('rev-aiSystems', needsSystems);
+  if (!needsSystems) {
+    selectedAiSystems.clear();
+    document.getElementById('hAiSystemConnections').value = '';
+    document.querySelectorAll('#aiSystemsGrid .chk-pill').forEach(p => p.classList.remove('sel'));
+    reveal('rev-aiSystemOther', false);
+  }
+
+  computeAiFlags();
   clearErr('e-aiTasks');
 }
 
@@ -2228,6 +2338,7 @@ function pickAiInvolvement(item, value) {
   document.querySelectorAll('#aiInvolvementList .action-item').forEach(i => i.classList.remove('sel'));
   item.classList.add('sel');
   document.getElementById('hAiInvolvement').value = value;
+  computeAiFlags();
   clearErr('e-aiInvolvement');
 }
 
@@ -2260,6 +2371,23 @@ function toggleAiHandoff(pill, value) {
   }
   document.getElementById('hAiHandoff').value = [...selectedAiHandoff].join(', ');
   clearErr('e-aiHandoff');
+}
+
+function pickAiVoice(pill, value) {
+  document.querySelectorAll('#aiVoiceGrid .ind-pill').forEach(p => p.classList.remove('sel'));
+  pill.classList.add('sel');
+  document.getElementById('hAiVoiceChannel').value = value;
+  clearErr('e-aiVoice');
+}
+
+const selectedAiSystems = new Set();
+function toggleAiSystem(pill, value) {
+  pill.classList.toggle('sel');
+  if (selectedAiSystems.has(value)) selectedAiSystems.delete(value);
+  else selectedAiSystems.add(value);
+  document.getElementById('hAiSystemConnections').value = [...selectedAiSystems].join(', ');
+  reveal('rev-aiSystemOther', selectedAiSystems.has('Other'));
+  clearErr('e-aiSystems');
 }
 
 /* ── STAGE 3 VALIDATION ── */
@@ -2328,6 +2456,14 @@ function validateStage3() {
     }
     if (selectedAiHandoff.size === 0) {
       document.getElementById('e-aiHandoff').classList.add('show'); ok = false;
+    }
+    // Q5: voice channel required if voice task selected
+    if (selectedAiTasks.has('Have voice conversations') && !document.getElementById('hAiVoiceChannel').value) {
+      document.getElementById('e-aiVoice').classList.add('show'); ok = false;
+    }
+    // Q6: system connections required if action tasks are selected
+    if ([...selectedAiTasks].some(t => AI_SYSTEM_TASKS.has(t)) && selectedAiSystems.size === 0) {
+      document.getElementById('e-aiSystems').classList.add('show'); ok = false;
     }
   }
 
