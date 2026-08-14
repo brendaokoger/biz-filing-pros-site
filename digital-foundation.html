@@ -322,6 +322,12 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
   margin-bottom:.2rem;
 }
 .subsection-head p { font-size:.77rem; color:var(--gray-400); line-height:1.55; }
+
+/* ══ ACTION ITEM — multi-line helper text variant ════ */
+.action-item.multi-line { align-items:flex-start; }
+.action-item.multi-line .action-dot { margin-top:3px; flex-shrink:0; }
+.action-item-sub { font-size:.76rem; color:var(--gray-600); margin-top:.22rem; line-height:1.5; }
+.action-item.sel .action-item-sub { color:var(--navy); opacity:.75; }
 </style>
 </head>
 <body>
@@ -400,6 +406,11 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
 <input type="hidden" name="quote_website_goal"         id="hQuoteWebsiteGoal">
 <input type="hidden" name="quote_pricing_factors"      id="hQuotePricingFactors">
 <input type="hidden" name="quote_addons"               id="hQuoteAddOns">
+<!-- Stage 3 — AI hidden inputs -->
+<input type="hidden" name="ai_tasks"              id="hAiTasks">
+<input type="hidden" name="ai_involvement"        id="hAiInvolvement">
+<input type="hidden" name="ai_knowledge"          id="hAiKnowledge">
+<input type="hidden" name="ai_handoff"            id="hAiHandoff">
 <!-- Internal quote tool signals — never shown to customer -->
 <input type="hidden" name="quote_instant_price"        id="qInstantPrice">
 <input type="hidden" name="quote_price_range"          id="qPriceRange">
@@ -1511,6 +1522,137 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
       </div>
     </div>
 
+    <!-- ══ AI BLOCK ══ -->
+    <div id="featAI" style="display:none;">
+      <div class="df-card">
+        <h3 class="df-card-title">AI for Your Website</h3>
+        <p class="df-card-sub">AI can be used in different ways. It can simply answer questions and guide visitors, or it can be connected to approved business tools to perform certain tasks.</p>
+
+        <!-- Q1: What should AI help with? -->
+        <div class="field-section">
+          <span class="field-section-label">What would you like AI to help customers with? <span class="req">*</span></span>
+          <span class="f-hint" style="display:block;margin-bottom:.65rem;">Select all that apply.</span>
+          <div class="pill-grid" id="aiTasksGrid">
+            <label class="chk-pill" data-aval="Answer common questions"                     onclick="toggleAiTask(this,'Answer common questions')"><input type="checkbox">Answer common questions</label>
+            <label class="chk-pill" data-aval="Explain products or services"                onclick="toggleAiTask(this,'Explain products or services')"><input type="checkbox">Explain products or services</label>
+            <label class="chk-pill" data-aval="Provide business hours"                      onclick="toggleAiTask(this,'Provide business hours')"><input type="checkbox">Provide business hours</label>
+            <label class="chk-pill" data-aval="Provide location information"                onclick="toggleAiTask(this,'Provide location information')"><input type="checkbox">Provide location information</label>
+            <label class="chk-pill" data-aval="Explain policies"                            onclick="toggleAiTask(this,'Explain policies')"><input type="checkbox">Explain policies</label>
+            <label class="chk-pill" data-aval="Explain approved pricing information"        onclick="toggleAiTask(this,'Explain approved pricing information')"><input type="checkbox">Explain approved pricing information</label>
+            <label class="chk-pill" data-aval="Recommend services"                          onclick="toggleAiTask(this,'Recommend services')"><input type="checkbox">Recommend services</label>
+            <label class="chk-pill" data-aval="Recommend products"                          onclick="toggleAiTask(this,'Recommend products')"><input type="checkbox">Recommend products</label>
+            <label class="chk-pill" data-aval="Help customers decide what they need"        onclick="toggleAiTask(this,'Help customers decide what they need')"><input type="checkbox">Help customers decide what they need</label>
+            <label class="chk-pill" data-aval="Collect lead information"                    onclick="toggleAiTask(this,'Collect lead information')"><input type="checkbox">Collect lead information</label>
+            <label class="chk-pill" data-aval="Qualify potential customers"                 onclick="toggleAiTask(this,'Qualify potential customers')"><input type="checkbox">Qualify potential customers</label>
+            <label class="chk-pill" data-aval="Direct customers to booking"                 onclick="toggleAiTask(this,'Direct customers to booking')"><input type="checkbox">Direct customers to booking</label>
+            <label class="chk-pill" data-aval="Check appointment availability"              onclick="toggleAiTask(this,'Check appointment availability')"><input type="checkbox">Check appointment availability</label>
+            <label class="chk-pill" data-aval="Book appointments"                           onclick="toggleAiTask(this,'Book appointments')"><input type="checkbox">Book appointments</label>
+            <label class="chk-pill" data-aval="Reschedule appointments"                     onclick="toggleAiTask(this,'Reschedule appointments')"><input type="checkbox">Reschedule appointments</label>
+            <label class="chk-pill" data-aval="Cancel appointments"                         onclick="toggleAiTask(this,'Cancel appointments')"><input type="checkbox">Cancel appointments</label>
+            <label class="chk-pill" data-aval="Send email messages"                         onclick="toggleAiTask(this,'Send email messages')"><input type="checkbox">Send email messages</label>
+            <label class="chk-pill" data-aval="Send text messages"                          onclick="toggleAiTask(this,'Send text messages')"><input type="checkbox">Send text messages</label>
+            <label class="chk-pill" data-aval="Create or update customer records"           onclick="toggleAiTask(this,'Create or update customer records')"><input type="checkbox">Create or update customer records</label>
+            <label class="chk-pill" data-aval="Help customers complete an intake"           onclick="toggleAiTask(this,'Help customers complete an intake')"><input type="checkbox">Help customers complete an intake</label>
+            <label class="chk-pill" data-aval="Retrieve approved account or service info"  onclick="toggleAiTask(this,'Retrieve approved account or service info')"><input type="checkbox">Retrieve approved account or service info</label>
+            <label class="chk-pill" data-aval="Route customers to the right person"         onclick="toggleAiTask(this,'Route customers to the right person')"><input type="checkbox">Route customers to the right person</label>
+            <label class="chk-pill" data-aval="Have voice conversations"                    onclick="toggleAiTask(this,'Have voice conversations')"><input type="checkbox">Have voice conversations</label>
+            <label class="chk-pill" data-aval="other"                                       onclick="toggleAiTask(this,'Something else')"><input type="checkbox">Something else</label>
+            <label class="chk-pill" data-aval="not-sure"                                    onclick="toggleAiTask(this,'Not sure — recommend what makes sense')"><input type="checkbox">I'm not sure — recommend what makes sense</label>
+          </div>
+          <span class="f-err" id="e-aiTasks">Please select at least one option.</span>
+          <div class="reveal" id="rev-aiTaskOther">
+            <div class="reveal-inner">
+              <div class="fg">
+                <label class="f-label" for="aiTaskOther">Tell us what you would like AI to help with.</label>
+                <textarea id="aiTaskOther" name="ai_task_other" placeholder="Describe what you have in mind — plain language is perfect." rows="3" maxlength="500" oninput="updateCount(this,'cAiTask')"></textarea>
+                <div class="char-count"><span id="cAiTask">0</span> / 500</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q2: How involved should AI be? -->
+        <div class="field-section" style="margin-top:1.35rem;">
+          <span class="field-section-label">How involved should the AI be? <span class="req">*</span></span>
+          <div class="action-list" id="aiInvolvementList" style="margin-top:.6rem;">
+            <label class="action-item multi-line" onclick="pickAiInvolvement(this,'answer-guide')">
+              <input type="radio" name="_aiInvolvement">
+              <div class="action-dot"></div>
+              <div>
+                <span class="action-label">Answer and guide customers</span>
+                <p class="action-item-sub">The AI mainly provides information, answers questions, recommends next steps, and directs visitors to the right place.</p>
+              </div>
+            </label>
+            <label class="action-item multi-line" onclick="pickAiInvolvement(this,'answer-guide-act')">
+              <input type="radio" name="_aiInvolvement">
+              <div class="action-dot"></div>
+              <div>
+                <span class="action-label">Answer, guide, and perform approved tasks</span>
+                <p class="action-item-sub">The AI may also connect with approved business systems to complete tasks such as checking availability, booking appointments, creating leads, or triggering follow-up.</p>
+              </div>
+            </label>
+            <label class="action-item" onclick="pickAiInvolvement(this,'not-sure')">
+              <input type="radio" name="_aiInvolvement">
+              <div class="action-dot"></div>
+              <span class="action-label">I'm not sure — recommend what makes sense</span>
+            </label>
+          </div>
+          <span class="f-err" id="e-aiInvolvement">Please select how involved you'd like the AI to be.</span>
+        </div>
+
+        <!-- Q3: What should AI know? -->
+        <div class="field-section" style="margin-top:1.35rem;">
+          <span class="field-section-label">What information should the AI know about your business? <span class="req">*</span></span>
+          <span class="f-hint" style="display:block;margin-bottom:.65rem;">Select all that apply.</span>
+          <div class="pill-grid" id="aiKnowledgeGrid">
+            <label class="chk-pill" data-kval="Services"              onclick="toggleAiKnowledge(this,'Services')"><input type="checkbox">Services</label>
+            <label class="chk-pill" data-kval="Products"              onclick="toggleAiKnowledge(this,'Products')"><input type="checkbox">Products</label>
+            <label class="chk-pill" data-kval="Pricing"               onclick="toggleAiKnowledge(this,'Pricing')"><input type="checkbox">Pricing</label>
+            <label class="chk-pill" data-kval="Business hours"        onclick="toggleAiKnowledge(this,'Business hours')"><input type="checkbox">Business hours</label>
+            <label class="chk-pill" data-kval="Locations"             onclick="toggleAiKnowledge(this,'Locations')"><input type="checkbox">Locations</label>
+            <label class="chk-pill" data-kval="Policies"              onclick="toggleAiKnowledge(this,'Policies')"><input type="checkbox">Policies</label>
+            <label class="chk-pill" data-kval="FAQs"                  onclick="toggleAiKnowledge(this,'Frequently asked questions')"><input type="checkbox">Frequently asked questions</label>
+            <label class="chk-pill" data-kval="Staff / providers"     onclick="toggleAiKnowledge(this,'Staff / providers')"><input type="checkbox">Staff / providers</label>
+            <label class="chk-pill" data-kval="Booking information"   onclick="toggleAiKnowledge(this,'Booking information')"><input type="checkbox">Booking information</label>
+            <label class="chk-pill" data-kval="Memberships"           onclick="toggleAiKnowledge(this,'Memberships')"><input type="checkbox">Memberships</label>
+            <label class="chk-pill" data-kval="Shipping / returns"    onclick="toggleAiKnowledge(this,'Shipping / returns')"><input type="checkbox">Shipping / returns</label>
+            <label class="chk-pill" data-kval="Company procedures"    onclick="toggleAiKnowledge(this,'Company procedures')"><input type="checkbox">Company procedures</label>
+            <label class="chk-pill" data-kval="Documents / guides"    onclick="toggleAiKnowledge(this,'Documents / guides')"><input type="checkbox">Documents / guides</label>
+            <label class="chk-pill" data-kval="other"                 onclick="toggleAiKnowledge(this,'Other')"><input type="checkbox">Other</label>
+          </div>
+          <span class="f-err" id="e-aiKnowledge">Please select at least one option.</span>
+          <div class="reveal" id="rev-aiKnowledgeOther">
+            <div class="reveal-inner">
+              <input type="text" name="ai_knowledge_other" placeholder="What other information should AI know?">
+            </div>
+          </div>
+        </div>
+
+        <!-- Q4: When should AI hand off to a human? -->
+        <div class="field-section" style="margin-top:1.35rem;">
+          <span class="field-section-label">When should the AI connect the customer with a real person? <span class="req">*</span></span>
+          <span class="f-hint" style="display:block;margin-bottom:.65rem;">Select all that apply.</span>
+          <div class="pill-grid" id="aiHandoffGrid">
+            <label class="chk-pill" data-hval="When the customer asks"                    onclick="toggleAiHandoff(this,'When the customer asks')"><input type="checkbox">When the customer asks</label>
+            <label class="chk-pill" data-hval="When AI cannot answer confidently"         onclick="toggleAiHandoff(this,'When AI cannot answer confidently')"><input type="checkbox">When AI cannot answer confidently</label>
+            <label class="chk-pill" data-hval="When a lead is highly qualified"           onclick="toggleAiHandoff(this,'When a lead is highly qualified')"><input type="checkbox">When a lead is highly qualified</label>
+            <label class="chk-pill" data-hval="When the customer has a complaint"         onclick="toggleAiHandoff(this,'When the customer has a complaint or issue')"><input type="checkbox">When the customer has a complaint or issue</label>
+            <label class="chk-pill" data-hval="Before certain actions are completed"      onclick="toggleAiHandoff(this,'Before certain actions are completed')"><input type="checkbox">Before certain actions are completed</label>
+            <label class="chk-pill" data-hval="not-sure"                                  onclick="toggleAiHandoff(this,'Not sure — recommend what makes sense')"><input type="checkbox">I'm not sure — recommend what makes sense</label>
+            <label class="chk-pill" data-hval="other"                                     onclick="toggleAiHandoff(this,'Other')"><input type="checkbox">Other</label>
+            <label class="chk-pill" data-hval="none"                                      onclick="toggleAiHandoff(this,'Never automatically')"><input type="checkbox">Never automatically</label>
+          </div>
+          <span class="f-err" id="e-aiHandoff">Please select at least one option.</span>
+          <div class="reveal" id="rev-aiHandoffOther">
+            <div class="reveal-inner">
+              <input type="text" name="ai_handoff_other" placeholder="Describe when the AI should hand off">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
     <!-- Navigation -->
     <div class="s-nav">
       <button type="button" class="btn-back" onclick="goBack(3)">← Back</button>
@@ -1896,11 +2038,13 @@ function initStage3() {
                     || document.getElementById('flagEcommerce').value === 'yes'
                     || document.getElementById('flagMembership').value === 'yes';
   const showQuote    = document.getElementById('flagQuote').value    === 'yes';
-  const anyVisible   = showBooking || showPayments || showQuote;
+  const showAI       = document.getElementById('flagAI').value       === 'yes';
+  const anyVisible   = showBooking || showPayments || showQuote || showAI;
 
   document.getElementById('featBooking').style.display  = showBooking  ? 'block' : 'none';
   document.getElementById('featPayments').style.display = showPayments ? 'block' : 'none';
   document.getElementById('featQuote').style.display    = showQuote    ? 'block' : 'none';
+  document.getElementById('featAI').style.display       = showAI       ? 'block' : 'none';
   document.getElementById('featNone').style.display     = anyVisible   ? 'none'  : 'block';
   // Recompute quote signals in case Stage 2 answers changed
   if (showQuote) computeQuoteFlags();
@@ -2069,6 +2213,55 @@ function pickQuoteAddOns(card, value) {
   clearErr('e-quoteAddOns');
 }
 
+/* ══ AI ══ */
+const selectedAiTasks = new Set();
+function toggleAiTask(pill, value) {
+  pill.classList.toggle('sel');
+  if (selectedAiTasks.has(value)) selectedAiTasks.delete(value);
+  else selectedAiTasks.add(value);
+  document.getElementById('hAiTasks').value = [...selectedAiTasks].join(', ');
+  reveal('rev-aiTaskOther', selectedAiTasks.has('Something else'));
+  clearErr('e-aiTasks');
+}
+
+function pickAiInvolvement(item, value) {
+  document.querySelectorAll('#aiInvolvementList .action-item').forEach(i => i.classList.remove('sel'));
+  item.classList.add('sel');
+  document.getElementById('hAiInvolvement').value = value;
+  clearErr('e-aiInvolvement');
+}
+
+const selectedAiKnowledge = new Set();
+function toggleAiKnowledge(pill, value) {
+  pill.classList.toggle('sel');
+  if (selectedAiKnowledge.has(value)) selectedAiKnowledge.delete(value);
+  else selectedAiKnowledge.add(value);
+  document.getElementById('hAiKnowledge').value = [...selectedAiKnowledge].join(', ');
+  reveal('rev-aiKnowledgeOther', selectedAiKnowledge.has('Other'));
+  clearErr('e-aiKnowledge');
+}
+
+const selectedAiHandoff = new Set();
+function toggleAiHandoff(pill, value) {
+  const isNever = pill.dataset.hval === 'none';
+  const allPills = document.querySelectorAll('#aiHandoffGrid .chk-pill');
+  if (isNever) {
+    selectedAiHandoff.clear();
+    allPills.forEach(p => p.classList.remove('sel'));
+    pill.classList.add('sel');
+    selectedAiHandoff.add(value);
+    reveal('rev-aiHandoffOther', false);
+  } else {
+    allPills.forEach(p => { if (p.dataset.hval === 'none') { p.classList.remove('sel'); selectedAiHandoff.delete('Never automatically'); } });
+    pill.classList.toggle('sel');
+    if (selectedAiHandoff.has(value)) selectedAiHandoff.delete(value);
+    else selectedAiHandoff.add(value);
+    reveal('rev-aiHandoffOther', selectedAiHandoff.has('Other'));
+  }
+  document.getElementById('hAiHandoff').value = [...selectedAiHandoff].join(', ');
+  clearErr('e-aiHandoff');
+}
+
 /* ── STAGE 3 VALIDATION ── */
 function validateStage3() {
   let ok = true;
@@ -2076,6 +2269,7 @@ function validateStage3() {
   const showBooking  = document.getElementById('featBooking').style.display  !== 'none';
   const showPayments = document.getElementById('featPayments').style.display !== 'none';
   const showQuote    = document.getElementById('featQuote').style.display    !== 'none';
+  const showAI       = document.getElementById('featAI').style.display       !== 'none';
 
   if (showBooking) {
     if (!document.getElementById('hBookingType').value) {
@@ -2119,6 +2313,21 @@ function validateStage3() {
     }
     if (!document.getElementById('hQuoteAddOns').value) {
       document.getElementById('e-quoteAddOns').classList.add('show'); ok = false;
+    }
+  }
+
+  if (showAI) {
+    if (selectedAiTasks.size === 0) {
+      document.getElementById('e-aiTasks').classList.add('show'); ok = false;
+    }
+    if (!document.getElementById('hAiInvolvement').value) {
+      document.getElementById('e-aiInvolvement').classList.add('show'); ok = false;
+    }
+    if (selectedAiKnowledge.size === 0) {
+      document.getElementById('e-aiKnowledge').classList.add('show'); ok = false;
+    }
+    if (selectedAiHandoff.size === 0) {
+      document.getElementById('e-aiHandoff').classList.add('show'); ok = false;
     }
   }
 
