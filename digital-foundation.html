@@ -418,6 +418,16 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
 <input type="hidden" name="ai_guidance_only"      id="aiGuidanceOnly">
 <input type="hidden" name="ai_performs_tasks"     id="aiPerformsTasks">
 <input type="hidden" name="ai_voice_requested"    id="aiVoiceRequested">
+<!-- Stage 3 — Automation hidden inputs -->
+<input type="hidden" name="automation_tasks"              id="hAutoTasks">
+<input type="hidden" name="automation_current_systems"    id="hAutoSystems">
+<input type="hidden" name="automation_systems_connected"  id="hAutoSystemsConnected">
+<input type="hidden" name="automation_triggers"           id="hAutoTriggers">
+<input type="hidden" name="automation_conditional_flow"   id="hAutoConditionalFlow">
+<input type="hidden" name="automation_notification_pref"  id="hAutoNotifPref">
+<input type="hidden" name="automation_notification_types" id="hAutoNotifTypes">
+<!-- Internal automation signal — never shown to customer -->
+<input type="hidden" name="automation_requested"          id="autoRequested">
 <!-- Internal quote tool signals — never shown to customer -->
 <input type="hidden" name="quote_instant_price"        id="qInstantPrice">
 <input type="hidden" name="quote_price_range"          id="qPriceRange">
@@ -1716,6 +1726,218 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
       </div>
     </div>
 
+    <!-- ══ AUTOMATION BLOCK ══ -->
+    <div id="featAutomation" style="display:none;">
+      <div class="df-card">
+        <h3 class="df-card-title">Business Automation</h3>
+        <p class="df-card-sub">Automation can connect repetitive steps so your team does not have to perform the same task manually every time.</p>
+
+        <!-- Q1: What to automate? -->
+        <div class="field-section">
+          <span class="field-section-label">What repetitive tasks would you like your website to help automate? <span class="req">*</span></span>
+          <span class="f-hint" style="display:block;margin-bottom:.65rem;">Select all that apply.</span>
+          <div class="pill-grid" id="autoTasksGrid">
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Send confirmation emails')"><input type="checkbox">Send confirmation emails</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Send confirmation text messages')"><input type="checkbox">Send confirmation text messages</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Send appointment reminders')"><input type="checkbox">Send appointment reminders</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Follow up with new leads')"><input type="checkbox">Follow up with new leads</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Follow up after a service')"><input type="checkbox">Follow up after a service</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Add leads to a customer management system')"><input type="checkbox">Add leads to a customer management system</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Update customer information')"><input type="checkbox">Update customer information</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Notify staff when a lead arrives')"><input type="checkbox">Notify staff when a lead arrives</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Notify staff when a payment is made')"><input type="checkbox">Notify staff when a payment is made</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Send documents automatically')"><input type="checkbox">Send documents automatically</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Send invoices or payment links')"><input type="checkbox">Send invoices or payment links</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Trigger follow-up after booking')"><input type="checkbox">Trigger follow-up after booking</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Trigger follow-up after payment')"><input type="checkbox">Trigger follow-up after payment</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Assign leads to staff members')"><input type="checkbox">Assign leads to staff members</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Move customers through different stages')"><input type="checkbox">Move customers through different stages</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Request reviews after service')"><input type="checkbox">Request reviews after service</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Send membership or subscription reminders')"><input type="checkbox">Send membership or subscription reminders</label>
+            <label class="chk-pill" data-atval="other"     onclick="toggleAutoTask(this,'Something else')"><input type="checkbox">Something else</label>
+            <label class="chk-pill" data-atval="not-sure"  onclick="toggleAutoTask(this,'Not sure — recommend what makes sense')"><input type="checkbox">I'm not sure — recommend what makes sense</label>
+          </div>
+          <span class="f-err" id="e-autoTasks">Please select at least one option.</span>
+          <div class="reveal" id="rev-autoTaskOther">
+            <div class="reveal-inner">
+              <div class="fg">
+                <label class="f-label" for="autoTaskOther">Tell us what you would like to automate.</label>
+                <textarea id="autoTaskOther" name="automation_task_other" placeholder="Describe the task in plain language." rows="3" maxlength="400" oninput="updateCount(this,'cAutoTask')"></textarea>
+                <div class="char-count"><span id="cAutoTask">0</span> / 400</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q2: Which tools do you already use? -->
+        <div class="field-section" style="margin-top:1.35rem;">
+          <span class="field-section-label">Which business tools do you already use? <span class="req">*</span></span>
+          <span class="f-hint" style="display:block;margin-bottom:.65rem;">Select all that apply.</span>
+          <div class="pill-grid" id="autoSystemsGrid">
+            <label class="chk-pill" onclick="toggleAutoSystem(this,'CRM / customer management system')"><input type="checkbox">CRM / customer management system</label>
+            <label class="chk-pill" onclick="toggleAutoSystem(this,'Booking software')"><input type="checkbox">Booking software</label>
+            <label class="chk-pill" onclick="toggleAutoSystem(this,'Email marketing platform')"><input type="checkbox">Email marketing platform</label>
+            <label class="chk-pill" onclick="toggleAutoSystem(this,'SMS / text platform')"><input type="checkbox">SMS / text platform</label>
+            <label class="chk-pill" onclick="toggleAutoSystem(this,'Payment processor')"><input type="checkbox">Payment processor</label>
+            <label class="chk-pill" onclick="toggleAutoSystem(this,'Accounting software')"><input type="checkbox">Accounting software</label>
+            <label class="chk-pill" onclick="toggleAutoSystem(this,'E-commerce platform')"><input type="checkbox">E-commerce platform</label>
+            <label class="chk-pill" onclick="toggleAutoSystem(this,'Customer portal')"><input type="checkbox">Customer portal</label>
+            <label class="chk-pill" onclick="toggleAutoSystem(this,'Project management software')"><input type="checkbox">Project management software</label>
+            <label class="chk-pill" data-sval="none"  onclick="toggleAutoSystem(this,'None yet')"><input type="checkbox">None yet</label>
+            <label class="chk-pill" data-sval="other" onclick="toggleAutoSystem(this,'Other')"><input type="checkbox">Other</label>
+          </div>
+          <span class="f-err" id="e-autoSystems">Please select at least one option.</span>
+          <div class="reveal" id="rev-autoSystemOther">
+            <div class="reveal-inner">
+              <input type="text" name="automation_system_other" placeholder="Which system do you use?">
+            </div>
+          </div>
+        </div>
+
+        <!-- Q3: Do these systems work together? (conditional on real tools selected) -->
+        <div class="reveal" id="rev-autoSystemsConnected">
+          <div class="reveal-inner">
+            <hr class="reveal-divider">
+            <div class="field-section">
+              <span class="field-section-label">Do these systems already work together? <span class="req">*</span></span>
+              <div class="cc-row" id="autoConnectedRow">
+                <label class="cc" onclick="pickAutoConnected(this,'yes')">
+                  <input type="radio" name="_autoConn">
+                  <div class="cc-check">✓</div>
+                  <div class="cc-label">Yes</div>
+                </label>
+                <label class="cc" onclick="pickAutoConnected(this,'some')">
+                  <input type="radio" name="_autoConn">
+                  <div class="cc-check">✓</div>
+                  <div class="cc-label">Some of them</div>
+                </label>
+                <label class="cc" onclick="pickAutoConnected(this,'no')">
+                  <input type="radio" name="_autoConn">
+                  <div class="cc-check">✓</div>
+                  <div class="cc-label">No</div>
+                </label>
+                <label class="cc" onclick="pickAutoConnected(this,'not-sure')">
+                  <input type="radio" name="_autoConn">
+                  <div class="cc-check">✓</div>
+                  <div class="cc-label">I'm not sure</div>
+                </label>
+              </div>
+              <span class="f-err" id="e-autoConnected">Please select an option.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q4: When should automation trigger? -->
+        <div class="field-section" style="margin-top:1.35rem;">
+          <span class="field-section-label">When should automation start? <span class="req">*</span></span>
+          <span class="f-hint" style="display:block;margin-bottom:.65rem;">Select all that apply.</span>
+          <div class="pill-grid" id="autoTriggersGrid">
+            <label class="chk-pill" onclick="toggleAutoTrigger(this,'When someone submits a form')"><input type="checkbox">When someone submits a form</label>
+            <label class="chk-pill" onclick="toggleAutoTrigger(this,'When someone books')"><input type="checkbox">When someone books</label>
+            <label class="chk-pill" onclick="toggleAutoTrigger(this,'When someone makes a payment')"><input type="checkbox">When someone makes a payment</label>
+            <label class="chk-pill" onclick="toggleAutoTrigger(this,'When someone purchases a product')"><input type="checkbox">When someone purchases a product</label>
+            <label class="chk-pill" onclick="toggleAutoTrigger(this,'When someone creates an account')"><input type="checkbox">When someone creates an account</label>
+            <label class="chk-pill" onclick="toggleAutoTrigger(this,'When a lead reaches a certain stage')"><input type="checkbox">When a lead reaches a certain stage</label>
+            <label class="chk-pill" onclick="toggleAutoTrigger(this,'At a scheduled time')"><input type="checkbox">At a scheduled time</label>
+            <label class="chk-pill" onclick="toggleAutoTrigger(this,'After a certain amount of time passes')"><input type="checkbox">After a certain amount of time passes</label>
+            <label class="chk-pill" onclick="toggleAutoTrigger(this,'Based on another customer action')"><input type="checkbox">Based on another customer action</label>
+            <label class="chk-pill" onclick="toggleAutoTrigger(this,'Not sure')"><input type="checkbox">Not sure</label>
+          </div>
+          <span class="f-err" id="e-autoTriggers">Please select at least one option.</span>
+        </div>
+
+        <!-- Q5: Conditional workflows? -->
+        <div class="field-section" style="margin-top:1.35rem;">
+          <span class="field-section-label">Should different customers receive different follow-up based on what they select or do? <span class="req">*</span></span>
+          <div class="cc-row three-up" id="autoConditionalRow">
+            <label class="cc" onclick="pickAutoConditional(this,'no')">
+              <input type="radio" name="_autoConditional">
+              <div class="cc-check">✓</div>
+              <div class="cc-label">No</div>
+              <div class="cc-sub">Same process for everyone</div>
+            </label>
+            <label class="cc" onclick="pickAutoConditional(this,'yes')">
+              <input type="radio" name="_autoConditional">
+              <div class="cc-check">✓</div>
+              <div class="cc-label">Yes</div>
+              <div class="cc-sub">Workflow changes based on the customer</div>
+            </label>
+            <label class="cc" onclick="pickAutoConditional(this,'not-sure')">
+              <input type="radio" name="_autoConditional">
+              <div class="cc-check">✓</div>
+              <div class="cc-label">Not sure</div>
+            </label>
+          </div>
+          <span class="f-err" id="e-autoConditional">Please select an option.</span>
+          <div class="reveal" id="rev-autoConditionalDetail">
+            <div class="reveal-inner">
+              <div class="fg">
+                <label class="f-label" for="autoConditionalDetail">What should cause the follow-up to change?</label>
+                <textarea id="autoConditionalDetail" name="automation_conditional_detail" placeholder="e.g. service selected, customer type, location, payment status, booking type, lead quality…" rows="3" maxlength="500" oninput="updateCount(this,'cAutoConditional')"></textarea>
+                <div class="char-count"><span id="cAutoConditional">0</span> / 500</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q6: Team notifications? -->
+        <div class="field-section" style="margin-top:1.35rem;">
+          <span class="field-section-label">Would you like your team to be notified when certain things happen? <span class="req">*</span></span>
+          <div class="cc-row three-up" id="autoNotifPrefRow">
+            <label class="cc" onclick="pickAutoNotifPref(this,'yes')">
+              <input type="radio" name="_autoNotifPref">
+              <div class="cc-check">✓</div>
+              <div class="cc-label">Yes</div>
+            </label>
+            <label class="cc" onclick="pickAutoNotifPref(this,'no')">
+              <input type="radio" name="_autoNotifPref">
+              <div class="cc-check">✓</div>
+              <div class="cc-label">No</div>
+            </label>
+            <label class="cc" onclick="pickAutoNotifPref(this,'not-sure')">
+              <input type="radio" name="_autoNotifPref">
+              <div class="cc-check">✓</div>
+              <div class="cc-label">Not sure</div>
+            </label>
+          </div>
+          <span class="f-err" id="e-autoNotifPref">Please select an option.</span>
+          <div class="reveal" id="rev-autoNotifTypes">
+            <div class="reveal-inner">
+              <span class="field-section-label" style="margin:1rem 0 .55rem;display:block;">What should your team be notified about? <span class="req">*</span></span>
+              <div class="pill-grid" id="autoNotifGrid">
+                <label class="chk-pill" onclick="toggleAutoNotif(this,'New lead')"><input type="checkbox">New lead</label>
+                <label class="chk-pill" onclick="toggleAutoNotif(this,'New booking')"><input type="checkbox">New booking</label>
+                <label class="chk-pill" onclick="toggleAutoNotif(this,'Payment received')"><input type="checkbox">Payment received</label>
+                <label class="chk-pill" onclick="toggleAutoNotif(this,'Quote request')"><input type="checkbox">Quote request</label>
+                <label class="chk-pill" onclick="toggleAutoNotif(this,'Document uploaded')"><input type="checkbox">Document uploaded</label>
+                <label class="chk-pill" onclick="toggleAutoNotif(this,'Customer message')"><input type="checkbox">Customer message</label>
+                <label class="chk-pill" onclick="toggleAutoNotif(this,'Cancellation')"><input type="checkbox">Cancellation</label>
+                <label class="chk-pill" onclick="toggleAutoNotif(this,'High-value lead')"><input type="checkbox">High-value lead</label>
+                <label class="chk-pill" data-nval="other" onclick="toggleAutoNotif(this,'Other')"><input type="checkbox">Other</label>
+              </div>
+              <span class="f-err" id="e-autoNotifTypes">Please select at least one option.</span>
+              <div class="reveal" id="rev-autoNotifOther">
+                <div class="reveal-inner">
+                  <input type="text" name="automation_notification_other" placeholder="What else should trigger a notification?">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q7: Manual pain points (always shown, optional) -->
+        <div class="field-section" style="margin-top:1.35rem;">
+          <span class="field-section-label">Is there a manual process in your business that you wish could happen automatically?</span>
+          <span class="f-hint" style="display:block;margin-bottom:.55rem;">Optional. Tell us what your team currently does by hand — we'll determine whether the website or connected systems can help automate it.</span>
+          <div class="fg">
+            <textarea id="autoManualPain" name="automation_manual_pain_points" placeholder="Describe a repetitive task your team handles manually…" rows="3" maxlength="600" oninput="updateCount(this,'cAutoManualPain')"></textarea>
+            <div class="char-count"><span id="cAutoManualPain">0</span> / 600</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
     <!-- Navigation -->
     <div class="s-nav">
       <button type="button" class="btn-back" onclick="goBack(3)">← Back</button>
@@ -2101,21 +2323,28 @@ function initStage3() {
                     || document.getElementById('flagEcommerce').value === 'yes'
                     || document.getElementById('flagMembership').value === 'yes';
   const showQuote    = document.getElementById('flagQuote').value    === 'yes';
-  const showAI       = document.getElementById('flagAI').value       === 'yes';
-  const anyVisible   = showBooking || showPayments || showQuote || showAI;
+  const showAI         = document.getElementById('flagAI').value         === 'yes';
+  const showAutomation = document.getElementById('flagAutomation').value  === 'yes';
+  const anyVisible     = showBooking || showPayments || showQuote || showAI || showAutomation;
 
-  document.getElementById('featBooking').style.display  = showBooking  ? 'block' : 'none';
-  document.getElementById('featPayments').style.display = showPayments ? 'block' : 'none';
-  document.getElementById('featQuote').style.display    = showQuote    ? 'block' : 'none';
-  document.getElementById('featAI').style.display       = showAI       ? 'block' : 'none';
-  document.getElementById('featNone').style.display     = anyVisible   ? 'none'  : 'block';
+  document.getElementById('featBooking').style.display    = showBooking    ? 'block' : 'none';
+  document.getElementById('featPayments').style.display   = showPayments   ? 'block' : 'none';
+  document.getElementById('featQuote').style.display      = showQuote      ? 'block' : 'none';
+  document.getElementById('featAI').style.display         = showAI         ? 'block' : 'none';
+  document.getElementById('featAutomation').style.display = showAutomation ? 'block' : 'none';
+  document.getElementById('featNone').style.display       = anyVisible     ? 'none'  : 'block';
   // Recompute signals in case Stage 2 answers changed on back-nav
   if (showQuote) computeQuoteFlags();
   if (showAI) {
     computeAiFlags();
-    // Restore Q5/Q6 conditional reveals based on current task selections
     reveal('rev-aiVoice',   selectedAiTasks.has('Have voice conversations'));
     reveal('rev-aiSystems', [...selectedAiTasks].some(t => AI_SYSTEM_TASKS.has(t)));
+  }
+  if (showAutomation) {
+    computeAutomationFlags();
+    // Restore Q2→Q3 conditional (Q3 visible when real tools exist)
+    const hasRealSystems = selectedAutoSystems.size > 0 && !selectedAutoSystems.has('None yet');
+    reveal('rev-autoSystemsConnected', hasRealSystems);
   }
 }
 
@@ -2390,6 +2619,109 @@ function toggleAiSystem(pill, value) {
   clearErr('e-aiSystems');
 }
 
+/* ══ AUTOMATION ══ */
+
+function computeAutomationFlags() {
+  document.getElementById('autoRequested').value =
+    document.getElementById('featAutomation').style.display !== 'none' ? 'yes' : '';
+}
+
+// Q1: tasks to automate
+const selectedAutoTasks = new Set();
+function toggleAutoTask(pill, value) {
+  pill.classList.toggle('sel');
+  if (selectedAutoTasks.has(value)) selectedAutoTasks.delete(value);
+  else selectedAutoTasks.add(value);
+  document.getElementById('hAutoTasks').value = [...selectedAutoTasks].join(', ');
+  reveal('rev-autoTaskOther', selectedAutoTasks.has('Something else'));
+  clearErr('e-autoTasks');
+}
+
+// Q2: existing tools — "None yet" exclusive with all others
+const selectedAutoSystems = new Set();
+function toggleAutoSystem(pill, value) {
+  const isNone  = pill.dataset.sval === 'none';
+  const isOther = pill.dataset.sval === 'other';
+  const allPills = document.querySelectorAll('#autoSystemsGrid .chk-pill');
+  if (isNone) {
+    selectedAutoSystems.clear();
+    allPills.forEach(p => p.classList.remove('sel'));
+    pill.classList.add('sel');
+    selectedAutoSystems.add(value);
+    reveal('rev-autoSystemOther', false);
+    reveal('rev-autoSystemsConnected', false);
+    document.getElementById('hAutoSystemsConnected').value = '';
+    document.querySelectorAll('#autoConnectedRow .cc').forEach(c => c.classList.remove('sel'));
+  } else {
+    // Deselect "None yet" if any real tool is picked
+    allPills.forEach(p => { if (p.dataset.sval === 'none') { p.classList.remove('sel'); selectedAutoSystems.delete('None yet'); } });
+    pill.classList.toggle('sel');
+    if (selectedAutoSystems.has(value)) selectedAutoSystems.delete(value);
+    else selectedAutoSystems.add(value);
+    reveal('rev-autoSystemOther', selectedAutoSystems.has('Other'));
+    const hasReal = selectedAutoSystems.size > 0;
+    reveal('rev-autoSystemsConnected', hasReal);
+    if (!hasReal) {
+      document.getElementById('hAutoSystemsConnected').value = '';
+      document.querySelectorAll('#autoConnectedRow .cc').forEach(c => c.classList.remove('sel'));
+    }
+  }
+  document.getElementById('hAutoSystems').value = [...selectedAutoSystems].join(', ');
+  clearErr('e-autoSystems');
+}
+
+// Q3: do systems work together?
+function pickAutoConnected(card, value) {
+  document.querySelectorAll('#autoConnectedRow .cc').forEach(c => c.classList.remove('sel'));
+  card.classList.add('sel');
+  document.getElementById('hAutoSystemsConnected').value = value;
+  clearErr('e-autoConnected');
+}
+
+// Q4: automation triggers
+const selectedAutoTriggers = new Set();
+function toggleAutoTrigger(pill, value) {
+  pill.classList.toggle('sel');
+  if (selectedAutoTriggers.has(value)) selectedAutoTriggers.delete(value);
+  else selectedAutoTriggers.add(value);
+  document.getElementById('hAutoTriggers').value = [...selectedAutoTriggers].join(', ');
+  clearErr('e-autoTriggers');
+}
+
+// Q5: conditional workflows
+function pickAutoConditional(card, value) {
+  document.querySelectorAll('#autoConditionalRow .cc').forEach(c => c.classList.remove('sel'));
+  card.classList.add('sel');
+  document.getElementById('hAutoConditionalFlow').value = value;
+  reveal('rev-autoConditionalDetail', value === 'yes');
+  clearErr('e-autoConditional');
+}
+
+// Q6: team notifications
+function pickAutoNotifPref(card, value) {
+  document.querySelectorAll('#autoNotifPrefRow .cc').forEach(c => c.classList.remove('sel'));
+  card.classList.add('sel');
+  document.getElementById('hAutoNotifPref').value = value;
+  reveal('rev-autoNotifTypes', value === 'yes');
+  if (value !== 'yes') {
+    selectedAutoNotifTypes.clear();
+    document.getElementById('hAutoNotifTypes').value = '';
+    document.querySelectorAll('#autoNotifGrid .chk-pill').forEach(p => p.classList.remove('sel'));
+    reveal('rev-autoNotifOther', false);
+  }
+  clearErr('e-autoNotifPref');
+}
+
+const selectedAutoNotifTypes = new Set();
+function toggleAutoNotif(pill, value) {
+  pill.classList.toggle('sel');
+  if (selectedAutoNotifTypes.has(value)) selectedAutoNotifTypes.delete(value);
+  else selectedAutoNotifTypes.add(value);
+  document.getElementById('hAutoNotifTypes').value = [...selectedAutoNotifTypes].join(', ');
+  reveal('rev-autoNotifOther', selectedAutoNotifTypes.has('Other'));
+  clearErr('e-autoNotifTypes');
+}
+
 /* ── STAGE 3 VALIDATION ── */
 function validateStage3() {
   let ok = true;
@@ -2397,7 +2729,8 @@ function validateStage3() {
   const showBooking  = document.getElementById('featBooking').style.display  !== 'none';
   const showPayments = document.getElementById('featPayments').style.display !== 'none';
   const showQuote    = document.getElementById('featQuote').style.display    !== 'none';
-  const showAI       = document.getElementById('featAI').style.display       !== 'none';
+  const showAI         = document.getElementById('featAI').style.display         !== 'none';
+  const showAutomation = document.getElementById('featAutomation').style.display !== 'none';
 
   if (showBooking) {
     if (!document.getElementById('hBookingType').value) {
@@ -2464,6 +2797,32 @@ function validateStage3() {
     // Q6: system connections required if action tasks are selected
     if ([...selectedAiTasks].some(t => AI_SYSTEM_TASKS.has(t)) && selectedAiSystems.size === 0) {
       document.getElementById('e-aiSystems').classList.add('show'); ok = false;
+    }
+  }
+
+  if (showAutomation) {
+    if (selectedAutoTasks.size === 0) {
+      document.getElementById('e-autoTasks').classList.add('show'); ok = false;
+    }
+    if (selectedAutoSystems.size === 0) {
+      document.getElementById('e-autoSystems').classList.add('show'); ok = false;
+    }
+    // Q3 required when real tools are selected
+    if (document.getElementById('rev-autoSystemsConnected').classList.contains('open')
+        && !document.getElementById('hAutoSystemsConnected').value) {
+      document.getElementById('e-autoConnected').classList.add('show'); ok = false;
+    }
+    if (selectedAutoTriggers.size === 0) {
+      document.getElementById('e-autoTriggers').classList.add('show'); ok = false;
+    }
+    if (!document.getElementById('hAutoConditionalFlow').value) {
+      document.getElementById('e-autoConditional').classList.add('show'); ok = false;
+    }
+    if (!document.getElementById('hAutoNotifPref').value) {
+      document.getElementById('e-autoNotifPref').classList.add('show'); ok = false;
+    }
+    if (document.getElementById('hAutoNotifPref').value === 'yes' && selectedAutoNotifTypes.size === 0) {
+      document.getElementById('e-autoNotifTypes').classList.add('show'); ok = false;
     }
   }
 
