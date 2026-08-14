@@ -173,8 +173,8 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
 .cc-sub { font-size:.72rem; color:var(--gray-600); margin-top:.2rem; line-height:1.4; }
 
 /* ══ CONDITIONAL REVEAL ══════════════════════════════ */
-.reveal { max-height:0; overflow:hidden; opacity:0; transition:max-height .45s cubic-bezier(.4,0,.2,1), opacity .3s ease; }
-.reveal.open { max-height:900px; opacity:1; }
+.reveal { max-height:0; overflow:hidden; opacity:0; transition:max-height .5s cubic-bezier(.4,0,.2,1), opacity .35s ease; }
+.reveal.open { max-height:1400px; opacity:1; }
 .reveal-inner { padding-top:1rem; }
 .reveal-divider { margin:1rem 0; border:none; border-top:1px solid var(--gray-100); }
 
@@ -208,6 +208,120 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
 .field-section { margin-top:1.1rem; }
 .field-section-label { font-size:.7rem; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:.07em; margin-bottom:.55rem; display:block; }
 .field-section-label .req { color:var(--gold); margin-left:2px; }
+
+/* ══ GOAL CARDS (Stage 2 — multi-select icon+label grid) ═════ */
+.goal-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:.65rem;
+}
+@media(max-width:560px) { .goal-grid { grid-template-columns:repeat(2,1fr); } }
+@media(max-width:340px) { .goal-grid { grid-template-columns:1fr; } }
+
+.goal-card {
+  position:relative;
+  display:flex; flex-direction:column; align-items:flex-start;
+  background:var(--white);
+  border:1.5px solid var(--gray-200);
+  border-radius:var(--radius-lg);
+  padding:.9rem .9rem .85rem;
+  cursor:pointer; transition:all var(--tr); user-select:none;
+  min-height:82px;
+}
+.goal-card:hover { border-color:rgba(201,168,76,.5); background:var(--gold-pale); }
+.goal-card.sel {
+  border-color:var(--gold);
+  background:var(--gold-pale);
+  box-shadow:0 3px 14px rgba(201,168,76,.16);
+}
+.goal-card input { position:absolute; opacity:0; pointer-events:none; }
+.goal-card-check {
+  position:absolute; top:.55rem; right:.55rem;
+  width:17px; height:17px; border-radius:50%;
+  background:var(--gold);
+  display:flex; align-items:center; justify-content:center;
+  font-size:.55rem; font-weight:800; color:var(--navy);
+  opacity:0; transform:scale(.5); transition:all var(--tr);
+}
+.goal-card.sel .goal-card-check { opacity:1; transform:scale(1); }
+.goal-card-icon { font-size:1.15rem; line-height:1; margin-bottom:.45rem; }
+.goal-card-label { font-size:.78rem; font-weight:600; color:var(--navy); line-height:1.3; }
+
+/* ══ PRIMARY ACTION — single-select list ══════════════ */
+.action-list { display:flex; flex-direction:column; gap:.45rem; }
+.action-item {
+  display:flex; align-items:center; gap:.75rem;
+  padding:.75rem .9rem;
+  border:1.5px solid var(--gray-200);
+  border-radius:var(--radius);
+  cursor:pointer; transition:all var(--tr); user-select:none;
+  background:var(--white);
+}
+.action-item:hover { border-color:rgba(201,168,76,.5); background:var(--gold-pale); }
+.action-item.sel {
+  border-color:var(--gold);
+  background:var(--gold-pale);
+  box-shadow:0 2px 10px rgba(201,168,76,.14);
+}
+.action-item input { position:absolute; opacity:0; pointer-events:none; }
+.action-dot {
+  width:16px; height:16px; border-radius:50%;
+  border:2px solid var(--gray-300);
+  flex-shrink:0; transition:all var(--tr);
+  display:flex; align-items:center; justify-content:center;
+}
+.action-item.sel .action-dot {
+  background:var(--gold); border-color:var(--gold);
+}
+.action-item.sel .action-dot::after {
+  content:''; display:block;
+  width:5px; height:5px; border-radius:50%;
+  background:var(--navy);
+}
+.action-label { font-size:.85rem; font-weight:500; color:var(--navy); line-height:1.35; }
+.action-item.sel .action-label { font-weight:600; }
+
+/* ══ PAGE CHECKLIST — two-column pill list ════════════ */
+.page-list {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.45rem;
+}
+@media(max-width:440px) { .page-list { grid-template-columns:1fr; } }
+
+.page-item {
+  display:flex; align-items:center; gap:.6rem;
+  padding:.6rem .8rem;
+  border:1.5px solid var(--gray-200);
+  border-radius:var(--radius);
+  cursor:pointer; transition:all var(--tr); user-select:none;
+  background:var(--white); font-size:.82rem; font-weight:500; color:var(--gray-600);
+}
+.page-item:hover { border-color:rgba(201,168,76,.45); background:var(--gold-pale); color:var(--navy); }
+.page-item.sel { border-color:var(--gold); background:var(--gold-pale); color:var(--navy); font-weight:600; }
+.page-item input { position:absolute; opacity:0; pointer-events:none; }
+.page-chk {
+  width:15px; height:15px; border-radius:3px;
+  border:1.5px solid var(--gray-300);
+  flex-shrink:0; transition:all var(--tr);
+  display:flex; align-items:center; justify-content:center;
+  font-size:.55rem; font-weight:800; color:transparent;
+}
+.page-item.sel .page-chk { background:var(--gold); border-color:var(--gold); color:var(--navy); }
+.page-item.sel .page-chk::after { content:'✓'; }
+
+/* ══ SUBSECTION DIVIDER ═══════════════════════════════ */
+.subsection-head {
+  margin:1.75rem 0 1rem;
+  padding-bottom:.6rem;
+  border-bottom:1px solid var(--gray-100);
+}
+.subsection-head h4 {
+  font-family:'Playfair Display',serif;
+  font-size:.95rem; font-weight:700; color:var(--navy);
+  margin-bottom:.2rem;
+}
+.subsection-head p { font-size:.77rem; color:var(--gray-400); line-height:1.55; }
 </style>
 </head>
 <body>
@@ -252,6 +366,13 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
 <input type="hidden" name="website_improvements" id="hImprovements">
 <input type="hidden" name="years_in_business" id="hYearsInBusiness">
 <input type="hidden" name="service_area_type" id="hServiceAreaType">
+<!-- Stage 2 hidden inputs -->
+<input type="hidden" name="website_goals" id="hWebsiteGoals">
+<input type="hidden" name="primary_action" id="hPrimaryAction">
+<input type="hidden" name="desired_pages" id="hDesiredPages">
+<input type="hidden" name="service_page_count" id="hServicePageCount">
+<input type="hidden" name="location_pages_needed" id="hLocationPagesNeeded">
+<input type="hidden" name="location_page_count" id="hLocationPageCount">
 
 <div class="df-body">
 
@@ -569,13 +690,427 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
   ══════════════════════════════════════ -->
 
   <div class="df-panel" id="panel-2">
+
     <div class="s-intro">
       <span class="s-eyebrow">Stage 2 of 6 &middot; Your Goals</span>
-      <h2 class="s-title">Your Goals</h2>
-      <p class="s-sub">Coming up next — we're building this section now.</p>
+      <h2 class="s-title">What should your website do for your business?</h2>
+      <p class="s-sub">Your website can do more than look professional. Tell us what you want it to help your business accomplish and what you want customers to do when they visit.</p>
     </div>
-    <div class="s-nav"><button type="button" class="btn-back" onclick="goBack(2)">← Back</button></div>
+
+    <!-- ── CARD: Website Goals ── -->
+    <div class="df-card">
+      <h3 class="df-card-title">What should your website help your business accomplish?</h3>
+      <p class="df-card-sub">Select all that apply.</p>
+
+      <div class="goal-grid" id="goalsGrid">
+
+        <label class="goal-card" onclick="toggleGoal(this,'Establish a professional online presence')">
+          <input type="checkbox" name="_goal" value="Establish a professional online presence">
+          <div class="goal-card-check">✓</div>
+          <div class="goal-card-icon">🏛️</div>
+          <div class="goal-card-label">Establish a professional online presence</div>
+        </label>
+
+        <label class="goal-card" onclick="toggleGoal(this,'Generate leads or inquiries')">
+          <input type="checkbox" name="_goal" value="Generate leads or inquiries">
+          <div class="goal-card-check">✓</div>
+          <div class="goal-card-icon">📬</div>
+          <div class="goal-card-label">Generate leads or inquiries</div>
+        </label>
+
+        <label class="goal-card" onclick="toggleGoal(this,'Get more customer calls')">
+          <input type="checkbox" name="_goal" value="Get more customer calls">
+          <div class="goal-card-check">✓</div>
+          <div class="goal-card-icon">📞</div>
+          <div class="goal-card-label">Get more customer calls</div>
+        </label>
+
+        <label class="goal-card" onclick="toggleGoal(this,'Increase appointments or bookings')">
+          <input type="checkbox" name="_goal" value="Increase appointments or bookings">
+          <div class="goal-card-check">✓</div>
+          <div class="goal-card-icon">📅</div>
+          <div class="goal-card-label">Increase appointments or bookings</div>
+        </label>
+
+        <label class="goal-card" onclick="toggleGoal(this,'Accept online payments')">
+          <input type="checkbox" name="_goal" value="Accept online payments">
+          <div class="goal-card-check">✓</div>
+          <div class="goal-card-icon">💳</div>
+          <div class="goal-card-label">Accept online payments</div>
+        </label>
+
+        <label class="goal-card" onclick="toggleGoal(this,'Sell products online')">
+          <input type="checkbox" name="_goal" value="Sell products online">
+          <div class="goal-card-check">✓</div>
+          <div class="goal-card-icon">🛍️</div>
+          <div class="goal-card-label">Sell products online</div>
+        </label>
+
+        <label class="goal-card" onclick="toggleGoal(this,'Provide estimates or quotes')">
+          <input type="checkbox" name="_goal" value="Provide estimates or quotes">
+          <div class="goal-card-check">✓</div>
+          <div class="goal-card-icon">📋</div>
+          <div class="goal-card-label">Provide estimates or quotes</div>
+        </label>
+
+        <label class="goal-card" onclick="toggleGoal(this,'Allow customers to create accounts')">
+          <input type="checkbox" name="_goal" value="Allow customers to create accounts">
+          <div class="goal-card-check">✓</div>
+          <div class="goal-card-icon">👤</div>
+          <div class="goal-card-label">Allow customers to create accounts</div>
+        </label>
+
+        <label class="goal-card" onclick="toggleGoal(this,'Give customers access to a private portal')">
+          <input type="checkbox" name="_goal" value="Give customers access to a private portal">
+          <div class="goal-card-check">✓</div>
+          <div class="goal-card-icon">🔒</div>
+          <div class="goal-card-label">Give customers access to a private portal</div>
+        </label>
+
+        <label class="goal-card" onclick="toggleGoal(this,'Answer customer questions with AI')">
+          <input type="checkbox" name="_goal" value="Answer customer questions with AI">
+          <div class="goal-card-check">✓</div>
+          <div class="goal-card-icon">🤖</div>
+          <div class="goal-card-label">Answer customer questions with AI</div>
+        </label>
+
+        <label class="goal-card" onclick="toggleGoal(this,'Automate customer follow-up')">
+          <input type="checkbox" name="_goal" value="Automate customer follow-up">
+          <div class="goal-card-check">✓</div>
+          <div class="goal-card-icon">⚡</div>
+          <div class="goal-card-label">Automate customer follow-up</div>
+        </label>
+
+        <label class="goal-card" onclick="toggleGoal(this,'Collect documents or files')">
+          <input type="checkbox" name="_goal" value="Collect documents or files">
+          <div class="goal-card-check">✓</div>
+          <div class="goal-card-icon">📁</div>
+          <div class="goal-card-label">Collect documents or files</div>
+        </label>
+
+        <label class="goal-card" onclick="toggleGoal(this,'Showcase our work or portfolio')">
+          <input type="checkbox" name="_goal" value="Showcase our work or portfolio">
+          <div class="goal-card-check">✓</div>
+          <div class="goal-card-icon">🖼️</div>
+          <div class="goal-card-label">Showcase our work or portfolio</div>
+        </label>
+
+        <label class="goal-card" onclick="toggleGoal(this,'Promote events or experiences')">
+          <input type="checkbox" name="_goal" value="Promote events or experiences">
+          <div class="goal-card-check">✓</div>
+          <div class="goal-card-icon">🎟️</div>
+          <div class="goal-card-label">Promote events or experiences</div>
+        </label>
+
+        <label class="goal-card" onclick="toggleGoal(this,'Offer memberships or subscriptions')">
+          <input type="checkbox" name="_goal" value="Offer memberships or subscriptions">
+          <div class="goal-card-check">✓</div>
+          <div class="goal-card-icon">🔖</div>
+          <div class="goal-card-label">Offer memberships or subscriptions</div>
+        </label>
+
+        <label class="goal-card" onclick="toggleGoal(this,'Educate customers about our services')">
+          <input type="checkbox" name="_goal" value="Educate customers about our services">
+          <div class="goal-card-check">✓</div>
+          <div class="goal-card-icon">💡</div>
+          <div class="goal-card-label">Educate customers about our services</div>
+        </label>
+
+        <label class="goal-card" onclick="toggleGoal(this,'Improve our visibility in search')">
+          <input type="checkbox" name="_goal" value="Improve our visibility in search">
+          <div class="goal-card-check">✓</div>
+          <div class="goal-card-icon">🔍</div>
+          <div class="goal-card-label">Improve our visibility in search</div>
+        </label>
+
+        <label class="goal-card" id="goalCustomCard" onclick="toggleGoal(this,'Something custom')">
+          <input type="checkbox" name="_goal" value="Something custom">
+          <div class="goal-card-check">✓</div>
+          <div class="goal-card-icon">✏️</div>
+          <div class="goal-card-label">Something custom</div>
+        </label>
+
+      </div>
+      <span class="f-err" id="e-goals" style="margin-top:.75rem;">Please select at least one goal for your website.</span>
+
+      <!-- Conditional: Something custom -->
+      <div class="reveal" id="rev-goalCustom">
+        <div class="reveal-inner">
+          <div class="fg">
+            <label class="f-label" for="goalCustomText">Tell us what you would like your website to do.</label>
+            <textarea id="goalCustomText" name="goal_custom_description" placeholder="Describe what you have in mind — plain language is perfect." rows="3" maxlength="500" oninput="updateCount(this,'cGoalCustom')"></textarea>
+            <div class="char-count"><span id="cGoalCustom">0</span> / 500</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── CARD: Primary Customer Action ── -->
+    <div class="df-card">
+      <h3 class="df-card-title">What is the #1 thing you want a visitor to do on your website?</h3>
+      <p class="df-card-sub">Think about the action that would be most valuable to your business. Select one.</p>
+
+      <div class="action-list" id="actionList">
+
+        <label class="action-item" onclick="pickAction(this,'Call my business')">
+          <input type="radio" name="_action" value="Call my business">
+          <div class="action-dot"></div>
+          <span class="action-label">Call my business</span>
+        </label>
+
+        <label class="action-item" onclick="pickAction(this,'Contact us / submit an inquiry')">
+          <input type="radio" name="_action" value="Contact us / submit an inquiry">
+          <div class="action-dot"></div>
+          <span class="action-label">Contact us / submit an inquiry</span>
+        </label>
+
+        <label class="action-item" onclick="pickAction(this,'Request a quote or estimate')">
+          <input type="radio" name="_action" value="Request a quote or estimate">
+          <div class="action-dot"></div>
+          <span class="action-label">Request a quote or estimate</span>
+        </label>
+
+        <label class="action-item" onclick="pickAction(this,'Book an appointment or service')">
+          <input type="radio" name="_action" value="Book an appointment or service">
+          <div class="action-dot"></div>
+          <span class="action-label">Book an appointment or service</span>
+        </label>
+
+        <label class="action-item" onclick="pickAction(this,'Purchase a product')">
+          <input type="radio" name="_action" value="Purchase a product">
+          <div class="action-dot"></div>
+          <span class="action-label">Purchase a product</span>
+        </label>
+
+        <label class="action-item" onclick="pickAction(this,'Make a payment')">
+          <input type="radio" name="_action" value="Make a payment">
+          <div class="action-dot"></div>
+          <span class="action-label">Make a payment</span>
+        </label>
+
+        <label class="action-item" onclick="pickAction(this,'Create an account')">
+          <input type="radio" name="_action" value="Create an account">
+          <div class="action-dot"></div>
+          <span class="action-label">Create an account</span>
+        </label>
+
+        <label class="action-item" onclick="pickAction(this,'Complete an application or intake form')">
+          <input type="radio" name="_action" value="Complete an application or intake form">
+          <div class="action-dot"></div>
+          <span class="action-label">Complete an application or intake form</span>
+        </label>
+
+        <label class="action-item" onclick="pickAction(this,'Upload documents')">
+          <input type="radio" name="_action" value="Upload documents">
+          <div class="action-dot"></div>
+          <span class="action-label">Upload documents</span>
+        </label>
+
+        <label class="action-item" onclick="pickAction(this,'Visit our location')">
+          <input type="radio" name="_action" value="Visit our location">
+          <div class="action-dot"></div>
+          <span class="action-label">Visit our location</span>
+        </label>
+
+        <label class="action-item" onclick="pickAction(this,'Join or subscribe')">
+          <input type="radio" name="_action" value="Join or subscribe">
+          <div class="action-dot"></div>
+          <span class="action-label">Join or subscribe</span>
+        </label>
+
+        <label class="action-item" onclick="pickAction(this,'Learn about our services before contacting us')">
+          <input type="radio" name="_action" value="Learn about our services before contacting us">
+          <div class="action-dot"></div>
+          <span class="action-label">Learn about our services before contacting us</span>
+        </label>
+
+        <label class="action-item" onclick="pickAction(this,'Not sure — recommend what makes sense')">
+          <input type="radio" name="_action" value="Not sure — recommend what makes sense">
+          <div class="action-dot"></div>
+          <span class="action-label">Not sure — recommend what makes sense</span>
+        </label>
+
+        <label class="action-item" onclick="pickAction(this,'Something else')">
+          <input type="radio" name="_action" value="Something else">
+          <div class="action-dot"></div>
+          <span class="action-label">Something else</span>
+        </label>
+
+      </div>
+      <span class="f-err" id="e-action" style="margin-top:.65rem;">Please select the primary action you want visitors to take.</span>
+
+      <!-- Conditional: Something else -->
+      <div class="reveal" id="rev-actionElse">
+        <div class="reveal-inner">
+          <div class="fg">
+            <label class="f-label" for="actionElseText">What would you like visitors to do?</label>
+            <input type="text" id="actionElseText" name="primary_action_other" placeholder="Describe the action in a few words">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── CARD: Website Page Planning ── -->
+    <div class="df-card">
+      <h3 class="df-card-title">What should your website include?</h3>
+      <p class="df-card-sub">Select the pages or areas you think your business may need. If you're unsure, that's okay — we'll review your business and recommend the right structure.</p>
+
+      <div class="page-list" id="pageList">
+
+        <label class="page-item" onclick="togglePage(this,'Home')">
+          <input type="checkbox" name="_page" value="Home">
+          <span class="page-chk"></span>Home
+        </label>
+        <label class="page-item" onclick="togglePage(this,'About')">
+          <input type="checkbox" name="_page" value="About">
+          <span class="page-chk"></span>About
+        </label>
+        <label class="page-item" onclick="togglePage(this,'Services')">
+          <input type="checkbox" name="_page" value="Services">
+          <span class="page-chk"></span>Services
+        </label>
+        <label class="page-item" id="pageIndividualServices" onclick="togglePage(this,'Individual Service Pages')">
+          <input type="checkbox" name="_page" value="Individual Service Pages">
+          <span class="page-chk"></span>Individual Service Pages
+        </label>
+        <label class="page-item" onclick="togglePage(this,'Contact')">
+          <input type="checkbox" name="_page" value="Contact">
+          <span class="page-chk"></span>Contact
+        </label>
+        <label class="page-item" onclick="togglePage(this,'FAQ')">
+          <input type="checkbox" name="_page" value="FAQ">
+          <span class="page-chk"></span>FAQ
+        </label>
+        <label class="page-item" onclick="togglePage(this,'Gallery / Portfolio')">
+          <input type="checkbox" name="_page" value="Gallery / Portfolio">
+          <span class="page-chk"></span>Gallery / Portfolio
+        </label>
+        <label class="page-item" onclick="togglePage(this,'Testimonials / Reviews')">
+          <input type="checkbox" name="_page" value="Testimonials / Reviews">
+          <span class="page-chk"></span>Testimonials / Reviews
+        </label>
+        <label class="page-item" onclick="togglePage(this,'Team / Staff')">
+          <input type="checkbox" name="_page" value="Team / Staff">
+          <span class="page-chk"></span>Team / Staff
+        </label>
+        <label class="page-item" onclick="togglePage(this,'Pricing')">
+          <input type="checkbox" name="_page" value="Pricing">
+          <span class="page-chk"></span>Pricing
+        </label>
+        <label class="page-item" onclick="togglePage(this,'Blog / Resources')">
+          <input type="checkbox" name="_page" value="Blog / Resources">
+          <span class="page-chk"></span>Blog / Resources
+        </label>
+        <label class="page-item" onclick="togglePage(this,'Booking')">
+          <input type="checkbox" name="_page" value="Booking">
+          <span class="page-chk"></span>Booking
+        </label>
+        <label class="page-item" onclick="togglePage(this,'Shop / Products')">
+          <input type="checkbox" name="_page" value="Shop / Products">
+          <span class="page-chk"></span>Shop / Products
+        </label>
+        <label class="page-item" onclick="togglePage(this,'Memberships')">
+          <input type="checkbox" name="_page" value="Memberships">
+          <span class="page-chk"></span>Memberships
+        </label>
+        <label class="page-item" onclick="togglePage(this,'Customer Portal')">
+          <input type="checkbox" name="_page" value="Customer Portal">
+          <span class="page-chk"></span>Customer Portal
+        </label>
+        <label class="page-item" id="pageLocations" onclick="togglePage(this,'Locations / Service Areas')">
+          <input type="checkbox" name="_page" value="Locations / Service Areas">
+          <span class="page-chk"></span>Locations / Service Areas
+        </label>
+        <label class="page-item" onclick="togglePage(this,'Policies')">
+          <input type="checkbox" name="_page" value="Policies">
+          <span class="page-chk"></span>Policies
+        </label>
+        <label class="page-item" onclick="togglePage(this,'Events / Experiences')">
+          <input type="checkbox" name="_page" value="Events / Experiences">
+          <span class="page-chk"></span>Events / Experiences
+        </label>
+        <label class="page-item" onclick="togglePage(this,'Something Else')">
+          <input type="checkbox" name="_page" value="Something Else">
+          <span class="page-chk"></span>Something Else
+        </label>
+        <label class="page-item" onclick="togglePage(this,'Not Sure — Recommend What Makes Sense')">
+          <input type="checkbox" name="_page" value="Not Sure — Recommend What Makes Sense">
+          <span class="page-chk"></span>Not Sure — Recommend
+        </label>
+
+      </div>
+
+      <!-- Conditional: Individual Service Pages — how many? -->
+      <div class="reveal" id="rev-servicePageCount">
+        <div class="reveal-inner">
+          <hr class="reveal-divider">
+          <span class="field-section-label">Approximately how many services may need their own page?</span>
+          <p style="font-size:.74rem; color:var(--gray-400); margin-bottom:.7rem; line-height:1.5;">Individual service pages give important services more room for details, calls to action, and search visibility.</p>
+          <div class="pill-grid" id="serviceCountGrid">
+            <label class="ind-pill" onclick="pickServicePageCount(this,'1–3')"><input type="radio" name="_svcCount" value="1–3">1–3</label>
+            <label class="ind-pill" onclick="pickServicePageCount(this,'4–6')"><input type="radio" name="_svcCount" value="4–6">4–6</label>
+            <label class="ind-pill" onclick="pickServicePageCount(this,'7–10')"><input type="radio" name="_svcCount" value="7–10">7–10</label>
+            <label class="ind-pill" onclick="pickServicePageCount(this,'10+')"><input type="radio" name="_svcCount" value="10+">10+</label>
+            <label class="ind-pill" onclick="pickServicePageCount(this,'Not sure')"><input type="radio" name="_svcCount" value="Not sure">Not sure</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conditional: Locations / Service Areas — separate pages? -->
+      <div class="reveal" id="rev-locationPages">
+        <div class="reveal-inner">
+          <hr class="reveal-divider">
+          <span class="field-section-label">Do you expect to need separate pages for different locations or service areas?</span>
+          <div class="cc-row three-up" id="locationPagesRow" style="margin-top:.5rem;">
+            <label class="cc" onclick="pickLocationPages(this,'yes')">
+              <input type="radio" name="_locPages" value="yes">
+              <div class="cc-check">✓</div>
+              <div class="cc-label">Yes</div>
+            </label>
+            <label class="cc" onclick="pickLocationPages(this,'no')">
+              <input type="radio" name="_locPages" value="no">
+              <div class="cc-check">✓</div>
+              <div class="cc-label">No</div>
+            </label>
+            <label class="cc" onclick="pickLocationPages(this,'not sure')">
+              <input type="radio" name="_locPages" value="not sure">
+              <div class="cc-check">✓</div>
+              <div class="cc-label">I'm not sure</div>
+            </label>
+          </div>
+
+          <!-- Nested conditional: Yes → how many? -->
+          <div class="reveal" id="rev-locationCount">
+            <div class="reveal-inner" style="padding-top:.85rem;">
+              <span class="field-section-label">Approximately how many?</span>
+              <div class="pill-grid" id="locationCountGrid" style="margin-top:.4rem;">
+                <label class="ind-pill" onclick="pickLocationCount(this,'1–3')"><input type="radio" name="_locCount" value="1–3">1–3</label>
+                <label class="ind-pill" onclick="pickLocationCount(this,'4–6')"><input type="radio" name="_locCount" value="4–6">4–6</label>
+                <label class="ind-pill" onclick="pickLocationCount(this,'7–10')"><input type="radio" name="_locCount" value="7–10">7–10</label>
+                <label class="ind-pill" onclick="pickLocationCount(this,'10+')"><input type="radio" name="_locCount" value="10+">10+</label>
+                <label class="ind-pill" onclick="pickLocationCount(this,'Not sure')"><input type="radio" name="_locCount" value="Not sure">Not sure</label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Navigation -->
+    <div class="s-nav">
+      <button type="button" class="btn-back" onclick="goBack(2)">← Back</button>
+      <button type="button" class="btn-continue" onclick="goNext(2)">
+        Continue to Features <span class="arr">→</span>
+      </button>
+    </div>
+    <p class="next-hint">Next: <strong>Features</strong> — the specific tools and functionality your site needs.</p>
+
   </div>
+  <!-- /STAGE 2 -->
 
   <div class="df-panel" id="panel-3">
     <div class="s-intro">
@@ -812,6 +1347,7 @@ function validateStage1() {
 /* ══ NAVIGATION ══ */
 function goNext(from) {
   if (from === 1 && !validateStage1()) return;
+  if (from === 2 && !validateStage2()) return;
   showPanel(from + 1);
 }
 function goBack(from) {
@@ -826,6 +1362,98 @@ document.querySelectorAll('input[type=text], input[type=email], input[type=tel],
     if (err) err.classList.remove('show');
   });
 });
+
+/* ══ STAGE 2 — WEBSITE GOALS (multi-select) ══ */
+const selectedGoals = new Set();
+function toggleGoal(card, value) {
+  card.classList.toggle('sel');
+  if (selectedGoals.has(value)) selectedGoals.delete(value);
+  else selectedGoals.add(value);
+  document.getElementById('hWebsiteGoals').value = [...selectedGoals].join(', ');
+  reveal('rev-goalCustom', selectedGoals.has('Something custom'));
+  clearErr('e-goals');
+}
+
+/* ══ PRIMARY ACTION (single-select) ══ */
+function pickAction(item, value) {
+  document.querySelectorAll('#actionList .action-item').forEach(i => i.classList.remove('sel'));
+  item.classList.add('sel');
+  document.getElementById('hPrimaryAction').value = value;
+  reveal('rev-actionElse', value === 'Something else');
+  clearErr('e-action');
+}
+
+/* ══ PAGE CHECKLIST (multi-select) ══ */
+const selectedPages = new Set();
+function togglePage(item, value) {
+  item.classList.toggle('sel');
+  if (selectedPages.has(value)) selectedPages.delete(value);
+  else selectedPages.add(value);
+  document.getElementById('hDesiredPages').value = [...selectedPages].join(', ');
+  // Conditionals
+  reveal('rev-servicePageCount', selectedPages.has('Individual Service Pages'));
+  reveal('rev-locationPages',    selectedPages.has('Locations / Service Areas'));
+  // Reset nested location count when locations deselected
+  if (!selectedPages.has('Locations / Service Areas')) {
+    document.getElementById('hLocationPagesNeeded').value = '';
+    document.getElementById('hLocationPageCount').value   = '';
+    document.querySelectorAll('#locationPagesRow .cc').forEach(c => c.classList.remove('sel'));
+    document.querySelectorAll('#locationCountGrid .ind-pill').forEach(p => p.classList.remove('sel'));
+    reveal('rev-locationCount', false);
+  }
+}
+
+/* ══ SERVICE PAGE COUNT (single-select pill) ══ */
+function pickServicePageCount(pill, value) {
+  document.querySelectorAll('#serviceCountGrid .ind-pill').forEach(p => p.classList.remove('sel'));
+  pill.classList.add('sel');
+  document.getElementById('hServicePageCount').value = value;
+}
+
+/* ══ LOCATION PAGES NEEDED (yes/no/unsure) ══ */
+function pickLocationPages(card, value) {
+  document.querySelectorAll('#locationPagesRow .cc').forEach(c => c.classList.remove('sel'));
+  card.classList.add('sel');
+  document.getElementById('hLocationPagesNeeded').value = value;
+  reveal('rev-locationCount', value === 'yes');
+  // Reset count when switching away from yes
+  if (value !== 'yes') {
+    document.getElementById('hLocationPageCount').value = '';
+    document.querySelectorAll('#locationCountGrid .ind-pill').forEach(p => p.classList.remove('sel'));
+  }
+}
+
+/* ══ LOCATION PAGE COUNT (single-select pill) ══ */
+function pickLocationCount(pill, value) {
+  document.querySelectorAll('#locationCountGrid .ind-pill').forEach(p => p.classList.remove('sel'));
+  pill.classList.add('sel');
+  document.getElementById('hLocationPageCount').value = value;
+}
+
+/* ══ STAGE 2 VALIDATION ══ */
+function validateStage2() {
+  let ok = true;
+
+  // At least one goal
+  if (selectedGoals.size === 0) {
+    document.getElementById('e-goals').classList.add('show'); ok = false;
+  } else {
+    document.getElementById('e-goals').classList.remove('show');
+  }
+
+  // Primary action
+  if (!document.getElementById('hPrimaryAction').value) {
+    document.getElementById('e-action').classList.add('show'); ok = false;
+  } else {
+    document.getElementById('e-action').classList.remove('show');
+  }
+
+  if (!ok) {
+    const first = document.querySelector('.f-err.show');
+    if (first) first.scrollIntoView({ behavior:'smooth', block:'center' });
+  }
+  return ok;
+}
 </script>
 </body>
 </html>
