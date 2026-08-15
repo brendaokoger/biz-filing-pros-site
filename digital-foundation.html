@@ -328,6 +328,54 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
 .action-item.multi-line .action-dot { margin-top:3px; flex-shrink:0; }
 .action-item-sub { font-size:.76rem; color:var(--gray-600); margin-top:.22rem; line-height:1.5; }
 .action-item.sel .action-item-sub { color:var(--navy); opacity:.75; }
+
+/* ══ STAGE 4 — STYLE VIBE CARDS ════════════════════════════════════ */
+.style-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:.6rem;
+}
+@media(max-width:540px) { .style-grid { grid-template-columns:repeat(2,1fr); } }
+
+.style-card {
+  position:relative; display:flex; flex-direction:column;
+  background:var(--white);
+  border:1.5px solid var(--gray-200);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  cursor:pointer; transition:all var(--tr); user-select:none;
+}
+.style-card:hover  { border-color:rgba(201,168,76,.55); }
+.style-card.sel    { border-color:var(--gold); box-shadow:0 3px 14px rgba(201,168,76,.2); }
+.style-card.at-max:not(.sel) { opacity:.38; cursor:not-allowed; pointer-events:none; }
+.style-card input  { position:absolute; opacity:0; pointer-events:none; }
+.sc-swatch         { height:32px; width:100%; flex-shrink:0; }
+.sc-check {
+  position:absolute; top:.4rem; right:.4rem;
+  width:16px; height:16px; border-radius:50%;
+  background:var(--gold);
+  display:flex; align-items:center; justify-content:center;
+  font-size:.5rem; font-weight:800; color:var(--navy);
+  opacity:0; transform:scale(.5); transition:all var(--tr);
+}
+.style-card.sel .sc-check { opacity:1; transform:scale(1); }
+.sc-label { font-size:.74rem; font-weight:600; color:var(--navy); line-height:1.3; padding:.5rem .6rem .55rem; }
+
+/* ══ STAGE 4 — INSPIRATION URL ROWS ════════════════════════════════ */
+.insp-url-row { display:flex; flex-direction:column; gap:.55rem; }
+.insp-url-item { display:flex; flex-direction:column; gap:4px; }
+.insp-url-num  { font-size:.63rem; font-weight:700; color:var(--gray-400); letter-spacing:.1em; text-transform:uppercase; }
+
+/* ══ STAGE 4 — LOGO INFO MESSAGE ════════════════════════════════════ */
+.logo-info-msg {
+  margin-top:.7rem;
+  background:var(--gray-50);
+  border:1px solid var(--gray-100);
+  border-radius:var(--radius);
+  padding:.7rem 1rem;
+  font-size:.78rem; color:var(--gray-600); line-height:1.55;
+}
+.logo-info-msg strong { color:var(--navy); }
 </style>
 </head>
 <body>
@@ -428,6 +476,12 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
 <input type="hidden" name="automation_notification_types" id="hAutoNotifTypes">
 <!-- Internal automation signal — never shown to customer -->
 <input type="hidden" name="automation_requested"          id="autoRequested">
+<!-- Stage 4 — Design hidden inputs -->
+<input type="hidden" name="design_style_vibes"         id="hDesignStyleVibes">
+<input type="hidden" name="design_brand_colors_status" id="hBrandColorsStatus">
+<input type="hidden" name="design_logo_status"         id="hLogoStatus">
+<input type="hidden" name="design_inspiration_likes"   id="hInspirationLikes">
+<input type="hidden" name="design_animation_level"     id="hAnimationLevel">
 <!-- Internal quote tool signals — never shown to customer -->
 <input type="hidden" name="quote_instant_price"        id="qInstantPrice">
 <input type="hidden" name="quote_price_range"          id="qPriceRange">
@@ -1677,14 +1731,312 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
   </div>
   <!-- /STAGE 3 -->
 
+  <!-- ══════════════════════════════════════
+       STAGE 4 — DESIGN
+  ══════════════════════════════════════ -->
   <div class="df-panel" id="panel-4">
+
     <div class="s-intro">
       <span class="s-eyebrow">Stage 4 of 6 &middot; Design</span>
-      <h2 class="s-title">Design</h2>
-      <p class="s-sub">Coming up next — we're building this section now.</p>
+      <h2 class="s-title">What should your website feel like?</h2>
+      <p class="s-sub">You don't need to know design terminology. Tell us what feels right for your brand, and we'll turn that direction into a polished website experience.</p>
     </div>
-    <div class="s-nav"><button type="button" class="btn-back" onclick="goBack(4)">← Back</button></div>
+
+    <!-- ── 1. OVERALL STYLE ── -->
+    <div class="df-card">
+      <h3 class="df-card-title">Overall Style</h3>
+      <p class="df-card-sub">Which styles feel closest to your brand?</p>
+      <div class="field-section">
+        <span class="f-hint" style="display:block;margin-bottom:.75rem;">Select up to 3.</span>
+        <div class="style-grid" id="styleVibeGrid">
+
+          <label class="style-card" onclick="toggleStyleVibe(this,'Modern & Clean')">
+            <input type="checkbox">
+            <div class="sc-swatch" style="background:linear-gradient(135deg,#f7f7f5 0%,#e3e3df 100%);"></div>
+            <div class="sc-check">✓</div>
+            <div class="sc-label">Modern &amp; Clean</div>
+          </label>
+
+          <label class="style-card" onclick="toggleStyleVibe(this,'Luxury & Premium')">
+            <input type="checkbox">
+            <div class="sc-swatch" style="background:linear-gradient(135deg,#1a1528 0%,#C9A84C 100%);"></div>
+            <div class="sc-check">✓</div>
+            <div class="sc-label">Luxury &amp; Premium</div>
+          </label>
+
+          <label class="style-card" onclick="toggleStyleVibe(this,'Bold & High-Energy')">
+            <input type="checkbox">
+            <div class="sc-swatch" style="background:linear-gradient(135deg,#FF416C 0%,#FF8C42 100%);"></div>
+            <div class="sc-check">✓</div>
+            <div class="sc-label">Bold &amp; High-Energy</div>
+          </label>
+
+          <label class="style-card" onclick="toggleStyleVibe(this,'Minimal & Simple')">
+            <input type="checkbox">
+            <div class="sc-swatch" style="background:#FAFAFA;border-bottom:1px solid #e8e8e4;"></div>
+            <div class="sc-check">✓</div>
+            <div class="sc-label">Minimal &amp; Simple</div>
+          </label>
+
+          <label class="style-card" onclick="toggleStyleVibe(this,'Professional & Corporate')">
+            <input type="checkbox">
+            <div class="sc-swatch" style="background:linear-gradient(135deg,#0B1D3A 0%,#2d5986 100%);"></div>
+            <div class="sc-check">✓</div>
+            <div class="sc-label">Professional &amp; Corporate</div>
+          </label>
+
+          <label class="style-card" onclick="toggleStyleVibe(this,'Elegant & Refined')">
+            <input type="checkbox">
+            <div class="sc-swatch" style="background:linear-gradient(135deg,#F3EBE1 0%,#C8A882 100%);"></div>
+            <div class="sc-check">✓</div>
+            <div class="sc-label">Elegant &amp; Refined</div>
+          </label>
+
+          <label class="style-card" onclick="toggleStyleVibe(this,'Creative & Artistic')">
+            <input type="checkbox">
+            <div class="sc-swatch" style="background:linear-gradient(135deg,#7b2ff7 0%,#f107a3 60%,#ffd700 100%);"></div>
+            <div class="sc-check">✓</div>
+            <div class="sc-label">Creative &amp; Artistic</div>
+          </label>
+
+          <label class="style-card" onclick="toggleStyleVibe(this,'Fun & Playful')">
+            <input type="checkbox">
+            <div class="sc-swatch" style="background:linear-gradient(135deg,#84fab0 0%,#8fd3f4 50%,#f7b7d3 100%);"></div>
+            <div class="sc-check">✓</div>
+            <div class="sc-label">Fun &amp; Playful</div>
+          </label>
+
+          <label class="style-card" onclick="toggleStyleVibe(this,'Tech & Futuristic')">
+            <input type="checkbox">
+            <div class="sc-swatch" style="background:linear-gradient(135deg,#0a0a1a 0%,#0057b8 60%,#00ccff 100%);"></div>
+            <div class="sc-check">✓</div>
+            <div class="sc-label">Tech &amp; Futuristic</div>
+          </label>
+
+          <label class="style-card" onclick="toggleStyleVibe(this,'Warm & Approachable')">
+            <input type="checkbox">
+            <div class="sc-swatch" style="background:linear-gradient(135deg,#FF9A56 0%,#FFD080 100%);"></div>
+            <div class="sc-check">✓</div>
+            <div class="sc-label">Warm &amp; Approachable</div>
+          </label>
+
+          <label class="style-card" onclick="toggleStyleVibe(this,'Editorial / Magazine')">
+            <input type="checkbox">
+            <div class="sc-swatch" style="background:linear-gradient(135deg,#1a1a1a 0%,#666 55%,#f0f0f0 100%);"></div>
+            <div class="sc-check">✓</div>
+            <div class="sc-label">Editorial / Magazine</div>
+          </label>
+
+          <label class="style-card" onclick="toggleStyleVibe(this,'Not sure — recommend')">
+            <input type="checkbox">
+            <div class="sc-swatch" style="background:linear-gradient(135deg,#e0dcd3 0%,#b8b4ac 100%);"></div>
+            <div class="sc-check">✓</div>
+            <div class="sc-label">I'm Not Sure — Recommend</div>
+          </label>
+
+        </div>
+        <span class="f-err" id="e-styleVibes">Please select at least one style.</span>
+      </div>
+    </div>
+
+    <!-- ── 2. COLORS & BRANDING ── -->
+    <div class="df-card">
+      <h3 class="df-card-title">Colors &amp; Branding</h3>
+
+      <div class="field-section">
+        <span class="field-section-label">Do you already have brand colors? <span class="req">*</span></span>
+        <div class="cc-row" id="brandColorsRow" style="flex-wrap:wrap;">
+          <label class="cc" onclick="pickBrandColors(this,'yes')">
+            <input type="radio" name="_brandColors">
+            <div class="cc-check">✓</div>
+            <div class="cc-label">Yes — I want to use my existing colors</div>
+          </label>
+          <label class="cc" onclick="pickBrandColors(this,'partial')">
+            <input type="radio" name="_brandColors">
+            <div class="cc-check">✓</div>
+            <div class="cc-label">I have colors, but I'm open to changes</div>
+          </label>
+          <label class="cc" onclick="pickBrandColors(this,'no')">
+            <input type="radio" name="_brandColors">
+            <div class="cc-check">✓</div>
+            <div class="cc-label">No — I need help choosing them</div>
+          </label>
+          <label class="cc" onclick="pickBrandColors(this,'not-sure')">
+            <input type="radio" name="_brandColors">
+            <div class="cc-check">✓</div>
+            <div class="cc-label">I'm not sure</div>
+          </label>
+        </div>
+        <span class="f-err" id="e-brandColors">Please select an option.</span>
+
+        <div class="reveal" id="rev-brandColorDetails">
+          <div class="reveal-inner">
+            <div class="fg" style="margin-bottom:.75rem;">
+              <label class="f-label" for="brandColorDesc">What colors are part of your brand?</label>
+              <span class="f-hint">Optional — no hex codes needed.</span>
+              <input type="text" id="brandColorDesc" name="design_brand_colors" placeholder="e.g. Navy blue, white and gold" style="margin-top:6px;">
+            </div>
+            <div class="fg">
+              <label class="f-label" for="brandColorsAvoid">Are there any colors you definitely do NOT want used?</label>
+              <input type="text" id="brandColorsAvoid" name="design_colors_to_avoid" placeholder="e.g. Orange, neon green, bright yellow" style="margin-top:6px;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 3. LOGO ── -->
+    <div class="df-card">
+      <h3 class="df-card-title">Logo</h3>
+
+      <div class="field-section">
+        <span class="field-section-label">Do you already have a logo? <span class="req">*</span></span>
+        <div class="cc-row" id="logoStatusRow" style="flex-wrap:wrap;">
+          <label class="cc" onclick="pickLogoStatus(this,'yes-ready')">
+            <input type="radio" name="_logoStatus">
+            <div class="cc-check">✓</div>
+            <div class="cc-label">Yes — I have a logo ready</div>
+          </label>
+          <label class="cc" onclick="pickLogoStatus(this,'yes-needs-refresh')">
+            <input type="radio" name="_logoStatus">
+            <div class="cc-check">✓</div>
+            <div class="cc-label">Yes — but it may need a refresh</div>
+          </label>
+          <label class="cc" onclick="pickLogoStatus(this,'no-need-logo')">
+            <input type="radio" name="_logoStatus">
+            <div class="cc-check">✓</div>
+            <div class="cc-label">No — I need a logo</div>
+          </label>
+          <label class="cc" onclick="pickLogoStatus(this,'no-not-needed')">
+            <input type="radio" name="_logoStatus">
+            <div class="cc-check">✓</div>
+            <div class="cc-label">No logo needed right now</div>
+          </label>
+        </div>
+        <span class="f-err" id="e-logoStatus">Please select an option.</span>
+        <div class="logo-info-msg">You'll be able to provide your logo and brand files during the project process.</div>
+      </div>
+    </div>
+
+    <!-- ── 4. WEBSITE INSPIRATION ── -->
+    <div class="df-card">
+      <h3 class="df-card-title">Website Inspiration</h3>
+      <p class="df-card-sub">Are there any websites whose design or experience you like? They don't have to be in your industry — share examples that have the look, feel, layout, or experience you want us to understand.</p>
+
+      <div class="field-section">
+        <span class="field-section-label" style="margin-bottom:.65rem;">Share up to 3 links</span>
+        <div class="insp-url-row">
+          <div class="insp-url-item">
+            <span class="insp-url-num">Website #1</span>
+            <input type="text" id="inspUrl1" name="design_inspiration_url_1" placeholder="e.g. https://example.com">
+          </div>
+          <div class="insp-url-item">
+            <span class="insp-url-num">Website #2</span>
+            <input type="text" id="inspUrl2" name="design_inspiration_url_2" placeholder="e.g. https://example.com">
+          </div>
+          <div class="insp-url-item">
+            <span class="insp-url-num">Website #3</span>
+            <input type="text" id="inspUrl3" name="design_inspiration_url_3" placeholder="e.g. https://example.com">
+          </div>
+        </div>
+      </div>
+
+      <div class="field-section" style="margin-top:1.35rem;">
+        <span class="field-section-label">What do you like about these examples?</span>
+        <span class="f-hint" style="display:block;margin-bottom:.65rem;">Select all that apply.</span>
+        <div class="pill-grid" id="inspLikesGrid">
+          <label class="chk-pill" onclick="toggleInspLike(this,'Overall look and feel')"><input type="checkbox">Overall look and feel</label>
+          <label class="chk-pill" onclick="toggleInspLike(this,'Colors')"><input type="checkbox">Colors</label>
+          <label class="chk-pill" onclick="toggleInspLike(this,'Layout')"><input type="checkbox">Layout</label>
+          <label class="chk-pill" onclick="toggleInspLike(this,'Typography')"><input type="checkbox">Typography</label>
+          <label class="chk-pill" onclick="toggleInspLike(this,'Photography / imagery')"><input type="checkbox">Photography / imagery</label>
+          <label class="chk-pill" onclick="toggleInspLike(this,'Animation')"><input type="checkbox">Animation</label>
+          <label class="chk-pill" onclick="toggleInspLike(this,'Navigation')"><input type="checkbox">Navigation</label>
+          <label class="chk-pill" onclick="toggleInspLike(this,'Interactive features')"><input type="checkbox">Interactive features</label>
+          <label class="chk-pill" onclick="toggleInspLike(this,'Luxury / premium feel')"><input type="checkbox">Luxury / premium feel</label>
+          <label class="chk-pill" onclick="toggleInspLike(this,'Simplicity')"><input type="checkbox">Simplicity</label>
+          <label class="chk-pill" data-ilval="other" onclick="toggleInspLike(this,'Something else')"><input type="checkbox">Something else</label>
+        </div>
+        <div class="reveal" id="rev-inspLikeOther">
+          <div class="reveal-inner">
+            <div class="fg">
+              <label class="f-label" for="inspLikeOther">What caught your attention?</label>
+              <input type="text" id="inspLikeOther" name="design_inspiration_other" placeholder="Describe what stood out">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 5. ANIMATION & INTERACTION ── -->
+    <div class="df-card">
+      <h3 class="df-card-title">Animation &amp; Interaction</h3>
+
+      <div class="field-section">
+        <span class="field-section-label">How much movement and interaction would you like on your website? <span class="req">*</span></span>
+        <div class="action-list" id="animationLevelList" style="margin-top:.6rem;">
+          <label class="action-item multi-line" onclick="pickAnimationLevel(this,'subtle')">
+            <input type="radio" name="_animationLevel">
+            <div class="action-dot"></div>
+            <div>
+              <span class="action-label">Subtle &amp; Polished</span>
+              <p class="action-item-sub">Clean transitions, gentle movement, hover effects, and small touches that make the site feel premium without drawing too much attention.</p>
+            </div>
+          </label>
+          <label class="action-item multi-line" onclick="pickAnimationLevel(this,'interactive')">
+            <input type="radio" name="_animationLevel">
+            <div class="action-dot"></div>
+            <div>
+              <span class="action-label">Interactive</span>
+              <p class="action-item-sub">More noticeable movement, scrolling effects, animated sections, interactive cards, and engaging transitions.</p>
+            </div>
+          </label>
+          <label class="action-item multi-line" onclick="pickAnimationLevel(this,'bold')">
+            <input type="radio" name="_animationLevel">
+            <div class="action-dot"></div>
+            <div>
+              <span class="action-label">Bold &amp; Immersive</span>
+              <p class="action-item-sub">A more dramatic experience with strong animation, visual storytelling, interactive effects, and memorable transitions.</p>
+            </div>
+          </label>
+          <label class="action-item multi-line" onclick="pickAnimationLevel(this,'minimal')">
+            <input type="radio" name="_animationLevel">
+            <div class="action-dot"></div>
+            <div>
+              <span class="action-label">Minimal</span>
+              <p class="action-item-sub">Very little animation. Keep the experience clean, simple, and focused.</p>
+            </div>
+          </label>
+          <label class="action-item" onclick="pickAnimationLevel(this,'not-sure')">
+            <input type="radio" name="_animationLevel">
+            <div class="action-dot"></div>
+            <span class="action-label">I'm Not Sure — Recommend</span>
+          </label>
+        </div>
+        <span class="f-err" id="e-animationLevel">Please select an option.</span>
+      </div>
+
+      <div class="field-section" style="margin-top:1.35rem;">
+        <span class="field-section-label">Is there a specific visual effect or website experience you have in mind?</span>
+        <span class="f-hint" style="display:block;margin-bottom:.55rem;">Optional. For example: a dramatic opening animation, scrolling effects, video backgrounds, interactive product displays, before-and-after sliders, moving text, or anything else you've seen and loved.</span>
+        <div class="fg">
+          <textarea id="animationNotes" name="design_animation_notes" placeholder="Describe what you have in mind…" rows="3" maxlength="600" oninput="updateCount(this,'cAnimNotes')"></textarea>
+          <div class="char-count"><span id="cAnimNotes">0</span> / 600</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="s-nav">
+      <button type="button" class="btn-back" onclick="goBack(4)">← Back</button>
+      <button type="button" class="btn-continue" onclick="goNext(4)">
+        Continue to Project Details <span class="arr">→</span>
+      </button>
+    </div>
+    <p class="next-hint">Next: <strong>Project Details</strong> — timeline, budget, and contact.</p>
+
   </div>
+  <!-- /STAGE 4 -->
 
   <div class="df-panel" id="panel-5">
     <div class="s-intro">
@@ -1905,6 +2257,7 @@ function goNext(from) {
   if (from === 1 && !validateStage1()) return;
   if (from === 2) { if (!validateStage2()) return; initStage3(); }
   if (from === 3 && !validateStage3()) return;
+  if (from === 4 && !validateStage4()) return;
   showPanel(from + 1);
 }
 function goBack(from) {
@@ -2369,6 +2722,85 @@ function validateStage3() {
     }
   }
 
+  if (!ok) {
+    const first = document.querySelector('.f-err.show');
+    if (first) first.scrollIntoView({ behavior:'smooth', block:'center' });
+  }
+  return ok;
+}
+
+/* ══ STAGE 4 — DESIGN ══════════════════════════════════════════════ */
+
+/* Style vibes (multi-select, max 3) */
+const selectedStyleVibes = new Set();
+function toggleStyleVibe(card, value) {
+  if (card.classList.contains('sel')) {
+    card.classList.remove('sel');
+    selectedStyleVibes.delete(value);
+  } else {
+    if (selectedStyleVibes.size >= 3) return;
+    card.classList.add('sel');
+    selectedStyleVibes.add(value);
+  }
+  document.getElementById('hDesignStyleVibes').value = [...selectedStyleVibes].join(', ');
+  // Dim unselected cards when at max
+  const atMax = selectedStyleVibes.size >= 3;
+  document.querySelectorAll('#styleVibeGrid .style-card').forEach(c => {
+    c.classList.toggle('at-max', atMax && !c.classList.contains('sel'));
+  });
+  clearErr('e-styleVibes');
+}
+
+/* Brand colors */
+function pickBrandColors(card, value) {
+  document.querySelectorAll('#brandColorsRow .cc').forEach(c => c.classList.remove('sel'));
+  card.classList.add('sel');
+  document.getElementById('hBrandColorsStatus').value = value;
+  reveal('rev-brandColorDetails', value === 'yes' || value === 'partial');
+  clearErr('e-brandColors');
+}
+
+/* Logo status */
+function pickLogoStatus(card, value) {
+  document.querySelectorAll('#logoStatusRow .cc').forEach(c => c.classList.remove('sel'));
+  card.classList.add('sel');
+  document.getElementById('hLogoStatus').value = value;
+  clearErr('e-logoStatus');
+}
+
+/* Inspiration likes */
+const selectedInspLikes = new Set();
+function toggleInspLike(pill, value) {
+  pill.classList.toggle('sel');
+  if (selectedInspLikes.has(value)) selectedInspLikes.delete(value);
+  else selectedInspLikes.add(value);
+  document.getElementById('hInspirationLikes').value = [...selectedInspLikes].join(', ');
+  reveal('rev-inspLikeOther', selectedInspLikes.has('Something else'));
+}
+
+/* Animation level */
+function pickAnimationLevel(item, value) {
+  document.querySelectorAll('#animationLevelList .action-item').forEach(i => i.classList.remove('sel'));
+  item.classList.add('sel');
+  document.getElementById('hAnimationLevel').value = value;
+  clearErr('e-animationLevel');
+}
+
+/* Stage 4 validation */
+function validateStage4() {
+  let ok = true;
+  if (selectedStyleVibes.size === 0) {
+    document.getElementById('e-styleVibes').classList.add('show'); ok = false;
+  }
+  if (!document.getElementById('hBrandColorsStatus').value) {
+    document.getElementById('e-brandColors').classList.add('show'); ok = false;
+  }
+  if (!document.getElementById('hLogoStatus').value) {
+    document.getElementById('e-logoStatus').classList.add('show'); ok = false;
+  }
+  if (!document.getElementById('hAnimationLevel').value) {
+    document.getElementById('e-animationLevel').classList.add('show'); ok = false;
+  }
   if (!ok) {
     const first = document.querySelector('.f-err.show');
     if (first) first.scrollIntoView({ behavior:'smooth', block:'center' });
