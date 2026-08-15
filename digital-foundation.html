@@ -2026,6 +2026,18 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
       </div>
     </div>
 
+    <!-- Final optional question -->
+    <div class="df-card">
+      <div class="field-section" style="margin-top:0;">
+        <span class="field-section-label">Is there anything you definitely do NOT want your website to look or feel like?</span>
+        <span class="f-hint" style="display:block;margin-bottom:.55rem;">Optional. Sometimes knowing what you dislike is just as helpful as knowing what you like.</span>
+        <div class="fg">
+          <textarea id="designDislikes" name="design_dislikes" placeholder="Describe any styles, colors, layouts, or experiences you want to avoid…" rows="3" maxlength="600" oninput="updateCount(this,'cDesignDislikes')"></textarea>
+          <div class="char-count"><span id="cDesignDislikes">0</span> / 600</div>
+        </div>
+      </div>
+    </div>
+
     <!-- Navigation -->
     <div class="s-nav">
       <button type="button" class="btn-back" onclick="goBack(4)">← Back</button>
@@ -2033,7 +2045,7 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
         Continue to Project Details <span class="arr">→</span>
       </button>
     </div>
-    <p class="next-hint">Next: <strong>Project Details</strong> — timeline, budget, and contact.</p>
+    <p class="next-hint">Next: <strong>Project Details</strong> — timeline, content, investment, and anything else we should know.</p>
 
   </div>
   <!-- /STAGE 4 -->
