@@ -1598,57 +1598,51 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
 
         <!-- Q1: What to automate? -->
         <div class="field-section">
-          <span class="field-section-label">What repetitive tasks would you like your website to help automate? <span class="req">*</span></span>
+          <span class="field-section-label">What would you like to automate? <span class="req">*</span></span>
           <span class="f-hint" style="display:block;margin-bottom:.65rem;">Select all that apply.</span>
           <div class="pill-grid" id="autoTasksGrid">
-            <label class="chk-pill" onclick="toggleAutoTask(this,'Send confirmation emails')"><input type="checkbox">Send confirmation emails</label>
-            <label class="chk-pill" onclick="toggleAutoTask(this,'Send confirmation text messages')"><input type="checkbox">Send confirmation text messages</label>
-            <label class="chk-pill" onclick="toggleAutoTask(this,'Send appointment reminders')"><input type="checkbox">Send appointment reminders</label>
-            <label class="chk-pill" onclick="toggleAutoTask(this,'Follow up with new leads')"><input type="checkbox">Follow up with new leads</label>
-            <label class="chk-pill" onclick="toggleAutoTask(this,'Follow up after a service')"><input type="checkbox">Follow up after a service</label>
-            <label class="chk-pill" onclick="toggleAutoTask(this,'Add leads to a customer management system')"><input type="checkbox">Add leads to a customer management system</label>
-            <label class="chk-pill" onclick="toggleAutoTask(this,'Update customer information')"><input type="checkbox">Update customer information</label>
-            <label class="chk-pill" onclick="toggleAutoTask(this,'Notify staff when a lead arrives')"><input type="checkbox">Notify staff when a lead arrives</label>
-            <label class="chk-pill" onclick="toggleAutoTask(this,'Notify staff when a payment is made')"><input type="checkbox">Notify staff when a payment is made</label>
-            <label class="chk-pill" onclick="toggleAutoTask(this,'Send documents automatically')"><input type="checkbox">Send documents automatically</label>
-            <label class="chk-pill" onclick="toggleAutoTask(this,'Send invoices or payment links')"><input type="checkbox">Send invoices or payment links</label>
-            <label class="chk-pill" onclick="toggleAutoTask(this,'Trigger follow-up after booking')"><input type="checkbox">Trigger follow-up after booking</label>
-            <label class="chk-pill" onclick="toggleAutoTask(this,'Trigger follow-up after payment')"><input type="checkbox">Trigger follow-up after payment</label>
-            <label class="chk-pill" onclick="toggleAutoTask(this,'Assign leads to staff members')"><input type="checkbox">Assign leads to staff members</label>
-            <label class="chk-pill" onclick="toggleAutoTask(this,'Move customers through different stages')"><input type="checkbox">Move customers through different stages</label>
-            <label class="chk-pill" onclick="toggleAutoTask(this,'Request reviews after service')"><input type="checkbox">Request reviews after service</label>
-            <label class="chk-pill" onclick="toggleAutoTask(this,'Send membership or subscription reminders')"><input type="checkbox">Send membership or subscription reminders</label>
-            <label class="chk-pill" data-atval="other"     onclick="toggleAutoTask(this,'Something else')"><input type="checkbox">Something else</label>
-            <label class="chk-pill" data-atval="not-sure"  onclick="toggleAutoTask(this,'Not sure — recommend what makes sense')"><input type="checkbox">I'm not sure — recommend what makes sense</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Lead follow-up')"><input type="checkbox">Lead follow-up</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Booking confirmations and reminders')"><input type="checkbox">Booking confirmations and reminders</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Customer emails or text messages')"><input type="checkbox">Customer emails or text messages</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Payment follow-up')"><input type="checkbox">Payment follow-up</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Staff notifications')"><input type="checkbox">Staff notifications</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Customer records / CRM updates')"><input type="checkbox">Customer records / CRM updates</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Documents or forms')"><input type="checkbox">Documents or forms</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Invoices or payment links')"><input type="checkbox">Invoices or payment links</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Review requests')"><input type="checkbox">Review requests</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Membership or subscription communication')"><input type="checkbox">Membership or subscription communication</label>
+            <label class="chk-pill" onclick="toggleAutoTask(this,'Customer onboarding')"><input type="checkbox">Customer onboarding</label>
+            <label class="chk-pill" data-atval="other"    onclick="toggleAutoTask(this,'Something custom')"><input type="checkbox">Something custom</label>
+            <label class="chk-pill" data-atval="not-sure" onclick="toggleAutoTask(this,'Not sure — recommend what makes sense')"><input type="checkbox">I'm not sure — recommend what makes sense</label>
           </div>
           <span class="f-err" id="e-autoTasks">Please select at least one option.</span>
           <div class="reveal" id="rev-autoTaskOther">
             <div class="reveal-inner">
               <div class="fg">
-                <label class="f-label" for="autoTaskOther">Tell us what you would like to automate.</label>
-                <textarea id="autoTaskOther" name="automation_task_other" placeholder="Describe the task in plain language." rows="3" maxlength="400" oninput="updateCount(this,'cAutoTask')"></textarea>
-                <div class="char-count"><span id="cAutoTask">0</span> / 400</div>
+                <label class="f-label" for="autoTaskOther">What would you like to automate?</label>
+                <input type="text" id="autoTaskOther" name="automation_task_other" placeholder="Describe it in plain language.">
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Q2: Which tools do you already use? -->
+        <!-- Q2: Which business tools do you currently use? -->
         <div class="field-section" style="margin-top:1.35rem;">
-          <span class="field-section-label">Which business tools do you already use? <span class="req">*</span></span>
+          <span class="field-section-label">What business tools do you currently use? <span class="req">*</span></span>
           <span class="f-hint" style="display:block;margin-bottom:.65rem;">Select all that apply.</span>
           <div class="pill-grid" id="autoSystemsGrid">
-            <label class="chk-pill" onclick="toggleAutoSystem(this,'CRM / customer management system')"><input type="checkbox">CRM / customer management system</label>
+            <label class="chk-pill" onclick="toggleAutoSystem(this,'CRM / customer management')"><input type="checkbox">CRM / customer management</label>
             <label class="chk-pill" onclick="toggleAutoSystem(this,'Booking software')"><input type="checkbox">Booking software</label>
-            <label class="chk-pill" onclick="toggleAutoSystem(this,'Email marketing platform')"><input type="checkbox">Email marketing platform</label>
+            <label class="chk-pill" onclick="toggleAutoSystem(this,'Email marketing')"><input type="checkbox">Email marketing</label>
             <label class="chk-pill" onclick="toggleAutoSystem(this,'SMS / text platform')"><input type="checkbox">SMS / text platform</label>
             <label class="chk-pill" onclick="toggleAutoSystem(this,'Payment processor')"><input type="checkbox">Payment processor</label>
             <label class="chk-pill" onclick="toggleAutoSystem(this,'Accounting software')"><input type="checkbox">Accounting software</label>
             <label class="chk-pill" onclick="toggleAutoSystem(this,'E-commerce platform')"><input type="checkbox">E-commerce platform</label>
             <label class="chk-pill" onclick="toggleAutoSystem(this,'Customer portal')"><input type="checkbox">Customer portal</label>
             <label class="chk-pill" onclick="toggleAutoSystem(this,'Project management software')"><input type="checkbox">Project management software</label>
-            <label class="chk-pill" data-sval="none"  onclick="toggleAutoSystem(this,'None yet')"><input type="checkbox">None yet</label>
             <label class="chk-pill" data-sval="other" onclick="toggleAutoSystem(this,'Other')"><input type="checkbox">Other</label>
+            <label class="chk-pill" data-sval="none"  onclick="toggleAutoSystem(this,'None yet')"><input type="checkbox">None yet</label>
+            <label class="chk-pill" data-sval="none"  onclick="toggleAutoSystem(this,'Not sure')"><input type="checkbox">I'm not sure</label>
           </div>
           <span class="f-err" id="e-autoSystems">Please select at least one option.</span>
           <div class="reveal" id="rev-autoSystemOther">
@@ -1658,12 +1652,12 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
           </div>
         </div>
 
-        <!-- Q3: Manual pain points (always shown, optional) -->
+        <!-- Q3: Manual pain points (optional) -->
         <div class="field-section" style="margin-top:1.35rem;">
-          <span class="field-section-label">Is there a manual process in your business that you wish could happen automatically?</span>
-          <span class="f-hint" style="display:block;margin-bottom:.55rem;">Optional. Tell us what your team currently does by hand — we'll determine whether the website or connected systems can help automate it.</span>
+          <span class="field-section-label">Is there something your team currently does manually that you wish happened automatically?</span>
+          <span class="f-hint" style="display:block;margin-bottom:.55rem;">Optional. Describe it in plain language — we'll determine whether your website or connected systems can automate it.</span>
           <div class="fg">
-            <textarea id="autoManualPain" name="automation_manual_pain_points" placeholder="Describe a repetitive task your team handles manually…" rows="3" maxlength="600" oninput="updateCount(this,'cAutoManualPain')"></textarea>
+            <textarea id="autoManualPain" name="automation_manual_pain_points" placeholder="Describe it in plain language…" rows="3" maxlength="600" oninput="updateCount(this,'cAutoManualPain')"></textarea>
             <div class="char-count"><span id="cAutoManualPain">0</span> / 600</div>
           </div>
         </div>
@@ -2275,7 +2269,7 @@ function toggleAutoTask(pill, value) {
   if (selectedAutoTasks.has(value)) selectedAutoTasks.delete(value);
   else selectedAutoTasks.add(value);
   document.getElementById('hAutoTasks').value = [...selectedAutoTasks].join(', ');
-  reveal('rev-autoTaskOther', selectedAutoTasks.has('Something else'));
+  reveal('rev-autoTaskOther', selectedAutoTasks.has('Something custom'));
   clearErr('e-autoTasks');
 }
 
@@ -2292,8 +2286,10 @@ function toggleAutoSystem(pill, value) {
     selectedAutoSystems.add(value);
     reveal('rev-autoSystemOther', false);
   } else {
-    // Deselect "None yet" if any real tool is picked
-    allPills.forEach(p => { if (p.dataset.sval === 'none') { p.classList.remove('sel'); selectedAutoSystems.delete('None yet'); } });
+    // Deselect "None yet" / "Not sure" if any real tool is picked
+    allPills.forEach(p => { if (p.dataset.sval === 'none') p.classList.remove('sel'); });
+    selectedAutoSystems.delete('None yet');
+    selectedAutoSystems.delete('Not sure');
     pill.classList.toggle('sel');
     if (selectedAutoSystems.has(value)) selectedAutoSystems.delete(value);
     else selectedAutoSystems.add(value);
