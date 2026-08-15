@@ -408,7 +408,7 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
 <input type="hidden" name="quote_addons"               id="hQuoteAddOns">
 <!-- Stage 3 — AI hidden inputs -->
 <input type="hidden" name="ai_tasks"              id="hAiTasks">
-<input type="hidden" name="ai_involvement"        id="hAiInvolvement">
+<input type="hidden" name="ai_experience_level"   id="hAiExperienceLevel">
 <input type="hidden" name="ai_knowledge"          id="hAiKnowledge">
 <input type="hidden" name="ai_handoff"            id="hAiHandoff">
 <input type="hidden" name="ai_voice_channel"      id="hAiVoiceChannel">
@@ -1540,6 +1540,53 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
           </div>
         </div>
 
+        <!-- Q2: How advanced? -->
+        <div class="field-section" style="margin-top:1.35rem;">
+          <span class="field-section-label">How advanced do you want your AI experience to be? <span class="req">*</span></span>
+          <div class="action-list" id="aiExperienceList" style="margin-top:.6rem;">
+            <label class="action-item multi-line" onclick="pickAiExperience(this,'ai-assistant')">
+              <input type="radio" name="_aiExperience">
+              <div class="action-dot"></div>
+              <div>
+                <span class="action-label">AI Assistant</span>
+                <p class="action-item-sub">Answers questions, explains your services, guides visitors, and captures leads — no connection to your existing systems required.</p>
+              </div>
+            </label>
+            <label class="action-item multi-line" onclick="pickAiExperience(this,'ai-agent')">
+              <input type="radio" name="_aiExperience">
+              <div class="action-dot"></div>
+              <div>
+                <span class="action-label">AI Agent</span>
+                <p class="action-item-sub">Everything an Assistant does, plus connects to your approved business tools to take actions — like booking appointments, updating records, or sending follow-up messages.</p>
+              </div>
+            </label>
+            <label class="action-item multi-line" onclick="pickAiExperience(this,'voice-ai')">
+              <input type="radio" name="_aiExperience">
+              <div class="action-dot"></div>
+              <div>
+                <span class="action-label">Voice AI</span>
+                <p class="action-item-sub">Speaks with customers directly — by phone or on your website. Like a virtual receptionist available around the clock.</p>
+              </div>
+            </label>
+            <label class="action-item" onclick="pickAiExperience(this,'not-sure')">
+              <input type="radio" name="_aiExperience">
+              <div class="action-dot"></div>
+              <span class="action-label">I'm not sure — recommend what makes sense</span>
+            </label>
+          </div>
+          <span class="f-err" id="e-aiExperience">Please select an option.</span>
+        </div>
+
+        <!-- Q3: Anything specific? (optional) -->
+        <div class="field-section" style="margin-top:1.35rem;">
+          <span class="field-section-label">Anything specific you'd like your AI assistant to be able to do?</span>
+          <span class="f-hint" style="display:block;margin-bottom:.55rem;">Optional — plain language is perfect.</span>
+          <div class="fg">
+            <textarea id="aiSpecificNotes" name="ai_specific_notes" placeholder="Describe any special requests, restrictions, or ideas you have in mind…" rows="3" maxlength="600" oninput="updateCount(this,'cAiNotes')"></textarea>
+            <div class="char-count"><span id="cAiNotes">0</span> / 600</div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -2188,10 +2235,11 @@ function toggleQuoteFactor(pill, value) {
 /* ══ AI ══ */
 
 function computeAiFlags() {
+  const experience = document.getElementById('hAiExperienceLevel').value;
   function af(id, val) { document.getElementById(id).value = val ? 'yes' : ''; }
   af('aiRequested',      document.getElementById('featAI').style.display !== 'none');
-  af('aiPerformsTasks',  selectedAiTasks.has('Perform approved tasks through connected business systems'));
-  af('aiVoiceRequested', selectedAiTasks.has('Talk with customers by phone or voice'));
+  af('aiPerformsTasks',  selectedAiTasks.has('Perform approved tasks through connected business systems') || experience === 'ai-agent');
+  af('aiVoiceRequested', selectedAiTasks.has('Talk with customers by phone or voice') || experience === 'voice-ai');
 }
 
 const selectedAiTasks = new Set();
@@ -2203,6 +2251,14 @@ function toggleAiTask(pill, value) {
   reveal('rev-aiTaskOther', selectedAiTasks.has('Something custom'));
   computeAiFlags();
   clearErr('e-aiTasks');
+}
+
+function pickAiExperience(item, value) {
+  document.querySelectorAll('#aiExperienceList .action-item').forEach(i => i.classList.remove('sel'));
+  item.classList.add('sel');
+  document.getElementById('hAiExperienceLevel').value = value;
+  computeAiFlags();
+  clearErr('e-aiExperience');
 }
 
 /* ══ AUTOMATION ══ */
@@ -2302,6 +2358,9 @@ function validateStage3() {
   if (showAI) {
     if (selectedAiTasks.size === 0) {
       document.getElementById('e-aiTasks').classList.add('show'); ok = false;
+    }
+    if (!document.getElementById('hAiExperienceLevel').value) {
+      document.getElementById('e-aiExperience').classList.add('show'); ok = false;
     }
   }
 
