@@ -1928,40 +1928,44 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
         <div class="insp-url-row">
           <div class="insp-url-item">
             <span class="insp-url-num">Website #1</span>
-            <input type="text" id="inspUrl1" name="design_inspiration_url_1" placeholder="e.g. https://example.com">
+            <input type="text" id="inspUrl1" name="design_inspiration_url_1" placeholder="e.g. https://example.com" oninput="checkInspUrls()">
           </div>
           <div class="insp-url-item">
             <span class="insp-url-num">Website #2</span>
-            <input type="text" id="inspUrl2" name="design_inspiration_url_2" placeholder="e.g. https://example.com">
+            <input type="text" id="inspUrl2" name="design_inspiration_url_2" placeholder="e.g. https://example.com" oninput="checkInspUrls()">
           </div>
           <div class="insp-url-item">
             <span class="insp-url-num">Website #3</span>
-            <input type="text" id="inspUrl3" name="design_inspiration_url_3" placeholder="e.g. https://example.com">
+            <input type="text" id="inspUrl3" name="design_inspiration_url_3" placeholder="e.g. https://example.com" oninput="checkInspUrls()">
           </div>
         </div>
       </div>
 
-      <div class="field-section" style="margin-top:1.35rem;">
-        <span class="field-section-label">What do you like about these examples?</span>
-        <span class="f-hint" style="display:block;margin-bottom:.65rem;">Select all that apply.</span>
-        <div class="pill-grid" id="inspLikesGrid">
-          <label class="chk-pill" onclick="toggleInspLike(this,'Overall look and feel')"><input type="checkbox">Overall look and feel</label>
-          <label class="chk-pill" onclick="toggleInspLike(this,'Colors')"><input type="checkbox">Colors</label>
-          <label class="chk-pill" onclick="toggleInspLike(this,'Layout')"><input type="checkbox">Layout</label>
-          <label class="chk-pill" onclick="toggleInspLike(this,'Typography')"><input type="checkbox">Typography</label>
-          <label class="chk-pill" onclick="toggleInspLike(this,'Photography / imagery')"><input type="checkbox">Photography / imagery</label>
-          <label class="chk-pill" onclick="toggleInspLike(this,'Animation')"><input type="checkbox">Animation</label>
-          <label class="chk-pill" onclick="toggleInspLike(this,'Navigation')"><input type="checkbox">Navigation</label>
-          <label class="chk-pill" onclick="toggleInspLike(this,'Interactive features')"><input type="checkbox">Interactive features</label>
-          <label class="chk-pill" onclick="toggleInspLike(this,'Luxury / premium feel')"><input type="checkbox">Luxury / premium feel</label>
-          <label class="chk-pill" onclick="toggleInspLike(this,'Simplicity')"><input type="checkbox">Simplicity</label>
-          <label class="chk-pill" data-ilval="other" onclick="toggleInspLike(this,'Something else')"><input type="checkbox">Something else</label>
-        </div>
-        <div class="reveal" id="rev-inspLikeOther">
-          <div class="reveal-inner">
-            <div class="fg">
-              <label class="f-label" for="inspLikeOther">What caught your attention?</label>
-              <input type="text" id="inspLikeOther" name="design_inspiration_other" placeholder="Describe what stood out">
+      <div class="reveal" id="rev-inspLikes">
+        <div class="reveal-inner">
+          <div class="field-section" style="margin-top:.35rem;">
+            <span class="field-section-label">What do you like about these examples?</span>
+            <span class="f-hint" style="display:block;margin-bottom:.65rem;">Select all that apply.</span>
+            <div class="pill-grid" id="inspLikesGrid">
+              <label class="chk-pill" onclick="toggleInspLike(this,'Overall look and feel')"><input type="checkbox">Overall look and feel</label>
+              <label class="chk-pill" onclick="toggleInspLike(this,'Colors')"><input type="checkbox">Colors</label>
+              <label class="chk-pill" onclick="toggleInspLike(this,'Layout')"><input type="checkbox">Layout</label>
+              <label class="chk-pill" onclick="toggleInspLike(this,'Typography')"><input type="checkbox">Typography</label>
+              <label class="chk-pill" onclick="toggleInspLike(this,'Photography / imagery')"><input type="checkbox">Photography / imagery</label>
+              <label class="chk-pill" onclick="toggleInspLike(this,'Animation')"><input type="checkbox">Animation</label>
+              <label class="chk-pill" onclick="toggleInspLike(this,'Navigation')"><input type="checkbox">Navigation</label>
+              <label class="chk-pill" onclick="toggleInspLike(this,'Interactive features')"><input type="checkbox">Interactive features</label>
+              <label class="chk-pill" onclick="toggleInspLike(this,'Luxury / premium feel')"><input type="checkbox">Luxury / premium feel</label>
+              <label class="chk-pill" onclick="toggleInspLike(this,'Simplicity')"><input type="checkbox">Simplicity</label>
+              <label class="chk-pill" data-ilval="other" onclick="toggleInspLike(this,'Something else')"><input type="checkbox">Something else</label>
+            </div>
+            <div class="reveal" id="rev-inspLikeOther">
+              <div class="reveal-inner">
+                <div class="fg">
+                  <label class="f-label" for="inspLikeOther">What caught your attention?</label>
+                  <input type="text" id="inspLikeOther" name="design_inspiration_other" placeholder="Describe what stood out">
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -2778,6 +2782,12 @@ function pickLogoStatus(card, value) {
   card.classList.add('sel');
   document.getElementById('hLogoStatus').value = value;
   clearErr('e-logoStatus');
+}
+
+/* Inspiration URL check — reveals likes question when any URL is entered */
+function checkInspUrls() {
+  const hasUrl = ['inspUrl1','inspUrl2','inspUrl3'].some(id => document.getElementById(id).value.trim() !== '');
+  reveal('rev-inspLikes', hasUrl);
 }
 
 /* Inspiration likes */
