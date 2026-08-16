@@ -2071,7 +2071,7 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
     <div class="df-card">
       <h3 class="df-card-title">Timeline</h3>
       <div class="field-section" style="margin-top:0;">
-        <span class="field-section-label">When are you hoping to launch? <span class="req">*</span></span>
+        <span class="field-section-label">When would you like to launch your website? <span class="req">*</span></span>
         <div class="action-list" id="timelineList" style="margin-top:.6rem;">
           <label class="action-item" onclick="pickTimeline(this,'asap')">
             <input type="radio" name="_timeline">
@@ -2108,9 +2108,10 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
         <div class="reveal" id="rev-specificDate">
           <div class="reveal-inner">
             <div class="fg" style="margin-top:.75rem;">
-              <label class="f-label" for="specificLaunchDate">What is your target launch date?</label>
+              <label class="f-label" for="specificLaunchDate">What date are you targeting? <span class="req">*</span></label>
               <input type="date" id="specificLaunchDate" name="project_launch_date">
               <p class="f-hint">We'll review your requested date against the size and complexity of your project.</p>
+              <span class="f-err" id="e-specificDate">Please select your target launch date.</span>
             </div>
           </div>
         </div>
@@ -2121,32 +2122,47 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
     <div class="df-card">
       <h3 class="df-card-title">Website Content</h3>
       <div class="field-section" style="margin-top:0;">
-        <span class="field-section-label">How ready is your written content? <span class="req">*</span></span>
+        <span class="field-section-label">How ready is your website content? <span class="req">*</span></span>
         <div class="action-list" id="contentReadinessList" style="margin-top:.6rem;">
-          <label class="action-item" onclick="pickContentReadiness(this,'ready')">
+          <label class="action-item multi-line" onclick="pickContentReadiness(this,'ready')">
             <input type="radio" name="_contentReadiness">
             <div class="action-dot"></div>
-            <span class="action-label">Ready to go — copy is written and ready</span>
+            <div>
+              <span class="action-label">Ready to go</span>
+              <p class="action-item-sub">I already have most or all of my website content.</p>
+            </div>
           </label>
-          <label class="action-item" onclick="pickContentReadiness(this,'some-ready')">
+          <label class="action-item multi-line" onclick="pickContentReadiness(this,'some-ready')">
             <input type="radio" name="_contentReadiness">
             <div class="action-dot"></div>
-            <span class="action-label">Some of it is ready</span>
+            <div>
+              <span class="action-label">Some of it is ready</span>
+              <p class="action-item-sub">I have some content, but I'll need help filling in the gaps.</p>
+            </div>
           </label>
-          <label class="action-item" onclick="pickContentReadiness(this,'need-help')">
+          <label class="action-item multi-line" onclick="pickContentReadiness(this,'need-help')">
             <input type="radio" name="_contentReadiness">
             <div class="action-dot"></div>
-            <span class="action-label">I need help writing it</span>
+            <div>
+              <span class="action-label">I need help writing it</span>
+              <p class="action-item-sub">I need help writing or improving most of my website content.</p>
+            </div>
           </label>
-          <label class="action-item" onclick="pickContentReadiness(this,'scratch')">
+          <label class="action-item multi-line" onclick="pickContentReadiness(this,'scratch')">
             <input type="radio" name="_contentReadiness">
             <div class="action-dot"></div>
-            <span class="action-label">Starting from scratch — nothing prepared yet</span>
+            <div>
+              <span class="action-label">Starting from scratch</span>
+              <p class="action-item-sub">I need the website content developed with me.</p>
+            </div>
           </label>
-          <label class="action-item" onclick="pickContentReadiness(this,'not-sure')">
+          <label class="action-item multi-line" onclick="pickContentReadiness(this,'not-sure')">
             <input type="radio" name="_contentReadiness">
             <div class="action-dot"></div>
-            <span class="action-label">I'm not sure — I'd like guidance</span>
+            <div>
+              <span class="action-label">I'm not sure — I'd like guidance</span>
+              <p class="action-item-sub">Help me determine what I'll need.</p>
+            </div>
           </label>
         </div>
         <span class="f-err" id="e-contentReadiness">Please select an option.</span>
@@ -2157,7 +2173,7 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
     <div class="df-card">
       <h3 class="df-card-title">Photos, Video &amp; Media</h3>
       <div class="field-section" style="margin-top:0;">
-        <span class="field-section-label">What do you currently have? <span class="req">*</span></span>
+        <span class="field-section-label">What do you currently have for website visuals? <span class="req">*</span></span>
         <span class="f-hint" style="display:block;margin-bottom:.65rem;">Select all that apply.</span>
         <div class="pill-grid" id="projectMediaGrid">
           <label class="chk-pill" data-mval="Professional photos" onclick="toggleMedia(this)"><input type="checkbox">Professional photos</label>
@@ -3017,6 +3033,11 @@ function pickTimeline(card, value) {
   card.classList.add('sel');
   document.getElementById('hProjectTimeline').value = value;
   reveal('rev-specificDate', value === 'specific-date');
+  if (value !== 'specific-date') {
+    // Clear stale date and its error when switching away
+    document.getElementById('specificLaunchDate').value = '';
+    clearErr('e-specificDate');
+  }
   clearErr('e-timeline');
 }
 
@@ -3028,14 +3049,36 @@ function pickContentReadiness(card, value) {
 }
 
 const selectedMedia = new Set();
+// These two are mutually exclusive with each other and with all specific assets
+const MEDIA_EXCL = ["I don't have anything yet", "I'm not sure what I'll need"];
 function toggleMedia(pill) {
   const value = pill.dataset.mval;
-  if (pill.classList.contains('sel')) {
-    pill.classList.remove('sel');
-    selectedMedia.delete(value);
+  const isExcl = MEDIA_EXCL.includes(value);
+  const allPills = document.querySelectorAll('#projectMediaGrid .chk-pill');
+  if (isExcl) {
+    if (pill.classList.contains('sel')) {
+      // Deselect — allow toggling off
+      pill.classList.remove('sel');
+      selectedMedia.delete(value);
+    } else {
+      // Clear every other selection, then select only this one
+      selectedMedia.clear();
+      allPills.forEach(p => p.classList.remove('sel'));
+      pill.classList.add('sel');
+      selectedMedia.add(value);
+    }
   } else {
-    pill.classList.add('sel');
-    selectedMedia.add(value);
+    // Specific asset — always clear both exclusive options first
+    allPills.forEach(p => { if (MEDIA_EXCL.includes(p.dataset.mval)) p.classList.remove('sel'); });
+    MEDIA_EXCL.forEach(v => selectedMedia.delete(v));
+    // Then toggle this asset normally
+    if (pill.classList.contains('sel')) {
+      pill.classList.remove('sel');
+      selectedMedia.delete(value);
+    } else {
+      pill.classList.add('sel');
+      selectedMedia.add(value);
+    }
   }
   document.getElementById('hProjectMedia').value = [...selectedMedia].join(', ');
   clearErr('e-projectMedia');
@@ -3052,6 +3095,11 @@ function validateStage5() {
   let ok = true;
   if (!document.getElementById('hProjectTimeline').value) {
     document.getElementById('e-timeline').classList.add('show'); ok = false;
+  }
+  // Date field is required only when "I have a specific launch date" is selected
+  if (document.getElementById('hProjectTimeline').value === 'specific-date' &&
+      !document.getElementById('specificLaunchDate').value) {
+    document.getElementById('e-specificDate').classList.add('show'); ok = false;
   }
   if (!document.getElementById('hContentReadiness').value) {
     document.getElementById('e-contentReadiness').classList.add('show'); ok = false;
