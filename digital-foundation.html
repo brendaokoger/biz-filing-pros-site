@@ -2073,45 +2073,30 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
       <div class="field-section" style="margin-top:0;">
         <span class="field-section-label">When are you hoping to launch? <span class="req">*</span></span>
         <div class="action-list" id="timelineList" style="margin-top:.6rem;">
-          <label class="action-item multi-line" onclick="pickTimeline(this,'asap')">
+          <label class="action-item" onclick="pickTimeline(this,'asap')">
             <input type="radio" name="_timeline">
             <div class="action-dot"></div>
-            <div>
-              <span class="action-label">As soon as possible</span>
-              <p class="action-item-sub">I'm ready to move forward now.</p>
-            </div>
+            <span class="action-label">As soon as possible</span>
           </label>
-          <label class="action-item multi-line" onclick="pickTimeline(this,'1-2-months')">
+          <label class="action-item" onclick="pickTimeline(this,'1-2-months')">
             <input type="radio" name="_timeline">
             <div class="action-dot"></div>
-            <div>
-              <span class="action-label">Within 1–2 months</span>
-              <p class="action-item-sub">I'm in the planning stage and getting ready.</p>
-            </div>
+            <span class="action-label">Within 1–2 months</span>
           </label>
-          <label class="action-item multi-line" onclick="pickTimeline(this,'3-6-months')">
+          <label class="action-item" onclick="pickTimeline(this,'3-6-months')">
             <input type="radio" name="_timeline">
             <div class="action-dot"></div>
-            <div>
-              <span class="action-label">Within 3–6 months</span>
-              <p class="action-item-sub">I'm doing early research before committing.</p>
-            </div>
+            <span class="action-label">Within 3–6 months</span>
           </label>
-          <label class="action-item multi-line" onclick="pickTimeline(this,'6-plus-months')">
+          <label class="action-item" onclick="pickTimeline(this,'6-plus-months')">
             <input type="radio" name="_timeline">
             <div class="action-dot"></div>
-            <div>
-              <span class="action-label">6+ months from now</span>
-              <p class="action-item-sub">I'm exploring options for the future.</p>
-            </div>
+            <span class="action-label">6+ months from now</span>
           </label>
-          <label class="action-item multi-line" onclick="pickTimeline(this,'specific-date')">
+          <label class="action-item" onclick="pickTimeline(this,'specific-date')">
             <input type="radio" name="_timeline">
             <div class="action-dot"></div>
-            <div>
-              <span class="action-label">I have a specific launch date</span>
-              <p class="action-item-sub">I'm working toward a specific date or event.</p>
-            </div>
+            <span class="action-label">I have a specific launch date</span>
           </label>
           <label class="action-item" onclick="pickTimeline(this,'flexible')">
             <input type="radio" name="_timeline">
@@ -2135,49 +2120,33 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
     <!-- ── 2. WEBSITE CONTENT ── -->
     <div class="df-card">
       <h3 class="df-card-title">Website Content</h3>
-      <p class="df-card-sub">Website content includes your text, headings, descriptions, service details, and any other written copy for the site.</p>
-      <div class="field-section" style="margin-top:.65rem;">
-        <span class="field-section-label">How ready is your content? <span class="req">*</span></span>
+      <div class="field-section" style="margin-top:0;">
+        <span class="field-section-label">How ready is your written content? <span class="req">*</span></span>
         <div class="action-list" id="contentReadinessList" style="margin-top:.6rem;">
-          <label class="action-item multi-line" onclick="pickContentReadiness(this,'ready')">
+          <label class="action-item" onclick="pickContentReadiness(this,'ready')">
             <input type="radio" name="_contentReadiness">
             <div class="action-dot"></div>
-            <div>
-              <span class="action-label">Ready to go</span>
-              <p class="action-item-sub">My copy and content are written and ready.</p>
-            </div>
+            <span class="action-label">Ready to go — copy is written and ready</span>
           </label>
-          <label class="action-item multi-line" onclick="pickContentReadiness(this,'some-ready')">
+          <label class="action-item" onclick="pickContentReadiness(this,'some-ready')">
             <input type="radio" name="_contentReadiness">
             <div class="action-dot"></div>
-            <div>
-              <span class="action-label">Some of it is ready</span>
-              <p class="action-item-sub">I have some content but will need help filling in the gaps.</p>
-            </div>
+            <span class="action-label">Some of it is ready</span>
           </label>
-          <label class="action-item multi-line" onclick="pickContentReadiness(this,'need-help')">
+          <label class="action-item" onclick="pickContentReadiness(this,'need-help')">
             <input type="radio" name="_contentReadiness">
             <div class="action-dot"></div>
-            <div>
-              <span class="action-label">I need help writing it</span>
-              <p class="action-item-sub">I have ideas but need help turning them into polished website copy.</p>
-            </div>
+            <span class="action-label">I need help writing it</span>
           </label>
-          <label class="action-item multi-line" onclick="pickContentReadiness(this,'scratch')">
+          <label class="action-item" onclick="pickContentReadiness(this,'scratch')">
             <input type="radio" name="_contentReadiness">
             <div class="action-dot"></div>
-            <div>
-              <span class="action-label">Starting from scratch</span>
-              <p class="action-item-sub">I don't have any content prepared yet.</p>
-            </div>
+            <span class="action-label">Starting from scratch — nothing prepared yet</span>
           </label>
-          <label class="action-item multi-line" onclick="pickContentReadiness(this,'not-sure')">
+          <label class="action-item" onclick="pickContentReadiness(this,'not-sure')">
             <input type="radio" name="_contentReadiness">
             <div class="action-dot"></div>
-            <div>
-              <span class="action-label">I'm not sure</span>
-              <p class="action-item-sub">I'd like guidance on what to prepare.</p>
-            </div>
+            <span class="action-label">I'm not sure — I'd like guidance</span>
           </label>
         </div>
         <span class="f-err" id="e-contentReadiness">Please select an option.</span>
@@ -2187,8 +2156,7 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
     <!-- ── 3. PHOTOS, VIDEO & MEDIA ── -->
     <div class="df-card">
       <h3 class="df-card-title">Photos, Video &amp; Media</h3>
-      <p class="df-card-sub">Let us know what visual assets you already have. This helps us plan the design and make the most of what you bring to the project.</p>
-      <div class="field-section" style="margin-top:.65rem;">
+      <div class="field-section" style="margin-top:0;">
         <span class="field-section-label">What do you currently have? <span class="req">*</span></span>
         <span class="f-hint" style="display:block;margin-bottom:.65rem;">Select all that apply.</span>
         <div class="pill-grid" id="projectMediaGrid">
@@ -2211,8 +2179,7 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
     <!-- ── 4. PROJECT INVESTMENT ── -->
     <div class="df-card">
       <h3 class="df-card-title">Project Investment</h3>
-      <p class="df-card-sub">Select the investment range that best fits your budget. All projects start at $2,000.</p>
-      <div class="field-section" style="margin-top:.65rem;">
+      <div class="field-section" style="margin-top:0;">
         <span class="field-section-label">What investment range works for you? <span class="req">*</span></span>
         <div class="cc-row three-up" id="investmentRow" style="margin-top:.6rem;">
           <label class="cc" onclick="pickInvestment(this,'2000-3500')">
@@ -2267,10 +2234,10 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
     <div class="s-nav">
       <button type="button" class="btn-back" onclick="goBack(5)">← Back</button>
       <button type="button" class="btn-continue" onclick="goNext(5)">
-        Review &amp; Submit <span class="arr">→</span>
+        Review My Project <span class="arr">→</span>
       </button>
     </div>
-    <p class="next-hint">Next: <strong>Review &amp; Submit</strong> — confirm your details and send.</p>
+    <p class="next-hint">Next: <strong>Review</strong> — check your information before submitting your project.</p>
 
   </div>
   <!-- /STAGE 5 -->
