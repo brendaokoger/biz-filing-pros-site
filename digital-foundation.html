@@ -107,7 +107,7 @@ body { font-family:'DM Sans',system-ui,sans-serif; background:var(--off-white); 
 .f-err.show { display:block; }
 .char-count { font-size:.67rem; color:var(--gray-300); text-align:right; margin-top:3px; }
 
-input[type=text], input[type=email], input[type=tel], input[type=url], textarea, select {
+input[type=text], input[type=email], input[type=tel], input[type=url], input[type=date], textarea, select {
   font-family:'DM Sans',sans-serif; font-size:.9rem;
   padding:.65rem .85rem;
   border:1.5px solid var(--gray-200);
@@ -482,6 +482,11 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
 <input type="hidden" name="design_logo_status"         id="hLogoStatus">
 <input type="hidden" name="design_inspiration_likes"   id="hInspirationLikes">
 <input type="hidden" name="design_animation_level"     id="hAnimationLevel">
+<!-- Stage 5 — Project Details hidden inputs -->
+<input type="hidden" name="project_timeline"   id="hProjectTimeline">
+<input type="hidden" name="content_readiness"  id="hContentReadiness">
+<input type="hidden" name="project_media"      id="hProjectMedia">
+<input type="hidden" name="project_investment" id="hProjectInvestment">
 <!-- Internal quote tool signals — never shown to customer -->
 <input type="hidden" name="quote_instant_price"        id="qInstantPrice">
 <input type="hidden" name="quote_price_range"          id="qPriceRange">
@@ -2055,13 +2060,220 @@ textarea { resize:vertical; min-height:90px; line-height:1.65; }
   <!-- /STAGE 4 -->
 
   <div class="df-panel" id="panel-5">
+
     <div class="s-intro">
       <span class="s-eyebrow">Stage 5 of 6 &middot; Project Details</span>
-      <h2 class="s-title">Project Details</h2>
-      <p class="s-sub">Coming up next — we're building this section now.</p>
+      <h2 class="s-title">Almost there.</h2>
+      <p class="s-sub">A few quick details about your timeline, content, and investment will help us prepare for our first conversation.</p>
     </div>
-    <div class="s-nav"><button type="button" class="btn-back" onclick="goBack(5)">← Back</button></div>
+
+    <!-- ── 1. TIMELINE ── -->
+    <div class="df-card">
+      <h3 class="df-card-title">Timeline</h3>
+      <div class="field-section" style="margin-top:0;">
+        <span class="field-section-label">When are you hoping to launch? <span class="req">*</span></span>
+        <div class="action-list" id="timelineList" style="margin-top:.6rem;">
+          <label class="action-item multi-line" onclick="pickTimeline(this,'asap')">
+            <input type="radio" name="_timeline">
+            <div class="action-dot"></div>
+            <div>
+              <span class="action-label">As soon as possible</span>
+              <p class="action-item-sub">I'm ready to move forward now.</p>
+            </div>
+          </label>
+          <label class="action-item multi-line" onclick="pickTimeline(this,'1-2-months')">
+            <input type="radio" name="_timeline">
+            <div class="action-dot"></div>
+            <div>
+              <span class="action-label">Within 1–2 months</span>
+              <p class="action-item-sub">I'm in the planning stage and getting ready.</p>
+            </div>
+          </label>
+          <label class="action-item multi-line" onclick="pickTimeline(this,'3-6-months')">
+            <input type="radio" name="_timeline">
+            <div class="action-dot"></div>
+            <div>
+              <span class="action-label">Within 3–6 months</span>
+              <p class="action-item-sub">I'm doing early research before committing.</p>
+            </div>
+          </label>
+          <label class="action-item multi-line" onclick="pickTimeline(this,'6-plus-months')">
+            <input type="radio" name="_timeline">
+            <div class="action-dot"></div>
+            <div>
+              <span class="action-label">6+ months from now</span>
+              <p class="action-item-sub">I'm exploring options for the future.</p>
+            </div>
+          </label>
+          <label class="action-item multi-line" onclick="pickTimeline(this,'specific-date')">
+            <input type="radio" name="_timeline">
+            <div class="action-dot"></div>
+            <div>
+              <span class="action-label">I have a specific launch date</span>
+              <p class="action-item-sub">I'm working toward a specific date or event.</p>
+            </div>
+          </label>
+          <label class="action-item" onclick="pickTimeline(this,'flexible')">
+            <input type="radio" name="_timeline">
+            <div class="action-dot"></div>
+            <span class="action-label">I'm flexible — no timeline in mind yet</span>
+          </label>
+        </div>
+        <span class="f-err" id="e-timeline">Please select an option.</span>
+        <div class="reveal" id="rev-specificDate">
+          <div class="reveal-inner">
+            <div class="fg" style="margin-top:.75rem;">
+              <label class="f-label" for="specificLaunchDate">What is your target launch date?</label>
+              <input type="date" id="specificLaunchDate" name="project_launch_date">
+              <p class="f-hint">We'll review your requested date against the size and complexity of your project.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 2. WEBSITE CONTENT ── -->
+    <div class="df-card">
+      <h3 class="df-card-title">Website Content</h3>
+      <p class="df-card-sub">Website content includes your text, headings, descriptions, service details, and any other written copy for the site.</p>
+      <div class="field-section" style="margin-top:.65rem;">
+        <span class="field-section-label">How ready is your content? <span class="req">*</span></span>
+        <div class="action-list" id="contentReadinessList" style="margin-top:.6rem;">
+          <label class="action-item multi-line" onclick="pickContentReadiness(this,'ready')">
+            <input type="radio" name="_contentReadiness">
+            <div class="action-dot"></div>
+            <div>
+              <span class="action-label">Ready to go</span>
+              <p class="action-item-sub">My copy and content are written and ready.</p>
+            </div>
+          </label>
+          <label class="action-item multi-line" onclick="pickContentReadiness(this,'some-ready')">
+            <input type="radio" name="_contentReadiness">
+            <div class="action-dot"></div>
+            <div>
+              <span class="action-label">Some of it is ready</span>
+              <p class="action-item-sub">I have some content but will need help filling in the gaps.</p>
+            </div>
+          </label>
+          <label class="action-item multi-line" onclick="pickContentReadiness(this,'need-help')">
+            <input type="radio" name="_contentReadiness">
+            <div class="action-dot"></div>
+            <div>
+              <span class="action-label">I need help writing it</span>
+              <p class="action-item-sub">I have ideas but need help turning them into polished website copy.</p>
+            </div>
+          </label>
+          <label class="action-item multi-line" onclick="pickContentReadiness(this,'scratch')">
+            <input type="radio" name="_contentReadiness">
+            <div class="action-dot"></div>
+            <div>
+              <span class="action-label">Starting from scratch</span>
+              <p class="action-item-sub">I don't have any content prepared yet.</p>
+            </div>
+          </label>
+          <label class="action-item multi-line" onclick="pickContentReadiness(this,'not-sure')">
+            <input type="radio" name="_contentReadiness">
+            <div class="action-dot"></div>
+            <div>
+              <span class="action-label">I'm not sure</span>
+              <p class="action-item-sub">I'd like guidance on what to prepare.</p>
+            </div>
+          </label>
+        </div>
+        <span class="f-err" id="e-contentReadiness">Please select an option.</span>
+      </div>
+    </div>
+
+    <!-- ── 3. PHOTOS, VIDEO & MEDIA ── -->
+    <div class="df-card">
+      <h3 class="df-card-title">Photos, Video &amp; Media</h3>
+      <p class="df-card-sub">Let us know what visual assets you already have. This helps us plan the design and make the most of what you bring to the project.</p>
+      <div class="field-section" style="margin-top:.65rem;">
+        <span class="field-section-label">What do you currently have? <span class="req">*</span></span>
+        <span class="f-hint" style="display:block;margin-bottom:.65rem;">Select all that apply.</span>
+        <div class="pill-grid" id="projectMediaGrid">
+          <label class="chk-pill" data-mval="Professional photos" onclick="toggleMedia(this)"><input type="checkbox">Professional photos</label>
+          <label class="chk-pill" data-mval="Stock photos (we can source these)" onclick="toggleMedia(this)"><input type="checkbox">Stock photos</label>
+          <label class="chk-pill" data-mval="Photos I've taken myself" onclick="toggleMedia(this)"><input type="checkbox">Photos I've taken myself</label>
+          <label class="chk-pill" data-mval="Product photos" onclick="toggleMedia(this)"><input type="checkbox">Product photos</label>
+          <label class="chk-pill" data-mval="Videos or reels" onclick="toggleMedia(this)"><input type="checkbox">Videos or reels</label>
+          <label class="chk-pill" data-mval="Logo and brand assets" onclick="toggleMedia(this)"><input type="checkbox">Logo and brand assets</label>
+          <label class="chk-pill" data-mval="Headshots or team photos" onclick="toggleMedia(this)"><input type="checkbox">Headshots or team photos</label>
+          <label class="chk-pill" data-mval="Before-and-after photos" onclick="toggleMedia(this)"><input type="checkbox">Before-and-after photos</label>
+          <label class="chk-pill" data-mval="Customer testimonials or reviews" onclick="toggleMedia(this)"><input type="checkbox">Customer testimonials or reviews</label>
+          <label class="chk-pill" data-mval="I don't have anything yet" onclick="toggleMedia(this)"><input type="checkbox">I don't have anything yet</label>
+          <label class="chk-pill" data-mval="I'm not sure what I'll need" onclick="toggleMedia(this)"><input type="checkbox">I'm not sure what I'll need</label>
+        </div>
+        <span class="f-err" id="e-projectMedia">Please select at least one option.</span>
+      </div>
+    </div>
+
+    <!-- ── 4. PROJECT INVESTMENT ── -->
+    <div class="df-card">
+      <h3 class="df-card-title">Project Investment</h3>
+      <p class="df-card-sub">Select the investment range that best fits your budget. All projects start at $2,000.</p>
+      <div class="field-section" style="margin-top:.65rem;">
+        <span class="field-section-label">What investment range works for you? <span class="req">*</span></span>
+        <div class="cc-row three-up" id="investmentRow" style="margin-top:.6rem;">
+          <label class="cc" onclick="pickInvestment(this,'2000-3500')">
+            <input type="radio" name="_investment">
+            <div class="cc-check">✓</div>
+            <div class="cc-label">$2,000 – $3,500</div>
+          </label>
+          <label class="cc" onclick="pickInvestment(this,'3500-5000')">
+            <input type="radio" name="_investment">
+            <div class="cc-check">✓</div>
+            <div class="cc-label">$3,500 – $5,000</div>
+          </label>
+          <label class="cc" onclick="pickInvestment(this,'5000-7500')">
+            <input type="radio" name="_investment">
+            <div class="cc-check">✓</div>
+            <div class="cc-label">$5,000 – $7,500</div>
+          </label>
+          <label class="cc" onclick="pickInvestment(this,'7500-10000')">
+            <input type="radio" name="_investment">
+            <div class="cc-check">✓</div>
+            <div class="cc-label">$7,500 – $10,000</div>
+          </label>
+          <label class="cc" onclick="pickInvestment(this,'10000-plus')">
+            <input type="radio" name="_investment">
+            <div class="cc-check">✓</div>
+            <div class="cc-label">$10,000+</div>
+          </label>
+          <label class="cc" onclick="pickInvestment(this,'not-sure')">
+            <input type="radio" name="_investment">
+            <div class="cc-check">✓</div>
+            <div class="cc-label">I'm not sure yet</div>
+          </label>
+        </div>
+        <span class="f-err" id="e-investment">Please select an investment range.</span>
+        <div class="logo-info-msg">Your selection gives us a sense of your range — it does not lock in a price. Every project is quoted individually based on its scope, features, and timeline.</div>
+      </div>
+    </div>
+
+    <!-- ── 5. FINAL PROJECT NOTES ── -->
+    <div class="df-card">
+      <div class="field-section" style="margin-top:0;">
+        <span class="field-section-label">Final Project Notes</span>
+        <span class="f-hint" style="display:block;margin-bottom:.55rem;">Optional. Share any deadline, concern, idea, special requirement, or detail we haven't asked about yet.</span>
+        <div class="fg">
+          <textarea id="finalNotes" name="final_notes" placeholder="Anything else we should know before our first conversation…" rows="4" maxlength="600" oninput="updateCount(this,'cFinalNotes')"></textarea>
+          <div class="char-count"><span id="cFinalNotes">0</span> / 600</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="s-nav">
+      <button type="button" class="btn-back" onclick="goBack(5)">← Back</button>
+      <button type="button" class="btn-continue" onclick="goNext(5)">
+        Review &amp; Submit <span class="arr">→</span>
+      </button>
+    </div>
+    <p class="next-hint">Next: <strong>Review &amp; Submit</strong> — confirm your details and send.</p>
+
   </div>
+  <!-- /STAGE 5 -->
 
   <div class="df-panel" id="panel-6">
     <div class="s-intro">
@@ -2274,6 +2486,7 @@ function goNext(from) {
   if (from === 2) { if (!validateStage2()) return; initStage3(); }
   if (from === 3 && !validateStage3()) return;
   if (from === 4 && !validateStage4()) return;
+  if (from === 5 && !validateStage5()) return;
   showPanel(from + 1);
 }
 function goBack(from) {
@@ -2822,6 +3035,65 @@ function validateStage4() {
   }
   if (!document.getElementById('hAnimationLevel').value) {
     document.getElementById('e-animationLevel').classList.add('show'); ok = false;
+  }
+  if (!ok) {
+    const first = document.querySelector('.f-err.show');
+    if (first) first.scrollIntoView({ behavior:'smooth', block:'center' });
+  }
+  return ok;
+}
+
+/* ══ STAGE 5 — PROJECT DETAILS ══ */
+
+function pickTimeline(card, value) {
+  document.querySelectorAll('#timelineList .action-item').forEach(c => c.classList.remove('sel'));
+  card.classList.add('sel');
+  document.getElementById('hProjectTimeline').value = value;
+  reveal('rev-specificDate', value === 'specific-date');
+  clearErr('e-timeline');
+}
+
+function pickContentReadiness(card, value) {
+  document.querySelectorAll('#contentReadinessList .action-item').forEach(c => c.classList.remove('sel'));
+  card.classList.add('sel');
+  document.getElementById('hContentReadiness').value = value;
+  clearErr('e-contentReadiness');
+}
+
+const selectedMedia = new Set();
+function toggleMedia(pill) {
+  const value = pill.dataset.mval;
+  if (pill.classList.contains('sel')) {
+    pill.classList.remove('sel');
+    selectedMedia.delete(value);
+  } else {
+    pill.classList.add('sel');
+    selectedMedia.add(value);
+  }
+  document.getElementById('hProjectMedia').value = [...selectedMedia].join(', ');
+  clearErr('e-projectMedia');
+}
+
+function pickInvestment(card, value) {
+  document.querySelectorAll('#investmentRow .cc').forEach(c => c.classList.remove('sel'));
+  card.classList.add('sel');
+  document.getElementById('hProjectInvestment').value = value;
+  clearErr('e-investment');
+}
+
+function validateStage5() {
+  let ok = true;
+  if (!document.getElementById('hProjectTimeline').value) {
+    document.getElementById('e-timeline').classList.add('show'); ok = false;
+  }
+  if (!document.getElementById('hContentReadiness').value) {
+    document.getElementById('e-contentReadiness').classList.add('show'); ok = false;
+  }
+  if (selectedMedia.size === 0) {
+    document.getElementById('e-projectMedia').classList.add('show'); ok = false;
+  }
+  if (!document.getElementById('hProjectInvestment').value) {
+    document.getElementById('e-investment').classList.add('show'); ok = false;
   }
   if (!ok) {
     const first = document.querySelector('.f-err.show');
