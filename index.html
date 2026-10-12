@@ -347,6 +347,15 @@ a.footer-detail-value:hover{color:var(--gold-light)}
 .ron-recog-body p{margin-bottom:13px}
 .ron-recog-body p:last-child{margin-bottom:0}
 .ron-recog-body strong{color:rgba(255,255,255,0.8);font-weight:500}
+.ron-feat-tag{display:inline-flex;align-items:center;gap:7px;background:rgba(200,164,76,0.1);border:1px solid rgba(200,164,76,0.28);border-radius:100px;padding:5px 13px 5px 9px;font-family:var(--font-sans);font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.ron-feat-tag-ico{width:14px;height:14px;fill:var(--gold);flex-shrink:0}
+.ron-feat-quote{font-family:var(--font-serif);font-size:clamp(16px,1.6vw,19px);font-weight:400;font-style:italic;color:rgba(255,255,255,0.88);line-height:1.6;border-left:2px solid var(--gold);padding-left:20px;margin:0 0 20px}
+.ron-feat-rule{display:block;width:40px;height:1px;background:linear-gradient(90deg,var(--gold),var(--gold-light));margin-bottom:20px;opacity:0.6}
+.ron-feat-attrs{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+.ron-feat-attr{display:flex;align-items:flex-start;gap:10px;font-family:var(--font-sans);font-size:13px;font-weight:300;color:rgba(255,255,255,0.58);line-height:1.5}
+.ron-feat-attr-check{width:17px;height:17px;border-radius:50%;background:rgba(200,164,76,0.1);border:1px solid rgba(200,164,76,0.32);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.ron-feat-attr-check svg{width:9px;height:9px}
+.ron-feat-closing{font-family:var(--font-serif);font-size:14px;font-weight:400;font-style:italic;color:rgba(200,164,76,0.7);line-height:1.5}
 
 /* Photo frame — arch */
 .ron-arch-frame{position:relative;width:100%;filter:drop-shadow(0 28px 64px rgba(0,0,0,0.55)) drop-shadow(0 0 48px rgba(200,164,76,0.14))}
@@ -921,7 +930,6 @@ a.footer-detail-value:hover{color:var(--gold-light)}
           <h2 class="ron-hero-headline">Your Trusted<br>Notary Partner</h2>
           <p class="ron-hero-sub">Anytime, Anywhere</p>
           <span class="ron-gold-rule"></span>
-          <p class="ron-hero-intro">Brenda O. Koger is our Lead Signing Agent and Remote Online Notary, bringing professionalism, accuracy, and a client-first dedication to every transaction. Her hard work and commitment help make Biz Filing Pros a trusted choice for individuals, families, and businesses.</p>
         </div>
 
         <!-- Right: photo + nameplate + button -->
@@ -944,17 +952,31 @@ a.footer-detail-value:hover{color:var(--gold-light)}
           </a>
         </div>
 
-        <!-- Left row 2: recognition message -->
+        <!-- Left row 2: recognition feature -->
         <div class="ron-hero-recognition fade-up d1">
-          <p class="ron-recog-heading">Celebrating Excellence, Dedication &amp; Commitment</p>
-          <div class="ron-recog-body">
-            <p>At Biz Filing Pros, we believe exceptional service begins with exceptional people.</p>
-            <p>Today, we proudly recognize <strong>Brenda O. Koger</strong>, our Lead Signing Agent and Remote Online Notary, for her outstanding dedication, professionalism, and continued commitment to the success of Biz Filing Pros.</p>
-            <p>Brenda plays an important role in delivering the dependable, accurate, and personalized notarial services our clients deserve. Her attention to detail, dedication to excellence, and client-first approach reflect the values upon which our company continues to grow.</p>
-            <p>Her hard work and commitment help strengthen the trust our clients place in Biz Filing Pros every day.</p>
-            <p>Thank you, Brenda, for your continued dedication and for helping us build a reputation rooted in professionalism, integrity, and exceptional service.</p>
-            <p>We are proud to celebrate this milestone and look forward to continued growth and success.</p>
+          <div class="ron-feat-tag">
+            <svg class="ron-feat-tag-ico" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            Milestone Recognition
           </div>
+          <blockquote class="ron-feat-quote">
+            "We proudly recognize Brenda O. Koger for her outstanding dedication, professionalism, and client-first commitment to Biz Filing Pros."
+          </blockquote>
+          <span class="ron-feat-rule"></span>
+          <div class="ron-feat-attrs">
+            <div class="ron-feat-attr">
+              <span class="ron-feat-attr-check"><svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5.5 4,8 8.5,2" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span>Attention to detail and dependable, accurate service</span>
+            </div>
+            <div class="ron-feat-attr">
+              <span class="ron-feat-attr-check"><svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5.5 4,8 8.5,2" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span>Builds client trust through professionalism and integrity</span>
+            </div>
+            <div class="ron-feat-attr">
+              <span class="ron-feat-attr-check"><svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5.5 4,8 8.5,2" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span>Reflects the values upon which Biz Filing Pros continues to grow</span>
+            </div>
+          </div>
+          <p class="ron-feat-closing">Thank you, Brenda — we're proud to celebrate this milestone.</p>
         </div>
 
       </div>
