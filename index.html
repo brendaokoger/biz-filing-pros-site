@@ -400,6 +400,11 @@ a.footer-detail-value:hover{color:var(--gold-light)}
 .ron-services-headline em{font-style:italic;color:var(--gold-light)}
 .ron-services-body{font-family:var(--font-sans);font-size:14px;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.82}
 
+/* Schedule CTA in services */
+.ron-schedule-cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;margin:32px auto 0;padding:17px 36px;background:linear-gradient(120deg,var(--gold) 0%,var(--gold-light) 50%,var(--gold) 100%);background-size:200% 100%;color:var(--navy);font-family:var(--font-sans);font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:8px;box-shadow:0 4px 24px rgba(200,164,76,0.32);transition:background-position 0.5s,box-shadow 0.3s,transform 0.25s;cursor:pointer;border:none}
+.ron-schedule-cta:hover{background-position:100% 0;box-shadow:0 6px 32px rgba(200,164,76,0.48);transform:translateY(-2px)}
+.ron-schedule-cta-wrap{text-align:center;margin-bottom:52px}
+
 /* 6-benefit icons grid */
 .ron-benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .ron-benefit{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:24px 14px;border-radius:var(--radius-lg);border:1px solid rgba(200,164,76,0.08);background:rgba(255,255,255,0.015);transition:border-color 0.3s,background 0.3s,transform 0.3s}
@@ -983,52 +988,6 @@ a.footer-detail-value:hover{color:var(--gold-light)}
     </div>
   </div>
 
-  <!-- ── CREDENTIAL CARDS ── -->
-  <div class="ron-creds-area">
-    <div class="container">
-      <div class="ron-creds-grid fade-up">
-
-        <div class="ron-cred">
-          <div class="ron-cred-ico">
-            <svg viewBox="0 0 24 24"><path d="M12 2L3 6v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V6l-9-4z"/><polyline points="9,12 11,14 15,10"/></svg>
-          </div>
-          <div>
-            <span class="ron-cred-label">Commissioned Notary</span>
-            <span class="ron-cred-desc">Licensed &amp; Insured</span>
-          </div>
-        </div>
-
-        <div class="ron-cred">
-          <div class="ron-cred-ico">
-            <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="11" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><circle cx="12" cy="16" r="1.5" fill="var(--gold)" stroke="none"/></svg>
-          </div>
-          <div>
-            <span class="ron-cred-label">Secure &amp; Encrypted</span>
-            <span class="ron-cred-desc">Protected Virtual Sessions</span>
-          </div>
-        </div>
-
-        <div class="ron-cred">
-          <div class="ron-cred-ico">
-            <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/><circle cx="7" cy="15" r="1.5" fill="var(--gold)" stroke="none"/><line x1="11" y1="15" x2="18" y2="15"/></svg>
-          </div>
-          <div>
-            <span class="ron-cred-label">ID Verification Required</span>
-            <span class="ron-cred-desc">Government-Issued Photo ID</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- ── GOLD DIVIDER ── -->
-  <div class="ron-divider-area">
-    <div class="container">
-      <div class="ron-divider-line"></div>
-    </div>
-  </div>
-
   <!-- ── SERVICES AREA ── -->
   <div class="ron-services-area">
     <div class="container">
@@ -1036,10 +995,17 @@ a.footer-detail-value:hover{color:var(--gold-light)}
       <div class="ron-services-header fade-up">
         <span class="ron-services-eyebrow">Remote Online Notarization</span>
         <h3 class="ron-services-headline">Get Your Documents Notarized <em>Online</em><br>Without Leaving Home or Office</h3>
-        <p class="ron-services-body">Experience the convenience of professional Remote Online Notarization with Biz Filing Pros. Meet securely with Brenda O. Koger, our Commissioned Notary, through a convenient virtual appointment. Our process is designed to make notarization simple, professional, and accessible for eligible documents.<br><br>Whether you're managing personal paperwork, business documents, or important transactions, we provide attentive service and a secure online experience.</p>
+        <p class="ron-services-body">Experience the convenience of professional Remote Online Notarization with Biz Filing Pros. Meet securely with Brenda O. Koger, our Licensed and Commissioned Notary, through a convenient virtual appointment. Our process is designed to make notarization simple, professional, and accessible for eligible documents.<br><br>Whether you're managing personal paperwork, business documents, or important transactions, we provide attentive service and a secure online experience.</p>
       </div>
 
-      <div class="ron-benefits-grid fade-up d1">
+      <div class="ron-schedule-cta-wrap fade-up d1">
+        <a href="tel:3177850113" class="ron-schedule-cta">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="var(--navy)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Schedule an Appointment
+        </a>
+      </div>
+
+      <div class="ron-benefits-grid fade-up d2">
 
         <div class="ron-benefit">
           <div class="ron-benefit-ico">
